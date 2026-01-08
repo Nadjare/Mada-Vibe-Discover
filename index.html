@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== HEADER LUXE ===== */
+        /* ===== HEADER RESPONSIVE ===== */
         #header {
             position: fixed;
             top: 0;
@@ -46,29 +46,22 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 20px;
-            animation: floatLogo 6s ease-in-out infinite;
-        }
-
-        @keyframes floatLogo {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            50% { transform: translateY(-10px) rotate(2deg); }
+            gap: 15px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 12px 25px;
+            gap: 12px;
+            padding: 10px 20px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+            border-radius: 15px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .logo img {
-            height: 70px;
+            height: 50px;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
 
@@ -78,45 +71,49 @@
         }
 
         .logo-text .main-title {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 900;
             color: white;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
-            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
             background: linear-gradient(45deg, #fff, #f39c12, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
         }
 
         .logo-text .tagline {
-            font-size: 1rem;
+            font-size: 0.8rem;
             color: rgba(255,255,255,0.9);
             font-weight: 500;
-            margin-top: 5px;
-            letter-spacing: 1px;
+            margin-top: 3px;
+            letter-spacing: 0.5px;
         }
 
-        /* MENU ET LANGUE */
+        /* Menu mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
         .header-right {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
         }
 
         .menu ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 15px;
             background: rgba(255, 255, 255, 0.1);
-            padding: 12px 25px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 15px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
@@ -125,41 +122,21 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 10px 20px;
-            border-radius: 12px;
-            transition: all 0.4s ease;
+            padding: 8px 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .menu a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255,255,255,0.4), 
-                transparent);
-            transition: left 0.6s ease;
-        }
-
-        .menu a:hover::before {
-            left: 100%;
+            gap: 8px;
+            font-size: 0.9rem;
         }
 
         .menu a:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
         }
 
-        /* SELECTEUR DE LANGUE */
+        /* SELECTEUR DE LANGUE MOBILE */
         .language-selector {
             position: relative;
         }
@@ -168,45 +145,43 @@
             background: rgba(255, 255, 255, 0.15);
             border: 2px solid rgba(255, 255, 255, 0.25);
             color: white;
-            padding: 14px 25px;
-            border-radius: 15px;
+            padding: 10px 15px;
+            border-radius: 12px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-            min-width: 160px;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            min-width: 120px;
             justify-content: center;
             backdrop-filter: blur(10px);
         }
 
         .language-btn:hover {
             background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
         .language-btn i {
-            font-size: 1.3rem;
+            font-size: 1rem;
         }
 
         .language-dropdown {
             position: absolute;
             top: 100%;
             right: 0;
-            width: 220px;
+            width: 180px;
             background: rgba(20, 25, 35, 0.98);
             backdrop-filter: blur(25px);
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 15px;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 10px;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-20px);
-            transition: all 0.4s ease;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid rgba(255,255,255,0.15);
             z-index: 1001;
         }
@@ -220,45 +195,32 @@
         .language-option {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 15px 20px;
+            gap: 10px;
+            padding: 10px 15px;
             color: #e0e0e0;
             text-decoration: none;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            margin-bottom: 8px;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
         }
 
         .language-option:hover {
             background: linear-gradient(135deg, rgba(243, 156, 18, 0.3), rgba(26, 93, 26, 0.3));
             color: #f39c12;
-            transform: translateX(8px);
-        }
-
-        .language-option.active {
-            background: linear-gradient(135deg, rgba(243, 156, 18, 0.4), rgba(26, 93, 26, 0.4));
-            color: #f39c12;
-            font-weight: 700;
-            border: 1px solid rgba(243, 156, 18, 0.5);
         }
 
         .flag-icon {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        .lang-name {
-            flex: 1;
-            font-size: 1.1rem;
-        }
-
-        /* ===== SECTIONS CENTRÉES ===== */
+        /* ===== SECTIONS RESPONSIVES ===== */
         section {
-            padding: 120px 5%;
+            padding: 80px 5%;
             text-align: center;
             position: relative;
         }
@@ -270,48 +232,25 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                        url('images/plage.jpg') center/cover no-repeat fixed;
-            margin-top: 100px;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8));
+            margin-top: 80px;
         }
 
-        .hero-img {
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
             width: 100%;
-            max-width: 800px;
-            margin: 0 auto 60px;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-            border: 5px solid #f39c12;
-            transform: perspective(1000px) rotateX(5deg);
-            transition: transform 0.5s ease;
-        }
-
-        .hero-img:hover {
-            transform: perspective(1000px) rotateX(0deg) scale(1.02);
-        }
-
-        .hero-img img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .hero-img:hover img {
-            transform: scale(1.1);
         }
 
         .hero-text {
-            max-width: 900px;
-            margin: 0 auto;
+            margin-bottom: 40px;
         }
 
         .hero-text h1 {
-            font-size: 4.5rem;
+            font-size: 2.5rem;
             color: #f39c12;
-            margin-bottom: 30px;
-            text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
             position: relative;
             display: inline-block;
         }
@@ -319,130 +258,7 @@
         .hero-text h1::after {
             content: '';
             position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #f39c12, transparent);
-        }
-
-        .hero-text p {
-            font-size: 1.4rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 40px;
-            line-height: 1.8;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            background: linear-gradient(135deg, #f39c12, #e67e22, #f39c12);
-            background-size: 200% auto;
-            color: #0a0a0a;
-            padding: 20px 45px;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.3rem;
-            transition: all 0.4s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 15px 35px rgba(243, 156, 18, 0.4);
-            position: relative;
-            overflow: hidden;
-            animation: gradientShift 3s infinite linear;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255,255,255,0.4), 
-                transparent);
-            transition: left 0.8s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(243, 156, 18, 0.6);
-        }
-
-        /* Sections avec photos au-dessus */
-        .section-with-image {
-            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
-            padding: 120px 5%;
-            text-align: center;
-        }
-
-        .section-image-container {
-            max-width: 900px;
-            margin: 0 auto 60px;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border: 4px solid #1a5d1a;
-            position: relative;
-        }
-
-        .section-image-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(26, 93, 26, 0.2), 
-                rgba(243, 156, 18, 0.2));
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .section-image-container img {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .section-image-container:hover img {
-            transform: scale(1.08);
-        }
-
-        .section-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .section-content h2 {
-            font-size: 3.5rem;
-            color: #f39c12;
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-content h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
             width: 150px;
@@ -450,11 +266,118 @@
             background: linear-gradient(90deg, transparent, #f39c12, transparent);
         }
 
-        .section-content p {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.85);
+        .hero-text p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: #0a0a0a;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(243, 156, 18, 0.5);
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            border: 3px solid #f39c12;
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-img:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Sections avec photos en bas */
+        .section-with-image {
+            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            width: 100%;
+        }
+
+        .section-content h2 {
+            font-size: 2.2rem;
+            color: #f39c12;
             margin-bottom: 25px;
-            line-height: 1.9;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #f39c12, transparent);
+        }
+
+        .section-content p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 20px;
+            line-height: 1.7;
+            padding: 0 15px;
+        }
+
+        .section-image-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border: 3px solid #1a5d1a;
+        }
+
+        .section-image-container img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .section-image-container:hover img {
+            transform: scale(1.05);
         }
 
         /* Services Section */
@@ -462,23 +385,13 @@
             background: linear-gradient(135deg, #0f151f 0%, #1a1f2e 100%);
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .services::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231a5d1a' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            padding: 80px 5%;
         }
 
         .services h2 {
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             color: #f39c12;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             position: relative;
             display: inline-block;
         }
@@ -486,96 +399,72 @@
         .services h2::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
+            width: 150px;
+            height: 3px;
             background: linear-gradient(90deg, transparent, #f39c12, transparent);
         }
 
         .service-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .service-card {
             background: linear-gradient(145deg, #222233, #1a1a2e);
-            padding: 50px 35px;
-            border-radius: 25px;
+            padding: 30px 20px;
+            border-radius: 20px;
             text-align: center;
-            transition: all 0.5s ease;
+            transition: all 0.4s ease;
             border: 2px solid rgba(243, 156, 18, 0.3);
-            position: relative;
-            overflow: hidden;
-            min-height: 320px;
+            min-height: 250px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(243, 156, 18, 0.1), 
-                transparent);
-            transition: left 0.7s ease;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
         .service-card:hover {
-            transform: translateY(-15px) scale(1.03);
+            transform: translateY(-10px);
             border-color: #f39c12;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
         .service-icon {
-            font-size: 4rem;
+            font-size: 3rem;
             color: #f39c12;
-            margin-bottom: 30px;
-            transition: transform 0.5s ease;
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.2) rotate(15deg);
+            margin-bottom: 20px;
         }
 
         .service-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: 700;
         }
 
         .service-card p {
             color: rgba(255,255,255,0.8);
-            font-size: 1.1rem;
-            line-height: 1.7;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* Destinations */
         .destinations {
             background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
             text-align: center;
+            padding: 80px 5%;
         }
 
         .destinations h2 {
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             color: #f39c12;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             position: relative;
             display: inline-block;
         }
@@ -583,115 +472,102 @@
         .destinations h2::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
+            width: 150px;
+            height: 3px;
             background: linear-gradient(90deg, transparent, #f39c12, transparent);
         }
 
         .destination-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .destination-card {
             background: linear-gradient(145deg, #2a2a2a, #222222);
-            padding: 40px 25px;
-            border-radius: 20px;
-            transition: all 0.4s ease;
+            padding: 30px 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
             border: 2px solid #333;
             position: relative;
             overflow: hidden;
         }
 
-        .destination-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #f39c12, #1a5d1a);
-        }
-
         .destination-card:hover {
-            transform: translateY(-10px) scale(1.05);
+            transform: translateY(-8px);
             border-color: #f39c12;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
 
         .destination-card i {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             color: #f39c12;
-            margin-bottom: 20px;
-            transition: transform 0.4s ease;
-        }
-
-        .destination-card:hover i {
-            transform: scale(1.2) rotate(360deg);
+            margin-bottom: 15px;
         }
 
         .destination-card span {
             display: block;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: white;
         }
 
         /* Climax Section */
         .climax {
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
-                        url('images/tsingy.jpg') center/cover no-repeat fixed;
-            min-height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85));
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-        }
-
-        .climax-image {
-            max-width: 800px;
-            margin: 0 auto 60px;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-            border: 5px solid #f39c12;
-        }
-
-        .climax-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
+            padding: 80px 5%;
         }
 
         .climax-content {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 0 auto 40px;
         }
 
         .climax-content h2 {
-            font-size: 4rem;
+            font-size: 2.5rem;
             color: #f39c12;
-            margin-bottom: 30px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         .climax-content p {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: rgba(255,255,255,0.9);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .climax-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            border: 3px solid #f39c12;
+        }
+
+        .climax-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
         }
 
         /* Footer */
         footer {
             background: linear-gradient(135deg, #111111 0%, #0a0a0a 100%);
-            padding: 80px 5% 40px;
+            padding: 60px 5% 30px;
             text-align: center;
             border-top: 3px solid #f39c12;
         }
@@ -702,50 +578,50 @@
         }
 
         .footer-content h2 {
-            font-size: 3rem;
+            font-size: 2.2rem;
             color: #f39c12;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
         }
 
         .contact-item {
             background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 20px;
-            transition: all 0.4s ease;
+            padding: 25px 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
         .contact-item:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: #f39c12;
         }
 
         .contact-item i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #f39c12;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .contact-item h3 {
             color: white;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
 
         .contact-item a {
             color: rgba(255,255,255,0.9);
             text-decoration: none;
             display: block;
-            margin: 8px 0;
-            font-size: 1.1rem;
+            margin: 5px 0;
+            font-size: 1rem;
             transition: color 0.3s ease;
         }
 
@@ -756,79 +632,163 @@
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 40px 0;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
         }
 
         .social-icons a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: white;
-            font-size: 1.8rem;
-            transition: all 0.4s ease;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
             text-decoration: none;
         }
 
         .social-icons a:hover {
             background: #f39c12;
-            transform: translateY(-10px) scale(1.1);
+            transform: translateY(-5px);
             color: #0a0a0a;
         }
 
         .copyright {
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 40px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: rgba(255,255,255,0.6);
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
-        /* Responsive */
+        /* ===== RESPONSIVE DESIGN COMPLET ===== */
         @media (max-width: 1200px) {
             .hero-text h1 {
-                font-size: 3.5rem;
+                font-size: 2.2rem;
             }
             
             .section-content h2,
             .services h2,
-            .destinations h2 {
-                font-size: 3rem;
+            .destinations h2,
+            .footer-content h2 {
+                font-size: 2rem;
             }
             
             .logo-text .main-title {
-                font-size: 2rem;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            #header {
+                flex-wrap: wrap;
+                padding: 10px 5%;
+            }
+            
+            .header-right {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .menu ul {
+                gap: 10px;
+                padding: 8px 15px;
+            }
+            
+            .menu a {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .language-btn {
+                min-width: 110px;
+                padding: 8px 12px;
+                font-size: 0.85rem;
             }
         }
 
         @media (max-width: 768px) {
-            #header {
-                flex-direction: column;
-                gap: 20px;
-                padding: 15px;
+            .menu-toggle {
+                display: block;
             }
             
-            .header-right {
+            .menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
                 width: 100%;
-                flex-direction: column;
-                gap: 20px;
+                background: rgba(10, 40, 10, 0.98);
+                padding: 20px;
+                border-radius: 0 0 20px 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+            
+            .menu.active {
+                display: block;
             }
             
             .menu ul {
-                flex-wrap: wrap;
+                flex-direction: column;
+                background: none;
+                border: none;
+                padding: 0;
+            }
+            
+            .menu a {
                 justify-content: center;
+                padding: 12px;
+                margin: 5px 0;
+            }
+            
+            .header-right {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .language-selector {
+                width: 100%;
+            }
+            
+            .language-btn {
+                width: 100%;
+            }
+            
+            .language-dropdown {
+                width: 100%;
+                right: auto;
+                left: 0;
             }
             
             .hero {
-                margin-top: 180px;
+                margin-top: 140px;
             }
             
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+            
+            .section-content h2,
+            .services h2,
+            .destinations h2,
+            .footer-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
             }
             
             .service-cards,
@@ -836,14 +796,150 @@
                 grid-template-columns: 1fr;
             }
             
-            .section-image-container img {
-                height: 350px;
+            .hero-img img,
+            .section-image-container img,
+            .climax-image img {
+                height: 250px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #header {
+                padding: 8px 4%;
+            }
+            
+            .logo {
+                padding: 8px 15px;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+            
+            .logo-text .main-title {
+                font-size: 1.1rem;
+            }
+            
+            .logo-text .tagline {
+                font-size: 0.7rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            
+            .hero-text p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            section {
+                padding: 60px 4%;
+            }
+            
+            .section-content h2,
+            .services h2,
+            .destinations h2,
+            .footer-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-content p {
+                font-size: 1rem;
+                padding: 0 5px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+            
+            .service-card,
+            .destination-card,
+            .contact-item {
+                padding: 20px 15px;
+            }
+            
+            .hero-img img,
+            .section-image-container img,
+            .climax-image img {
+                height: 200px;
+            }
+            
+            .social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .logo-text .main-title {
+                font-size: 1rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .destination-card span {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Support pour orientation paysage */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                min-height: 150vh;
+            }
+            
+            section {
+                padding: 60px 5%;
+            }
+        }
+
+        /* Support pour tablettes */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .service-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .destination-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Animations pour mobile */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER MAGNIFIQUE -->
+    <!-- HEADER RESPONSIVE -->
     <header id="header">
         <div class="logo-container">
             <div class="logo">
@@ -855,8 +951,12 @@
             </div>
         </div>
 
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <div class="header-right">
-            <nav class="menu">
+            <nav class="menu" id="mainMenu">
                 <ul>
                     <li><a href="#"><i class="fas fa-home"></i> <span class="menu-text">Accueil</span></a></li>
                     <li><a href="#destinations"><i class="fas fa-map-marker-alt"></i> <span class="menu-text">Destinations</span></a></li>
@@ -899,27 +999,26 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION - PHOTO EN BAS -->
     <section class="hero">
-        <div class="hero-img">
-            <img src="plage.png" alt="Plage de Madagascar">
-        </div>
-        <div class="hero-text">
-            <h1 class="hero-title">Explorez Madagascar avec Mada Vibe Discover</h1>
-            <p class="hero-description">Découvrez la magie de l'île rouge à travers des expériences uniques, des paysages à couper le souffle et une culture riche. Notre équipe de guides experts vous accompagne pour vivre l'authenticité malgache.</p>
-            <a href="#destinations" class="btn">
-                <i class="fas fa-map-marked-alt"></i>
-                <span class="btn-text">Découvrir Nos Circuits</span>
-            </a>
+        <div class="hero-content">
+            <div class="hero-text fade-in">
+                <h1 class="hero-title">Explorez Madagascar avec Mada Vibe Discover</h1>
+                <p class="hero-description">Découvrez la magie de l'île rouge à travers des expériences uniques, des paysages à couper le souffle et une culture riche. Notre équipe de guides experts vous accompagne pour vivre l'authenticité malgache.</p>
+                <a href="#destinations" class="btn">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span class="btn-text">Découvrir Nos Circuits</span>
+                </a>
+            </div>
+            <div class="hero-img fade-in">
+                <img src="plage.png" alt="Plage de Madagascar">
+            </div>
         </div>
     </section>
 
-    <!-- BEAUTY OF MADAGASCAR -->
+    <!-- BEAUTY OF MADAGASCAR - PHOTO EN BAS -->
     <section class="section-with-image">
-        <div class="section-image-container">
-            <img src="lemur.png" alt="Lémurien de Madagascar">
-        </div>
-        <div class="section-content">
+        <div class="section-content fade-in">
             <h2 class="beauty-title">La Beauté Naturelle de Madagascar</h2>
             <p class="beauty-text-1">Plongez au cœur d'une biodiversité unique au monde où les lémuriens dansent dans les forêts primaires. Chaque instant est une rencontre magique avec une nature préservée et des paysages d'exception.</p>
             <p class="beauty-text-2">Notre mission : vous faire vivre des émotions authentiques tout en préservant les trésors naturels de Madagascar pour les générations futures.</p>
@@ -928,14 +1027,14 @@
                 <span class="beauty-btn-text">Rencontrer la Faune</span>
             </a>
         </div>
+        <div class="section-image-container fade-in">
+            <img src="lemur.png" alt="Lémurien de Madagascar">
+        </div>
     </section>
 
-    <!-- ICONIC NATURE -->
+    <!-- ICONIC NATURE - PHOTO EN BAS -->
     <section class="section-with-image" style="background: linear-gradient(135deg, #151515 0%, #1e1e1e 100%);">
-        <div class="section-image-container">
-            <img src="allee-des-baobas.webp" alt="Allée des Baobabs">
-        </div>
-        <div class="section-content">
+        <div class="section-content fade-in">
             <h2 class="nature-title">Paysages Iconiques et Uniques</h2>
             <p class="nature-text-1">Des allées de baobabs majestueux aux formations rocheuses des Tsingy, Madagascar dévoile des panoramas que vous ne verrez nulle part ailleurs sur Terre.</p>
             <p class="nature-text-2">Chaque région offre ses propres merveilles : plages de sable blanc, forêts tropicales, hauts plateaux et déserts arides se côtoient pour créer une diversité exceptionnelle.</p>
@@ -944,34 +1043,37 @@
                 <span class="nature-btn-text">Explorer les Paysages</span>
             </a>
         </div>
+        <div class="section-image-container fade-in">
+            <img src="allee-des-baobas.webp" alt="Allée des Baobabs">
+        </div>
     </section>
 
     <!-- OUR SERVICES -->
     <section id="services" class="services">
-        <h2 class="services-title">Nos Services de Guide Professionnel</h2>
+        <h2 class="services-title fade-in">Nos Services de Guide Professionnel</h2>
         <div class="service-cards">
-            <div class="service-card">
+            <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-map-signs"></i>
                 </div>
                 <h3 class="service-title-1">Guides Experts du Territoire</h3>
                 <p class="service-text-1">Nos guides connaissent parfaitement leur territoire et vous révèlent les secrets les mieux gardés de Madagascar.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-binoculars"></i>
                 </div>
                 <h3 class="service-title-2">Observation Faunique</h3>
                 <p class="service-text-2">Accompagnement spécialisé pour observer la faune unique dans les parcs nationaux et réserves naturelles.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-tree"></i>
                 </div>
                 <h3 class="service-title-3">Randonnées Nature</h3>
                 <p class="service-text-3">Organisation de randonnées adaptées à tous niveaux pour découvrir les écosystèmes exceptionnels de l'île.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in">
                 <div class="service-icon">
                     <i class="fas fa-water"></i>
                 </div>
@@ -983,41 +1085,38 @@
 
     <!-- DESTINATIONS -->
     <section id="destinations" class="destinations">
-        <h2 class="destinations-title">Destinations Phares</h2>
+        <h2 class="destinations-title fade-in">Destinations Phares</h2>
         <div class="destination-grid">
-            <div class="destination-card">
+            <div class="destination-card fade-in">
                 <i class="fas fa-island-tropical"></i>
                 <span class="dest-1">Nosy Be</span>
             </div>
-            <div class="destination-card">
+            <div class="destination-card fade-in">
                 <i class="fas fa-anchor"></i>
                 <span class="dest-2">Diego Suarez</span>
             </div>
-            <div class="destination-card">
+            <div class="destination-card fade-in">
                 <i class="fas fa-spa"></i>
                 <span class="dest-3">Ambanja</span>
             </div>
-            <div class="destination-card">
+            <div class="destination-card fade-in">
                 <i class="fas fa-tree"></i>
                 <span class="dest-4">Morondava</span>
             </div>
-            <div class="destination-card">
+            <div class="destination-card fade-in">
                 <i class="fas fa-thermometer-three-quarters"></i>
                 <span class="dest-5">Antsirabe</span>
             </div>
-            <div class="destination-card">
+            <div class="destination-card fade-in">
                 <i class="fas fa-water"></i>
                 <span class="dest-6">Mahajanga</span>
             </div>
         </div>
     </section>
 
-    <!-- CLIMAX -->
+    <!-- CLIMAX - PHOTO EN BAS -->
     <section class="climax" id="contact">
-        <div class="climax-image">
-            <img src="20251218_123508.jpg" alt="Tsingy de Madagascar">
-        </div>
-        <div class="climax-content">
+        <div class="climax-content fade-in">
             <h2 class="climax-title">Prêt pour l'Aventure Ultime ?</h2>
             <p class="climax-text">Laissez-nous être votre guide vers l'extraordinaire. Contactez-nous dès aujourd'hui pour créer ensemble votre voyage sur mesure à Madagascar.</p>
             <a href="#footer-contact" class="btn">
@@ -1025,32 +1124,35 @@
                 <span class="climax-btn-text">Planifier Mon Expérience</span>
             </a>
         </div>
+        <div class="climax-image fade-in">
+            <img src="20251218_123508.jpg" alt="Tsingy de Madagascar">
+        </div>
     </section>
 
     <!-- FOOTER -->
     <footer id="footer-contact">
         <div class="footer-content">
-            <h2 class="footer-title">Contactez Votre Guide</h2>
+            <h2 class="footer-title fade-in">Contactez Votre Guide</h2>
             <div class="contact-grid">
-                <div class="contact-item">
+                <div class="contact-item fade-in">
                     <i class="fab fa-whatsapp"></i>
                     <h3 class="contact-title-1">WhatsApp Direct</h3>
                     <a href="https://wa.me/261323962286" target="_blank">032 39 622 86</a>
                     <p class="contact-text-1">Réponse immédiate</p>
                 </div>
-                <div class="contact-item">
+                <div class="contact-item fade-in">
                     <i class="fas fa-envelope"></i>
                     <h3 class="contact-title-2">Email Professionnel</h3>
                     <a href="mailto:hajahabibeabdou@gmail.com">hajahabibeabdou@gmail.com</a>
                     <p class="contact-text-2">Devis personnalisés</p>
                 </div>
-                <div class="contact-item">
+                <div class="contact-item fade-in">
                     <i class="fab fa-facebook"></i>
                     <h3 class="contact-title-3">Page Officielle</h3>
                     <a href="https://facebook.com/madavibediscover" target="_blank">Mada Vibe Discover</a>
                     <p class="contact-text-3">Actualités et photos</p>
                 </div>
-                <div class="contact-item">
+                <div class="contact-item fade-in">
                     <i class="fas fa-user-tie"></i>
                     <h3 class="contact-title-4">Votre Guide</h3>
                     <a href="https://facebook.com/nadjare.haja" target="_blank">Nadjare Haja</a>
@@ -1081,35 +1183,45 @@
     </footer>
 
     <script>
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const mainMenu = document.getElementById('mainMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            mainMenu.classList.toggle('active');
+            menuToggle.innerHTML = mainMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mainMenu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
         // Traductions complètes pour toutes les langues
         const translations = {
             fr: {
-                // Header
                 home: "Accueil",
                 destinations: "Destinations",
                 services: "Services",
                 contact: "Contact",
                 currentLang: "Français",
                 tagline: "Votre Guide Authentique à Madagascar",
-                
-                // Hero
                 heroTitle: "Explorez Madagascar avec Mada Vibe Discover",
                 heroDescription: "Découvrez la magie de l'île rouge à travers des expériences uniques, des paysages à couper le souffle et une culture riche. Notre équipe de guides experts vous accompagne pour vivre l'authenticité malgache.",
                 heroBtn: "Découvrir Nos Circuits",
-                
-                // Beauty section
                 beautyTitle: "La Beauté Naturelle de Madagascar",
                 beautyText1: "Plongez au cœur d'une biodiversité unique au monde où les lémuriens dansent dans les forêts primaires. Chaque instant est une rencontre magique avec une nature préservée et des paysages d'exception.",
                 beautyText2: "Notre mission : vous faire vivre des émotions authentiques tout en préservant les trésors naturels de Madagascar pour les générations futures.",
                 beautyBtn: "Rencontrer la Faune",
-                
-                // Nature section
                 natureTitle: "Paysages Iconiques et Uniques",
                 natureText1: "Des allées de baobabs majestueux aux formations rocheuses des Tsingy, Madagascar dévoile des panoramas que vous ne verrez nulle part ailleurs sur Terre.",
                 natureText2: "Chaque région offre ses propres merveilles : plages de sable blanc, forêts tropicales, hauts plateaux et déserts arides se côtoient pour créer une diversité exceptionnelle.",
                 natureBtn: "Explorer les Paysages",
-                
-                // Services section
                 servicesTitle: "Nos Services de Guide Professionnel",
                 service1Title: "Guides Experts du Territoire",
                 service1Text: "Nos guides connaissent parfaitement leur territoire et vous révèlent les secrets les mieux gardés de Madagascar.",
@@ -1119,8 +1231,6 @@
                 service3Text: "Organisation de randonnées adaptées à tous niveaux pour découvrir les écosystèmes exceptionnels de l'île.",
                 service4Title: "Excursions Maritimes",
                 service4Text: "Guidage pour les excursions en mer, découverte des îles et exploration des fonds marins exceptionnels.",
-                
-                // Destinations
                 destinationsTitle: "Destinations Phares",
                 dest1: "Nosy Be",
                 dest2: "Diego Suarez",
@@ -1128,13 +1238,9 @@
                 dest4: "Morondava",
                 dest5: "Antsirabe",
                 dest6: "Mahajanga",
-                
-                // Climax section
                 climaxTitle: "Prêt pour l'Aventure Ultime ?",
                 climaxText: "Laissez-nous être votre guide vers l'extraordinaire. Contactez-nous dès aujourd'hui pour créer ensemble votre voyage sur mesure à Madagascar.",
                 climaxBtn: "Planifier Mon Expérience",
-                
-                // Footer
                 footerTitle: "Contactez Votre Guide",
                 contact1Title: "WhatsApp Direct",
                 contact1Text: "Réponse immédiate",
@@ -1149,32 +1255,23 @@
             },
             
             en: {
-                // Header
                 home: "Home",
                 destinations: "Destinations",
                 services: "Services",
                 contact: "Contact",
                 currentLang: "English",
                 tagline: "Your Authentic Guide to Madagascar",
-                
-                // Hero
                 heroTitle: "Explore Madagascar with Mada Vibe Discover",
                 heroDescription: "Discover the magic of the Red Island through unique experiences, breathtaking landscapes, and rich culture. Our team of expert guides accompanies you to experience authentic Malagasy life.",
                 heroBtn: "Discover Our Tours",
-                
-                // Beauty section
                 beautyTitle: "The Natural Beauty of Madagascar",
                 beautyText1: "Immerse yourself in a unique biodiversity where lemurs dance in primary forests. Every moment is a magical encounter with preserved nature and exceptional landscapes.",
                 beautyText2: "Our mission: to provide you with authentic experiences while preserving Madagascar's natural treasures for future generations.",
                 beautyBtn: "Meet the Wildlife",
-                
-                // Nature section
                 natureTitle: "Iconic and Unique Landscapes",
                 natureText1: "From majestic baobab alleys to the rock formations of Tsingy, Madagascar reveals panoramas you won't find anywhere else on Earth.",
                 natureText2: "Each region offers its own wonders: white sand beaches, tropical forests, highlands, and arid deserts coexist to create exceptional diversity.",
                 natureBtn: "Explore Landscapes",
-                
-                // Services section
                 servicesTitle: "Our Professional Guide Services",
                 service1Title: "Territory Expert Guides",
                 service1Text: "Our guides know their territory perfectly and reveal to you the best kept secrets of Madagascar.",
@@ -1184,8 +1281,6 @@
                 service3Text: "Organization of hikes adapted to all levels to discover the island's exceptional ecosystems.",
                 service4Title: "Maritime Excursions",
                 service4Text: "Guidance for sea excursions, island discovery, and exploration of exceptional seabeds.",
-                
-                // Destinations
                 destinationsTitle: "Featured Destinations",
                 dest1: "Nosy Be",
                 dest2: "Diego Suarez",
@@ -1193,13 +1288,9 @@
                 dest4: "Morondava",
                 dest5: "Antsirabe",
                 dest6: "Mahajanga",
-                
-                // Climax section
                 climaxTitle: "Ready for the Ultimate Adventure?",
                 climaxText: "Let us be your guide to the extraordinary. Contact us today to create your customized journey to Madagascar together.",
                 climaxBtn: "Plan My Experience",
-                
-                // Footer
                 footerTitle: "Contact Your Guide",
                 contact1Title: "Direct WhatsApp",
                 contact1Text: "Immediate response",
@@ -1211,201 +1302,6 @@
                 contact4Text: "Madagascar Expert",
                 copyright1: "© 2024 Mada Vibe Discover - All rights reserved",
                 copyright2: "Your expert guide for an authentic Madagascar experience"
-            },
-            
-            de: {
-                // Header
-                home: "Startseite",
-                destinations: "Ziele",
-                services: "Dienstleistungen",
-                contact: "Kontakt",
-                currentLang: "Deutsch",
-                tagline: "Ihr Authentischer Guide für Madagaskar",
-                
-                // Hero
-                heroTitle: "Entdecken Sie Madagaskar mit Mada Vibe Discover",
-                heroDescription: "Entdecken Sie die Magie der Roten Insel durch einzigartige Erlebnisse, atemberaubende Landschaften und reiche Kultur. Unser Team von Expertenführern begleitet Sie, um authentisches madagassisches Leben zu erleben.",
-                heroBtn: "Unsere Touren Entdecken",
-                
-                // Beauty section
-                beautyTitle: "Die Natürliche Schönheit Madagaskars",
-                beautyText1: "Tauchen Sie ein in eine einzigartige Artenvielfalt, in der Lemuren in Primärwäldern tanzen. Jeder Moment ist eine magische Begegnung mit erhaltener Natur und außergewöhnlichen Landschaften.",
-                beautyText2: "Unsere Mission: Ihnen authentische Erlebnisse bieten und gleichzeitig Madagaskars Naturschätze für zukünftige Generationen bewahren.",
-                beautyBtn: "Wildlife Treffen",
-                
-                // Nature section
-                natureTitle: "Ikonische und Einzigartige Landschaften",
-                natureText1: "Von majestätischen Baobab-Alleen bis zu den Felsformationen der Tsingy offenbart Madagaskar Panoramen, die Sie nirgendwo sonst auf der Erde finden werden.",
-                natureText2: "Jede Region bietet ihre eigenen Wunder: weiße Sandstrände, tropische Wälder, Hochländer und trockene Wüsten koexistieren, um eine außergewöhnliche Vielfalt zu schaffen.",
-                natureBtn: "Landschaften Erkunden",
-                
-                // Services section
-                servicesTitle: "Unsere Professionellen Guide-Dienstleistungen",
-                service1Title: "Gebiets-Experten Guides",
-                service1Text: "Unsere Guides kennen ihr Gebiet perfekt und enthüllen Ihnen die bestgehüteten Geheimnisse Madagaskars.",
-                service2Title: "Wildtierbeobachtung",
-                service2Text: "Spezialisierte Begleitung zur Beobachtung einzigartiger Wildtiere in Nationalparks und Naturschutzgebieten.",
-                service3Title: "Naturwanderungen",
-                service3Text: "Organisation von Wanderungen für alle Niveaus, um die außergewöhnlichen Ökosysteme der Insel zu entdecken.",
-                service4Title: "Maritime Ausflüge",
-                service4Text: "Führung für Meeresausflüge, Inselentdeckung und Erkundung außergewöhnlicher Meeresböden.",
-                
-                // Destinations
-                destinationsTitle: "Top-Ziele",
-                dest1: "Nosy Be",
-                dest2: "Diego Suarez",
-                dest3: "Ambanja",
-                dest4: "Morondava",
-                dest5: "Antsirabe",
-                dest6: "Mahajanga",
-                
-                // Climax section
-                climaxTitle: "Bereit für das Ultimative Abenteuer?",
-                climaxText: "Lassen Sie uns Ihr Führer zum Außergewöhnlichen sein. Kontaktieren Sie uns noch heute, um gemeinsam Ihre maßgeschneiderte Reise nach Madagaskar zu erstellen.",
-                climaxBtn: "Meine Erfahrung Planen",
-                
-                // Footer
-                footerTitle: "Kontaktieren Sie Ihren Guide",
-                contact1Title: "Direkter WhatsApp",
-                contact1Text: "Sofortige Antwort",
-                contact2Title: "Professionelle E-Mail",
-                contact2Text: "Maßgeschneiderte Angebote",
-                contact3Title: "Offizielle Seite",
-                contact3Text: "Neuigkeiten und Fotos",
-                contact4Title: "Ihr Guide",
-                contact4Text: "Madagaskar Experte",
-                copyright1: "© 2024 Mada Vibe Discover - Alle Rechte vorbehalten",
-                copyright2: "Ihr Experten-Guide für ein authentisches Madagaskar-Erlebnis"
-            },
-            
-            es: {
-                // Header
-                home: "Inicio",
-                destinations: "Destinos",
-                services: "Servicios",
-                contact: "Contacto",
-                currentLang: "Español",
-                tagline: "Su Guía Auténtico de Madagascar",
-                
-                // Hero
-                heroTitle: "Explore Madagascar con Mada Vibe Discover",
-                heroDescription: "Descubra la magia de la Isla Roja a través de experiencias únicas, paisajes impresionantes y cultura rica. Nuestro equipo de guías expertos le acompaña para vivir la autenticidad malgache.",
-                heroBtn: "Descubrir Nuestros Circuitos",
-                
-                // Beauty section
-                beautyTitle: "La Belleza Natural de Madagascar",
-                beautyText1: "Sumérjase en una biodiversidad única en el mundo donde los lémures bailan en los bosques primarios. Cada momento es un encuentro mágico con la naturaleza preservada y paisajes excepcionales.",
-                beautyText2: "Nuestra misión: hacerle vivir emociones auténticas mientras preservamos los tesoros naturales de Madagascar para las generaciones futuras.",
-                beautyBtn: "Conocer la Fauna",
-                
-                // Nature section
-                natureTitle: "Paisajes Icónicos y Únicos",
-                natureText1: "Desde las avenidas de baobabs majestuosos hasta las formaciones rocosas de Tsingy, Madagascar revela panoramas que no verá en ningún otro lugar de la Tierra.",
-                natureText2: "Cada región ofrece sus propias maravillas: playas de arena blanca, bosques tropicales, mesetas altas y desiertos áridos se combinan para crear una diversidad excepcional.",
-                natureBtn: "Explorar los Paisajes",
-                
-                // Services section
-                servicesTitle: "Nuestros Servicios de Guía Profesional",
-                service1Title: "Guías Expertos del Territorio",
-                service1Text: "Nuestros guías conocen perfectamente su territorio y le revelan los secretos mejor guardados de Madagascar.",
-                service2Title: "Observación de Fauna",
-                service2Text: "Acompañamiento especializado para observar la fauna única en parques nacionales y reservas naturales.",
-                service3Title: "Senderismo en la Naturaleza",
-                service3Text: "Organización de senderismo adaptado a todos los niveles para descubrir los ecosistemas excepcionales de la isla.",
-                service4Title: "Excursiones Marítimas",
-                service4Text: "Guía para excursiones en el mar, descubrimiento de islas y exploración de fondos marinos excepcionales.",
-                
-                // Destinations
-                destinationsTitle: "Destinos Destacados",
-                dest1: "Nosy Be",
-                dest2: "Diego Suarez",
-                dest3: "Ambanja",
-                dest4: "Morondava",
-                dest5: "Antsirabe",
-                dest6: "Mahajanga",
-                
-                // Climax section
-                climaxTitle: "¿Listo para la Aventura Definitiva?",
-                climaxText: "Permítanos ser su guía hacia lo extraordinario. Contáctenos hoy mismo para crear juntos su viaje a medida a Madagascar.",
-                climaxBtn: "Planificar Mi Experiencia",
-                
-                // Footer
-                footerTitle: "Contacte a Su Guía",
-                contact1Title: "WhatsApp Directo",
-                contact1Text: "Respuesta inmediata",
-                contact2Title: "Email Profesional",
-                contact2Text: "Presupuestos personalizados",
-                contact3Title: "Página Oficial",
-                contact3Text: "Noticias y fotos",
-                contact4Title: "Su Guía",
-                contact4Text: "Experto en Madagascar",
-                copyright1: "© 2024 Mada Vibe Discover - Todos los derechos reservados",
-                copyright2: "Su guía experto para una experiencia auténtica en Madagascar"
-            },
-            
-            it: {
-                // Header
-                home: "Home",
-                destinations: "Destinazioni",
-                services: "Servizi",
-                contact: "Contatto",
-                currentLang: "Italiano",
-                tagline: "La Tua Guida Autentica per il Madagascar",
-                
-                // Hero
-                heroTitle: "Esplora il Madagascar con Mada Vibe Discover",
-                heroDescription: "Scopri la magia dell'Isola Rossa attraverso esperienze uniche, paesaggi mozzafiato e cultura ricca. Il nostro team di guide esperte ti accompagna per vivere l'autenticità malgascia.",
-                heroBtn: "Scopri i Nostri Circuiti",
-                
-                // Beauty section
-                beautyTitle: "La Bellezza Naturale del Madagascar",
-                beautyText1: "Immergiti in una biodiversità unica al mondo dove i lemuri danzano nelle foreste primarie. Ogni momento è un incontro magico con la natura preservata e paesaggi eccezionali.",
-                beautyText2: "La nostra missione: farti vivere emozioni autentiche preservando i tesori naturali del Madagascar per le generazioni future.",
-                beautyBtn: "Incontrare la Fauna",
-                
-                // Nature section
-                natureTitle: "Paesaggi Iconici e Unici",
-                natureText1: "Dai viali di baobab maestosi alle formazioni rocciose di Tsingy, il Madagascar rivela panorami che non vedrai in nessun altro luogo sulla Terra.",
-                natureText2: "Ogni regione offre le sue meraviglie: spiagge di sabbia bianca, foreste tropicali, altopiani e deserti aridi si mescolano per creare una diversità eccezionale.",
-                natureBtn: "Esplorare i Paesaggi",
-                
-                // Services section
-                servicesTitle: "I Nostri Servizi di Guida Professionale",
-                service1Title: "Guide Esperte del Territorio",
-                service1Text: "Le nostre guide conoscono perfettamente il loro territorio e ti rivelano i segreti meglio custoditi del Madagascar.",
-                service2Title: "Osservazione della Fauna",
-                service2Text: "Accompagnamento specializzato per osservare la fauna unica nei parchi nazionali e nelle riserve naturali.",
-                service3Title: "Escursioni nella Natura",
-                service3Text: "Organizzazione di escursioni adatte a tutti i livelli per scoprire gli ecosistemi eccezionali dell'isola.",
-                service4Title: "Escursioni Marittime",
-                service4Text: "Guida per escursioni in mare, scoperta delle isole ed esplorazione dei fondali marini eccezionali.",
-                
-                // Destinations
-                destinationsTitle: "Destinazioni di Spicco",
-                dest1: "Nosy Be",
-                dest2: "Diego Suarez",
-                dest3: "Ambanja",
-                dest4: "Morondava",
-                dest5: "Antsirabe",
-                dest6: "Mahajanga",
-                
-                // Climax section
-                climaxTitle: "Pronto per l'Avventura Definitiva?",
-                climaxText: "Lascia che siamo la tua guida verso lo straordinario. Contattaci oggi per creare insieme il tuo viaggio su misura in Madagascar.",
-                climaxBtn: "Pianificare la Mia Esperienza",
-                
-                // Footer
-                footerTitle: "Contatta la Tua Guida",
-                contact1Title: "WhatsApp Diretto",
-                contact1Text: "Risposta immediata",
-                contact2Title: "Email Professionale",
-                contact2Text: "Preventivi personalizzati",
-                contact3Title: "Pagina Ufficiale",
-                contact3Text: "Notizie e foto",
-                contact4Title: "La Tua Guida",
-                contact4Text: "Esperto del Madagascar",
-                copyright1: "© 2024 Mada Vibe Discover - Tutti i diritti riservati",
-                copyright2: "La tua guida esperta per un'esperienza autentica in Madagascar"
             }
         };
 
@@ -1415,22 +1311,15 @@
                 e.preventDefault();
                 const lang = this.getAttribute('data-lang');
                 
-                // Mettre à jour le bouton de langue
                 document.querySelector('.current-lang').textContent = translations[lang].currentLang;
-                
-                // Mettre à jour TOUTES les sections
                 updateAllTranslations(lang);
                 
-                // Mettre à jour l'option active
                 document.querySelectorAll('.language-option').forEach(opt => {
                     opt.classList.remove('active');
                 });
                 this.classList.add('active');
                 
-                // Sauvegarder la préférence
                 localStorage.setItem('preferredLanguage', lang);
-                
-                // Afficher une notification
                 showNotification(`Langue changée en ${translations[lang].currentLang}`);
             });
         });
@@ -1438,37 +1327,30 @@
         function updateAllTranslations(lang) {
             const t = translations[lang];
             
-            // 1. HEADER
             document.querySelector('.tagline').textContent = t.tagline;
             
-            // Menu
             const menuItems = document.querySelectorAll('.menu-text');
             menuItems[0].textContent = t.home;
             menuItems[1].textContent = t.destinations;
             menuItems[2].textContent = t.services;
             menuItems[3].textContent = t.contact;
             
-            // 2. HERO SECTION
             document.querySelector('.hero-title').textContent = t.heroTitle;
             document.querySelector('.hero-description').textContent = t.heroDescription;
             document.querySelector('.hero .btn-text').textContent = t.heroBtn;
             
-            // 3. BEAUTY SECTION
             document.querySelector('.beauty-title').textContent = t.beautyTitle;
             document.querySelector('.beauty-text-1').textContent = t.beautyText1;
             document.querySelector('.beauty-text-2').textContent = t.beautyText2;
             document.querySelector('.beauty-btn-text').textContent = t.beautyBtn;
             
-            // 4. NATURE SECTION
             document.querySelector('.nature-title').textContent = t.natureTitle;
             document.querySelector('.nature-text-1').textContent = t.natureText1;
             document.querySelector('.nature-text-2').textContent = t.natureText2;
             document.querySelector('.nature-btn-text').textContent = t.natureBtn;
             
-            // 5. SERVICES SECTION
             document.querySelector('.services-title').textContent = t.servicesTitle;
             
-            // Service cards
             document.querySelector('.service-title-1').textContent = t.service1Title;
             document.querySelector('.service-text-1').textContent = t.service1Text;
             document.querySelector('.service-title-2').textContent = t.service2Title;
@@ -1478,10 +1360,8 @@
             document.querySelector('.service-title-4').textContent = t.service4Title;
             document.querySelector('.service-text-4').textContent = t.service4Text;
             
-            // 6. DESTINATIONS SECTION
             document.querySelector('.destinations-title').textContent = t.destinationsTitle;
             
-            // Destinations
             document.querySelector('.dest-1').textContent = t.dest1;
             document.querySelector('.dest-2').textContent = t.dest2;
             document.querySelector('.dest-3').textContent = t.dest3;
@@ -1489,15 +1369,12 @@
             document.querySelector('.dest-5').textContent = t.dest5;
             document.querySelector('.dest-6').textContent = t.dest6;
             
-            // 7. CLIMAX SECTION
             document.querySelector('.climax-title').textContent = t.climaxTitle;
             document.querySelector('.climax-text').textContent = t.climaxText;
             document.querySelector('.climax-btn-text').textContent = t.climaxBtn;
             
-            // 8. FOOTER SECTION
             document.querySelector('.footer-title').textContent = t.footerTitle;
             
-            // Contact items
             document.querySelector('.contact-title-1').textContent = t.contact1Title;
             document.querySelector('.contact-text-1').textContent = t.contact1Text;
             document.querySelector('.contact-title-2').textContent = t.contact2Title;
@@ -1507,7 +1384,6 @@
             document.querySelector('.contact-title-4').textContent = t.contact4Title;
             document.querySelector('.contact-text-4').textContent = t.contact4Text;
             
-            // Copyright
             document.querySelector('.copyright-1').textContent = t.copyright1;
             document.querySelector('.copyright-2').textContent = t.copyright2;
         }
@@ -1516,68 +1392,53 @@
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed;
-                top: 30px;
-                right: 30px;
+                top: 20px;
+                right: 20px;
                 background: linear-gradient(135deg, #1a5d1a, #f39c12);
                 color: white;
-                padding: 20px 35px;
-                border-radius: 15px;
+                padding: 15px 25px;
+                border-radius: 10px;
                 z-index: 9999;
-                box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-                animation: slideInRight 0.4s ease;
-                font-weight: 700;
-                font-size: 1.1rem;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+                animation: slideInRight 0.3s ease;
+                font-weight: 600;
+                font-size: 0.9rem;
                 backdrop-filter: blur(10px);
                 border: 2px solid rgba(255,255,255,0.2);
+                max-width: 80%;
             `;
             notification.textContent = message;
             document.body.appendChild(notification);
             
             setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.4s ease';
-                setTimeout(() => notification.remove(), 400);
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
             }, 3000);
         }
 
-        // Style pour les notifications
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOutRight {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Charger la langue sauvegardée au chargement
+        // Charger la langue sauvegardée
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
             updateAllTranslations(savedLang);
             document.querySelector('.current-lang').textContent = translations[savedLang].currentLang;
             
-            // Mettre à jour la classe active
             document.querySelectorAll('.language-option').forEach(opt => {
                 opt.classList.remove('active');
                 if(opt.getAttribute('data-lang') === savedLang) {
                     opt.classList.add('active');
                 }
             });
-        });
-
-        // Effets de scroll
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if(window.scrollY > 50) {
-                header.style.background = 'linear-gradient(135deg, rgba(8, 35, 8, 0.98), rgba(22, 80, 22, 0.98), rgba(243, 156, 18, 0.97))';
-                header.style.padding = '10px 5%';
-            } else {
-                header.style.background = 'linear-gradient(135deg, rgba(10, 40, 10, 0.98), rgba(26, 93, 26, 0.97), rgba(243, 156, 18, 0.95))';
-                header.style.padding = '15px 5%';
-            }
+            
+            // Observer pour animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
         });
 
         // Scroll fluide
@@ -1590,24 +1451,32 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Animation au survol des cartes
-        document.querySelectorAll('.service-card, .destination-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.05)';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
+        // Effets de scroll pour header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if(window.scrollY > 50) {
+                header.style.padding = '8px 5%';
+            } else {
+                header.style.padding = '15px 5%';
+            }
         });
+
+        // Ajuster la hauteur du hero pour mobile
+        function adjustHeroHeight() {
+            const hero = document.querySelector('.hero');
+            const headerHeight = document.getElementById('header').offsetHeight;
+            hero.style.marginTop = headerHeight + 'px';
+        }
+
+        window.addEventListener('resize', adjustHeroHeight);
+        window.addEventListener('load', adjustHeroHeight);
     </script>
 </body>
-
 </html>
-
