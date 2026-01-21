@@ -6,11 +6,12 @@
     <title>Mada Vibe Discover - Explore Madagascar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         html {
@@ -20,49 +21,63 @@
         body {
             background: #0a0a0a;
             color: #f0f0f0;
-            line-height: 1.8;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* ===== HEADER RESPONSIVE ===== */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
         #header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             background: linear-gradient(135deg, 
                 rgba(10, 40, 10, 0.98) 0%, 
                 rgba(26, 93, 26, 0.97) 50%, 
                 rgba(243, 156, 18, 0.95) 100%);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 10px 5%;
+            border-bottom: 2px solid #f39c12;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            z-index: 1000;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            border-bottom: 3px solid #f39c12;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            height: 60px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
+            gap: 10px;
         }
 
         .logo img {
             height: 50px;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            width: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f39c12;
         }
 
         .logo-text {
@@ -70,101 +85,50 @@
             flex-direction: column;
         }
 
-        .logo-text .main-title {
-            font-size: 1.5rem;
-            font-weight: 900;
+        .logo-title {
+            font-size: 1.2rem;
+            font-weight: 800;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-            letter-spacing: 1px;
+            line-height: 1.1;
             background: linear-gradient(45deg, #fff, #f39c12, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .logo-text .tagline {
-            font-size: 0.8rem;
+        .logo-tagline {
+            font-size: 0.7rem;
             color: rgba(255,255,255,0.9);
-            font-weight: 500;
-            margin-top: 3px;
-            letter-spacing: 0.5px;
+            margin-top: 2px;
         }
 
-        /* Menu mobile */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .header-right {
+        /* ===== CONTROLS ===== */
+        .header-controls {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
         }
 
-        .menu ul {
-            display: flex;
-            list-style: none;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 15px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-
-        .menu a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* SELECTEUR DE LANGUE MOBILE */
         .language-selector {
             position: relative;
         }
 
         .language-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            padding: 10px 15px;
-            border-radius: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-weight: 600;
+            gap: 5px;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            min-width: 120px;
-            justify-content: center;
-            backdrop-filter: blur(10px);
         }
 
         .language-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .language-btn i {
-            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .language-dropdown {
@@ -173,16 +137,16 @@
             right: 0;
             width: 180px;
             background: rgba(20, 25, 35, 0.98);
-            backdrop-filter: blur(25px);
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 10px;
+            backdrop-filter: blur(20px);
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 5px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
             z-index: 1001;
         }
 
@@ -196,84 +160,160 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 15px;
+            padding: 8px;
             color: #e0e0e0;
-            text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.2s ease;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-bottom: 2px;
         }
 
         .language-option:hover {
-            background: linear-gradient(135deg, rgba(243, 156, 18, 0.3), rgba(26, 93, 26, 0.3));
-            color: #f39c12;
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.2), rgba(26, 93, 26, 0.2));
         }
 
         .flag-icon {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* ===== SECTIONS RESPONSIVES ===== */
-        section {
-            padding: 80px 5%;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8));
-            margin-top: 80px;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
         }
 
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 40, 10, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            display: none;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 10px;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* ===== HEADER SPACER ===== */
+        .header-spacer {
+            height: 60px;
             width: 100%;
         }
 
-        .hero-text {
-            margin-bottom: 40px;
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('votre-photo-background.jpg'); /* REMPLACEZ AVEC VOTRE PHOTO */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 100px 0;
+            text-align: center;
         }
 
-        .hero-text h1 {
-            font-size: 2.5rem;
+        .hero h1 {
+            font-size: 3rem;
             color: #f39c12;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            position: relative;
-            display: inline-block;
+            margin-bottom: 25px;
+            line-height: 1.2;
         }
 
-        .hero-text h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #f39c12, transparent);
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
+        .hero-subtitle {
+            font-size: 1.2rem;
             color: rgba(255,255,255,0.9);
-            margin-bottom: 30px;
-            line-height: 1.6;
-            padding: 0 20px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
         }
 
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #f39c12;
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .feature-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== BUTTON ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -281,66 +321,38 @@
             gap: 10px;
             background: linear-gradient(135deg, #f39c12, #e67e22);
             color: #0a0a0a;
-            padding: 15px 30px;
+            padding: 15px 35px;
             border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            margin: 20px 0;
             border: none;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+            margin-top: 20px;
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(243, 156, 18, 0.5);
+            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
         }
 
-        .hero-img {
-            width: 100%;
-            max-width: 800px;
-            margin: 40px auto 0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-            border: 3px solid #f39c12;
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 80px 0;
+            position: relative;
         }
 
-        .hero-img img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .hero-img:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Sections avec photos en bas */
-        .section-with-image {
-            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
-            padding: 80px 5%;
-            text-align: center;
-        }
-
-        .section-content {
-            max-width: 800px;
-            margin: 0 auto 40px;
-            width: 100%;
-        }
-
-        .section-content h2 {
+        .section-title {
             font-size: 2.2rem;
             color: #f39c12;
-            margin-bottom: 25px;
+            text-align: center;
+            margin-bottom: 30px;
             position: relative;
-            display: inline-block;
+            font-weight: 700;
         }
 
-        .section-content h2::after {
+        .section-title::after {
             content: '';
             position: absolute;
             bottom: -10px;
@@ -351,88 +363,147 @@
             background: linear-gradient(90deg, transparent, #f39c12, transparent);
         }
 
-        .section-content p {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 20px;
-            line-height: 1.7;
-            padding: 0 15px;
-        }
-
-        .section-image-container {
-            width: 100%;
+        .section-intro {
+            text-align: center;
             max-width: 800px;
-            margin: 40px auto 0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            border: 3px solid #1a5d1a;
+            margin: 0 auto 50px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            line-height: 1.7;
         }
 
-        .section-image-container img {
+        /* ===== TOURISM SECTION ===== */
+        .tourism {
+            background: #111;
+        }
+
+        .tourism-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tourism-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(243, 156, 18, 0.2);
+            display: block;
+        }
+
+        .tourism-card:hover {
+            transform: translateY(-10px);
+            border-color: #f39c12;
+            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.2);
+        }
+
+        .tourism-image {
             width: 100%;
-            height: 300px;
+            height: 200px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .section-image-container:hover img {
+        .tourism-card:hover .tourism-image {
             transform: scale(1.05);
         }
 
-        /* Services Section */
-        .services {
-            background: linear-gradient(135deg, #0f151f 0%, #1a1f2e 100%);
-            text-align: center;
-            position: relative;
-            padding: 80px 5%;
+        .tourism-content {
+            padding: 25px;
         }
 
-        .services h2 {
-            font-size: 2.2rem;
+        .tourism-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             color: #f39c12;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
         }
 
-        .services h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #f39c12, transparent);
+        .tourism-card h3 {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 15px;
         }
 
-        .service-cards {
+        .tourism-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== DESTINATIONS SECTION ===== */
+        .destinations {
+            background: #0f151f;
+        }
+
+        .destinations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .destination-card {
+            background: #222;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid #333;
+            display: block;
+            text-align: center;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            border-color: #f39c12;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .destination-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .destination-content {
+            padding: 25px;
+        }
+
+        .destination-card h3 {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .destination-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            background: #1a1a1a;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .service-card {
             background: linear-gradient(145deg, #222233, #1a1a2e);
-            padding: 30px 20px;
-            border-radius: 20px;
+            padding: 30px;
+            border-radius: 15px;
             text-align: center;
             transition: all 0.4s ease;
-            border: 2px solid rgba(243, 156, 18, 0.3);
-            min-height: 250px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            border: 1px solid rgba(243, 156, 18, 0.2);
         }
 
         .service-card:hover {
             transform: translateY(-10px);
             border-color: #f39c12;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
         .service-icon {
@@ -445,485 +516,126 @@
             font-size: 1.4rem;
             color: white;
             margin-bottom: 15px;
-            font-weight: 700;
         }
 
         .service-card p {
             color: rgba(255,255,255,0.8);
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        /* Destinations */
-        .destinations {
-            background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
-            text-align: center;
-            padding: 80px 5%;
-        }
-
-        .destinations h2 {
-            font-size: 2.2rem;
-            color: #f39c12;
-            margin-bottom: 40px;
-            position: relative;
+        .badge {
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 15px;
             display: inline-block;
         }
 
-        .destinations h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #f39c12, transparent);
-        }
-
-        .destination-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .destination-card {
-            background: linear-gradient(145deg, #2a2a2a, #222222);
-            padding: 30px 20px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 2px solid #333;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .destination-card:hover {
-            transform: translateY(-8px);
-            border-color: #f39c12;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-        }
-
-        .destination-card i {
-            font-size: 2.5rem;
-            color: #f39c12;
-            margin-bottom: 15px;
-        }
-
-        .destination-card span {
-            display: block;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        /* Climax Section */
-        .climax {
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85));
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 80px 5%;
-        }
-
-        .climax-content {
-            max-width: 900px;
-            margin: 0 auto 40px;
-        }
-
-        .climax-content h2 {
-            font-size: 2.5rem;
-            color: #f39c12;
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-        }
-
-        .climax-content p {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .climax-image {
-            width: 100%;
-            max-width: 800px;
-            margin: 40px auto 0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-            border: 3px solid #f39c12;
-        }
-
-        .climax-image img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, #111111 0%, #0a0a0a 100%);
-            padding: 60px 5% 30px;
-            text-align: center;
-            border-top: 3px solid #f39c12;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-content h2 {
-            font-size: 2.2rem;
-            color: #f39c12;
-            margin-bottom: 30px;
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: #0a0a0a;
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
         }
 
-        .contact-item {
+        .contact-card {
             background: rgba(255, 255, 255, 0.05);
-            padding: 25px 20px;
+            padding: 30px;
             border-radius: 15px;
+            text-align: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .contact-card:hover {
             transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
             border-color: #f39c12;
         }
 
-        .contact-item i {
-            font-size: 2rem;
+        .contact-icon {
+            font-size: 2.5rem;
             color: #f39c12;
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            color: white;
             margin-bottom: 15px;
         }
 
-        .contact-item h3 {
-            color: white;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .contact-item a {
+        .contact-card a, .contact-card p {
             color: rgba(255,255,255,0.9);
-            text-decoration: none;
             display: block;
             margin: 5px 0;
-            font-size: 1rem;
             transition: color 0.3s ease;
         }
 
-        .contact-item a:hover {
+        .contact-card a:hover {
             color: #f39c12;
         }
 
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+        .contact-form-link {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+        .form-btn {
+            background: linear-gradient(135deg, #1a5d1a, #2ecc71);
             color: white;
-            font-size: 1.3rem;
+            padding: 15px 35px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
-            text-decoration: none;
+            margin-top: 20px;
         }
 
-        .social-icons a:hover {
-            background: #f39c12;
-            transform: translateY(-5px);
-            color: #0a0a0a;
+        .form-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
         }
 
-        .copyright {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+        /* ===== FOOTER ===== */
+        footer {
+            background: #000;
+            padding: 40px 0 20px;
+            border-top: 2px solid #f39c12;
+            text-align: center;
+        }
+
+        .footer-content p {
             color: rgba(255,255,255,0.6);
+            margin-bottom: 10px;
             font-size: 0.9rem;
         }
 
-        /* ===== RESPONSIVE DESIGN COMPLET ===== */
-        @media (max-width: 1200px) {
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section-content h2,
-            .services h2,
-            .destinations h2,
-            .footer-content h2 {
-                font-size: 2rem;
-            }
-            
-            .logo-text .main-title {
-                font-size: 1.3rem;
-            }
+        .creator {
+            color: #f39c12;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 15px;
         }
 
-        @media (max-width: 992px) {
-            #header {
-                flex-wrap: wrap;
-                padding: 10px 5%;
-            }
-            
-            .header-right {
-                order: 3;
-                width: 100%;
-                justify-content: center;
-                margin-top: 15px;
-            }
-            
-            .menu ul {
-                gap: 10px;
-                padding: 8px 15px;
-            }
-            
-            .menu a {
-                padding: 6px 12px;
-                font-size: 0.85rem;
-            }
-            
-            .language-btn {
-                min-width: 110px;
-                padding: 8px 12px;
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            .menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(10, 40, 10, 0.98);
-                padding: 20px;
-                border-radius: 0 0 20px 20px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            }
-            
-            .menu.active {
-                display: block;
-            }
-            
-            .menu ul {
-                flex-direction: column;
-                background: none;
-                border: none;
-                padding: 0;
-            }
-            
-            .menu a {
-                justify-content: center;
-                padding: 12px;
-                margin: 5px 0;
-            }
-            
-            .header-right {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .language-selector {
-                width: 100%;
-            }
-            
-            .language-btn {
-                width: 100%;
-            }
-            
-            .language-dropdown {
-                width: 100%;
-                right: auto;
-                left: 0;
-            }
-            
-            .hero {
-                margin-top: 140px;
-            }
-            
-            .hero-text h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-text p {
-                font-size: 1rem;
-                padding: 0 10px;
-            }
-            
-            .section-content h2,
-            .services h2,
-            .destinations h2,
-            .footer-content h2 {
-                font-size: 1.8rem;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-            
-            .service-cards,
-            .destination-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-img img,
-            .section-image-container img,
-            .climax-image img {
-                height: 250px;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #header {
-                padding: 8px 4%;
-            }
-            
-            .logo {
-                padding: 8px 15px;
-            }
-            
-            .logo img {
-                height: 40px;
-            }
-            
-            .logo-text .main-title {
-                font-size: 1.1rem;
-            }
-            
-            .logo-text .tagline {
-                font-size: 0.7rem;
-            }
-            
-            .hero-text h1 {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-            
-            .hero-text p {
-                font-size: 0.95rem;
-                margin-bottom: 20px;
-            }
-            
-            section {
-                padding: 60px 4%;
-            }
-            
-            .section-content h2,
-            .services h2,
-            .destinations h2,
-            .footer-content h2 {
-                font-size: 1.5rem;
-            }
-            
-            .section-content p {
-                font-size: 1rem;
-                padding: 0 5px;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.95rem;
-            }
-            
-            .service-card,
-            .destination-card,
-            .contact-item {
-                padding: 20px 15px;
-            }
-            
-            .hero-img img,
-            .section-image-container img,
-            .climax-image img {
-                height: 200px;
-            }
-            
-            .social-icons a {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .logo-text .main-title {
-                font-size: 1rem;
-            }
-            
-            .hero-text h1 {
-                font-size: 1.3rem;
-            }
-            
-            .btn {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .destination-card span {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Support pour orientation paysage */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .hero {
-                min-height: 150vh;
-            }
-            
-            section {
-                padding: 60px 5%;
-            }
-        }
-
-        /* Support pour tablettes */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            .service-cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .destination-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Animations pour mobile */
+        /* ===== ANIMATIONS ===== */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -936,752 +648,1272 @@
                 transform: translateY(0);
             }
         }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                height: 55px;
+            }
+            
+            .header-spacer {
+                height: 55px;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-intro {
+                font-size: 1rem;
+            }
+            
+            .hero-features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .btn, .form-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .section-intro {
+                font-size: 0.95rem;
+            }
+            
+            .tourism-grid,
+            .destinations-grid,
+            .services-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .feature-card,
+            .tourism-card,
+            .destination-card,
+            .service-card,
+            .contact-card {
+                padding: 20px;
+            }
+            
+            .logo-title {
+                font-size: 1rem;
+            }
+            
+            .logo-tagline {
+                font-size: 0.6rem;
+            }
+            
+            .language-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .feature-card h3,
+            .tourism-card h3,
+            .destination-card h3,
+            .service-card h3,
+            .contact-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .feature-card p,
+            .tourism-card p,
+            .destination-card p,
+            .service-card p,
+            .contact-card p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .btn, .form-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+            }
+        }
+
+        /* ===== LOADING EFFECT ===== */
+        .loading-img {
+            background: linear-gradient(90deg, #1a1a1a 25%, #222 50%, #1a1a1a 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
     </style>
 </head>
 <body>
-    <!-- HEADER RESPONSIVE -->
+    <!-- ===== HEADER ===== -->
     <header id="header">
-        <div class="logo-container">
-            <div class="logo">
-                <img src="logo.png" alt="Mada Vibe Discover Logo">
+        <div class="header-content">
+            <!-- Logo avec VOTRE photo -->
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Mada Vibe Discover Logo"> <!-- REMPLACEZ AVEC VOTRE PHOTO -->
                 <div class="logo-text">
-                    <div class="main-title">MADA VIBE DISCOVER</div>
-                    <div class="tagline">Votre Guide Authentique à Madagascar</div>
+                    <div class="logo-title">MADA VIBE DISCOVER</div>
+                    <div class="logo-tagline" id="header-tagline">Your Authentic Guide to Madagascar</div>
                 </div>
-            </div>
-        </div>
+            </a>
 
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
+            <!-- Controls -->
+            <div class="header-controls">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <i class="fas fa-globe-americas"></i>
+                        <span class="current-lang">EN</span>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" class="language-option active" data-lang="en">
+                            <img src="https://flagcdn.com/w20/us.png" class="flag-icon" alt="English">
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="fr">
+                            <img src="https://flagcdn.com/w20/fr.png" class="flag-icon" alt="Français">
+                            <span>Français</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="de">
+                            <img src="https://flagcdn.com/w20/de.png" class="flag-icon" alt="Deutsch">
+                            <span>Deutsch</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="it">
+                            <img src="https://flagcdn.com/w20/it.png" class="flag-icon" alt="Italiano">
+                            <span>Italiano</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <img src="https://flagcdn.com/w20/es.png" class="flag-icon" alt="Español">
+                            <span>Español</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ar">
+                            <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="العربية">
+                            <span>العربية</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="zh">
+                            <img src="https://flagcdn.com/w20/cn.png" class="flag-icon" alt="中文">
+                            <span>中文</span>
+                        </a>
+                    </div>
+                </div>
 
-        <div class="header-right">
-            <nav class="menu" id="mainMenu">
-                <ul>
-                    <li><a href="#"><i class="fas fa-home"></i> <span class="menu-text">Accueil</span></a></li>
-                    <li><a href="#destinations"><i class="fas fa-map-marker-alt"></i> <span class="menu-text">Destinations</span></a></li>
-                    <li><a href="#services"><i class="fas fa-compass"></i> <span class="menu-text">Services</span></a></li>
-                    <li><a href="#contact"><i class="fas fa-phone-alt"></i> <span class="menu-text">Contact</span></a></li>
-                </ul>
-            </nav>
-
-            <!-- SELECTEUR DE LANGUE -->
-            <div class="language-selector">
-                <button class="language-btn">
-                    <i class="fas fa-globe-americas"></i>
-                    <span class="current-lang">Français</span>
-                    <i class="fas fa-chevron-down"></i>
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
                 </button>
-                
-                <div class="language-dropdown">
-                    <a href="#" class="language-option active" data-lang="fr">
-                        <img src="https://flagcdn.com/w40/fr.png" class="flag-icon" alt="Français">
-                        <span class="lang-name">Français</span>
-                    </a>
-                    <a href="#" class="language-option" data-lang="en">
-                        <img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="English">
-                        <span class="lang-name">English</span>
-                    </a>
-                    <a href="#" class="language-option" data-lang="de">
-                        <img src="https://flagcdn.com/w40/de.png" class="flag-icon" alt="Deutsch">
-                        <span class="lang-name">Deutsch</span>
-                    </a>
-                    <a href="#" class="language-option" data-lang="es">
-                        <img src="https://flagcdn.com/w40/es.png" class="flag-icon" alt="Español">
-                        <span class="lang-name">Español</span>
-                    </a>
-                    <a href="#" class="language-option" data-lang="it">
-                        <img src="https://flagcdn.com/w40/it.png" class="flag-icon" alt="Italiano">
-                        <span class="lang-name">Italiano</span>
-                    </a>
-                </div>
             </div>
         </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#home"><i class="fas fa-home"></i> <span id="menu-home">Home</span></a></li>
+                <li><a href="#tourism"><i class="fas fa-compass"></i> <span id="menu-tourism">Tourism Types</span></a></li>
+                <li><a href="#destinations"><i class="fas fa-map-marker-alt"></i> <span id="menu-destinations">Destinations</span></a></li>
+                <li><a href="#services"><i class="fas fa-concierge-bell"></i> <span id="menu-services">Services</span></a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> <span id="menu-contact">Contact</span></a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- HERO SECTION - PHOTO EN BAS -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text fade-in">
-                <h1 class="hero-title">Explorez Madagascar avec Mada Vibe Discover</h1>
-                <p class="hero-description">Découvrez la magie de l'île rouge à travers des expériences uniques, des paysages à couper le souffle et une culture riche. Notre équipe de guides experts vous accompagne pour vivre l'authenticité malgache.</p>
-                <a href="#destinations" class="btn">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <span class="btn-text">Découvrir Nos Circuits</span>
+    <div class="header-spacer"></div>
+
+    <!-- ===== HOME SECTION ===== -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in" id="hero-title">🌴 Explore Madagascar with Mada Vibe Discover 🌴</h1>
+                <p class="hero-subtitle fade-in delay-1" id="hero-subtitle">
+                    Discover Madagascar's unique biodiversity and rich culture with our expert guides. 
+                    We offer personalized tours, airport transfers, and international travel services. 
+                    From lemur encounters to beach relaxation, create unforgettable memories with us.
+                </p>
+                
+                <div class="hero-features">
+                    <div class="feature-card fade-in delay-2">
+                        <i class="fas fa-leaf"></i>
+                        <h3 id="feature1-title">Unique Wildlife</h3>
+                        <p id="feature1-desc">See lemurs, chameleons, and baobabs found nowhere else. Experience Madagascar's incredible biodiversity in national parks and reserves.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in delay-3">
+                        <i class="fas fa-concierge-bell"></i>
+                        <h3 id="feature2-title">Complete Services</h3>
+                        <p id="feature2-desc">Airport/port transfers, hotel bookings, and international travel arrangements. We handle all logistics for a stress-free journey.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in delay-4">
+                        <i class="fas fa-users"></i>
+                        <h3 id="feature3-title">Cultural Immersion</h3>
+                        <p id="feature3-desc">Experience Malagasy traditions, music, and warm hospitality. Visit local communities and learn about 18 distinct ethnic groups.</p>
+                    </div>
+                    
+                    <div class="feature-card fade-in delay-5">
+                        <i class="fas fa-plane"></i>
+                        <h3 id="feature4-title">International Tours</h3>
+                        <p id="feature4-desc">Extended services to neighboring countries available. Custom international itineraries with premium pricing options.</p>
+                    </div>
+                </div>
+                
+                <a href="#services" class="btn fade-in delay-6">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span id="hero-btn">Discover Our Services</span>
                 </a>
             </div>
-            <div class="hero-img fade-in">
-                <img src="plage.png" alt="Plage de Madagascar">
+        </div>
+    </section>
+
+    <!-- ===== TOURISM TYPES SECTION ===== -->
+    <section id="tourism" class="tourism">
+        <div class="container">
+            <h2 class="section-title fade-in" id="tourism-title">Tourism Types</h2>
+            <p class="section-intro fade-in delay-1" id="tourism-intro">
+                Experience Madagascar through specialized tours. From wildlife adventures to cultural immersion, 
+                we offer diverse tourism experiences tailored to every traveler's interests.
+            </p>
+            
+            <div class="tourism-grid">
+                <!-- Natural Tourism -->
+                <a href="pages/tourisme/naturel.html" class="tourism-card fade-in">
+                    <img src="votre-photo-generique.jpg" alt="Natural Tourism" class="tourism-image"> <!-- VOTRE PHOTO GÉNÉRIQUE -->
+                    <div class="tourism-content">
+                        <div class="tourism-icon">🌿</div>
+                        <h3 id="tourism1-title">Natural Tourism</h3>
+                        <p id="tourism1-desc">Discovery of unique landscapes and natural sites including rainforests, national parks, and breathtaking scenery.</p>
+                    </div>
+                </a>
+                
+                <!-- Adventure Tourism -->
+                <a href="pages/tourisme/aventure.html" class="tourism-card fade-in delay-1">
+                    <img src="votre-photo-generique.jpg" alt="Adventure Tourism" class="tourism-image"> <!-- VOTRE PHOTO GÉNÉRIQUE -->
+                    <div class="tourism-content">
+                        <div class="tourism-icon">🧗</div>
+                        <h3 id="tourism6-title">Adventure Tourism</h3>
+                        <p id="tourism6-desc">Hiking, sports, and strong sensations including trekking, climbing, and exploration of wild areas.</p>
+                    </div>
+                </a>
+                
+                <!-- Beach Tourism -->
+                <a href="pages/tourisme/balneaire.html" class="tourism-card fade-in delay-2">
+                    <img src="votre-photo-generique.jpg" alt="Beach Tourism" class="tourism-image"> <!-- VOTRE PHOTO GÉNÉRIQUE -->
+                    <div class="tourism-content">
+                        <div class="tourism-icon">🏖️</div>
+                        <h3 id="tourism2-title">Beach Tourism</h3>
+                        <p id="tourism2-desc">Paradise beaches and nautical activities in Nosy Be and Île Sainte-Marie. Perfect for relaxation and water sports.</p>
+                    </div>
+                </a>
+                
+                <!-- Cultural Tourism -->
+                <a href="pages/tourisme/culturel.html" class="tourism-card fade-in delay-3">
+                    <img src="votre-photo-generique.jpg" alt="Cultural Tourism" class="tourism-image"> <!-- VOTRE PHOTO GÉNÉRIQUE -->
+                    <div class="tourism-content">
+                        <div class="tourism-icon">🏛️</div>
+                        <h3 id="tourism4-title">Cultural Tourism</h3>
+                        <p id="tourism4-desc">Immersion in local culture and traditions through music, dance, crafts, and visits to traditional communities.</p>
+                    </div>
+                </a>
+                
+                <!-- Historical Tourism -->
+                <a href="pages/tourisme/historique.html" class="tourism-card fade-in delay-4">
+                    <img src="votre-photo-generique.jpg" alt="Historical Tourism" class="tourism-image"> <!-- VOTRE PHOTO GÉNÉRIQUE -->
+                    <div class="tourism-content">
+                        <div class="tourism-icon">🏰</div>
+                        <h3 id="tourism5-title">Historical Tourism</h3>
+                        <p id="tourism5-desc">Sites and monuments rich in history including royal palaces, colonial buildings, and archaeological sites.</p>
+                    </div>
+                </a>
+                
+                <!-- Scientific Tourism -->
+                <a href="pages/tourisme/scientifique.html" class="tourism-card fade-in delay-5">
+                    <img src="votre-photo-generique.jpg" alt="Scientific Tourism" class="tourism-image"> <!-- VOTRE PHOTO GÉNÉRIQUE -->
+                    <div class="tourism-content">
+                        <div class="tourism-icon">🔬</div>
+                        <h3 id="tourism3-title">Scientific Tourism</h3>
+                        <p id="tourism3-desc">Observation of Malagasy biodiversity including lemurs, chameleons, baobabs and unique endemic species.</p>
+                    </div>
+                </a>
+                
+                <!-- Gastronomic Tourism -->
+                <a href="pages/tourisme/gastronomique.html" class="tourism-card fade-in delay-6">
+                    <img src="votre-photo-generique.jpg" alt="Gastronomic Tourism" class="tourism-image"> <!-- VOTRE PHOTO GÉNÉRIQUE -->
+                    <div class="tourism-content">
+                        <div class="tourism-icon">🍽️</div>
+                        <h3 id="tourism7-title">Gastronomic Tourism</h3>
+                        <p id="tourism7-desc">Culinary discovery and local products including Malagasy specialties, tropical fruits, and traditional dishes.</p>
+                    </div>
+                </a>
+                
+                <!-- Fishing Tourism -->
+                <a href="pages/tourisme/peche.html" class="tourism-card fade-in delay-1">
+                    <img src="votre-photo-generique.jpg" alt="Fishing Tourism" class="tourism-image"> <!-- VOTRE PHOTO GÉNÉRIQUE -->
+                    <div class="tourism-content">
+                        <div class="tourism-icon">🎣</div>
+                        <h3 id="tourism8-title">Fishing Tourism</h3>
+                        <p id="tourism8-desc">Big game and traditional fishing excursions in the waters of Madagascar with specialized equipment and guides.</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- BEAUTY OF MADAGASCAR - PHOTO EN BAS -->
-    <section class="section-with-image">
-        <div class="section-content fade-in">
-            <h2 class="beauty-title">La Beauté Naturelle de Madagascar</h2>
-            <p class="beauty-text-1">Plongez au cœur d'une biodiversité unique au monde où les lémuriens dansent dans les forêts primaires. Chaque instant est une rencontre magique avec une nature préservée et des paysages d'exception.</p>
-            <p class="beauty-text-2">Notre mission : vous faire vivre des émotions authentiques tout en préservant les trésors naturels de Madagascar pour les générations futures.</p>
-            <a href="#contact" class="btn">
-                <i class="fas fa-leaf"></i>
-                <span class="beauty-btn-text">Rencontrer la Faune</span>
-            </a>
-        </div>
-        <div class="section-image-container fade-in">
-            <img src="lemur.png" alt="Lémurien de Madagascar">
-        </div>
-    </section>
-
-    <!-- ICONIC NATURE - PHOTO EN BAS -->
-    <section class="section-with-image" style="background: linear-gradient(135deg, #151515 0%, #1e1e1e 100%);">
-        <div class="section-content fade-in">
-            <h2 class="nature-title">Paysages Iconiques et Uniques</h2>
-            <p class="nature-text-1">Des allées de baobabs majestueux aux formations rocheuses des Tsingy, Madagascar dévoile des panoramas que vous ne verrez nulle part ailleurs sur Terre.</p>
-            <p class="nature-text-2">Chaque région offre ses propres merveilles : plages de sable blanc, forêts tropicales, hauts plateaux et déserts arides se côtoient pour créer une diversité exceptionnelle.</p>
-            <a href="#destinations" class="btn">
-                <i class="fas fa-mountain"></i>
-                <span class="nature-btn-text">Explorer les Paysages</span>
-            </a>
-        </div>
-        <div class="section-image-container fade-in">
-            <img src="allee-des-baobas.webp" alt="Allée des Baobabs">
-        </div>
-    </section>
-
-    <!-- OUR SERVICES -->
-    <section id="services" class="services">
-        <h2 class="services-title fade-in">Nos Services de Guide Professionnel</h2>
-        <div class="service-cards">
-            <div class="service-card fade-in">
-                <div class="service-icon">
-                    <i class="fas fa-map-signs"></i>
-                </div>
-                <h3 class="service-title-1">Guides Experts du Territoire</h3>
-                <p class="service-text-1">Nos guides connaissent parfaitement leur territoire et vous révèlent les secrets les mieux gardés de Madagascar.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">
-                    <i class="fas fa-binoculars"></i>
-                </div>
-                <h3 class="service-title-2">Observation Faunique</h3>
-                <p class="service-text-2">Accompagnement spécialisé pour observer la faune unique dans les parcs nationaux et réserves naturelles.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">
-                    <i class="fas fa-tree"></i>
-                </div>
-                <h3 class="service-title-3">Randonnées Nature</h3>
-                <p class="service-text-3">Organisation de randonnées adaptées à tous niveaux pour découvrir les écosystèmes exceptionnels de l'île.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">
-                    <i class="fas fa-water"></i>
-                </div>
-                <h3 class="service-title-4">Excursions Maritimes</h3>
-                <p class="service-text-4">Guidage pour les excursions en mer, découverte des îles et exploration des fonds marins exceptionnels.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- DESTINATIONS -->
+    <!-- ===== DESTINATIONS SECTION ===== -->
     <section id="destinations" class="destinations">
-        <h2 class="destinations-title fade-in">Destinations Phares</h2>
-        <div class="destination-grid">
-            <div class="destination-card fade-in">
-                <i class="fas fa-island-tropical"></i>
-                <span class="dest-1">Nosy Be</span>
-            </div>
-            <div class="destination-card fade-in">
-                <i class="fas fa-anchor"></i>
-                <span class="dest-2">Diego Suarez</span>
-            </div>
-            <div class="destination-card fade-in">
-                <i class="fas fa-spa"></i>
-                <span class="dest-3">Ambanja</span>
-            </div>
-            <div class="destination-card fade-in">
-                <i class="fas fa-tree"></i>
-                <span class="dest-4">Morondava</span>
-            </div>
-            <div class="destination-card fade-in">
-                <i class="fas fa-thermometer-three-quarters"></i>
-                <span class="dest-5">Antsirabe</span>
-            </div>
-            <div class="destination-card fade-in">
-                <i class="fas fa-water"></i>
-                <span class="dest-6">Mahajanga</span>
+        <div class="container">
+            <h2 class="section-title fade-in" id="destinations-title">Destinations</h2>
+            <p class="section-intro fade-in delay-1" id="destinations-intro">
+                Discover Madagascar's most beautiful locations. From northern beaches to southern deserts, 
+                each destination offers unique attractions with expert local guidance.
+            </p>
+            
+            <div class="destinations-grid">
+                <!-- Antsiranana (Diego Suarez) -->
+                <a href="pages/destinations/antsiranana.html" class="destination-card fade-in">
+                    <img src="votre-photo-destination.jpg" alt="Antsiranana" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Antsiranana (Diego Suarez)</h3>
+                        <p>Natural harbor, colonial architecture, and access to Emerald Sea and Montagne d'Ambre National Park.</p>
+                    </div>
+                </a>
+                
+                <!-- Nosy Be -->
+                <a href="pages/destinations/nosy-be.html" class="destination-card fade-in delay-1">
+                    <img src="votre-photo-destination.jpg" alt="Nosy Be" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Nosy Be - The Perfumed Island</h3>
+                        <p>Beautiful beaches, ylang-ylang plantations, and marine life. Perfect for snorkeling, diving, and visiting nearby islands.</p>
+                    </div>
+                </a>
+                
+                <!-- Ambanja & Sambirano Valley -->
+                <a href="pages/destinations/ambanja.html" class="destination-card fade-in delay-2">
+                    <img src="votre-photo-destination.jpg" alt="Ambanja" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Ambanja & Sambirano Valley</h3>
+                        <p>Lush cocoa and coffee plantations in the fertile Sambirano Valley. Discover agricultural traditions.</p>
+                    </div>
+                </a>
+                
+                <!-- Région SAVA -->
+                <a href="pages/destinations/sava.html" class="destination-card fade-in delay-3">
+                    <img src="votre-photo-destination.jpg" alt="Région SAVA" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Région SAVA</h3>
+                        <p>Sambava, Antalaha, Vohémar, Andapa - Vanilla capital and beautiful landscapes of northeastern Madagascar.</p>
+                    </div>
+                </a>
+                
+                <!-- Tamatave (Toamasina) -->
+                <a href="pages/destinations/tamatave.html" class="destination-card fade-in delay-4">
+                    <img src="votre-photo-destination.jpg" alt="Tamatave" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Tamatave (Toamasina)</h3>
+                        <p>Main port city, beautiful beaches, and gateway to Pangalanes Canal and Ivoloina Park.</p>
+                    </div>
+                </a>
+                
+                <!-- Antananarivo -->
+                <a href="pages/destinations/antananarivo.html" class="destination-card fade-in delay-5">
+                    <img src="votre-photo-destination.jpg" alt="Antananarivo" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Antananarivo</h3>
+                        <p>Capital city with rich history and culture. Royal palaces, traditional markets, and day trips to national parks.</p>
+                    </div>
+                </a>
+                
+                <!-- Antsirabe -->
+                <a href="pages/destinations/antsirabe.html" class="destination-card fade-in delay-6">
+                    <img src="votre-photo-destination.jpg" alt="Antsirabe" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Antsirabe</h3>
+                        <p>Thermal springs, crater lakes, and rickshaw tours. Known for semi-precious stones and handicrafts.</p>
+                    </div>
+                </a>
+                
+                <!-- Majunga (Mahajanga) -->
+                <a href="pages/destinations/majunga.html" class="destination-card fade-in delay-1">
+                    <img src="votre-photo-destination.jpg" alt="Majunga" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Majunga (Mahajanga)</h3>
+                        <p>Beautiful baobab-lined avenue, beachfront promenade, and gateway to Ankarafantsika National Park.</p>
+                    </div>
+                </a>
+                
+                <!-- Tulear (Toliara) -->
+                <a href="pages/destinations/tulear.html" class="destination-card fade-in delay-2">
+                    <img src="votre-photo-destination.jpg" alt="Tulear" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Tulear (Toliara)</h3>
+                        <p>Gateway to the spiny forest, Ifaty coral reefs, and unique Vezo culture with traditional pirogues.</p>
+                    </div>
+                </a>
+                <!-- Morondava -->
+                <a href="pages/destinations/morondava.html" class="destination-card fade-in delay-2">
+                     <img src="votre-photo-morondava.jpg" alt="Morondava" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Morondava</h3>
+                        <p>Discover the famous Avenue of Baobabs, gateway to Tsingy de Bemaraha, and authentic Sakalava culture.</p>
+                    </div>
+                </a>
+
+                <!-- Île Sainte-Marie -->
+                <a href="pages/destinations/sainte-marie.html" class="destination-card fade-in delay-2">
+                     <img src="votre-photo-sainte-marie.jpg" alt="Sainte-Marie Island" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Sainte-Marie Island</h3>
+                        <p>Tropical paradise for whale watching (July-September), pristine beaches, and historical pirate legacy.</p>
+                    </div>
+                </a>
+
+                <!-- Fort Dauphin (Taolagnaro) -->
+                <a href="pages/destinations/fort-dauphin.html" class="destination-card fade-in delay-3">
+                    <img src="votre-photo-destination.jpg" alt="Fort Dauphin" class="destination-image"> <!-- VOTRE PHOTO -->
+                    <div class="destination-content">
+                        <h3>Fort Dauphin (Taolagnaro)</h3>
+                        <p>Beautiful beaches, Berenty Reserve for lemurs, and stunning mountain landscapes of the Anosy region.</p>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- CLIMAX - PHOTO EN BAS -->
-    <section class="climax" id="contact">
-        <div class="climax-content fade-in">
-            <h2 class="climax-title">Prêt pour l'Aventure Ultime ?</h2>
-            <p class="climax-text">Laissez-nous être votre guide vers l'extraordinaire. Contactez-nous dès aujourd'hui pour créer ensemble votre voyage sur mesure à Madagascar.</p>
-            <a href="#footer-contact" class="btn">
-                <i class="fas fa-calendar-alt"></i>
-                <span class="climax-btn-text">Planifier Mon Expérience</span>
-            </a>
-        </div>
-        <div class="climax-image fade-in">
-            <img src="20251218_123508.jpg" alt="Tsingy de Madagascar">
+    <!-- Le reste du code (Services, Contact, Footer, JavaScript) reste inchangé -->
+    <!-- ===== SERVICES SECTION ===== -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title fade-in" id="services-title">Our Services</h2>
+            <p class="section-intro fade-in delay-1" id="services-intro">
+                Comprehensive travel services from arrival to departure. We handle all logistics including transfers, 
+                accommodations, and international travel arrangements with premium options available.
+            </p>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-plane-arrival"></i>
+                    </div>
+                    <h3 id="service1-title">Airport & Port Transfers</h3>
+                    <p id="service1-desc">Meet and greet service at all airports in Madagascar. We work at all cruise ports in Madagascar for cruise passengers.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3 id="service2-title">Custom Guided Tours</h3>
+                    <p id="service2-desc">Personalized itineraries based on your interests and timeframe. Wildlife-focused circuits, cultural programs.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3 id="service3-title">International Travel & Accommodation</h3>
+                    <p id="service3-desc">I can pick up clients from foreign countries for travel to Madagascar. Hotel bookings from eco-lodges to luxury resorts.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card fade-in delay-3">
+                    <div class="service-icon">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <h3 id="service4-title">Cruise Passenger Services</h3>
+                    <p id="service4-desc">Specialized tours for cruise ship passengers at all ports in Madagascar. Timely port transfers and day excursions.</p>
+                    <span class="badge" id="service4-badge">SPECIALIZED SERVICE</span>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card fade-in delay-4">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 id="service5-title">Gastronomic Experiences</h3>
+                    <p id="service5-desc">Organization of culinary tours and discovery of Malagasy gastronomy. Visits to local markets, cooking classes.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card fade-in delay-5">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 id="service6-title">24/7 Support</h3>
+                    <p id="service6-desc">Emergency contact available during your entire stay. Assistance for any unexpected situations or changes.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer id="footer-contact">
-        <div class="footer-content">
-            <h2 class="footer-title fade-in">Contactez Votre Guide</h2>
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in" id="contact-title">Contact Us</h2>
+            <p class="section-intro fade-in delay-1" id="contact-intro">
+                Ready to plan your Madagascar adventure? Contact us for personalized consultation, 
+                detailed itineraries, and pricing for both local and international travel services.
+            </p>
+            
             <div class="contact-grid">
-                <div class="contact-item fade-in">
-                    <i class="fab fa-whatsapp"></i>
-                    <h3 class="contact-title-1">WhatsApp Direct</h3>
-                    <a href="https://wa.me/261323962286" target="_blank">032 39 622 86</a>
-                    <p class="contact-text-1">Réponse immédiate</p>
+                <!-- Contact 1 -->
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 id="contact1-title">WhatsApp & Phone</h3>
+                    <a href="https://wa.me/261323962286" target="_blank">+261 32 39 622 86</a>
+                    <p id="contact1-desc">Direct messaging for fastest response. Available for calls and video consultations.</p>
                 </div>
-                <div class="contact-item fade-in">
-                    <i class="fas fa-envelope"></i>
-                    <h3 class="contact-title-2">Email Professionnel</h3>
+                
+                <!-- Contact 2 -->
+                <div class="contact-card fade-in delay-1">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 id="contact2-title">Email</h3>
                     <a href="mailto:hajahabibeabdou@gmail.com">hajahabibeabdou@gmail.com</a>
-                    <p class="contact-text-2">Devis personnalisés</p>
+                    <p id="contact2-desc">For detailed inquiries, international tour requests, and formal quotations.</p>
                 </div>
-                <div class="contact-item fade-in">
-                    <i class="fab fa-facebook"></i>
-                    <h3 class="contact-title-3">Page Officielle</h3>
-                    <a href="https://facebook.com/madavibediscover" target="_blank">Mada Vibe Discover</a>
-                    <p class="contact-text-3">Actualités et photos</p>
-                </div>
-                <div class="contact-item fade-in">
-                    <i class="fas fa-user-tie"></i>
-                    <h3 class="contact-title-4">Votre Guide</h3>
-                    <a href="https://facebook.com/nadjare.haja" target="_blank">Nadjare Haja</a>
-                    <p class="contact-text-4">Expert Madagascar</p>
+                
+                <!-- Contact 3 -->
+                <div class="contact-card fade-in delay-2">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 id="contact3-title">Service Hours</h3>
+                    <p id="contact3-time">Local: 6 AM - 10 PM (GMT+3)</p>
+                    <p id="contact3-desc">International inquiries: 24/7 email response with emergency contact available.</p>
                 </div>
             </div>
-
-            <div class="social-icons">
-                <a href="https://facebook.com/madavibediscover" target="_blank" title="Page Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://wa.me/261323962286" target="_blank" title="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="mailto:hajahabibeabdou@gmail.com" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="tel:+261323962286" title="Appel Direct">
-                    <i class="fas fa-phone"></i>
+            
+            <div class="contact-form-link fade-in delay-3">
+                <h3 id="form-title">Request Custom Itinerary</h3>
+                <p id="form-desc">Complete our contact form for personalized travel planning including airport transfers, cruise services, and international tour options.</p>
+                <a href="pages/contact.html" class="form-btn">
+                    <i class="fas fa-file-alt"></i>
+                    <span id="form-btn">Detailed Contact Form</span>
                 </a>
             </div>
+        </div>
+    </section>
 
-            <div class="copyright">
-                <p class="copyright-1">© 2024 Mada Vibe Discover - Tous droits réservés</p>
-                <p class="copyright-2">Votre guide expert pour une expérience authentique à Madagascar</p>
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="creator" id="footer-creator">Created by Habibe - Professional Tourism Services</p>
+                <p>Téléphone: +261 32 39 622 86</p>
+                <p>Email: hajahabibeabdou@gmail.com</p>
+                <p id="footer-desc">Airport transfers, cruise services, and international tours available</p>
+                <p id="footer-copyright" style="margin-top: 20px;">
+                    © 2024 Mada Vibe Discover - All rights reserved.<br>
+                    Tourism License certified | Member of Madagascar National Tourism Board
+                </p>
             </div>
         </div>
     </footer>
 
+    <!-- Le JavaScript reste inchangé -->
     <script>
-        // Menu mobile
-        const menuToggle = document.getElementById('menuToggle');
-        const mainMenu = document.getElementById('mainMenu');
+     // ===== TRADUCTIONS POUR 7 LANGUES =====
+const translations = {
+    en: {
+        // Header
+        "header-tagline": "Your Authentic Guide to Madagascar",
+        "menu-home": "Home",
+        "menu-tourism": "Tourism Types",
+        "menu-destinations": "Destinations",
+        "menu-services": "Services",
+        "menu-contact": "Contact",
         
-        menuToggle.addEventListener('click', function() {
-            mainMenu.classList.toggle('active');
-            menuToggle.innerHTML = mainMenu.classList.contains('active') 
+        // Hero
+        "hero-title": "🌴 Explore Madagascar with Mada Vibe Discover 🌴",
+        "hero-subtitle": "Discover Madagascar's unique biodiversity and rich culture with our expert guides. We offer personalized tours, airport transfers, and international travel services. From lemur encounters to beach relaxation, create unforgettable memories with us.",
+        "feature1-title": "Unique Wildlife",
+        "feature1-desc": "See lemurs, chameleons, and baobabs found nowhere else. Experience Madagascar's incredible biodiversity in national parks and reserves.",
+        "feature2-title": "Complete Services",
+        "feature2-desc": "Airport/port transfers, hotel bookings, and international travel arrangements. We handle all logistics for a stress-free journey.",
+        "feature3-title": "Cultural Immersion",
+        "feature3-desc": "Experience Malagasy traditions, music, and warm hospitality. Visit local communities and learn about 18 distinct ethnic groups.",
+        "feature4-title": "International Tours",
+        "feature4-desc": "Extended services to neighboring countries available. Custom international itineraries with premium pricing options.",
+        "hero-btn": "Discover Our Services",
+        
+        // Tourism
+        "tourism-title": "Tourism Types",
+        "tourism-intro": "Experience Madagascar through specialized tours. From wildlife adventures to cultural immersion, we offer diverse tourism experiences tailored to every traveler's interests.",
+        "tourism1-title": "Natural Tourism",
+        "tourism1-desc": "Discovery of unique landscapes and natural sites including rainforests, national parks, and breathtaking scenery.",
+        "tourism2-title": "Beach Tourism",
+        "tourism2-desc": "Paradise beaches and nautical activities in Nosy Be and Île Sainte-Marie. Perfect for relaxation and water sports.",
+        "tourism3-title": "Scientific Tourism",
+        "tourism3-desc": "Observation of Malagasy biodiversity including lemurs, chameleons, baobabs and unique endemic species.",
+        "tourism4-title": "Cultural Tourism",
+        "tourism4-desc": "Immersion in local culture and traditions through music, dance, crafts, and visits to traditional communities.",
+        "tourism5-title": "Historical Tourism",
+        "tourism5-desc": "Sites and monuments rich in history including royal palaces, colonial buildings, and archaeological sites.",
+        "tourism6-title": "Adventure Tourism",
+        "tourism6-desc": "Hiking, sports, and strong sensations including trekking, climbing, and exploration of wild areas.",
+        "tourism7-title": "Gastronomic Tourism",
+        "tourism7-desc": "Culinary discovery and local products including Malagasy specialties, tropical fruits, and traditional dishes.",
+        "tourism8-title": "Fishing Tourism",
+        "tourism8-desc": "Big game and traditional fishing excursions in the waters of Madagascar with specialized equipment and guides.",
+        
+        // Destinations
+        "destinations-title": "Destinations",
+        "destinations-intro": "Discover Madagascar's most beautiful locations. From northern beaches to southern deserts, each destination offers unique attractions with expert local guidance.",
+        
+        // Services
+        "services-title": "Our Services",
+        "services-intro": "Comprehensive travel services from arrival to departure. We handle all logistics including transfers, accommodations, and international travel arrangements with premium options available.",
+        "service1-title": "Airport & Port Transfers",
+        "service1-desc": "Meet and greet service at all airports in Madagascar. We work at all cruise ports in Madagascar for cruise passengers.",
+        "service2-title": "Custom Guided Tours",
+        "service2-desc": "Personalized itineraries based on your interests and timeframe. Wildlife-focused circuits, cultural programs.",
+        "service3-title": "International Travel & Accommodation",
+        "service3-desc": "I can pick up clients from foreign countries for travel to Madagascar. Hotel bookings from eco-lodges to luxury resorts.",
+        "service4-title": "Cruise Passenger Services",
+        "service4-desc": "Specialized tours for cruise ship passengers at all ports in Madagascar. Timely port transfers and day excursions.",
+        "service4-badge": "SPECIALIZED SERVICE",
+        "service5-title": "Gastronomic Experiences",
+        "service5-desc": "Organization of culinary tours and discovery of Malagasy gastronomy. Visits to local markets, cooking classes.",
+        "service6-title": "24/7 Support",
+        "service6-desc": "Emergency contact available during your entire stay. Assistance for any unexpected situations or changes.",
+        
+        // Contact
+        "contact-title": "Contact Us",
+        "contact-intro": "Ready to plan your Madagascar adventure? Contact us for personalized consultation, detailed itineraries, and pricing for both local and international travel services.",
+        "contact1-title": "WhatsApp & Phone",
+        "contact1-desc": "Direct messaging for fastest response. Available for calls and video consultations.",
+        "contact2-title": "Email",
+        "contact2-desc": "For detailed inquiries, international tour requests, and formal quotations.",
+        "contact3-title": "Service Hours",
+        "contact3-time": "Local: 6 AM - 10 PM (GMT+3)",
+        "contact3-desc": "International inquiries: 24/7 email response with emergency contact available.",
+        "form-title": "Request Custom Itinerary",
+        "form-desc": "Complete our contact form for personalized travel planning including airport transfers, cruise services, and international tour options.",
+        "form-btn": "Detailed Contact Form",
+        
+        // Footer
+        "footer-creator": "Created by Habibe - Professional Tourism Services",
+        "footer-desc": "Airport transfers, cruise services, and international tours available",
+        "footer-copyright": "© 2024 Mada Vibe Discover - All rights reserved.<br>Tourism License certified | Member of Madagascar National Tourism Board"
+    },
+    fr: {
+        "header-tagline": "Votre Guide Authentique à Madagascar",
+        "menu-home": "Accueil",
+        "menu-tourism": "Types de Tourisme",
+        "menu-destinations": "Destinations",
+        "menu-services": "Services",
+        "menu-contact": "Contact",
+        
+        "hero-title": "🌴 Explorez Madagascar avec Mada Vibe Discover 🌴",
+        "hero-subtitle": "Découvrez la biodiversité unique et la culture riche de Madagascar avec nos guides experts. Nous offrons des circuits personnalisés, transferts aéroport et services de voyage internationaux. Des rencontres avec les lémuriens à la détente sur plage, créez des souvenirs inoubliables avec nous.",
+        "feature1-title": "Faune Unique",
+        "feature1-desc": "Voyez des lémuriens, caméléons et baobabs qu'on ne trouve nulle part ailleurs. Expérimentez l'incroyable biodiversité dans les parcs nationaux et réserves.",
+        "feature2-title": "Services Complets",
+        "feature2-desc": "Transferts aéroport/port, réservations hôtels et arrangements de voyage internationaux. Nous gérons toute la logistique pour un voyage sans stress.",
+        "feature3-title": "Immersion Culturelle",
+        "feature3-desc": "Expérimentez les traditions malgaches, musique et hospitalité chaleureuse. Visitez les communautés locales et découvrez 18 groupes ethniques distincts.",
+        "feature4-title": "Circuits Internationaux",
+        "feature4-desc": "Services étendus vers les pays voisins disponibles. Itinéraires internationaux personnalisés avec options de tarification premium.",
+        "hero-btn": "Découvrez Nos Services",
+        
+        "tourism-title": "Types de Tourisme",
+        "tourism-intro": "Expérimentez Madagascar à travers des circuits spécialisés. Des aventures fauniques à l'immersion culturelle, nous offrons des expériences touristiques diversifiées adaptées aux intérêts de chaque voyageur.",
+        "tourism1-title": "Tourisme Naturel",
+        "tourism1-desc": "Découverte des paysages uniques et sites naturels incluant forêts tropicales, parcs nationaux et panoramas à couper le souffle.",
+        "tourism2-title": "Tourisme Balnéaire",
+        "tourism2-desc": "Plages paradisiaques et activités nautiques à Nosy Be et Île Sainte-Marie. Parfait pour la détente et les sports nautiques.",
+        "tourism3-title": "Tourisme Scientifique",
+        "tourism3-desc": "Observation de la biodiversité malgache incluant lémuriens, caméléons, baobabs et espèces endémiques uniques.",
+        "tourism4-title": "Tourisme Culturel",
+        "tourism4-desc": "Immersion dans la culture et traditions locales à travers musique, danse, artisanat et visites de communautés traditionnelles.",
+        "tourism5-title": "Tourisme Historique",
+        "tourism5-desc": "Sites et monuments chargés d'histoire incluant palais royaux, bâtiments coloniaux et sites archéologiques.",
+        "tourism6-title": "Tourisme d'Aventure",
+        "tourism6-desc": "Randonnées, sports et sensations fortes incluant trekking, escalade et exploration de zones sauvages.",
+        "tourism7-title": "Tourisme Gastronomique",
+        "tourism7-desc": "Découverte culinaire et produits locaux incluant spécialités malgaches, fruits tropicaux et plats traditionnels.",
+        "tourism8-title": "Tourisme Halieutique",
+        "tourism8-desc": "Excursions de pêche au gros et traditionnelle dans les eaux de Madagascar avec équipement spécialisé et guides.",
+        
+        "destinations-title": "Destinations",
+        "destinations-intro": "Découvrez les plus beaux endroits de Madagascar. Des plages du nord aux déserts du sud, chaque destination offre des attractions uniques avec guidance locale experte.",
+        
+        "services-title": "Nos Services",
+        "services-intro": "Services de voyage complets de l'arrivée au départ. Nous gérons toute la logistique incluant transferts, hébergements et arrangements de voyage internationaux avec options premium disponibles.",
+        "service1-title": "Transferts Aéroport & Port",
+        "service1-desc": "Service de rencontre à tous les aéroports de Madagascar. Nous travaillons à tous les ports de croisière de Madagascar pour les passagers de croisière.",
+        "service2-title": "Circuits Guidés Personnalisés",
+        "service2-desc": "Itinéraires personnalisés basés sur vos intérêts et délais. Circuits fauniques, programmes culturels.",
+        "service3-title": "Voyage International & Hébergement",
+        "service3-desc": "Je peux aller prendre des clients depuis les pays étrangers pour destination Madagascar. Réservations hôtels d'éco-lodges à resorts de luxe.",
+        "service4-title": "Services Passagers Croisière",
+        "service4-desc": "Circuits spécialisés pour passagers de navires de croisière dans tous les ports de Madagascar. Transferts portuaires ponctuels et excursions journalières.",
+        "service4-badge": "SERVICE SPÉCIALISÉ",
+        "service5-title": "Expériences Gastronomiques",
+        "service5-desc": "Organisation de circuits culinaires et découverte de la gastronomie malgache. Visites de marchés locaux, cours de cuisine.",
+        "service6-title": "Support 24h/24",
+        "service6-desc": "Contact d'urgence disponible pendant tout votre séjour. Assistance pour toute situation imprévue ou changements.",
+        
+        "contact-title": "Contactez-nous",
+        "contact-intro": "Prêt à planifier votre aventure à Madagascar ? Contactez-nous pour consultation personnalisée, itinéraires détaillés et tarification pour services de voyage locaux et internationaux.",
+        "contact1-title": "WhatsApp & Téléphone",
+        "contact1-desc": "Messagerie directe pour réponse la plus rapide. Disponible pour appels et consultations vidéo.",
+        "contact2-title": "Email",
+        "contact2-desc": "Pour demandes détaillées, demandes de circuits internationaux et devis formels.",
+        "contact3-title": "Heures de Service",
+        "contact3-time": "Local: 6h - 22h (GMT+3)",
+        "contact3-desc": "Demandes internationales: réponse email 24h/24 avec contact d'urgence disponible.",
+        "form-title": "Demander un Itinéraire Personnalisé",
+        "form-desc": "Complétez notre formulaire pour planification de voyage personnalisée incluant transferts aéroport, services croisière et options de circuits internationaux.",
+        "form-btn": "Formulaire de Contact Détaillé",
+        
+        "footer-creator": "Créé par Habibe - Services Touristiques Professionnels",
+        "footer-desc": "Transferts aéroport, services croisière et circuits internationaux disponibles",
+        "footer-copyright": "© 2024 Mada Vibe Discover - Tous droits réservés.<br>Licence Touristique certifiée | Membre de l'Office National du Tourisme de Madagascar"
+    },
+    es: { // ESPAGNOL
+        "header-tagline": "Tu Guía Auténtica en Madagascar",
+        "menu-home": "Inicio",
+        "menu-tourism": "Tipos de Turismo",
+        "menu-destinations": "Destinos",
+        "menu-services": "Servicios",
+        "menu-contact": "Contacto",
+        
+        "hero-title": "🌴 Explora Madagascar con Mada Vibe Discover 🌴",
+        "hero-subtitle": "Descubre la biodiversidad única y la rica cultura de Madagascar con nuestros guías expertos. Ofrecemos tours personalizados, traslados aeroportuarios y servicios de viajes internacionales. Desde encuentros con lémures hasta relajación en playas, crea recuerdos inolvidables con nosotros.",
+        "feature1-title": "Fauna Única",
+        "feature1-desc": "Observa lémures, camaleones y baobabs que no se encuentran en ningún otro lugar. Experimenta la increíble biodiversidad de Madagascar en parques nacionales y reservas.",
+        "feature2-title": "Servicios Completos",
+        "feature2-desc": "Traslados aeropuerto/puerto, reservas hoteleras y arreglos de viajes internacionales. Nos encargamos de toda la logística para un viaje sin estrés.",
+        "feature3-title": "Inmersión Cultural",
+        "feature3-desc": "Experimenta tradiciones malgaches, música y hospitalidad cálida. Visita comunidades locales y aprende sobre 18 grupos étnicos distintos.",
+        "feature4-title": "Circuitos Internacionales",
+        "feature4-desc": "Servicios extendidos a países vecinos disponibles. Itinerarios internacionales personalizados con opciones de precios premium.",
+        "hero-btn": "Descubre Nuestros Servicios",
+        
+        "tourism-title": "Tipos de Turismo",
+        "tourism-intro": "Experimenta Madagascar a través de tours especializados. Desde aventuras de vida silvestre hasta inmersión cultural, ofrecemos diversas experiencias turísticas adaptadas a los intereses de cada viajero.",
+        "tourism1-title": "Turismo Natural",
+        "tourism1-desc": "Descubrimiento de paisajes únicos y sitios naturales que incluyen selvas tropicales, parques nacionales y escenarios impresionantes.",
+        "tourism2-title": "Turismo de Playa",
+        "tourism2-desc": "Playas paradisíacas y actividades náuticas en Nosy Be e Île Sainte-Marie. Perfecto para relajación y deportes acuáticos.",
+        "tourism3-title": "Turismo Científico",
+        "tourism3-desc": "Observación de la biodiversidad malgache incluyendo lémures, camaleones, baobabs y especies endémicas únicas.",
+        "tourism4-title": "Turismo Cultural",
+        "tourism4-desc": "Inmersión en la cultura y tradiciones locales a través de música, danza, artesanías y visitas a comunidades tradicionales.",
+        "tourism5-title": "Turismo Histórico",
+        "tourism5-desc": "Sitios y monumentos ricos en historia incluyendo palacios reales, edificios coloniales y sitios arqueológicos.",
+        "tourism6-title": "Turismo de Aventura",
+        "tourism6-desc": "Senderismo, deportes y sensaciones fuertes incluyendo trekking, escalada y exploración de áreas salvajes.",
+        "tourism7-title": "Turismo Gastronómico",
+        "tourism7-desc": "Descubrimiento culinario y productos locales incluyendo especialidades malgaches, frutas tropicales y platos tradicionales.",
+        "tourism8-title": "Turismo de Pesca",
+        "tourism8-desc": "Excursiones de pesca deportiva y tradicional en las aguas de Madagascar con equipo especializado y guías.",
+        
+        "destinations-title": "Destinos",
+        "destinations-intro": "Descubre los lugares más hermosos de Madagascar. Desde playas del norte hasta desiertos del sur, cada destino ofrece atracciones únicas con guía local experta.",
+        
+        "services-title": "Nuestros Servicios",
+        "services-intro": "Servicios de viaje completos desde la llegada hasta la salida. Manejamos toda la logística incluyendo traslados, alojamientos y arreglos de viajes internacionales con opciones premium disponibles.",
+        "service1-title": "Traslados Aeropuerto & Puerto",
+        "service1-desc": "Servicio de encuentro en todos los aeropuertos de Madagascar. Trabajamos en todos los puertos de cruceros de Madagascar para pasajeros de cruceros.",
+        "service2-title": "Circuitos Guiados Personalizados",
+        "service2-desc": "Itinerarios personalizados basados en sus intereses y tiempo disponible. Circuitos enfocados en vida silvestre, programas culturales.",
+        "service3-title": "Viaje Internacional & Alojamiento",
+        "service3-desc": "Puedo recoger clientes desde países extranjeros para viajar a Madagascar. Reservas hoteleras desde eco-lodges hasta resorts de lujo.",
+        "service4-title": "Servicios Pasajeros Crucero",
+        "service4-desc": "Circuitos especializados para pasajeros de cruceros en todos los puertos de Madagascar. Traslados portuarios puntuales y excursiones diarias.",
+        "service4-badge": "SERVICIO ESPECIALIZADO",
+        "service5-title": "Experiencias Gastronómicas",
+        "service5-desc": "Organización de circuitos culinarios y descubrimiento de la gastronomía malgache. Visitas a mercados locales, clases de cocina.",
+        "service6-title": "Soporte 24/7",
+        "service6-desc": "Contacto de emergencia disponible durante toda su estadía. Asistencia para cualquier situación inesperada o cambios.",
+        
+        "contact-title": "Contáctanos",
+        "contact-intro": "¿Listo para planificar tu aventura en Madagascar? Contáctanos para consultas personalizadas, itinerarios detallados y precios tanto para servicios de viaje locales como internacionales.",
+        "contact1-title": "WhatsApp & Teléfono",
+        "contact1-desc": "Mensajería directa para respuesta más rápida. Disponible para llamadas y consultas por video.",
+        "contact2-title": "Email",
+        "contact2-desc": "Para consultas detalladas, solicitudes de circuitos internacionales y cotizaciones formales.",
+        "contact3-title": "Horarios de Servicio",
+        "contact3-time": "Local: 6 AM - 10 PM (GMT+3)",
+        "contact3-desc": "Consultas internacionales: respuesta por email 24/7 con contacto de emergencia disponible.",
+        "form-title": "Solicitar Itinerario Personalizado",
+        "form-desc": "Completa nuestro formulario de contacto para planificación de viaje personalizada incluyendo traslados aeroportuarios, servicios de cruceros y opciones de circuitos internacionales.",
+        "form-btn": "Formulario de Contacto Detallado",
+        
+        "footer-creator": "Creado por Habibe - Servicios Turísticos Profesionales",
+        "footer-desc": "Traslados aeropuerto, servicios crucero y circuitos internacionales disponibles",
+        "footer-copyright": "© 2024 Mada Vibe Discover - Todos los derechos reservados.<br>Licencia Turística certificada | Miembro de la Junta Nacional de Turismo de Madagascar"
+    },
+    de: { // ALLEMAND
+        "header-tagline": "Ihr authentischer Führer in Madagaskar",
+        "menu-home": "Startseite",
+        "menu-tourism": "Tourismusarten",
+        "menu-destinations": "Reiseziele",
+        "menu-services": "Dienstleistungen",
+        "menu-contact": "Kontakt",
+        
+        "hero-title": "🌴 Entdecken Sie Madagaskar mit Mada Vibe Discover 🌴",
+        "hero-subtitle": "Entdecken Sie die einzigartige Biodiversität und reiche Kultur Madagaskars mit unseren erfahrenen Guides. Wir bieten personalisierte Touren, Flughafentransfers und internationale Reisedienstleistungen. Von Begegnungen mit Lemuren bis zur Entspannung am Strand – schaffen Sie unvergessliche Erinnerungen mit uns.",
+        "feature1-title": "Einzigartige Tierwelt",
+        "feature1-desc": "Sehen Sie Lemuren, Chamäleons und Baobabs, die nirgendwo sonst zu finden sind. Erleben Sie die unglaubliche Biodiversität Madagaskars in Nationalparks und Reservaten.",
+        "feature2-title": "Vollständige Dienstleistungen",
+        "feature2-desc": "Flughafen-/Hafentransfers, Hotelbuchungen und internationale Reiseplanung. Wir kümmern uns um alle Logistik für eine stressfreie Reise.",
+        "feature3-title": "Kulturelle Immersion",
+        "feature3-desc": "Erleben Sie madagassische Traditionen, Musik und warme Gastfreundschaft. Besuchen Sie lokale Gemeinschaften und lernen Sie 18 verschiedene ethnische Gruppen kennen.",
+        "feature4-title": "Internationale Touren",
+        "feature4-desc": "Erweiterte Dienstleistungen in Nachbarländern verfügbar. Individuelle internationale Reisepläne mit Premium-Preisoptionen.",
+        "hero-btn": "Entdecken Sie Unsere Dienstleistungen",
+        
+        "tourism-title": "Tourismusarten",
+        "tourism-intro": "Erleben Sie Madagaskar durch spezialisierte Touren. Von Wildtierabenteuern bis zur kulturellen Immersion bieten wir vielfältige Tourismuserfahrungen, die auf die Interessen jedes Reisenden zugeschnitten sind.",
+        "tourism1-title": "Naturtourismus",
+        "tourism1-desc": "Entdeckung einzigartiger Landschaften und natürlicher Stätten einschließlich Regenwälder, Nationalparks und atemberaubende Aussichten.",
+        "tourism2-title": "Strandtourismus",
+        "tourism2-desc": "Paradiesische Strände und nautische Aktivitäten in Nosy Be und Île Sainte-Marie. Perfekt für Entspannung und Wassersport.",
+        "tourism3-title": "Wissenschaftlicher Tourismus",
+        "tourism3-desc": "Beobachtung der madagassischen Biodiversität einschließlich Lemuren, Chamäleons, Baobabs und einzigartiger endemischer Arten.",
+        "tourism4-title": "Kulturtourismus",
+        "tourism4-desc": "Eintauchen in die lokale Kultur und Traditionen durch Musik, Tanz, Kunsthandwerk und Besuche traditioneller Gemeinschaften.",
+        "tourism5-title": "Historischer Tourismus",
+        "tourism5-desc": "Historisch reiche Stätten und Denkmäler einschließlich Königspaläste, Kolonialgebäude und archäologische Stätten.",
+        "tourism6-title": "Abenteuertourismus",
+        "tourism6-desc": "Wandern, Sport und starke Eindrücke einschließlich Trekking, Klettern und Erforschung wilder Gebiete.",
+        "tourism7-title": "Kulinarischer Tourismus",
+        "tourism7-desc": "Kulinarische Entdeckung und lokale Produkte einschließlich madagassischer Spezialitäten, tropische Früchte und traditionelle Gerichte.",
+        "tourism8-title": "Angel-Tourismus",
+        "tourism8-desc": "Big-Game und traditionelle Angelausflüge in den Gewässern Madagaskars mit spezialisierter Ausrüstung und Guides.",
+        
+        "destinations-title": "Reiseziele",
+        "destinations-intro": "Entdecken Sie die schönsten Orte Madagaskars. Von nördlichen Stränden bis zu südlichen Wüsten bietet jedes Reiseziel einzigartige Attraktionen mit erfahrener lokaler Führung.",
+        
+        "services-title": "Unsere Dienstleistungen",
+        "services-intro": "Umfassende Reisedienstleistungen von der Ankunft bis zur Abreise. Wir kümmern uns um alle Logistik einschließlich Transfers, Unterkünfte und internationale Reiseplanung mit Premium-Optionen verfügbar.",
+        "service1-title": "Flughafen- & Hafentransfers",
+        "service1-desc": "Meet-and-Greet-Service an allen Flughäfen in Madagaskar. Wir arbeiten an allen Kreuzfahrthäfen in Madagaskar für Kreuzfahrtpassagiere.",
+        "service2-title": "Individuelle geführte Touren",
+        "service2-desc": "Personalisierte Reisepläne basierend auf Ihren Interessen und Zeitrahmen. Wildtierfokussierte Rundreisen, Kulturprogramme.",
+        "service3-title": "Internationale Reise & Unterkunft",
+        "service3-desc": "Ich kann Kunden aus dem Ausland abholen, um nach Madagaskar zu reisen. Hotelbuchungen von Eco-Lodges bis Luxusresorts.",
+        "service4-title": "Kreuzfahrtpassagier-Dienste",
+        "service4-desc": "Spezialisierte Touren für Kreuzfahrtschiffpassagiere an allen Häfen in Madagaskar. Pünktliche Hafentransfers und Tagesausflüge.",
+        "service4-badge": "SPEZIALISIERTER DIENST",
+        "service5-title": "Kulinarische Erlebnisse",
+        "service5-desc": "Organisation von kulinarischen Touren und Entdeckung der madagassischen Gastronomie. Besuche lokaler Märkte, Kochkurse.",
+        "service6-title": "24/7 Unterstützung",
+        "service6-desc": "Notfallkontakt während Ihres gesamten Aufenthalts verfügbar. Unterstützung bei unerwarteten Situationen oder Änderungen.",
+        
+        "contact-title": "Kontaktieren Sie uns",
+        "contact-intro": "Bereit, Ihr Madagaskar-Abenteuer zu planen? Kontaktieren Sie uns für persönliche Beratung, detaillierte Reisepläne und Preise sowohl für lokale als auch internationale Reisedienstleistungen.",
+        "contact1-title": "WhatsApp & Telefon",
+        "contact1-desc": "Direktnachrichten für schnellste Antwort. Verfügbar für Anrufe und Videoberatungen.",
+        "contact2-title": "E-Mail",
+        "contact2-desc": "Für detaillierte Anfragen, internationale Touranfragen und formelle Angebote.",
+        "contact3-title": "Servicezeiten",
+        "contact3-time": "Lokal: 6 AM - 10 PM (GMT+3)",
+        "contact3-desc": "Internationale Anfragen: 24/7 E-Mail-Antwort mit Notfallkontakt verfügbar.",
+        "form-title": "Individuellen Reiseplan anfordern",
+        "form-desc": "Füllen Sie unser Kontaktformular für persönliche Reiseplanung aus, einschließlich Flughafentransfers, Kreuzfahrtdienste und internationale Tour-Optionen.",
+        "form-btn": "Detailliertes Kontaktformular",
+        
+        "footer-creator": "Erstellt von Habibe - Professionelle Tourismusdienste",
+        "footer-desc": "Flughafentransfers, Kreuzfahrtdienste und internationale Touren verfügbar",
+        "footer-copyright": "© 2024 Mada Vibe Discover - Alle Rechte vorbehalten.<br>Tourismuslizenz zertifiziert | Mitglied des madagassischen Nationalen Tourismusrats"
+    },
+    it: { // ITALIEN
+        "header-tagline": "La tua Guida Autentica in Madagascar",
+        "menu-home": "Home",
+        "menu-tourism": "Tipi di Turismo",
+        "menu-destinations": "Destinazioni",
+        "menu-services": "Servizi",
+        "menu-contact": "Contatto",
+        
+        "hero-title": "🌴 Esplora il Madagascar con Mada Vibe Discover 🌴",
+        "hero-subtitle": "Scopri la biodiversità unica e la ricca cultura del Madagascar con le nostre guide esperte. Offriamo tour personalizzati, trasferimenti aeroportuali e servizi di viaggio internazionali. Dagli incontri con i lemuri al relax in spiaggia, crea ricordi indimenticabili con noi.",
+        "feature1-title": "Fauna Unica",
+        "feature1-desc": "Vedi lemuri, camaleonti e baobab che non si trovano da nessun'altra parte. Sperimenta l'incredibile biodiversità del Madagascar nei parchi nazionali e nelle riserve.",
+        "feature2-title": "Servizi Completi",
+        "feature2-desc": "Trasferimenti aeroporto/porto, prenotazioni alberghiere e arrangiamenti di viaggio internazionali. Gestiamo tutta la logistica per un viaggio senza stress.",
+        "feature3-title": "Immersione Culturale",
+        "feature3-desc": "Sperimenta le tradizioni malgasce, la musica e la calda ospitalità. Visita le comunità locali e impara sui 18 distinti gruppi etnici.",
+        "feature4-title": "Tour Internazionali",
+        "feature4-desc": "Servizi estesi ai paesi vicini disponibili. Itinerari internazionali personalizzati con opzioni di prezzo premium.",
+        "hero-btn": "Scopri i Nostri Servizi",
+        
+        "tourism-title": "Tipi di Turismo",
+        "tourism-intro": "Sperimenta il Madagascar attraverso tour specializzati. Dalle avventure nella fauna selvatica all'immersione culturale, offriamo diverse esperienze turistiche adattate agli interessi di ogni viaggiatore.",
+        "tourism1-title": "Turismo Naturale",
+        "tourism1-desc": "Scoperta di paesaggi unici e siti naturali inclusi foreste pluviali, parchi nazionali e scenari mozzafiato.",
+        "tourism2-title": "Turismo Balneare",
+        "tourism2-desc": "Spiagge paradisiache e attività nautiche a Nosy Be e Île Sainte-Marie. Perfetto per relax e sport acquatici.",
+        "tourism3-title": "Turismo Scientifico",
+        "tourism3-desc": "Osservazione della biodiversità malgascia inclusi lemuri, camaleonti, baobab e specie endemiche uniche.",
+        "tourism4-title": "Turismo Culturale",
+        "tourism4-desc": "Immersione nella cultura e tradizioni locali attraverso musica, danza, artigianato e visite a comunità tradizionali.",
+        "tourism5-title": "Turismo Storico",
+        "tourism5-desc": "Siti e monumenti ricchi di storia inclusi palazzi reali, edifici coloniali e siti archeologici.",
+        "tourism6-title": "Turismo d'Avventura",
+        "tourism6-desc": "Escursionismo, sport e forti sensazioni inclusi trekking, arrampicata ed esplorazione di aree selvagge.",
+        "tourism7-title": "Turismo Gastronomico",
+        "tourism7-desc": "Scoperta culinaria e prodotti locali inclusi specialità malgasce, frutti tropicali e piatti tradizionali.",
+        "tourism8-title": "Turismo della Pesca",
+        "tourism8-desc": "Escursioni di pesca d'altura e tradizionale nelle acque del Madagascar con attrezzatura specializzata e guide.",
+        
+        "destinations-title": "Destinazioni",
+        "destinations-intro": "Scopri i luoghi più belli del Madagascar. Dalle spiagge del nord ai deserti del sud, ogni destinazione offre attrazioni uniche con guida locale esperta.",
+        
+        "services-title": "I Nostri Servizi",
+        "services-intro": "Servizi di viaggio completi dall'arrivo alla partenza. Gestiamo tutta la logistica inclusi trasferimenti, alloggi e arrangiamenti di viaggio internazionali con opzioni premium disponibili.",
+        "service1-title": "Trasferimenti Aeroporto & Porto",
+        "service1-desc": "Servizio di incontro in tutti gli aeroporti del Madagascar. Lavoriamo in tutti i porti di crociera del Madagascar per passeggeri di crociera.",
+        "service2-title": "Tour Guidati Personalizzati",
+        "service2-desc": "Itinerari personalizzati basati sui tuoi interessi e tempistiche. Circuiti focalizzati sulla fauna selvatica, programmi culturali.",
+        "service3-title": "Viaggio Internazionale & Alloggio",
+        "service3-desc": "Posso prelevare clienti da paesi esteri per viaggiare in Madagascar. Prenotazioni alberghiere da eco-lodge a resort di lusso.",
+        "service4-title": "Servizi Passeggeri Crociera",
+        "service4-desc": "Tour specializzati per passeggeri di navi da crociera in tutti i porti del Madagascar. Trasferimenti portuali puntuali ed escursioni giornaliere.",
+        "service4-badge": "SERVIZIO SPECIALIZZATO",
+        "service5-title": "Esperienze Gastronomiche",
+        "service5-desc": "Organizzazione di tour culinari e scoperta della gastronomia malgascia. Visite a mercati locali, lezioni di cucina.",
+        "service6-title": "Supporto 24/7",
+        "service6-desc": "Contatto di emergenza disponibile durante tutto il tuo soggiorno. Assistenza per qualsiasi situazione imprevista o cambiamenti.",
+        
+        "contact-title": "Contattaci",
+        "contact-intro": "Pronto a pianificare la tua avventura in Madagascar? Contattaci per consultazioni personalizzate, itinerari dettagliati e prezzi sia per servizi di viaggio locali che internazionali.",
+        "contact1-title": "WhatsApp & Telefono",
+        "contact1-desc": "Messaggistica diretta per risposta più rapida. Disponibile per chiamate e consultazioni video.",
+        "contact2-title": "Email",
+        "contact2-desc": "Per richieste dettagliate, richieste di tour internazionali e preventivi formali.",
+        "contact3-title": "Orari di Servizio",
+        "contact3-time": "Locale: 6 AM - 10 PM (GMT+3)",
+        "contact3-desc": "Richieste internazionali: risposta email 24/7 con contatto di emergenza disponibile.",
+        "form-title": "Richiedi Itinerario Personalizzato",
+        "form-desc": "Compila il nostro modulo di contatto per pianificazione di viaggio personalizzata inclusi trasferimenti aeroportuali, servizi crociera e opzioni di tour internazionali.",
+        "form-btn": "Modulo di Contatto Dettagliato",
+        
+        "footer-creator": "Creato da Habibe - Servizi Turistici Professionali",
+        "footer-desc": "Trasferimenti aeroportuali, servizi crociera e tour internazionali disponibili",
+        "footer-copyright": "© 2024 Mada Vibe Discover - Tutti i diritti riservati.<br>Licenza Turistica certificata | Membro del Consiglio Nazionale del Turismo del Madagascar"
+    },
+    ar: { // ARABE
+        "header-tagline": "دليلك الأصيل في مدغشقر",
+        "menu-home": "الرئيسية",
+        "menu-tourism": "أنواع السياحة",
+        "menu-destinations": "الوجهات",
+        "menu-services": "الخدمات",
+        "menu-contact": "اتصل بنا",
+        
+        "hero-title": "🌴 استكشف مدغشقر مع مادا فايب ديسكفر 🌴",
+        "hero-subtitle": "اكتشف التنوع البيولوجي الفريد والثقافة الغنية لمدغشقر مع مرشدينا الخبراء. نقدم جولات مخصصة، نقل من المطار، وخدمات سفر دولية. من لقاءات الليمور إلى الاسترخاء على الشاطئ، اصنع ذكريات لا تنسى معنا.",
+        "feature1-title": "الحياة البرية الفريدة",
+        "feature1-desc": "شاهد الليمور والحرباء وأشجار الباوباب التي لا توجد في أي مكان آخر. جرب التنوع البيولوجي المذهل لمدغشقر في المتنزهات الوطنية والمحميات.",
+        "feature2-title": "خدمات كاملة",
+        "feature2-desc": "نقل من المطار/الميناء، حجوزات فنادق وترتيبات سفر دولية. ندير جميع الخدمات اللوجستية لرحلة خالية من التوتر.",
+        "feature3-title": "الانغماس الثقافي",
+        "feature3-desc": "جرب التقاليد الملغاشية والموسيقى والضيافة الدافئة. قم بزيارة المجتمعات المحلية وتعلم عن 18 مجموعة عرقية متميزة.",
+        "feature4-title": "جولات دولية",
+        "feature4-desc": "خدمات ممتدة إلى البلدان المجاورة متاحة. خطوط سفر دولية مخصصة مع خيارات أسعار متميزة.",
+        "hero-btn": "اكتشف خدماتنا",
+        
+        "tourism-title": "أنواع السياحة",
+        "tourism-intro": "جرب مدغشقر من خلال جولات متخصصة. من مغامرات الحياة البرية إلى الانغماس الثقافي، نقدم تجارب سياحية متنوعة مصممة حسب اهتمامات كل مسافر.",
+        "tourism1-title": "السياحة الطبيعية",
+        "tourism1-desc": "اكتشاف المناظر الطبيعية الفريدة والمواقع الطبيعية بما في ذلك الغابات المطيرة والمتنزهات الوطنية والمشاهد الخلابة.",
+        "tourism2-title": "سياحة الشواطئ",
+        "tourism2-desc": "شواطئ خلوية وأنشطة بحرية في نوسي بي وجزيرة سانت ماري. مثالي للاسترخاء والرياضات المائية.",
+        "tourism3-title": "السياحة العلمية",
+        "tourism3-desc": "مراقبة التنوع البيولوجي الملغاشي بما في ذلك الليمور والحرباء وأشجار الباوباب والأنواع المتوطنة الفريدة.",
+        "tourism4-title": "السياحة الثقافية",
+        "tourism4-desc": "الانغماس في الثقافة والتقاليد المحلية من خلال الموسيقى والرقص والحرف اليدوية وزيارات المجتمعات التقليدية.",
+        "tourism5-title": "السياحة التاريخية",
+        "tourism5-desc": "مواقع وآثار غنية بالتاريخ بما في ذلك القصور الملكية والمباني الاستعمارية والمواقع الأثرية.",
+        "tourism6-title": "سياحة المغامرات",
+        "tourism6-desc": "مشى لمسافات طويلة، رياضات وإحساس قوي بما في ذلك الترحال، تسلق الجبال واستكشاف المناطق البرية.",
+        "tourism7-title": "السياحة الغذائية",
+        "tourism7-desc": "اكتشاف الطهي والمنتجات المحلية بما في ذلك الأطباق الملغاشية الخاصة، الفواكه الاستوائية والأطباق التقليدية.",
+        "tourism8-title": "سياحة الصيد",
+        "tourism8-desc": "رحلات صيد كبيرة وتقليدية في مياه مدغشقر مع معدات متخصصة ومرشدين.",
+        
+        "destinations-title": "الوجهات",
+        "destinations-intro": "اكتشف أجمل الأماكن في مدغشقر. من شواطئ الشمال إلى صحاري الجنوب، تقدم كل وجهة عوامل جذب فريدة مع إرشاد محلي خبير.",
+        
+        "services-title": "خدماتنا",
+        "services-intro": "خدمات سفر شاملة من الوصول إلى المغادرة. ندير جميع الخدمات اللوجستية بما في ذلك النقل والإقامة وترتيبات السفر الدولي مع خيارات متميزة متاحة.",
+        "service1-title": "نقل المطار والميناء",
+        "service1-desc": "خدمة الاستقبال في جميع مطارات مدغشقر. نحن نعمل في جميع موانئ الرحلات البحرية في مدغشقر لركاب الرحلات البحرية.",
+        "service2-title": "جولات إرشادية مخصصة",
+        "service2-desc": "خطوط سفر مخصصة بناءً على اهتماماتك والإطار الزمني. دوائر تركز على الحياة البرية، برامج ثقافية.",
+        "service3-title": "السفر الدولي والإقامة",
+        "service3-desc": "يمكنني اصطحاب العملاء من الدول الأجنبية للسفر إلى مدغشقر. حجوزات الفنادق من بيوت بيئية إلى منتجعات فاخرة.",
+        "service4-title": "خدمات ركاب الرحلات البحرية",
+        "service4-desc": "جولات متخصصة لركاب سفن الرحلات البحرية في جميع موانئ مدغشقر. نقل مينائي في الوقت المناسب ورحلات نهارية.",
+        "service4-badge": "خدمة متخصصة",
+        "service5-title": "تجارب طعام",
+        "service5-desc": "تنظيم جولات طهي واكتشاف المطبخ الملغاشي. زيارات إلى الأسواق المحلية، دروس طبخ.",
+        "service6-title": "دعم 24/7",
+        "service6-desc": "اتصال طوارئ متاح خلال إقامتك بأكملها. مساعدة لأي مواقف غير متوقعة أو تغييرات.",
+        
+        "contact-title": "اتصل بنا",
+        "contact-intro": "مستعد لتخطيط مغامرتك في مدغشقر؟ اتصل بنا للاستشارات الشخصية، خطوط سفر مفصلة وأسعار لخدمات السفر المحلية والدولية.",
+        "contact1-title": "واتساب وهاتف",
+        "contact1-desc": "رسائل مباشرة لأسرع استجابة. متاح للمكالمات واستشارات الفيديو.",
+        "contact2-title": "البريد الإلكتروني",
+        "contact2-desc": "للاستفسارات التفصيلية، طلبات الجولات الدولية والعروض الرسمية.",
+        "contact3-title": "ساعات العمل",
+        "contact3-time": "محلي: 6 صباحًا - 10 مساءً (توقيت جرينتش+3)",
+        "contact3-desc": "استفسارات دولية: رد على البريد الإلكتروني 24/7 مع اتصال طوارئ متاح.",
+        "form-title": "طلب خط سفر مخصص",
+        "form-desc": "أكمل نموذج الاتصال الخاص بنا لتخطيط السفر الشخصي بما في ذلك نقل المطار، خدمات الرحلات البحرية وخيارات الجولات الدولية.",
+        "form-btn": "نموذج اتصال مفصل",
+        
+        "footer-creator": "تم الإنشاء بواسطة حبيب - خدمات سياحية احترافية",
+        "footer-desc": "نقل من المطار، خدمات رحلات بحرية وجولات دولية متاحة",
+        "footer-copyright": "© 2024 مادا فايب ديسكفر - جميع الحقوق محفوظة.<br>رخصة سياحية معتمدة | عضو في المجلس الوطني للسياحة في مدغشقر"
+    },
+    zh: { // CHINOIS
+        "header-tagline": "您在马达加斯加的真诚向导",
+        "menu-home": "首页",
+        "menu-tourism": "旅游类型",
+        "menu-destinations": "目的地",
+        "menu-services": "服务",
+        "menu-contact": "联系我们",
+        
+        "hero-title": "🌴 与 Mada Vibe Discover 一起探索马达加斯加 🌴",
+        "hero-subtitle": "与我们的专业导游一起探索马达加斯加独特的生物多样性和丰富的文化。我们提供个性化旅游、机场接送和国际旅行服务。从狐猴接触到海滩放松，与我们共创难忘回忆。",
+        "feature1-title": "独特的野生动物",
+        "feature1-desc": "观赏其他地方找不到的狐猴、变色猴和猴面包树。在国家公园和保护区体验马达加斯加令人难以置信的生物多样性。",
+        "feature2-title": "完整服务",
+        "feature2-desc": "机场/港口接送、酒店预订和国际旅行安排。我们处理所有物流，让您无忧旅行。",
+        "feature3-title": "文化沉浸",
+        "feature3-desc": "体验马达加斯加传统、音乐和热情好客。参观当地社区，了解18个不同的民族群体。",
+        "feature4-title": "国际旅游",
+        "feature4-desc": "可扩展到邻国的服务。定制国际行程，提供高级定价选项。",
+        "hero-btn": "发现我们的服务",
+        
+        "tourism-title": "旅游类型",
+        "tourism-intro": "通过专业旅游体验马达加斯加。从野生动物冒险到文化沉浸，我们提供多样化的旅游体验，满足每位旅行者的兴趣。",
+        "tourism1-title": "自然旅游",
+        "tourism1-desc": "探索独特的景观和自然景点，包括热带雨林、国家公园和令人惊叹的风景。",
+        "tourism2-title": "海滩旅游",
+        "tourism2-desc": "诺西贝和圣玛丽岛的天堂海滩和水上活动。适合放松和水上运动。",
+        "tourism3-title": "科学旅游",
+        "tourism3-desc": "观察马达加斯加生物多样性，包括狐猴、变色猴、猴面包树和独特的特有物种。",
+        "tourism4-title": "文化旅游",
+        "tourism4-desc": "通过音乐、舞蹈、手工艺品和参观传统社区沉浸在当地文化和传统中。",
+        "tourism5-title": "历史旅游",
+        "tourism5-desc": "历史丰富的遗址和纪念碑，包括皇家宫殿、殖民建筑和考古遗址。",
+        "tourism6-title": "冒险旅游",
+        "tourism6-desc": "徒步、运动和强烈感受，包括徒步旅行、攀岩和探索荒野地区。",
+        "tourism7-title": "美食旅游",
+        "tourism7-desc": "烹饪发现和当地产品，包括马达加斯加特色菜、热带水果和传统菜肴。",
+        "tourism8-title": "钓鱼旅游",
+        "tourism8-desc": "在马达加斯加水域进行大型游戏和传统钓鱼游览，配备专业设备和导游。",
+        
+        "destinations-title": "目的地",
+        "destinations-intro": "发现马达加斯加最美丽的地方。从北部海滩到南部沙漠，每个目的地都提供独特的景点，配有专业的当地指导。",
+        
+        "services-title": "我们的服务",
+        "services-intro": "从到达出发的全面旅行服务。我们处理所有物流，包括接送、住宿和国际旅行安排，提供高级选项。",
+        "service1-title": "机场和港口接送",
+        "service1-desc": "在马达加斯加所有机场提供迎接服务。我们在马达加斯加所有邮轮港口为邮轮乘客服务。",
+        "service2-title": "定制导游旅游",
+        "service2-desc": "根据您的兴趣和时间框架制定个性化行程。专注于野生动物的线路，文化节目。",
+        "service3-title": "国际旅行和住宿",
+        "service3-desc": "我可以从外国接客户前往马达加斯加。从生态旅馆到豪华度假村的酒店预订。",
+        "service4-title": "邮轮乘客服务",
+        "service4-desc": "在马达加斯加所有港口为邮轮乘客提供专业旅游。准时港口接送和一日游。",
+        "service4-badge": "专业服务",
+        "service5-title": "美食体验",
+        "service5-desc": "组织烹饪旅游和发现马达加斯加美食。参观当地市场，烹饪课程。",
+        "service6-title": "24/7 支持",
+        "service6-desc": "整个住宿期间提供紧急联系人。为任何意外情况或变更提供帮助。",
+        
+        "contact-title": "联系我们",
+        "contact-intro": "准备计划您的马达加斯加冒险吗？联系我们进行个性化咨询、详细行程以及本地和国际旅行服务的价格。",
+        "contact1-title": "WhatsApp 和电话",
+        "contact1-desc": "直接消息以获得最快回复。可用于通话和视频咨询。",
+        "contact2-title": "电子邮件",
+        "contact2-desc": "用于详细查询、国际旅游请求和正式报价。",
+        "contact3-title": "服务时间",
+        "contact3-time": "本地时间: 早上6点 - 晚上10点 (GMT+3)",
+        "contact3-desc": "国际查询: 24/7 电子邮件回复，提供紧急联系人。",
+        "form-title": "请求定制行程",
+        "form-desc": "填写我们的联系表格进行个性化旅行规划，包括机场接送、邮轮服务和国际旅游选项。",
+        "form-btn": "详细联系表格",
+        
+        "footer-creator": "由 Habibe 创建 - 专业旅游服务",
+        "footer-desc": "提供机场接送、邮轮服务和国际旅游",
+        "footer-copyright": "© 2024 Mada Vibe Discover - 保留所有权利。<br>旅游许可证认证 | 马达加斯加国家旅游局成员"
+    }
+};
+
+        // ===== VARIABLES GLOBALES =====
+        let currentLanguage = 'en';
+
+        // ===== ÉLÉMENTS DOM =====
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const languageOptions = document.querySelectorAll('.language-option');
+        const currentLangElement = document.querySelector('.current-lang');
+
+        // ===== MENU MOBILE =====
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuToggle.innerHTML = mobileMenu.classList.contains('active') 
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
         });
 
-        // Fermer le menu en cliquant sur un lien
-        document.querySelectorAll('.menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                mainMenu.classList.remove('active');
+        // Fermer le menu mobile en cliquant sur un lien
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
                 menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
 
-        // Traductions COMPLÈTES pour 5 langues
-        const translations = {
-            fr: {
-                // Header
-                home: "Accueil",
-                destinations: "Destinations",
-                services: "Services",
-                contact: "Contact",
-                currentLang: "Français",
-                tagline: "Votre Guide Authentique à Madagascar",
-                
-                // Hero
-                heroTitle: "Explorez Madagascar avec Mada Vibe Discover",
-                heroDescription: "Découvrez la magie de l'île rouge à travers des expériences uniques, des paysages à couper le souffle et une culture riche. Notre équipe de guides experts vous accompagne pour vivre l'authenticité malgache.",
-                heroBtn: "Découvrir Nos Circuits",
-                
-                // Beauty section
-                beautyTitle: "La Beauté Naturelle de Madagascar",
-                beautyText1: "Plongez au cœur d'une biodiversité unique au monde où les lémuriens dansent dans les forêts primaires. Chaque instant est une rencontre magique avec une nature préservée et des paysages d'exception.",
-                beautyText2: "Notre mission : vous faire vivre des émotions authentiques tout en préservant les trésors naturels de Madagascar pour les générations futures.",
-                beautyBtn: "Rencontrer la Faune",
-                
-                // Nature section
-                natureTitle: "Paysages Iconiques et Uniques",
-                natureText1: "Des allées de baobabs majestueux aux formations rocheuses des Tsingy, Madagascar dévoile des panoramas que vous ne verrez nulle part ailleurs sur Terre.",
-                natureText2: "Chaque région offre ses propres merveilles : plages de sable blanc, forêts tropicales, hauts plateaux et déserts arides se côtoient pour créer une diversité exceptionnelle.",
-                natureBtn: "Explorer les Paysages",
-                
-                // Services section
-                servicesTitle: "Nos Services de Guide Professionnel",
-                service1Title: "Guides Experts du Territoire",
-                service1Text: "Nos guides connaissent parfaitement leur territoire et vous révèlent les secrets les mieux gardés de Madagascar.",
-                service2Title: "Observation Faunique",
-                service2Text: "Accompagnement spécialisé pour observer la faune unique dans les parcs nationaux et réserves naturelles.",
-                service3Title: "Randonnées Nature",
-                service3Text: "Organisation de randonnées adaptées à tous niveaux pour découvrir les écosystèmes exceptionnels de l'île.",
-                service4Title: "Excursions Maritimes",
-                service4Text: "Guidage pour les excursions en mer, découverte des îles et exploration des fonds marins exceptionnels.",
-                
-                // Destinations
-                destinationsTitle: "Destinations Phares",
-                dest1: "Nosy Be",
-                dest2: "Diego Suarez",
-                dest3: "Ambanja",
-                dest4: "Morondava",
-                dest5: "Antsirabe",
-                dest6: "Mahajanga",
-                
-                // Climax section
-                climaxTitle: "Prêt pour l'Aventure Ultime ?",
-                climaxText: "Laissez-nous être votre guide vers l'extraordinaire. Contactez-nous dès aujourd'hui pour créer ensemble votre voyage sur mesure à Madagascar.",
-                climaxBtn: "Planifier Mon Expérience",
-                
-                // Footer
-                footerTitle: "Contactez Votre Guide",
-                contact1Title: "WhatsApp Direct",
-                contact1Text: "Réponse immédiate",
-                contact2Title: "Email Professionnel",
-                contact2Text: "Devis personnalisés",
-                contact3Title: "Page Officielle",
-                contact3Text: "Actualités et photos",
-                contact4Title: "Votre Guide",
-                contact4Text: "Expert Madagascar",
-                copyright1: "© 2024 Mada Vibe Discover - Tous droits réservés",
-                copyright2: "Votre guide expert pour une expérience authentique à Madagascar"
-            },
-            
-            en: {
-                // Header
-                home: "Home",
-                destinations: "Destinations",
-                services: "Services",
-                contact: "Contact",
-                currentLang: "English",
-                tagline: "Your Authentic Guide to Madagascar",
-                
-                // Hero
-                heroTitle: "Explore Madagascar with Mada Vibe Discover",
-                heroDescription: "Discover the magic of the Red Island through unique experiences, breathtaking landscapes, and rich culture. Our team of expert guides accompanies you to experience authentic Malagasy life.",
-                heroBtn: "Discover Our Tours",
-                
-                // Beauty section
-                beautyTitle: "The Natural Beauty of Madagascar",
-                beautyText1: "Immerse yourself in a unique biodiversity where lemurs dance in primary forests. Every moment is a magical encounter with preserved nature and exceptional landscapes.",
-                beautyText2: "Our mission: to provide you with authentic experiences while preserving Madagascar's natural treasures for future generations.",
-                beautyBtn: "Meet the Wildlife",
-                
-                // Nature section
-                natureTitle: "Iconic and Unique Landscapes",
-                natureText1: "From majestic baobab alleys to the rock formations of Tsingy, Madagascar reveals panoramas you won't find anywhere else on Earth.",
-                natureText2: "Each region offers its own wonders: white sand beaches, tropical forests, highlands, and arid deserts coexist to create exceptional diversity.",
-                natureBtn: "Explore Landscapes",
-                
-                // Services section
-                servicesTitle: "Our Professional Guide Services",
-                service1Title: "Territory Expert Guides",
-                service1Text: "Our guides know their territory perfectly and reveal to you the best kept secrets of Madagascar.",
-                service2Title: "Wildlife Observation",
-                service2Text: "Specialized accompaniment to observe unique wildlife in national parks and nature reserves.",
-                service3Title: "Nature Hikes",
-                service3Text: "Organization of hikes adapted to all levels to discover the island's exceptional ecosystems.",
-                service4Title: "Maritime Excursions",
-                service4Text: "Guidance for sea excursions, island discovery, and exploration of exceptional seabeds.",
-                
-                // Destinations
-                destinationsTitle: "Featured Destinations",
-                dest1: "Nosy Be",
-                dest2: "Diego Suarez",
-                dest3: "Ambanja",
-                dest4: "Morondava",
-                dest5: "Antsirabe",
-                dest6: "Mahajanga",
-                
-                // Climax section
-                climaxTitle: "Ready for the Ultimate Adventure?",
-                climaxText: "Let us be your guide to the extraordinary. Contact us today to create your customized journey to Madagascar together.",
-                climaxBtn: "Plan My Experience",
-                
-                // Footer
-                footerTitle: "Contact Your Guide",
-                contact1Title: "Direct WhatsApp",
-                contact1Text: "Immediate response",
-                contact2Title: "Professional Email",
-                contact2Text: "Customized quotes",
-                contact3Title: "Official Page",
-                contact3Text: "News and photos",
-                contact4Title: "Your Guide",
-                contact4Text: "Madagascar Expert",
-                copyright1: "© 2024 Mada Vibe Discover - All rights reserved",
-                copyright2: "Your expert guide for an authentic Madagascar experience"
-            },
-            
-            de: {
-                // Header
-                home: "Startseite",
-                destinations: "Ziele",
-                services: "Dienstleistungen",
-                contact: "Kontakt",
-                currentLang: "Deutsch",
-                tagline: "Ihr Authentischer Guide für Madagaskar",
-                
-                // Hero
-                heroTitle: "Entdecken Sie Madagaskar mit Mada Vibe Discover",
-                heroDescription: "Entdecken Sie die Magie der Roten Insel durch einzigartige Erlebnisse, atemberaubende Landschaften und reiche Kultur. Unser Team von Expertenführern begleitet Sie, um authentisches madagassisches Leben zu erleben.",
-                heroBtn: "Unsere Touren Entdecken",
-                
-                // Beauty section
-                beautyTitle: "Die Natürliche Schönheit Madagaskars",
-                beautyText1: "Tauchen Sie ein in eine einzigartige Artenvielfalt, in der Lemuren in Primärwäldern tanzen. Jeder Moment ist eine magische Begegnung mit erhaltener Natur und außergewöhnlichen Landschaften.",
-                beautyText2: "Unsere Mission: Ihnen authentische Erlebnisse bieten und gleichzeitig Madagaskars Naturschätze für zukünftige Generationen bewahren.",
-                beautyBtn: "Wildlife Treffen",
-                
-                // Nature section
-                natureTitle: "Ikonische und Einzigartige Landschaften",
-                natureText1: "Von majestätischen Baobab-Alleen bis zu den Felsformationen der Tsingy offenbart Madagaskar Panoramen, die Sie nirgendwo sonst auf der Erde finden werden.",
-                natureText2: "Jede Region bietet ihre eigenen Wunder: weiße Sandstrände, tropische Wälder, Hochländer und trockene Wüsten koexistieren, um eine außergewöhnliche Vielfalt zu schaffen.",
-                natureBtn: "Landschaften Erkunden",
-                
-                // Services section
-                servicesTitle: "Unsere Professionellen Guide-Dienstleistungen",
-                service1Title: "Gebiets-Experten Guides",
-                service1Text: "Unsere Guides kennen ihr Gebiet perfekt und enthüllen Ihnen die bestgehüteten Geheimnisse Madagaskars.",
-                service2Title: "Wildtierbeobachtung",
-                service2Text: "Spezialisierte Begleitung zur Beobachtung einzigartiger Wildtiere in Nationalparks und Naturschutzgebieten.",
-                service3Title: "Naturwanderungen",
-                service3Text: "Organisation von Wanderungen für alle Niveaus, um die außergewöhnlichen Ökosysteme der Insel zu entdecken.",
-                service4Title: "Maritime Ausflüge",
-                service4Text: "Führung für Meeresausflüge, Inselentdeckung und Erkundung außergewöhnlicher Meeresböden.",
-                
-                // Destinations
-                destinationsTitle: "Top-Ziele",
-                dest1: "Nosy Be",
-                dest2: "Diego Suarez",
-                dest3: "Ambanja",
-                dest4: "Morondava",
-                dest5: "Antsirabe",
-                dest6: "Mahajanga",
-                
-                // Climax section
-                climaxTitle: "Bereit für das Ultimative Abenteuer?",
-                climaxText: "Lassen Sie uns Ihr Führer zum Außergewöhnlichen sein. Kontaktieren Sie uns noch heute, um gemeinsam Ihre maßgeschneiderte Reise nach Madagaskar zu erstellen.",
-                climaxBtn: "Meine Erfahrung Planen",
-                
-                // Footer
-                footerTitle: "Kontaktieren Sie Ihren Guide",
-                contact1Title: "Direkter WhatsApp",
-                contact1Text: "Sofortige Antwort",
-                contact2Title: "Professionelle E-Mail",
-                contact2Text: "Maßgeschneiderte Angebote",
-                contact3Title: "Offizielle Seite",
-                contact3Text: "Neuigkeiten und Fotos",
-                contact4Title: "Ihr Guide",
-                contact4Text: "Madagaskar Experte",
-                copyright1: "© 2024 Mada Vibe Discover - Alle Rechte vorbehalten",
-                copyright2: "Ihr Experten-Guide für ein authentisches Madagaskar-Erlebnis"
-            },
-            
-            es: {
-                // Header
-                home: "Inicio",
-                destinations: "Destinos",
-                services: "Servicios",
-                contact: "Contacto",
-                currentLang: "Español",
-                tagline: "Su Guía Auténtico de Madagascar",
-                
-                // Hero
-                heroTitle: "Explore Madagascar con Mada Vibe Discover",
-                heroDescription: "Descubra la magia de la Isla Roja a través de experiencias únicas, paisajes impresionantes y cultura rica. Nuestro equipo de guías expertos le acompaña para vivir la autenticidad malgache.",
-                heroBtn: "Descubrir Nuestros Circuitos",
-                
-                // Beauty section
-                beautyTitle: "La Belleza Natural de Madagascar",
-                beautyText1: "Sumérjase en una biodiversidad única en el mundo donde los lémures bailan en los bosques primarios. Cada momento es un encuentro mágico con la naturaleza preservada y paisajes excepcionales.",
-                beautyText2: "Nuestra misión: hacerle vivir emociones auténticas mientras preservamos los tesoros naturales de Madagascar para las generaciones futuras.",
-                beautyBtn: "Conocer la Fauna",
-                
-                // Nature section
-                natureTitle: "Paisajes Icónicos y Únicos",
-                natureText1: "Desde las avenidas de baobabs majestuosos hasta las formaciones rocosas de Tsingy, Madagascar revela panoramas que no verá en ningún otro lugar de la Tierra.",
-                natureText2: "Cada región ofrece sus propias maravillas: playas de arena blanca, bosques tropicales, mesetas altas y desiertos áridos se combinan para crear una diversidad excepcional.",
-                natureBtn: "Explorar los Paisajes",
-                
-                // Services section
-                servicesTitle: "Nuestros Servicios de Guía Profesional",
-                service1Title: "Guías Expertos del Territorio",
-                service1Text: "Nuestros guías conocen perfectamente su territorio y le revelan los secretos mejor guardados de Madagascar.",
-                service2Title: "Observación de Fauna",
-                service2Text: "Acompañamiento especializado para observar la fauna única en parques nacionales y reservas naturales.",
-                service3Title: "Senderismo en la Naturaleza",
-                service3Text: "Organización de senderismo adaptado a todos los niveles para descubrir los ecosistemas excepcionales de la isla.",
-                service4Title: "Excursiones Marítimas",
-                service4Text: "Guía para excursiones en el mar, descubrimiento de islas y exploración de fondos marinos excepcionales.",
-                
-                // Destinations
-                destinationsTitle: "Destinos Destacados",
-                dest1: "Nosy Be",
-                dest2: "Diego Suarez",
-                dest3: "Ambanja",
-                dest4: "Morondava",
-                dest5: "Antsirabe",
-                dest6: "Mahajanga",
-                
-                // Climax section
-                climaxTitle: "¿Listo para la Aventura Definitiva?",
-                climaxText: "Permítanos ser su guía hacia lo extraordinario. Contáctenos hoy mismo para crear juntos su viaje a medida a Madagascar.",
-                climaxBtn: "Planificar Mi Experiencia",
-                
-                // Footer
-                footerTitle: "Contacte a Su Guía",
-                contact1Title: "WhatsApp Directo",
-                contact1Text: "Respuesta inmediata",
-                contact2Title: "Email Profesional",
-                contact2Text: "Presupuestos personalizados",
-                contact3Title: "Página Oficial",
-                contact3Text: "Noticias y fotos",
-                contact4Title: "Su Guía",
-                contact4Text: "Experto en Madagascar",
-                copyright1: "© 2024 Mada Vibe Discover - Todos los derechos reservados",
-                copyright2: "Su guía experto para una experiencia auténtica en Madagascar"
-            },
-            
-            it: {
-                // Header
-                home: "Home",
-                destinations: "Destinazioni",
-                services: "Servizi",
-                contact: "Contatto",
-                currentLang: "Italiano",
-                tagline: "La Tua Guida Autentica per il Madagascar",
-                
-                // Hero
-                heroTitle: "Esplora il Madagascar con Mada Vibe Discover",
-                heroDescription: "Scopri la magia dell'Isola Rossa attraverso esperienze uniche, paesaggi mozzafiato e cultura ricca. Il nostro team di guide esperte ti accompagna per vivere l'autenticità malgascia.",
-                heroBtn: "Scopri i Nostri Circuiti",
-                
-                // Beauty section
-                beautyTitle: "La Bellezza Naturale del Madagascar",
-                beautyText1: "Immergiti in una biodiversità unica al mondo dove i lemuri danzano nelle foreste primarie. Ogni momento è un incontro magico con la natura preservata e paesaggi eccezionali.",
-                beautyText2: "La nostra missione: farti vivere emozioni autentiche preservando i tesori naturali del Madagascar per le generazioni future.",
-                beautyBtn: "Incontrare la Fauna",
-                
-                // Nature section
-                natureTitle: "Paesaggi Iconici e Unici",
-                natureText1: "Dai viali di baobab maestosi alle formazioni rocciose di Tsingy, il Madagascar rivela panorami che non vedrai in nessun altro luogo sulla Terra.",
-                natureText2: "Ogni regione offre le sue meraviglie: spiagge di sabbia bianca, foreste tropicali, altopiani e deserti aridi si mescolano per creare una diversità eccezionale.",
-                natureBtn: "Esplorare i Paesaggi",
-                
-                // Services section
-                servicesTitle: "I Nostri Servizi di Guida Professionale",
-                service1Title: "Guide Esperte del Territorio",
-                service1Text: "Le nostre guide conoscono perfettamente il loro territorio e ti rivelano i segreti meglio custoditi del Madagascar.",
-                service2Title: "Osservazione della Fauna",
-                service2Text: "Accompagnamento specializzato per osservare la fauna unica nei parchi nazionali e nelle riserve naturali.",
-                service3Title: "Escursioni nella Natura",
-                service3Text: "Organizzazione di escursioni adatte a tutti i livelli per scoprire gli ecosistemi eccezionali dell'isola.",
-                service4Title: "Escursioni Marittime",
-                service4Text: "Guida per escursioni in mare, scoperta delle isole ed esplorazione dei fondali marini eccezionali.",
-                
-                // Destinations
-                destinationsTitle: "Destinazioni di Spicco",
-                dest1: "Nosy Be",
-                dest2: "Diego Suarez",
-                dest3: "Ambanja",
-                dest4: "Morondava",
-                dest5: "Antsirabe",
-                dest6: "Mahajanga",
-                
-                // Climax section
-                climaxTitle: "Pronto per l'Avventura Definitiva?",
-                climaxText: "Lascia che siamo la tua guida verso lo straordinario. Contattaci oggi per creare insieme il tuo viaggio su misura in Madagascar.",
-                climaxBtn: "Pianificare la Mia Esperienza",
-                
-                // Footer
-                footerTitle: "Contatta la Tua Guida",
-                contact1Title: "WhatsApp Diretto",
-                contact1Text: "Risposta immediata",
-                contact2Title: "Email Professionale",
-                contact2Text: "Preventivi personalizzati",
-                contact3Title: "Pagina Ufficiale",
-                contact3Text: "Notizie e foto",
-                contact4Title: "La Tua Guida",
-                contact4Text: "Esperto del Madagascar",
-                copyright1: "© 2024 Mada Vibe Discover - Tutti i diritti riservati",
-                copyright2: "La tua guida esperta per un'esperienza autentica in Madagascar"
-            }
-        };
-
-        // Système de changement de langue
-        document.querySelectorAll('.language-option').forEach(option => {
-            option.addEventListener('click', function(e) {
+        // ===== CHANGEMENT DE LANGUE =====
+        languageOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
                 e.preventDefault();
-                const lang = this.getAttribute('data-lang');
+                const lang = option.getAttribute('data-lang');
                 
-                document.querySelector('.current-lang').textContent = translations[lang].currentLang;
-                updateAllTranslations(lang);
+                // Mettre à jour l'état actif
+                languageOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
                 
-                document.querySelectorAll('.language-option').forEach(opt => {
-                    opt.classList.remove('active');
-                });
-                this.classList.add('active');
+                // Mettre à jour l'affichage de la langue courante
+                currentLangElement.textContent = lang.toUpperCase();
                 
+                // Changer la langue
+                changeLanguage(lang);
+                
+                // Sauvegarder la préférence
                 localStorage.setItem('preferredLanguage', lang);
-                showNotification(`Langue changée en ${translations[lang].currentLang}`);
             });
         });
 
-        function updateAllTranslations(lang) {
+        // ===== FONCTION DE CHANGEMENT DE LANGUE =====
+        function changeLanguage(lang) {
+            currentLanguage = lang;
             const t = translations[lang];
             
-            // 1. HEADER
-            document.querySelector('.tagline').textContent = t.tagline;
-            
-            // Menu
-            const menuItems = document.querySelectorAll('.menu-text');
-            if (menuItems.length >= 4) {
-                menuItems[0].textContent = t.home;
-                menuItems[1].textContent = t.destinations;
-                menuItems[2].textContent = t.services;
-                menuItems[3].textContent = t.contact;
-            }
-            
-            // 2. HERO SECTION
-            if (document.querySelector('.hero-title')) document.querySelector('.hero-title').textContent = t.heroTitle;
-            if (document.querySelector('.hero-description')) document.querySelector('.hero-description').textContent = t.heroDescription;
-            if (document.querySelector('.hero .btn-text')) document.querySelector('.hero .btn-text').textContent = t.heroBtn;
-            
-            // 3. BEAUTY SECTION
-            if (document.querySelector('.beauty-title')) document.querySelector('.beauty-title').textContent = t.beautyTitle;
-            if (document.querySelector('.beauty-text-1')) document.querySelector('.beauty-text-1').textContent = t.beautyText1;
-            if (document.querySelector('.beauty-text-2')) document.querySelector('.beauty-text-2').textContent = t.beautyText2;
-            if (document.querySelector('.beauty-btn-text')) document.querySelector('.beauty-btn-text').textContent = t.beautyBtn;
-            
-            // 4. NATURE SECTION
-            if (document.querySelector('.nature-title')) document.querySelector('.nature-title').textContent = t.natureTitle;
-            if (document.querySelector('.nature-text-1')) document.querySelector('.nature-text-1').textContent = t.natureText1;
-            if (document.querySelector('.nature-text-2')) document.querySelector('.nature-text-2').textContent = t.natureText2;
-            if (document.querySelector('.nature-btn-text')) document.querySelector('.nature-btn-text').textContent = t.natureBtn;
-            
-            // 5. SERVICES SECTION
-            if (document.querySelector('.services-title')) document.querySelector('.services-title').textContent = t.servicesTitle;
-            
-            // Service cards
-            if (document.querySelector('.service-title-1')) document.querySelector('.service-title-1').textContent = t.service1Title;
-            if (document.querySelector('.service-text-1')) document.querySelector('.service-text-1').textContent = t.service1Text;
-            if (document.querySelector('.service-title-2')) document.querySelector('.service-title-2').textContent = t.service2Title;
-            if (document.querySelector('.service-text-2')) document.querySelector('.service-text-2').textContent = t.service2Text;
-            if (document.querySelector('.service-title-3')) document.querySelector('.service-title-3').textContent = t.service3Title;
-            if (document.querySelector('.service-text-3')) document.querySelector('.service-text-3').textContent = t.service3Text;
-            if (document.querySelector('.service-title-4')) document.querySelector('.service-title-4').textContent = t.service4Title;
-            if (document.querySelector('.service-text-4')) document.querySelector('.service-text-4').textContent = t.service4Text;
-            
-            // 6. DESTINATIONS SECTION
-            if (document.querySelector('.destinations-title')) document.querySelector('.destinations-title').textContent = t.destinationsTitle;
-            
-            // Destinations
-            const destElements = [
-                document.querySelector('.dest-1'),
-                document.querySelector('.dest-2'),
-                document.querySelector('.dest-3'),
-                document.querySelector('.dest-4'),
-                document.querySelector('.dest-5'),
-                document.querySelector('.dest-6')
-            ];
-            
-            const destKeys = ['dest1', 'dest2', 'dest3', 'dest4', 'dest5', 'dest6'];
-            
-            destElements.forEach((el, index) => {
-                if (el && t[destKeys[index]]) {
-                    el.textContent = t[destKeys[index]];
+            // Mettre à jour tous les éléments avec un id
+            document.querySelectorAll('[id]').forEach(element => {
+                const id = element.id;
+                if (t[id]) {
+                    element.textContent = t[id];
                 }
             });
             
-            // 7. CLIMAX SECTION
-            if (document.querySelector('.climax-title')) document.querySelector('.climax-title').textContent = t.climaxTitle;
-            if (document.querySelector('.climax-text')) document.querySelector('.climax-text').textContent = t.climaxText;
-            if (document.querySelector('.climax-btn-text')) document.querySelector('.climax-btn-text').textContent = t.climaxBtn;
-            
-            // 8. FOOTER SECTION
-            if (document.querySelector('.footer-title')) document.querySelector('.footer-title').textContent = t.footerTitle;
-            
-            // Contact items
-            if (document.querySelector('.contact-title-1')) document.querySelector('.contact-title-1').textContent = t.contact1Title;
-            if (document.querySelector('.contact-text-1')) document.querySelector('.contact-text-1').textContent = t.contact1Text;
-            if (document.querySelector('.contact-title-2')) document.querySelector('.contact-title-2').textContent = t.contact2Title;
-            if (document.querySelector('.contact-text-2')) document.querySelector('.contact-text-2').textContent = t.contact2Text;
-            if (document.querySelector('.contact-title-3')) document.querySelector('.contact-title-3').textContent = t.contact3Title;
-            if (document.querySelector('.contact-text-3')) document.querySelector('.contact-text-3').textContent = t.contact3Text;
-            if (document.querySelector('.contact-title-4')) document.querySelector('.contact-title-4').textContent = t.contact4Title;
-            if (document.querySelector('.contact-text-4')) document.querySelector('.contact-text-4').textContent = t.contact4Text;
-            
-            // Copyright
-            if (document.querySelector('.copyright-1')) document.querySelector('.copyright-1').textContent = t.copyright1;
-            if (document.querySelector('.copyright-2')) document.querySelector('.copyright-2').textContent = t.copyright2;
+            // Mettre à jour les images des drapeaux dans le dropdown
+            document.querySelectorAll('.flag-icon').forEach((img, index) => {
+                const langs = ['en', 'fr', 'de', 'it', 'es', 'ar', 'zh'];
+                if (langs[index]) {
+                    img.src = `https://flagcdn.com/w20/${langs[index] === 'en' ? 'us' : 
+                              langs[index] === 'ar' ? 'sa' : 
+                              langs[index] === 'zh' ? 'cn' : langs[index]}.png`;
+                    img.alt = langs[index];
+                }
+            });
         }
 
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(135deg, #1a5d1a, #f39c12);
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                z-index: 9999;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-                animation: slideInRight 0.3s ease;
-                font-weight: 600;
-                font-size: 0.9rem;
-                backdrop-filter: blur(10px);
-                border: 2px solid rgba(255,255,255,0.2);
-                max-width: 80%;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOutRight 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-
-        // Charger la langue sauvegardée
+        // ===== CHARGEMENT INITIAL =====
         document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
-            updateAllTranslations(savedLang);
-            if (document.querySelector('.current-lang')) {
-                document.querySelector('.current-lang').textContent = translations[savedLang].currentLang;
-            }
+            // Charger la langue sauvegardée ou anglais par défaut
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLang);
+            currentLangElement.textContent = savedLang.toUpperCase();
             
-            document.querySelectorAll('.language-option').forEach(opt => {
+            // Définir l'option active
+            languageOptions.forEach(opt => {
                 opt.classList.remove('active');
-                if(opt.getAttribute('data-lang') === savedLang) {
+                if (opt.getAttribute('data-lang') === savedLang) {
                     opt.classList.add('active');
                 }
             });
             
-            // Observer pour animations
+            // Gestion du chargement des images
+            document.querySelectorAll('.loading-img').forEach(img => {
+                img.addEventListener('load', function() {
+                    this.classList.remove('loading-img');
+                });
+            });
+            
+            // Animation au scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1693,47 +1925,49 @@
             document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
         });
 
-        // Scroll fluide
+        // ===== SCROLL LISSE =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                const href = this.getAttribute('href');
+                if (href === '#') return;
                 
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 60,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         });
 
-        // Effets de scroll pour header
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if(window.scrollY > 50) {
-                header.style.padding = '8px 5%';
+        // ===== RESPONSIVE IMAGES =====
+        window.addEventListener('resize', handleResponsiveImages);
+        
+        function handleResponsiveImages() {
+            const width = window.innerWidth;
+            const images = document.querySelectorAll('.tourism-image, .destination-image');
+            
+            if (width < 768) {
+                images.forEach(img => {
+                    img.style.height = '180px';
+                });
+            } else if (width < 1024) {
+                images.forEach(img => {
+                    img.style.height = '200px';
+                });
             } else {
-                header.style.padding = '15px 5%';
-            }
-        });
-
-        // Ajuster la hauteur du hero pour mobile
-        function adjustHeroHeight() {
-            const hero = document.querySelector('.hero');
-            const headerHeight = document.getElementById('header').offsetHeight;
-            if (hero) {
-                hero.style.marginTop = headerHeight + 'px';
+                images.forEach(img => {
+                    img.style.height = '';
+                });
             }
         }
-
-        window.addEventListener('resize', adjustHeroHeight);
-        window.addEventListener('load', adjustHeroHeight);
         
-        // Initialiser
-        adjustHeroHeight();
+        // Appel initial
+        handleResponsiveImages();
     </script>
 </body>
 </html>
