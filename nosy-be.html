@@ -1,0 +1,2756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosy Be - Mada Vibe Discover</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, 
+                rgba(10, 40, 10, 0.95) 0%, 
+                rgba(26, 93, 26, 0.93) 50%, 
+                rgba(243, 156, 18, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 10px 5%;
+            border-bottom: 2px solid #f39c12;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 42px;
+            width: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f39c12;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            background: linear-gradient(45deg, #fff, #f39c12, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.85);
+            margin-top: 2px;
+        }
+
+        /* ===== HEADER CONTROLS ===== */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 180px;
+            background: rgba(20, 25, 35, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(243, 156, 18, 0.3);
+            z-index: 1001;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            color: #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .language-option:hover {
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.2), rgba(26, 93, 26, 0.2));
+        }
+
+        .flag-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 40, 10, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 20px 5%;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            display: none;
+            border-top: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 12px;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid #f39c12;
+            transform: translateX(5px);
+        }
+
+        .mobile-menu i {
+            color: #f39c12;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ===== HEADER SPACER ===== */
+        .header-spacer {
+            height: 60px;
+            width: 100%;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 140px 0 100px;
+            position: relative;
+        }
+
+        .page-hero h1 {
+            font-size: 4.5rem;
+            color: #f39c12;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero p {
+            font-size: 1.6rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(10, 40, 10, 0.4), 
+                rgba(26, 93, 26, 0.3), 
+                rgba(243, 156, 18, 0.2));
+            z-index: 1;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #f39c12;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #f39c12, transparent);
+            border-radius: 3px;
+        }
+
+        /* ===== HIGHLIGHTS SECTION ===== */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 70px 0;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(243, 156, 18, 0.1);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            border-color: #f39c12;
+            box-shadow: 0 20px 50px rgba(243, 156, 18, 0.15);
+        }
+
+        .highlight-icon {
+            font-size: 3.5rem;
+            color: #f39c12;
+            margin-bottom: 25px;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .highlight-card p {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ===== BEACHES GRID ===== */
+        .beaches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin: 70px 0;
+        }
+
+        .beach-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(243, 156, 18, 0.1);
+            position: relative;
+        }
+
+        .beach-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(243, 156, 18, 0.2);
+            border-color: #f39c12;
+        }
+
+        .beach-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .beach-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .beach-card:hover .beach-image img {
+            transform: scale(1.15);
+        }
+
+        .beach-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 25px;
+            color: white;
+        }
+
+        .beach-type {
+            display: inline-block;
+            background: #f39c12;
+            color: #0a0a0a;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .beach-overlay h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .beach-content {
+            padding: 30px;
+            background: rgba(20, 30, 20, 0.8);
+        }
+
+        .beach-content p {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .beach-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .feature-tag {
+            padding: 6px 15px;
+            background: rgba(243, 156, 18, 0.15);
+            color: #f39c12;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        /* ===== ACTIVITIES SECTION ===== */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 70px 0;
+        }
+
+        .activity-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(243, 156, 18, 0.1);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            border-color: #f39c12;
+            box-shadow: 0 20px 50px rgba(243, 156, 18, 0.15);
+        }
+
+        .activity-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(26, 93, 26, 0.5);
+            font-size: 3.5rem;
+            color: #f39c12;
+        }
+
+        .activity-info {
+            padding: 30px;
+        }
+
+        .activity-info h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .activity-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        /* ===== TOURIST SITES SECTION ===== */
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 70px 0;
+        }
+
+        .site-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(243, 156, 18, 0.1);
+            position: relative;
+        }
+
+        .site-card:hover {
+            transform: translateY(-10px);
+            border-color: #f39c12;
+            box-shadow: 0 25px 60px rgba(243, 156, 18, 0.2);
+        }
+
+        .site-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .site-card:hover .site-image img {
+            transform: scale(1.1);
+        }
+
+        .site-content {
+            padding: 25px;
+            background: rgba(20, 30, 20, 0.8);
+        }
+
+        .site-content h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .site-content p {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .site-type {
+            display: inline-block;
+            background: rgba(243, 156, 18, 0.2);
+            color: #f39c12;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        /* ===== ISLANDS SECTION ===== */
+        .islands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+            margin: 70px 0;
+        }
+
+        .island-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(243, 156, 18, 0.1);
+        }
+
+        .island-card:hover {
+            transform: translateY(-15px);
+            border-color: #f39c12;
+            box-shadow: 0 25px 60px rgba(243, 156, 18, 0.2);
+        }
+
+        .island-image {
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .island-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .island-card:hover .island-image img {
+            transform: scale(1.15);
+        }
+
+        .island-info {
+            padding: 35px;
+            background: rgba(20, 40, 20, 0.8);
+        }
+
+        .island-info h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .island-distance {
+            color: #f39c12;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .island-distance i {
+            font-size: 1.1rem;
+        }
+
+        .island-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        /* ===== SEASONALITY ===== */
+        .season-timeline {
+            max-width: 800px;
+            margin: 70px auto;
+            position: relative;
+        }
+
+        .season-item {
+            background: rgba(30, 50, 30, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #f39c12;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .season-item:hover {
+            transform: translateX(10px);
+            background: rgba(30, 50, 30, 0.9);
+        }
+
+        .season-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .season-icon {
+            font-size: 2rem;
+            color: #f39c12;
+        }
+
+        .season-title {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .season-period {
+            background: rgba(243, 156, 18, 0.2);
+            color: #f39c12;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .season-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ===== ITINERARY SECTION ===== */
+        .itinerary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 70px 0;
+        }
+
+        .day-card {
+            background: linear-gradient(135deg, rgba(30, 50, 30, 0.8), rgba(20, 40, 20, 0.8));
+            border-radius: 20px;
+            padding: 35px;
+            border: 2px solid rgba(243, 156, 18, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-10px);
+            border-color: #f39c12;
+            box-shadow: 0 20px 50px rgba(243, 156, 18, 0.2);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .day-number {
+            background: #f39c12;
+            color: #0a0a0a;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .day-activities {
+            list-style: none;
+        }
+
+        .day-activities li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.6;
+        }
+
+        .day-activities li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* ===== BUTTON ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: #0a0a0a;
+            padding: 18px 45px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
+            margin: 30px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(243, 156, 18, 0.5);
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+        }
+
+        .btn-small {
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #f39c12;
+            color: #f39c12;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        /* ===== IMAGE HIGHLIGHT ===== */
+        .image-highlight {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .highlight-container {
+            position: relative;
+            height: 600px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .highlight-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+            transition: transform 0.8s ease;
+        }
+
+        .highlight-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .highlight-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 50px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            text-align: left;
+        }
+
+        .highlight-text h3 {
+            font-size: 2.5rem;
+            color: #f39c12;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .highlight-text p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #000;
+            padding: 60px 0 30px;
+            border-top: 3px solid #f39c12;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .creator {
+            color: #f39c12;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 1000px;
+            }
+            
+            .page-hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .islands-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .highlight-container {
+                height: 500px;
+            }
+            
+            .highlight-text {
+                padding: 30px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 2rem;
+            }
+            
+            .highlight-text p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                height: 55px;
+            }
+            
+            .header-spacer {
+                height: 55px;
+            }
+            
+            .page-hero {
+                min-height: 70vh;
+                padding: 100px 0 80px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .highlights-grid,
+            .beaches-grid,
+            .activities-grid,
+            .sites-grid,
+            .islands-grid,
+            .itinerary-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .beach-image {
+                height: 250px;
+            }
+            
+            .site-image {
+                height: 220px;
+            }
+            
+            .island-image {
+                height: 300px;
+            }
+            
+            .highlight-container {
+                height: 400px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 1.8rem;
+            }
+            
+            .highlight-text p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 16px 35px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .beach-image {
+                height: 200px;
+            }
+            
+            .site-image {
+                height: 200px;
+            }
+            
+            .beach-content,
+            .site-content {
+                padding: 25px;
+            }
+            
+            .beach-overlay {
+                padding: 20px;
+            }
+            
+            .beach-overlay h3 {
+                font-size: 1.5rem;
+            }
+            
+            .island-image {
+                height: 250px;
+            }
+            
+            .island-info {
+                padding: 25px;
+            }
+            
+            .island-info h3 {
+                font-size: 1.5rem;
+            }
+            
+            .highlight-container {
+                height: 350px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 1.6rem;
+            }
+            
+            .highlight-text p {
+                font-size: 0.9rem;
+            }
+            
+            .mobile-menu {
+                padding: 15px 5%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .beach-type,
+            .site-type {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .feature-tag {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .season-period {
+                padding: 4px 10px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <!-- REMPLACEZ L'URL CI-DESSOUS PAR VOTRE LOGO -->
+                <img src="logo.png" alt="Logo Mada Vibe Discover">
+                <div class="logo-text">
+                    <div class="logo-title">MADA VIBE DISCOVER</div>
+                    <div class="logo-tagline" id="header-tagline">Your Guide to Nosy Be</div>
+                </div>
+            </a>
+
+            <!-- Controls -->
+            <div class="header-controls">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <i class="fas fa-globe-americas"></i>
+                        <span class="current-lang">EN</span>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" class="language-option active" data-lang="en">
+                            <img src="https://flagcdn.com/w20/us.png" class="flag-icon" alt="English">
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="fr">
+                            <img src="https://flagcdn.com/w20/fr.png" class="flag-icon" alt="Français">
+                            <span>Français</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="de">
+                            <img src="https://flagcdn.com/w20/de.png" class="flag-icon" alt="Deutsch">
+                            <span>Deutsch</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="it">
+                            <img src="https://flagcdn.com/w20/it.png" class="flag-icon" alt="Italiano">
+                            <span>Italiano</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <img src="https://flagcdn.com/w20/es.png" class="flag-icon" alt="Español">
+                            <span>Español</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ar">
+                            <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="العربية">
+                            <span>العربية</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="zh">
+                            <img src="https://flagcdn.com/w20/cn.png" class="flag-icon" alt="中文">
+                            <span>中文</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> <span id="menu-home">Home</span></a></li>
+                <li><a href="#highlights"><i class="fas fa-star"></i> <span id="menu-highlights">Highlights</span></a></li>
+                <li><a href="#beaches"><i class="fas fa-umbrella-beach"></i> <span id="menu-beaches">Beaches</span></a></li>
+                <li><a href="#sites"><i class="fas fa-map-marked-alt"></i> <span id="menu-sites">Tourist Sites</span></a></li>
+                <li><a href="#activities"><i class="fas fa-hiking"></i> <span id="menu-activities">Activities</span></a></li>
+                <li><a href="#islands"><i class="fas fa-water"></i> <span id="menu-islands">Islands</span></a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> <span id="menu-contact">Contact</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="header-spacer"></div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1 class="fade-in" id="page-title">🏝️ Nosy Be - The Perfumed Island</h1>
+            <p class="fade-in delay-1" id="page-subtitle">
+                Discover the jewel of the Indian Ocean with its white sand beaches, turquoise waters, 
+                ylang-ylang plantations and exceptional marine life. A paradise destination for all 
+                nature and sea lovers.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== IMAGE HIGHLIGHT ===== -->
+    <section class="image-highlight">
+        <div class="container">
+            <div class="highlight-container fade-in">
+                <img src="1.jpg" 
+                     alt="Nosy Be Beach">
+                <div class="highlight-text">
+                    <h3 id="highlight-title">Nosy Be: The Perfumed Island</h3>
+                    <p id="highlight-desc">Nosy Be, nicknamed "the perfumed island" for its ylang-ylang plantations, 
+                    welcomes you with its crystal clear waters and ideal tropical climate all year round.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HIGHLIGHTS ===== -->
+    <section id="highlights" class="content-section" style="background: linear-gradient(135deg, rgba(15, 30, 15, 0.95), rgba(25, 50, 25, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="highlights-title">Why Visit Nosy Be?</h2>
+            
+            <div class="highlights-grid">
+                <div class="highlight-card fade-in">
+                    <div class="highlight-icon">🌊</div>
+                    <h3 id="highlight1-title">Turquoise Waters</h3>
+                    <p id="highlight1-desc">Crystal clear and warm waters all year round, perfect for swimming, 
+                    snorkeling and scuba diving.</p>
+                </div>
+
+                <div class="highlight-card fade-in delay-1">
+                    <div class="highlight-icon">🐬</div>
+                    <h3 id="highlight2-title">Marine Life</h3>
+                    <p id="highlight2-desc">Meet dolphins, sea turtles, manta rays and a multitude 
+                    of tropical fish in their natural habitat.</p>
+                </div>
+
+                <div class="highlight-card fade-in delay-2">
+                    <div class="highlight-icon">🌺</div>
+                    <h3 id="highlight3-title">Ylang-Ylang</h3>
+                    <p id="highlight3-desc">Discover the ylang-ylang plantations that give the island 
+                    its nickname "perfumed island" and its unique essence.</p>
+                </div>
+
+                <div class="highlight-card fade-in delay-3">
+                    <div class="highlight-icon">🍹</div>
+                    <h3 id="highlight4-title">Hospitality</h3>
+                    <p id="highlight4-desc">A welcoming population and quality tourist infrastructure 
+                    for a comfortable and authentic stay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TOURIST SITES SECTION (NOUVELLE SECTION) ===== -->
+    <section id="sites" class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in" id="sites-title">Tourist Sites of Nosy Be</h2>
+            
+            <div class="sites-grid">
+                <!-- Nosy Iranja -->
+                <div class="site-card fade-in">
+                    <div class="site-image">
+                        <img src="2.jpg" 
+                             alt="Nosy Iranja">
+                    </div>
+                    <div class="site-content">
+                        <span class="site-type" id="site1-type">ISLAND PARADISE</span>
+                        <h3 id="site1-title">Nosy Iranja</h3>
+                        <p id="site1-desc">A paradise island connected by a sandbar at low tide. Perfect for romantic walks and turtle watching.</p>
+                    </div>
+                </div>
+
+                <!-- Nosy Sakatia -->
+                <div class="site-card fade-in delay-1">
+                    <div class="site-image">
+                        <img src="3.png" 
+                             alt="Nosy Sakatia">
+                    </div>
+                    <div class="site-content">
+                        <span class="site-type" id="site2-type">TURTLE ISLAND</span>
+                        <h3 id="site2-title">Nosy Sakatia</h3>
+                        <p id="site2-desc">Observation of land turtles and snorkeling in clear waters. An ecological and preserved site.</p>
+                    </div>
+                </div>
+
+                <!-- Nosy Komba -->
+                <div class="site-card fade-in delay-2">
+                    <div class="site-image">
+                        <img src="4.jpeg" 
+                             alt="Nosy Komba">
+                    </div>
+                    <div class="site-content">
+                        <span class="site-type" id="site3-type">LEMUR ISLAND</span>
+                        <h3 id="site3-title">Nosy Komba</h3>
+                        <p id="site3-desc">Meet the famous macaque lemurs in freedom and discover local crafts in traditional villages.</p>
+                    </div>
+                </div>
+
+                <!-- Nosy Tanikely -->
+                <div class="site-card fade-in delay-3">
+                    <div class="site-image">
+                        <img src="5.png" 
+                             alt="Nosy Tanikely">
+                    </div>
+                    <div class="site-content">
+                        <span class="site-type" id="site4-type">MARINE RESERVE</span>
+                        <h3 id="site4-title">Nosy Tanikely</h3>
+                        <p id="site4-desc">Marine reserve protected with crystal clear waters ideal for snorkeling with tropical fish.</p>
+                    </div>
+                </div>
+
+                <!-- Parc Lokobe -->
+                <div class="site-card fade-in">
+                    <div class="site-image">
+                        <img src="6" 
+                             alt="Lokobe Park">
+                    </div>
+                    <div class="site-content">
+                        <span class="site-type" id="site5-type">NATIONAL PARK</span>
+                        <h3 id="site5-title">Lokobe National Park</h3>
+                        <p id="site5-desc">The last primary humid forest of Nosy Be with unique endemic species and lemurs.</p>
+                    </div>
+                </div>
+
+                <!-- Parc Lemurian Land -->
+                <div class="site-card fade-in delay-1">
+                    <div class="site-image">
+                        <img src="7.jpg" 
+                             alt="Lemurian Land">
+                    </div>
+                    <div class="site-content">
+                        <span class="site-type" id="site6-type">LEMUR PARK</span>
+                        <h3 id="site6-title">Lemurian Land Park</h3>
+                        <p id="site6-desc">Discovery of flora and lemurs in semi-freedom. An educational and family visit.</p>
+                    </div>
+                </div>
+
+                <!-- Maison Fantôme de Marodoka -->
+                <div class="site-card fade-in delay-2">
+                    <div class="site-image">
+                        <img src="8.jpg" 
+                             alt="Marodoka Ghost House">
+                    </div>
+                    <div class="site-content">
+                        <span class="site-type" id="site7-type">HISTORICAL</span>
+                        <h3 id="site7-title">Marodoka Ghost House</h3>
+                        <p id="site7-desc">Heritage and mystery from the colonial era. Discover the fascinating history of this legendary place.</p>
+                    </div>
+                </div>
+
+                <!-- Mont Passot -->
+                <div class="site-card fade-in delay-3">
+                    <div class="site-image">
+                        <img src="9.png" 
+                             alt="Mont Passot">
+                    </div>
+                    <div class="site-content">
+                        <span class="site-type" id="site8-type">PANORAMIC VIEW</span>
+                        <h3 id="site8-title">Mont Passot</h3>
+                        <p id="site8-desc">The highest point of the island offering a 360° panorama and its sacred lakes. Ideal for sunsets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BEACHES ===== -->
+    <section id="beaches" class="content-section" style="background: linear-gradient(135deg, rgba(20, 35, 20, 0.95), rgba(30, 55, 30, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="beaches-title">Beautiful Beaches</h2>
+            
+            <div class="beaches-grid">
+                <div class="beach-card fade-in">
+                    <div class="beach-image">
+                        <img src="10.webp" 
+                             alt="Andilana Beach">
+                        <div class="beach-overlay">
+                            <span class="beach-type" id="beach1-type">TOURIST FAVORITE</span>
+                            <h3 id="beach1-title">Andilana Beach</h3>
+                        </div>
+                    </div>
+                    <div class="beach-content">
+                        <p id="beach1-desc">The most famous beach in Nosy Be with its immaculate white sand and turquoise waters. 
+                        Perfect for sunbathing, water sports and beachfront restaurants.</p>
+                        <div class="beach-features">
+                            <span class="feature-tag" id="tag-longbeach">2km long beach</span>
+                            <span class="feature-tag" id="tag-restaurants">Restaurants & bars</span>
+                            <span class="feature-tag" id="tag-watersports">Water sports</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-beach1">Book a visit</a>
+                    </div>
+                </div>
+
+                <div class="beach-card fade-in delay-1">
+                    <div class="beach-image">
+                        <img src="11.jpeg" 
+                             alt="Ambatoloaka Beach">
+                        <div class="beach-overlay">
+                            <span class="beach-type" id="beach2-type">VIBRANT</span>
+                            <h3 id="beach2-title">Ambatoloaka Beach</h3>
+                        </div>
+                    </div>
+                    <div class="beach-content">
+                        <p id="beach2-desc">The nerve center of nightlife with many bars, restaurants and shops. 
+                        Starting point for sea excursions and water activities.</p>
+                        <div class="beach-features">
+                            <span class="feature-tag" id="tag-nightlife">Nightlife</span>
+                            <span class="feature-tag" id="tag-excursions">Excursion departure</span>
+                            <span class="feature-tag" id="tag-shopping">Shops</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-beach2">Book a visit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACTIVITIES ===== -->
+    <section id="activities" class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in" id="activities-title">Activities in Nosy Be</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card fade-in">
+                    <div class="activity-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity1-title">Diving & Snorkeling</h3>
+                        <p class="activity-desc" id="activity1-desc">
+                            Explore the preserved coral reefs with exceptional marine life. 
+                            Sites suitable for all levels with equipment provided.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity1">Book</a>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in delay-1">
+                    <div class="activity-icon">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity2-title">Boat Excursions</h3>
+                        <p class="activity-desc" id="activity2-desc">
+                            Exploration days to satellite islands, whale watching 
+                            (July-September) and discovery of hidden beaches.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity2">Book</a>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in delay-2">
+                    <div class="activity-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity3-title">Big Game Fishing</h3>
+                        <p class="activity-desc" id="activity3-desc">
+                            Adventure at sea to catch marlin, tuna and other big fish. 
+                            Equipment and experienced guides provided.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity3">Book</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ISLANDS ===== -->
+    <section id="islands" class="content-section" style="background: linear-gradient(135deg, rgba(25, 45, 25, 0.95), rgba(35, 65, 35, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="islands-title">Surrounding Islands</h2>
+            
+            <div class="islands-grid">
+                <div class="island-card fade-in">
+                    <div class="island-image">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Nosy Komba">
+                    </div>
+                    <div class="island-info">
+                        <h3 id="island1-title">Nosy Komba - The Lemur Island</h3>
+                        <div class="island-distance">
+                            <i class="fas fa-ship"></i>
+                            <span id="island1-distance">30 minutes from Nosy Be</span>
+                        </div>
+                        <p class="island-desc" id="island1-desc">
+                            Meet the famous macaque lemurs roaming free in the reserve. 
+                            Discover local crafts and traditional fishing villages.
+                        </p>
+                        <a href="#contact" class="btn btn-small" id="btn-island1">Book an excursion</a>
+                    </div>
+                </div>
+
+                <div class="island-card fade-in delay-1">
+                    <div class="island-image">
+                        <img src="https://images.unsplash.com/photo-1508948956644-0017e845d797?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Nosy Tanikely">
+                    </div>
+                    <div class="island-info">
+                        <h3 id="island2-title">Nosy Tanikely - Marine Reserve</h3>
+                        <div class="island-distance">
+                            <i class="fas fa-ship"></i>
+                            <span id="island2-distance">45 minutes from Nosy Be</span>
+                        </div>
+                        <p class="island-desc" id="island2-desc">
+                            Protected marine reserve with crystal clear waters ideal for snorkeling. 
+                            Discover turtles, rays and tropical fish in their natural habitat.
+                        </p>
+                        <a href="#contact" class="btn btn-small" id="btn-island2">Book an excursion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEASONALITY ===== -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in" id="seasonality-title">Best Time to Visit</h2>
+            
+            <div class="season-timeline">
+                <div class="season-item fade-in">
+                    <div class="season-header">
+                        <div class="season-icon">☀️</div>
+                        <h3 class="season-title" id="season1-title">High Season (June to September)</h3>
+                        <span class="season-period" id="season1-period">IDEAL</span>
+                    </div>
+                    <p class="season-desc" id="season1-desc">
+                        Dry and sunny weather, pleasant temperatures (25-30°C). Perfect time for 
+                        all water activities and whale watching during migration.
+                    </p>
+                </div>
+
+                <div class="season-item fade-in delay-1">
+                    <div class="season-header">
+                        <div class="season-icon">🌧️</div>
+                        <h3 class="season-title" id="season2-title">Rainy Season (December to March)</h3>
+                        <span class="season-period" id="season2-period">RAINY</span>
+                    </div>
+                    <p class="season-desc" id="season2-desc">
+                        Hot and humid climate with short but intense tropical showers. 
+                        Lush vegetation and more attractive rates.
+                    </p>
+                </div>
+
+                <div class="season-item fade-in delay-2">
+                    <div class="season-header">
+                        <div class="season-icon">🌤️</div>
+                        <h3 class="season-title" id="season3-title">Intermediate Seasons (April-May & October-November)</h3>
+                        <span class="season-period" id="season3-period">GOOD</span>
+                    </div>
+                    <p class="season-desc" id="season3-desc">
+                        Generally pleasant weather with fewer tourists. Good compromise to enjoy 
+                        beaches without crowds and at advantageous prices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ITINERARY ===== -->
+    <section class="content-section" style="background: linear-gradient(135deg, rgba(30, 55, 30, 0.95), rgba(40, 75, 40, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="itinerary-title">5-Day Sample Itinerary</h2>
+            
+            <div class="itinerary-grid">
+                <div class="day-card fade-in">
+                    <div class="day-header">
+                        <div class="day-number">1</div>
+                        <h3 class="day-title" id="day1-title">Arrival & Relaxation</h3>
+                    </div>
+                    <ul class="day-activities">
+                        <li id="day1-activity1">Airport - hotel transfer</li>
+                        <li id="day1-activity2">Hotel check-in</li>
+                        <li id="day1-activity3">First swim at Andilana Beach</li>
+                        <li id="day1-activity4">Seafood dinner</li>
+                    </ul>
+                </div>
+
+                <div class="day-card fade-in delay-1">
+                    <div class="day-header">
+                        <div class="day-number">2</div>
+                        <h3 class="day-title" id="day2-title">Nosy Komba & Tanikely</h3>
+                    </div>
+                    <ul class="day-activities">
+                        <li id="day2-activity1">Boat excursion to Nosy Komba</li>
+                        <li id="day2-activity2">Lemur encounter</li>
+                        <li id="day2-activity3">Snorkeling at Nosy Tanikely</li>
+                        <li id="day2-activity4">Return at sunset</li>
+                    </ul>
+                </div>
+
+                <div class="day-card fade-in delay-2">
+                    <div class="day-header">
+                        <div class="day-number">3</div>
+                        <h3 class="day-title" id="day3-title">Land Discovery</h3>
+                    </div>
+                    <ul class="day-activities">
+                        <li id="day3-activity1">Visit ylang-ylang plantations</li>
+                        <li id="day3-activity2">Discovery of rum distillery</li>
+                        <li id="day3-activity3">Ascent to Mont Passot</li>
+                        <li id="day3-activity4">Panoramic sunset</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT CTA ===== -->
+    <section id="contact" class="content-section">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="section-title fade-in" id="cta-title">Ready for the Perfumed Island?</h2>
+                <p class="fade-in delay-1" style="margin-bottom: 40px; font-size: 1.3rem; max-width: 900px; margin-left: auto; margin-right: auto;" id="cta-text">
+                    We organize your tailor-made stay in Nosy Be: airport transfers, accommodation, 
+                    excursions and activities. Benefit from our local expertise for an unforgettable trip.
+                </p>
+                <a href="../pages/contact.html" class="btn fade-in delay-2">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="cta-btn">Plan My Nosy Be Stay</span>
+                </a>
+                <br>
+                <div style="margin-top: 30px;">
+                    <a href="../pages/diego-suarez.html" class="btn btn-outline fade-in delay-3" style="margin-right: 15px;">
+                        <i class="fas fa-mountain"></i>
+                        <span id="cta-diego">Discover Diego-Suarez</span>
+                    </a>
+                    <a href="../pages/morondava.html" class="btn btn-outline fade-in delay-4" style="margin-right: 15px;">
+                        <i class="fas fa-tree"></i>
+                        <span id="cta-morondava">Discover Morondava</span>
+                    </a>
+                    <a href="../index.html" class="btn btn-outline fade-in delay-5">
+                        <i class="fas fa-home"></i>
+                        <span id="cta-home">Return to Home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="creator" id="footer-creator">Created by Habibe - Professional Tourism Services</p>
+                <p id="footer-phone">Phone: +261 32 39 622 86</p>
+                <p id="footer-email">Email: hajahabibeabdou@gmail.com</p>
+                <p id="footer-desc">Airport transfers, cruise services and international tours available</p>
+                <p id="footer-copyright" style="margin-top: 30px; color: rgba(255,255,255,0.6);">
+                    © 2024 Mada Vibe Discover - All rights reserved.<br>
+                    Tourism License certified | Member of Madagascar National Tourism Board
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== MULTILANGUAGE TRANSLATIONS =====
+        const translations = {
+            en: {
+                // Header
+                "header-tagline": "Your Guide to Nosy Be",
+                "menu-home": "Home",
+                "menu-highlights": "Highlights",
+                "menu-beaches": "Beaches",
+                "menu-sites": "Tourist Sites",
+                "menu-activities": "Activities",
+                "menu-islands": "Islands",
+                "menu-contact": "Contact",
+                
+                // Page content
+                "page-title": "🏝️ Nosy Be - The Perfumed Island",
+                "page-subtitle": "Discover the jewel of the Indian Ocean with its white sand beaches, turquoise waters, ylang-ylang plantations and exceptional marine life. A paradise destination for all nature and sea lovers.",
+                "highlight-title": "Nosy Be: The Perfumed Island",
+                "highlight-desc": "Nosy Be, nicknamed 'the perfumed island' for its ylang-ylang plantations, welcomes you with its crystal clear waters and ideal tropical climate all year round.",
+                "highlights-title": "Why Visit Nosy Be?",
+                "highlight1-title": "Turquoise Waters",
+                "highlight1-desc": "Crystal clear and warm waters all year round, perfect for swimming, snorkeling and scuba diving.",
+                "highlight2-title": "Marine Life",
+                "highlight2-desc": "Meet dolphins, sea turtles, manta rays and a multitude of tropical fish in their natural habitat.",
+                "highlight3-title": "Ylang-Ylang",
+                "highlight3-desc": "Discover the ylang-ylang plantations that give the island its nickname 'perfumed island' and its unique essence.",
+                "highlight4-title": "Hospitality",
+                "highlight4-desc": "A welcoming population and quality tourist infrastructure for a comfortable and authentic stay.",
+                
+                // Tourist Sites
+                "sites-title": "Tourist Sites of Nosy Be",
+                "site1-type": "ISLAND PARADISE",
+                "site1-title": "Nosy Iranja",
+                "site1-desc": "A paradise island connected by a sandbar at low tide. Perfect for romantic walks and turtle watching.",
+                "site2-type": "TURTLE ISLAND",
+                "site2-title": "Nosy Sakatia",
+                "site2-desc": "Observation of land turtles and snorkeling in clear waters. An ecological and preserved site.",
+                "site3-type": "LEMUR ISLAND",
+                "site3-title": "Nosy Komba",
+                "site3-desc": "Meet the famous macaque lemurs in freedom and discover local crafts in traditional villages.",
+                "site4-type": "MARINE RESERVE",
+                "site4-title": "Nosy Tanikely",
+                "site4-desc": "Marine reserve protected with crystal clear waters ideal for snorkeling with tropical fish.",
+                "site5-type": "NATIONAL PARK",
+                "site5-title": "Lokobe National Park",
+                "site5-desc": "The last primary humid forest of Nosy Be with unique endemic species and lemurs.",
+                "site6-type": "LEMUR PARK",
+                "site6-title": "Lemurian Land Park",
+                "site6-desc": "Discovery of flora and lemurs in semi-freedom. An educational and family visit.",
+                "site7-type": "HISTORICAL",
+                "site7-title": "Marodoka Ghost House",
+                "site7-desc": "Heritage and mystery from the colonial era. Discover the fascinating history of this legendary place.",
+                "site8-type": "PANORAMIC VIEW",
+                "site8-title": "Mont Passot",
+                "site8-desc": "The highest point of the island offering a 360° panorama and its sacred lakes. Ideal for sunsets.",
+                
+                // Beaches
+                "beaches-title": "Beautiful Beaches",
+                "beach1-type": "TOURIST FAVORITE",
+                "beach1-title": "Andilana Beach",
+                "beach1-desc": "The most famous beach in Nosy Be with its immaculate white sand and turquoise waters. Perfect for sunbathing, water sports and beachfront restaurants.",
+                "tag-longbeach": "2km long beach",
+                "tag-restaurants": "Restaurants & bars",
+                "tag-watersports": "Water sports",
+                "btn-beach1": "Book a visit",
+                "beach2-type": "VIBRANT",
+                "beach2-title": "Ambatoloaka Beach",
+                "beach2-desc": "The nerve center of nightlife with many bars, restaurants and shops. Starting point for sea excursions and water activities.",
+                "tag-nightlife": "Nightlife",
+                "tag-excursions": "Excursion departure",
+                "tag-shopping": "Shops",
+                "btn-beach2": "Book a visit",
+                
+                // Activities
+                "activities-title": "Activities in Nosy Be",
+                "activity1-title": "Diving & Snorkeling",
+                "activity1-desc": "Explore the preserved coral reefs with exceptional marine life. Sites suitable for all levels with equipment provided.",
+                "btn-activity1": "Book",
+                "activity2-title": "Boat Excursions",
+                "activity2-desc": "Exploration days to satellite islands, whale watching (July-September) and discovery of hidden beaches.",
+                "btn-activity2": "Book",
+                "activity3-title": "Big Game Fishing",
+                "activity3-desc": "Adventure at sea to catch marlin, tuna and other big fish. Equipment and experienced guides provided.",
+                "btn-activity3": "Book",
+                
+                // Islands
+                "islands-title": "Surrounding Islands",
+                "island1-title": "Nosy Komba - The Lemur Island",
+                "island1-distance": "30 minutes from Nosy Be",
+                "island1-desc": "Meet the famous macaque lemurs roaming free in the reserve. Discover local crafts and traditional fishing villages.",
+                "btn-island1": "Book an excursion",
+                "island2-title": "Nosy Tanikely - Marine Reserve",
+                "island2-distance": "45 minutes from Nosy Be",
+                "island2-desc": "Protected marine reserve with crystal clear waters ideal for snorkeling. Discover turtles, rays and tropical fish in their natural habitat.",
+                "btn-island2": "Book an excursion",
+                
+                // Seasonality
+                "seasonality-title": "Best Time to Visit",
+                "season1-title": "High Season (June to September)",
+                "season1-period": "IDEAL",
+                "season1-desc": "Dry and sunny weather, pleasant temperatures (25-30°C). Perfect time for all water activities and whale watching during migration.",
+                "season2-title": "Rainy Season (December to March)",
+                "season2-period": "RAINY",
+                "season2-desc": "Hot and humid climate with short but intense tropical showers. Lush vegetation and more attractive rates.",
+                "season3-title": "Intermediate Seasons (April-May & October-November)",
+                "season3-period": "GOOD",
+                "season3-desc": "Generally pleasant weather with fewer tourists. Good compromise to enjoy beaches without crowds and at advantageous prices.",
+                
+                // Itinerary
+                "itinerary-title": "5-Day Sample Itinerary",
+                "day1-title": "Arrival & Relaxation",
+                "day1-activity1": "Airport - hotel transfer",
+                "day1-activity2": "Hotel check-in",
+                "day1-activity3": "First swim at Andilana Beach",
+                "day1-activity4": "Seafood dinner",
+                "day2-title": "Nosy Komba & Tanikely",
+                "day2-activity1": "Boat excursion to Nosy Komba",
+                "day2-activity2": "Lemur encounter",
+                "day2-activity3": "Snorkeling at Nosy Tanikely",
+                "day2-activity4": "Return at sunset",
+                "day3-title": "Land Discovery",
+                "day3-activity1": "Visit ylang-ylang plantations",
+                "day3-activity2": "Discovery of rum distillery",
+                "day3-activity3": "Ascent to Mont Passot",
+                "day3-activity4": "Panoramic sunset",
+                
+                // CTA
+                "cta-title": "Ready for the Perfumed Island?",
+                "cta-text": "We organize your tailor-made stay in Nosy Be: airport transfers, accommodation, excursions and activities. Benefit from our local expertise for an unforgettable trip.",
+                "cta-btn": "Plan My Nosy Be Stay",
+                "cta-diego": "Discover Diego-Suarez",
+                "cta-morondava": "Discover Morondava",
+                "cta-home": "Return to Home",
+                
+                // Footer
+                "footer-creator": "Created by Habibe - Professional Tourism Services",
+                "footer-phone": "Phone: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Airport transfers, cruise services and international tours available",
+                "footer-copyright": "© 2024 Mada Vibe Discover - All rights reserved.<br>Tourism License certified | Member of Madagascar National Tourism Board"
+            },
+            fr: {
+                "header-tagline": "Votre Guide à Nosy Be",
+                "menu-home": "Accueil",
+                "menu-highlights": "Points Forts",
+                "menu-beaches": "Plages",
+                "menu-sites": "Sites Touristiques",
+                "menu-activities": "Activités",
+                "menu-islands": "Îles",
+                "menu-contact": "Contact",
+                
+                "page-title": "🏝️ Nosy Be - L'Île Parfumée",
+                "page-subtitle": "Découvrez le joyau de l'océan Indien avec ses plages de sable blanc, ses eaux turquoise, ses plantations d'ylang-ylang et sa faune marine exceptionnelle. Une destination paradisiaque pour tous les amoureux de la nature et de la mer.",
+                "highlight-title": "Nosy Be : L'Île Parfumée",
+                "highlight-desc": "Nosy Be, surnommée 'l'île parfumée' pour ses plantations d'ylang-ylang, vous accueille avec ses eaux cristallines et son climat tropical idéal toute l'année.",
+                "highlights-title": "Pourquoi Visiter Nosy Be ?",
+                "highlight1-title": "Eaux Turquoise",
+                "highlight1-desc": "Des eaux cristallines et chaudes toute l'année, parfaites pour la baignade, le snorkeling et la plongée sous-marine.",
+                "highlight2-title": "Vie Marine",
+                "highlight2-desc": "Rencontrez dauphins, tortues marines, raies manta et une multitude de poissons tropicaux dans leur habitat naturel.",
+                "highlight3-title": "Ylang-Ylang",
+                "highlight3-desc": "Découvrez les plantations d'ylang-ylang qui donnent à l'île son surnom d''île parfumée' et son essence unique.",
+                "highlight4-title": "Hospitalité",
+                "highlight4-desc": "Une population accueillante et des infrastructures touristiques de qualité pour un séjour confortable et authentique.",
+                
+                "sites-title": "Sites Touristiques de Nosy Be",
+                "site1-type": "ÎLE PARADISIAQUE",
+                "site1-title": "Nosy Iranja",
+                "site1-desc": "Îlot paradisiaque relié par une langue de sable à marée basse. Parfait pour les promenades romantiques et l'observation des tortues.",
+                "site2-type": "ÎLE AUX TORTUES",
+                "site2-title": "Nosy Sakatia",
+                "site2-desc": "Observation des tortues terrestres et snorkeling dans des eaux claires. Un site écologique et préservé.",
+                "site3-type": "ÎLE AUX LÉMURIENS",
+                "site3-title": "Nosy Komba",
+                "site3-desc": "Rencontrez les célèbres lémuriens macaques en liberté et découvrez l'artisanat local dans les villages traditionnels.",
+                "site4-type": "RÉSERVE MARINE",
+                "site4-title": "Nosy Tanikely",
+                "site4-desc": "Réserve marine protégée avec des eaux cristallines idéales pour le snorkeling avec les poissons tropicaux.",
+                "site5-type": "PARC NATIONAL",
+                "site5-title": "Parc National de Lokobe",
+                "site5-desc": "La dernière forêt primaire humide de Nosy Be avec des espèces endémiques uniques et des lémuriens.",
+                "site6-type": "PARC À LÉMURIENS",
+                "site6-title": "Parc Lemurian Land",
+                "site6-desc": "Découverte de la flore et des lémuriens en semi-liberté. Une visite éducative et familiale.",
+                "site7-type": "HISTORIQUE",
+                "site7-title": "Maison Fantôme de Marodoka",
+                "site7-desc": "Patrimoine et mystère de l'époque coloniale. Découvrez l'histoire fascinante de ce lieu légendaire.",
+                "site8-type": "VUE PANORAMIQUE",
+                "site8-title": "Mont Passot",
+                "site8-desc": "Point culminant de l'île offrant un panorama à 360° et ses lacs sacrés. Idéal pour les couchers de soleil.",
+                
+                "beaches-title": "Les Belles Plages",
+                "beach1-type": "FAVORI DES TOURISTES",
+                "beach1-title": "Plage d'Andilana",
+                "beach1-desc": "La plus célèbre plage de Nosy Be avec son sable blanc immaculé et ses eaux turquoise. Parfaite pour les bains de soleil, les sports nautiques et les restaurants de bord de mer.",
+                "tag-longbeach": "Plage de 2km",
+                "tag-restaurants": "Restaurants & bars",
+                "tag-watersports": "Sports nautiques",
+                "btn-beach1": "Réserver une visite",
+                "beach2-type": "ANIMÉE",
+                "beach2-title": "Plage d'Ambatoloaka",
+                "beach2-desc": "Le centre névralgique de la vie nocturne avec de nombreux bars, restaurants et boutiques. Point de départ pour les excursions en mer et activités nautiques.",
+                "tag-nightlife": "Vie nocturne",
+                "tag-excursions": "Départ excursions",
+                "tag-shopping": "Boutiques",
+                "btn-beach2": "Réserver une visite",
+                
+                "activities-title": "Activités à Nosy Be",
+                "activity1-title": "Plongée & Snorkeling",
+                "activity1-desc": "Explorez les récifs coralliens préservés avec une faune marine exceptionnelle. Sites adaptés à tous les niveaux avec matériel fourni.",
+                "btn-activity1": "Réserver",
+                "activity2-title": "Excursions en Bateau",
+                "activity2-desc": "Journées d'exploration vers les îles satellites, observation des baleines (juillet-septembre) et découverte de plages cachées.",
+                "btn-activity2": "Réserver",
+                "activity3-title": "Pêche au Gros",
+                "activity3-desc": "Aventure en mer pour capturer marlins, thons et autres grands poissons. Équipement et guides expérimentés fournis.",
+                "btn-activity3": "Réserver",
+                
+                "islands-title": "Îles aux Alentours",
+                "island1-title": "Nosy Komba - L'Île aux Lémuriens",
+                "island1-distance": "30 minutes de Nosy Be",
+                "island1-desc": "Rencontrez les célèbres lémuriens macaques en liberté dans la réserve. Découvrez l'artisanat local et les villages de pêcheurs traditionnels.",
+                "btn-island1": "Réserver une excursion",
+                "island2-title": "Nosy Tanikely - Réserve Marine",
+                "island2-distance": "45 minutes de Nosy Be",
+                "island2-desc": "Réserve marine protégée avec des eaux cristallines idéales pour le snorkeling. Découvrez tortues, raies et poissons tropicaux dans leur habitat naturel.",
+                "btn-island2": "Réserver une excursion",
+                
+                "seasonality-title": "Meilleure Période pour Visiter",
+                "season1-title": "Haute Saison (Juin à Septembre)",
+                "season1-period": "IDÉAL",
+                "season1-desc": "Temps sec et ensoleillé, températures agréables (25-30°C). Période parfaite pour toutes les activités nautiques et observation des baleines à bosse en migration.",
+                "season2-title": "Saison des Pluies (Décembre à Mars)",
+                "season2-period": "PLUIES",
+                "season2-desc": "Climat chaud et humide avec averses tropicales courtes mais intenses. La végétation est luxuriante et les tarifs plus attractifs.",
+                "season3-title": "Saisons Intermédiaires (Avril-Mai & Octobre-Novembre)",
+                "season3-period": "BON",
+                "season3-desc": "Temps généralement agréable avec moins de touristes. Bon compromis pour profiter des plages sans la foule et à des prix avantageux.",
+                
+                "itinerary-title": "Exemple d'Itinéraire 5 Jours",
+                "day1-title": "Arrivée & Détente",
+                "day1-activity1": "Transfert aéroport - hôtel",
+                "day1-activity2": "Installation à l'hôtel",
+                "day1-activity3": "Premier bain à la plage d'Andilana",
+                "day1-activity4": "Dîner de fruits de mer",
+                "day2-title": "Nosy Komba & Tanikely",
+                "day2-activity1": "Excursion en bateau vers Nosy Komba",
+                "day2-activity2": "Rencontre avec les lémuriens",
+                "day2-activity3": "Snorkeling à Nosy Tanikely",
+                "day2-activity4": "Retour au coucher du soleil",
+                "day3-title": "Découverte Terrestre",
+                "day3-activity1": "Visite des plantations d'ylang-ylang",
+                "day3-activity2": "Découverte de la distillerie de rhum",
+                "day3-activity3": "Montée au Mont Passot",
+                "day3-activity4": "Coucher de soleil panoramique",
+                
+                "cta-title": "Prêt pour l'Île Parfumée ?",
+                "cta-text": "Nous organisons votre séjour sur mesure à Nosy Be : transferts aéroport, hébergement, excursions et activités. Bénéficiez de notre expertise locale pour un voyage inoubliable.",
+                "cta-btn": "Planifier Mon Séjour à Nosy Be",
+                "cta-diego": "Découvrir Diego-Suarez",
+                "cta-morondava": "Découvrir Morondava",
+                "cta-home": "Retour à l'Accueil",
+                
+                "footer-creator": "Créé par Habibe - Services Touristiques Professionnels",
+                "footer-phone": "Téléphone : +261 32 39 622 86",
+                "footer-email": "Email : hajahabibeabdou@gmail.com",
+                "footer-desc": "Transferts aéroport, services croisière et circuits internationaux disponibles",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Tous droits réservés.<br>Licence Touristique certifiée | Membre de l'Office National du Tourisme de Madagascar"
+            },
+            de: {
+                "header-tagline": "Ihr Reiseführer für Nosy Be",
+                "menu-home": "Startseite",
+                "menu-highlights": "Highlights",
+                "menu-beaches": "Strände",
+                "menu-sites": "Sehenswürdigkeiten",
+                "menu-activities": "Aktivitäten",
+                "menu-islands": "Inseln",
+                "menu-contact": "Kontakt",
+                
+                "page-title": "🏝️ Nosy Be - Die Parfüminsel",
+                "page-subtitle": "Entdecken Sie das Juwel des Indischen Ozeans mit seinen weißen Sandstränden, türkisfarbenem Wasser, Ylang-Ylang-Plantagen und außergewöhnlicher Meeresfauna. Ein Paradies für alle Natur- und Meeresliebhaber.",
+                "highlight-title": "Nosy Be: Die Parfüminsel",
+                "highlight-desc": "Nosy Be, wegen seiner Ylang-Ylang-Plantagen 'die Parfüminsel' genannt, empfängt Sie mit kristallklarem Wasser und idealem tropischen Klima das ganze Jahr über.",
+                "highlights-title": "Warum Nosy Be besuchen?",
+                "highlight1-title": "Türkisfarbenes Wasser",
+                "highlight1-desc": "Kristallklares und warmes Wasser das ganze Jahr über, perfekt zum Schwimmen, Schnorcheln und Tauchen.",
+                "highlight2-title": "Meeresleben",
+                "highlight2-desc": "Treffen Sie Delfine, Meeresschildkröten, Mantarochen und eine Vielzahl tropischer Fische in ihrem natürlichen Lebensraum.",
+                "highlight3-title": "Ylang-Ylang",
+                "highlight3-desc": "Entdecken Sie die Ylang-Ylang-Plantagen, die der Insel ihren Spitznamen 'Parfüminsel' und ihr einzigartiges Essenz verleihen.",
+                "highlight4-title": "Gastfreundschaft",
+                "highlight4-desc": "Eine gastfreundliche Bevölkerung und hochwertige touristische Infrastruktur für einen komfortablen und authentischen Aufenthalt.",
+                
+                "sites-title": "Sehenswürdigkeiten von Nosy Be",
+                "site1-type": "PARADIESINSEL",
+                "site1-title": "Nosy Iranja",
+                "site1-desc": "Eine paradiesische Insel, die bei Ebbe durch eine Sandbank verbunden ist. Perfekt für romantische Spaziergänge und Schildkrötenbeobachtung.",
+                "site2-type": "SCHILDKRÖTENINSEL",
+                "site2-title": "Nosy Sakatia",
+                "site2-desc": "Beobachtung von Landschildkröten und Schnorcheln in klarem Wasser. Eine ökologische und geschützte Stätte.",
+                "site3-type": "LEMURENINSEL",
+                "site3-title": "Nosy Komba",
+                "site3-desc": "Treffen Sie die berühmten Makaken-Lemuren in Freiheit und entdecken Sie lokales Handwerk in traditionellen Dörfern.",
+                "site4-type": "MEERESSCHUTZGEBIET",
+                "site4-title": "Nosy Tanikely",
+                "site4-desc": "Geschütztes Meeresschutzgebiet mit kristallklarem Wasser, ideal zum Schnorcheln mit tropischen Fischen.",
+                "site5-type": "NATIONALPARK",
+                "site5-title": "Lokobe Nationalpark",
+                "site5-desc": "Der letzte primäre Feuchtwald von Nosy Be mit einzigartigen endemischen Arten und Lemuren.",
+                "site6-type": "LEMURENPARK",
+                "site6-title": "Lemurian Land Park",
+                "site6-desc": "Entdeckung von Flora und Lemuren in halber Freiheit. Ein lehrreicher und familienfreundlicher Besuch.",
+                "site7-type": "HISTORISCH",
+                "site7-title": "Marodoka Geisterhaus",
+                "site7-desc": "Erbe und Geheimnis aus der Kolonialzeit. Entdecken Sie die faszinierende Geschichte dieses legendären Ortes.",
+                "site8-type": "PANORAMABLICK",
+                "site8-title": "Mont Passot",
+                "site8-desc": "Der höchste Punkt der Insel mit 360°-Panorama und seinen heiligen Seen. Ideal für Sonnenuntergänge.",
+                
+                "beaches-title": "Schöne Strände",
+                "beach1-type": "TOURISTENFAVORIT",
+                "beach1-title": "Andilana Strand",
+                "beach1-desc": "Der berühmteste Strand von Nosy Be mit seinem makellosen weißen Sand und türkisfarbenem Wasser. Perfekt zum Sonnenbaden, Wassersport und Strandrestaurants.",
+                "tag-longbeach": "2km langer Strand",
+                "tag-restaurants": "Restaurants & Bars",
+                "tag-watersports": "Wassersport",
+                "btn-beach1": "Besuch buchen",
+                "beach2-type": "BELEBT",
+                "beach2-title": "Ambatoloaka Strand",
+                "beach2-desc": "Das Nervenzentrum des Nachtlebens mit vielen Bars, Restaurants und Geschäften. Ausgangspunkt für Meeresausflüge und Wasseraktivitäten.",
+                "tag-nightlife": "Nachtleben",
+                "tag-excursions": "Ausflugsstart",
+                "tag-shopping": "Geschäfte",
+                "btn-beach2": "Besuch buchen",
+                
+                "activities-title": "Aktivitäten in Nosy Be",
+                "activity1-title": "Tauchen & Schnorcheln",
+                "activity1-desc": "Erkunden Sie geschützte Korallenriffe mit außergewöhnlicher Meeresfauna. Für alle Niveaus geeignete Standorte mit bereitgestellter Ausrüstung.",
+                "btn-activity1": "Buchen",
+                "activity2-title": "Bootsausflüge",
+                "activity2-desc": "Entdeckungstage zu Satelliteninseln, Walbeobachtung (Juli-September) und Entdeckung versteckter Strände.",
+                "btn-activity2": "Buchen",
+                "activity3-title": "Hochseeangeln",
+                "activity3-desc": "Abenteuer auf See, um Marline, Thunfische und andere große Fische zu fangen. Ausrüstung und erfahrene Führer werden gestellt.",
+                "btn-activity3": "Buchen",
+                
+                "islands-title": "Umgebende Inseln",
+                "island1-title": "Nosy Komba - Die Lemureninsel",
+                "island1-distance": "30 Minuten von Nosy Be",
+                "island1-desc": "Treffen Sie die berühmten Makaken-Lemuren frei lebend im Reservat. Entdecken Sie lokales Handwerk und traditionelle Fischerdörfer.",
+                "btn-island1": "Ausflug buchen",
+                "island2-title": "Nosy Tanikely - Meeresreservat",
+                "island2-distance": "45 Minuten von Nosy Be",
+                "island2-desc": "Geschütztes Meeresreservat mit kristallklarem Wasser ideal zum Schnorcheln. Entdecken Sie Schildkröten, Rochen und tropische Fische in ihrem natürlichen Lebensraum.",
+                "btn-island2": "Ausflug buchen",
+                
+                "seasonality-title": "Beste Reisezeit",
+                "season1-title": "Hauptsaison (Juni bis September)",
+                "season1-period": "IDEAL",
+                "season1-desc": "Trockenes und sonniges Wetter, angenehme Temperaturen (25-30°C). Perfekte Zeit für alle Wasseraktivitäten und Buckelwalbeobachtung während der Migration.",
+                "season2-title": "Regenzeit (Dezember bis März)",
+                "season2-period": "REGEN",
+                "season2-desc": "Heißes und feuchtes Klima mit kurzen aber intensiven tropischen Schauern. Üppige Vegetation und attraktivere Preise.",
+                "season3-title": "Zwischensaison (April-Mai & Oktober-November)",
+                "season3-period": "GUT",
+                "season3-desc": "Generell angenehmes Wetter mit weniger Touristen. Guter Kompromiss, um die Strände ohne Menschenmassen und zu vorteilhaften Preisen zu genießen.",
+                
+                "itinerary-title": "5-Tage-Beispielreiseplan",
+                "day1-title": "Ankunft & Entspannung",
+                "day1-activity1": "Flughafen-Hotel Transfer",
+                "day1-activity2": "Hotel-Check-in",
+                "day1-activity3": "Erster Bad am Andilana Strand",
+                "day1-activity4": "Meeresfrüchte-Abendessen",
+                "day2-title": "Nosy Komba & Tanikely",
+                "day2-activity1": "Bootsausflug nach Nosy Komba",
+                "day2-activity2": "Lemurenbegegnung",
+                "day2-activity3": "Schnorcheln bei Nosy Tanikely",
+                "day2-activity4": "Rückkehr bei Sonnenuntergang",
+                "day3-title": "Landentdeckung",
+                "day3-activity1": "Besuch Ylang-Ylang-Plantagen",
+                "day3-activity2": "Entdeckung der Rum-Destillerie",
+                "day3-activity3": "Aufstieg zum Mont Passot",
+                "day3-activity4": "Panorama-Sonnenuntergang",
+                
+                "cta-title": "Bereit für die Parfüminsel?",
+                "cta-text": "Wir organisieren Ihren maßgeschneiderten Aufenthalt in Nosy Be: Flughafentransfers, Unterkunft, Ausflüge und Aktivitäten. Profitieren Sie von unserer lokalen Expertise für eine unvergessliche Reise.",
+                "cta-btn": "Meinen Nosy Be Aufenthalt planen",
+                "cta-diego": "Diego-Suarez entdecken",
+                "cta-morondava": "Morondava entdecken",
+                "cta-home": "Zurück zur Startseite",
+                
+                "footer-creator": "Erstellt von Habibe - Professionelle Tourismusdienstleistungen",
+                "footer-phone": "Telefon: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Flughafentransfers, Kreuzfahrtdienste und internationale Touren verfügbar",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Alle Rechte vorbehalten.<br>Zertifizierte Tourismuskarte | Mitglied des madagassischen Nationalen Tourismusbüros"
+            },
+            it: {
+                "header-tagline": "La tua guida a Nosy Be",
+                "menu-home": "Home",
+                "menu-highlights": "Punti salienti",
+                "menu-beaches": "Spiagge",
+                "menu-sites": "Siti Turistici",
+                "menu-activities": "Attività",
+                "menu-islands": "Isole",
+                "menu-contact": "Contatto",
+                
+                "page-title": "🏝️ Nosy Be - L'Isola Profumata",
+                "page-subtitle": "Scopri il gioiello dell'Oceano Indiano con le sue spiagge di sabbia bianca, acque turchesi, piantagioni di ylang-ylang e fauna marina eccezionale. Una destinazione paradisiaca per tutti gli amanti della natura e del mare.",
+                "highlight-title": "Nosy Be: L'Isola Profumata",
+                "highlight-desc": "Nosy Be, soprannominata 'l'isola profumata' per le sue piantagioni di ylang-ylang, ti accoglie con acque cristalline e clima tropicale ideale tutto l'anno.",
+                "highlights-title": "Perché Visitare Nosy Be?",
+                "highlight1-title": "Acque Turchesi",
+                "highlight1-desc": "Acque cristalline e calde tutto l'anno, perfette per nuotare, fare snorkeling e immersioni subacquee.",
+                "highlight2-title": "Vita Marina",
+                "highlight2-desc": "Incontra delfini, tartarughe marine, mante e una moltitudine di pesci tropicali nel loro habitat naturale.",
+                "highlight3-title": "Ylang-Ylang",
+                "highlight3-desc": "Scopri le piantagioni di ylang-ylang che danno all'isola il soprannome di 'isola profumata' e la sua essenza unica.",
+                "highlight4-title": "Ospitalità",
+                "highlight4-desc": "Una popolazione accogliente e infrastrutture turistiche di qualità per un soggiorno confortevole e autentico.",
+                
+                "sites-title": "Siti Turistici di Nosy Be",
+                "site1-type": "ISOLA PARADISIACA",
+                "site1-title": "Nosy Iranja",
+                "site1-desc": "Isola paradisiaca collegata da un banco di sabbia a bassa marea. Perfetta per passeggiate romantiche e osservazione delle tartarughe.",
+                "site2-type": "ISOLA DELLE TARTARUGHE",
+                "site2-title": "Nosy Sakatia",
+                "site2-desc": "Osservazione delle tartarughe terrestri e snorkeling in acque limpide. Un sito ecologico e preservato.",
+                "site3-type": "ISOLA DEI LEMURI",
+                "site3-title": "Nosy Komba",
+                "site3-desc": "Incontra i famosi lemuri macachi in libertà e scopri l'artigianato locale nei villaggi tradizionali.",
+                "site4-type": "RISERVA MARINA",
+                "site4-title": "Nosy Tanikely",
+                "site4-desc": "Riserva marina protetta con acque cristalline ideali per lo snorkeling con pesci tropicali.",
+                "site5-type": "PARCO NAZIONALE",
+                "site5-title": "Parco Nazionale di Lokobe",
+                "site5-desc": "L'ultima foresta primaria umida di Nosy Be con specie endemiche uniche e lemuri.",
+                "site6-type": "PARCO DEI LEMURI",
+                "site6-title": "Parco Lemurian Land",
+                "site6-desc": "Scoperta della flora e dei lemuri in semi-libertà. Una visita educativa e familiare.",
+                "site7-type": "STORICO",
+                "site7-title": "Casa Fantasma di Marodoka",
+                "site7-desc": "Patrimonio e mistero dell'epoca coloniale. Scopri l'affascinante storia di questo luogo leggendario.",
+                "site8-type": "VISTA PANORAMICA",
+                "site8-title": "Mont Passot",
+                "site8-desc": "Punto più alto dell'isola con panorama a 360° e i suoi laghi sacri. Ideale per i tramonti.",
+                
+                "beaches-title": "Belle Spiagge",
+                "beach1-type": "PREFERITA DAI TURISTI",
+                "beach1-title": "Spiaggia di Andilana",
+                "beach1-desc": "La spiaggia più famosa di Nosy Be con la sua sabbia bianca immacolata e acque turchesi. Perfetta per prendere il sole, sport acquatici e ristoranti sul mare.",
+                "tag-longbeach": "Spiaggia di 2km",
+                "tag-restaurants": "Ristoranti & bar",
+                "tag-watersports": "Sport acquatici",
+                "btn-beach1": "Prenota una visita",
+                "beach2-type": "ANIMATA",
+                "beach2-title": "Spiaggia di Ambatoloaka",
+                "beach2-desc": "Il centro nevralgico della vita notturna con molti bar, ristoranti e negozi. Punto di partenza per escursioni marittime e attività acquatiche.",
+                "tag-nightlife": "Vita notturna",
+                "tag-excursions": "Partenza escursioni",
+                "tag-shopping": "Negozi",
+                "btn-beach2": "Prenota una visita",
+                
+                "activities-title": "Attività a Nosy Be",
+                "activity1-title": "Immersioni & Snorkeling",
+                "activity1-desc": "Esplora barriere coralline preservate con fauna marina eccezionale. Siti adatti a tutti i livelli con attrezzatura fornita.",
+                "btn-activity1": "Prenota",
+                "activity2-title": "Escursioni in Barca",
+                "activity2-desc": "Giornate di esplorazione a isole satellite, avvistamento balene (luglio-settembre) e scoperta di spiagge nascoste.",
+                "btn-activity2": "Prenota",
+                "activity3-title": "Pesca d'Altura",
+                "activity3-desc": "Avventura in mare per catturare marlin, tonni e altri grandi pesci. Attrezzatura e guide esperte fornite.",
+                "btn-activity3": "Prenota",
+                
+                "islands-title": "Isole Circonvicine",
+                "island1-title": "Nosy Komba - L'Isola dei Lemuri",
+                "island1-distance": "30 minuti da Nosy Be",
+                "island1-desc": "Incontra i famosi lemuri macachi in libertà nella riserva. Scopri l'artigianato locale e i villaggi di pescatori tradizionali.",
+                "btn-island1": "Prenota un'escursione",
+                "island2-title": "Nosy Tanikely - Riserva Marina",
+                "island2-distance": "45 minuti da Nosy Be",
+                "island2-desc": "Riserva marina protetta con acque cristalline ideali per lo snorkeling. Scopri tartarughe, razze e pesci tropicali nel loro habitat naturale.",
+                "btn-island2": "Prenota un'escursione",
+                
+                "seasonality-title": "Miglior Periodo per Visitare",
+                "season1-title": "Alta Stagione (Giugno a Settembre)",
+                "season1-period": "IDEALE",
+                "season1-desc": "Tempo secco e soleggiato, temperature piacevoli (25-30°C). Periodo perfetto per tutte le attività acquatiche e osservazione balene megattere durante la migrazione.",
+                "season2-title": "Stagione delle Piogge (Dicembre a Marzo)",
+                "season2-period": "PIOGGE",
+                "season2-desc": "Clima caldo e umido con acquazzoni tropicali brevi ma intensi. Vegetazione lussureggiante e tariffe più attraenti.",
+                "season3-title": "Stagioni Intermedie (Aprile-Maggio & Ottobre-Novembre)",
+                "season3-period": "BUONO",
+                "season3-desc": "Tempo generalmente piacevole con meno turisti. Buon compromesso per godersi le spiagge senza la folla e a prezzi vantaggiosi.",
+                
+                "itinerary-title": "Esempio Itinerario 5 Giorni",
+                "day1-title": "Arrivo & Rilassamento",
+                "day1-activity1": "Trasferimento aeroporto - hotel",
+                "day1-activity2": "Check-in hotel",
+                "day1-activity3": "Primo bagno alla spiaggia di Andilana",
+                "day1-activity4": "Cena di pesce",
+                "day2-title": "Nosy Komba & Tanikely",
+                "day2-activity1": "Escursione in barca verso Nosy Komba",
+                "day2-activity2": "Incontro con i lemuri",
+                "day2-activity3": "Snorkeling a Nosy Tanikely",
+                "day2-activity4": "Ritorno al tramonto",
+                "day3-title": "Scoperta Terrestre",
+                "day3-activity1": "Visita piantagioni di ylang-ylang",
+                "day3-activity2": "Scoperta della distilleria di rum",
+                "day3-activity3": "Salita al Monte Passot",
+                "day3-activity4": "Tramonto panoramico",
+                
+                "cta-title": "Pronto per l'Isola Profumata?",
+                "cta-text": "Organizziamo il tuo soggiorno su misura a Nosy Be: trasferimenti aeroportuali, alloggio, escursioni e attività. Beneficia della nostra esperienza locale per un viaggio indimenticabile.",
+                "cta-btn": "Pianifica il mio soggiorno a Nosy Be",
+                "cta-diego": "Scopri Diego-Suarez",
+                "cta-morondava": "Scopri Morondava",
+                "cta-home": "Torna alla Home",
+                
+                "footer-creator": "Creato da Habibe - Servizi Turistici Professionali",
+                "footer-phone": "Telefono: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Trasferimenti aeroportuali, servizi crociera e tour internazionali disponibili",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Tutti i diritti riservati.<br>Licenza Turistica certificata | Membro dell'Ufficio Nazionale del Turismo del Madagascar"
+            },
+            es: {
+                "header-tagline": "Tu guía de Nosy Be",
+                "menu-home": "Inicio",
+                "menu-highlights": "Destacados",
+                "menu-beaches": "Playas",
+                "menu-sites": "Sitios Turísticos",
+                "menu-activities": "Actividades",
+                "menu-islands": "Islas",
+                "menu-contact": "Contacto",
+                
+                "page-title": "🏝️ Nosy Be - La Isla Perfumada",
+                "page-subtitle": "Descubre la joya del Océano Índico con sus playas de arena blanca, aguas turquesas, plantaciones de ylang-ylang y vida marina excepcional. Un destino paradisíaco para todos los amantes de la naturaleza y el mar.",
+                "highlight-title": "Nosy Be: La Isla Perfumada",
+                "highlight-desc": "Nosy Be, apodada 'la isla perfumada' por sus plantaciones de ylang-ylang, te recibe con aguas cristalinas y clima tropical ideal todo el año.",
+                "highlights-title": "¿Por qué Visitar Nosy Be?",
+                "highlight1-title": "Aguas Turquesas",
+                "highlight1-desc": "Aguas cristalinas y cálidas todo el año, perfectas para nadar, hacer snorkel y bucear.",
+                "highlight2-title": "Vida Marina",
+                "highlight2-desc": "Encuentra delfines, tortugas marinas, mantarrayas y una multitud de peces tropicales en su hábitat natural.",
+                "highlight3-title": "Ylang-Ylang",
+                "highlight3-desc": "Descubre las plantaciones de ylang-ylang que dan a la isla su apodo de 'isla perfumada' y su esencia única.",
+                "highlight4-title": "Hospitalidad",
+                "highlight4-desc": "Una población acogedora e infraestructuras turísticas de calidad para una estancia cómoda y auténtica.",
+                
+                "sites-title": "Sitios Turísticos de Nosy Be",
+                "site1-type": "ISLA PARADISÍACA",
+                "site1-title": "Nosy Iranja",
+                "site1-desc": "Isla paradisíaca conectada por un banco de arena con marea baja. Perfecta para paseos románticos y observación de tortugas.",
+                "site2-type": "ISLA DE TORTUGAS",
+                "site2-title": "Nosy Sakatia",
+                "site2-desc": "Observación de tortugas terrestres y snorkel en aguas claras. Un sitio ecológico y preservado.",
+                "site3-type": "ISLA DE LOS LÉMURES",
+                "site3-title": "Nosy Komba",
+                "site3-desc": "Encuentra los famosos lémures macacos en libertad y descubre artesanía local en pueblos tradicionales.",
+                "site4-type": "RESERVA MARINA",
+                "site4-title": "Nosy Tanikely",
+                "site4-desc": "Reserva marina protegida con aguas cristalinas ideales para hacer snorkel con peces tropicales.",
+                "site5-type": "PARQUE NACIONAL",
+                "site5-title": "Parque Nacional de Lokobe",
+                "site5-desc": "El último bosque primario húmedo de Nosy Be con especies endémicas únicas y lémures.",
+                "site6-type": "PARQUE DE LÉMURES",
+                "site6-title": "Parque Lemurian Land",
+                "site6-desc": "Descubrimiento de flora y lémures en semi-libertad. Una visita educativa y familiar.",
+                "site7-type": "HISTÓRICO",
+                "site7-title": "Casa Fantasma de Marodoka",
+                "site7-desc": "Patrimonio y misterio de la época colonial. Descubre la historia fascinante de este lugar legendario.",
+                "site8-type": "VISTA PANORÁMICA",
+                "site8-title": "Mont Passot",
+                "site8-desc": "Punto más alto de la isla ofreciendo panorama de 360° y sus lagos sagrados. Ideal para atardeceres.",
+                
+                "beaches-title": "Playas Bonitas",
+                "beach1-type": "FAVORITA TURÍSTICA",
+                "beach1-title": "Playa de Andilana",
+                "beach1-desc": "La playa más famosa de Nosy Be con su arena blanca inmaculada y aguas turquesas. Perfecta para tomar el sol, deportes acuáticos y restaurantes frente al mar.",
+                "tag-longbeach": "Playa de 2km",
+                "tag-restaurants": "Restaurantes & bares",
+                "tag-watersports": "Deportes acuáticos",
+                "btn-beach1": "Reservar una visita",
+                "beach2-type": "ANIMADA",
+                "beach2-title": "Playa de Ambatoloaka",
+                "beach2-desc": "El centro neurálgico de la vida nocturna con muchos bares, restaurantes y tiendas. Punto de partida para excursiones marítimas y actividades acuáticas.",
+                "tag-nightlife": "Vida nocturna",
+                "tag-excursions": "Salida excursiones",
+                "tag-shopping": "Tiendas",
+                "btn-beach2": "Reservar una visita",
+                
+                "activities-title": "Actividades en Nosy Be",
+                "activity1-title": "Buceo & Snorkel",
+                "activity1-desc": "Explora arrecifes de coral preservados con vida marina excepcional. Sitios adecuados para todos los niveles con equipo proporcionado.",
+                "btn-activity1": "Reservar",
+                "activity2-title": "Excursiones en Barco",
+                "activity2-desc": "Días de exploración a islas satélite, avistamiento de ballenas (julio-septiembre) y descubrimiento de playas escondidas.",
+                "btn-activity2": "Reservar",
+                "activity3-title": "Pesca de Altura",
+                "activity3-desc": "Aventura en mar para capturar marlines, atunes y otros grandes peces. Equipo y guías experimentados proporcionados.",
+                "btn-activity3": "Reservar",
+                
+                "islands-title": "Islas Alrededor",
+                "island1-title": "Nosy Komba - La Isla de los Lémures",
+                "island1-distance": "30 minutos de Nosy Be",
+                "island1-desc": "Encuentra los famosos lémures macacos en libertad en la reserva. Descubre también artesanía local y pueblos de pescadores tradicionales.",
+                "btn-island1": "Reservar una excursión",
+                "island2-title": "Nosy Tanikely - Reserva Marina",
+                "island2-distance": "45 minutos de Nosy Be",
+                "island2-desc": "Reserva marina protegida con aguas cristalinas ideales para hacer snorkel. Descubre tortugas, rayas y peces tropicales en su hábitat natural.",
+                "btn-island2": "Reservar una excursión",
+                
+                "seasonality-title": "Mejor Época para Visitar",
+                "season1-title": "Alta Temporada (Junio a Septiembre)",
+                "season1-period": "IDEAL",
+                "season1-desc": "Tiempo seco y soleado, temperaturas agradables (25-30°C). Época perfecta para todas las actividades acuáticas y avistamiento de ballenas jorobadas durante la migración.",
+                "season2-title": "Temporada de Lluvias (Diciembre a Marzo)",
+                "season2-period": "LLUVIAS",
+                "season2-desc": "Clima cálido y húmedo con chubascos tropicales cortos pero intensos. Vegetación exuberante y tarifas más atractivas.",
+                "season3-title": "Temporadas Intermedias (Abril-Mayo & Octubre-Noviembre)",
+                "season3-period": "BUENO",
+                "season3-desc": "Tiempo generalmente agradable con menos turistas. Buen compromiso para disfrutar de las playas sin multitudes y a precios ventajosos.",
+                
+                "itinerary-title": "Ejemplo Itinerario 5 Días",
+                "day1-title": "Llegada & Relajación",
+                "day1-activity1": "Traslado aeropuerto - hotel",
+                "day1-activity2": "Check-in hotel",
+                "day1-activity3": "Primer baño en la playa de Andilana",
+                "day1-activity4": "Cena de mariscos",
+                "day2-title": "Nosy Komba & Tanikely",
+                "day2-activity1": "Excursión en barco a Nosy Komba",
+                "day2-activity2": "Encuentro con lémures",
+                "day2-activity3": "Snorkel en Nosy Tanikely",
+                "day2-activity4": "Regreso al atardecer",
+                "day3-title": "Descubrimiento Terrestre",
+                "day3-activity1": "Visita plantaciones de ylang-ylang",
+                "day3-activity2": "Descubrimiento de destilería de ron",
+                "day3-activity3": "Ascenso al Monte Passot",
+                "day3-activity4": "Atardecer panorámico",
+                
+                "cta-title": "¿Listo para la Isla Perfumada?",
+                "cta-text": "Organizamos tu estancia a medida en Nosy Be: traslados aeroportuarios, alojamiento, excursiones y actividades. Benefíciate de nuestra experiencia local para un viaje inolvidable.",
+                "cta-btn": "Planificar mi estancia en Nosy Be",
+                "cta-diego": "Descubrir Diego-Suarez",
+                "cta-morondava": "Descubrir Morondava",
+                "cta-home": "Volver al Inicio",
+                
+                "footer-creator": "Creado por Habibe - Servicios Turísticos Profesionales",
+                "footer-phone": "Teléfono: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Traslados aeropuerto, servicios de crucero y tours internacionales disponibles",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Todos los derechos reservados.<br>Licencia Turística certificada | Miembro de la Oficina Nacional de Turismo de Madagascar"
+            },
+            ar: {
+                "header-tagline": "دليلك إلى جزيرة نوسي بي",
+                "menu-home": "الرئيسية",
+                "menu-highlights": "النقاط البارزة",
+                "menu-beaches": "الشواطئ",
+                "menu-sites": "المواقع السياحية",
+                "menu-activities": "الأنشطة",
+                "menu-islands": "الجزر",
+                "menu-contact": "اتصل بنا",
+                
+                "page-title": "🏝️ نوسي بي - الجزيرة المعطرة",
+                "page-subtitle": "اكتشف جوهرة المحيط الهندي مع شواطئها الرملية البيضاء، مياهها الفيروزية، مزارع الإيلانغ إيلانغ وحياتها البحرية الاستثنائية. وجهة جنة لكل عشاق الطبيعة والبحر.",
+                "highlight-title": "نوسي بي: الجزيرة المعطرة",
+                "highlight-desc": "نوسي بي، الملقبة بـ 'الجزيرة المعطرة' لمزارع الإيلانغ إيلانغ، ترحب بك بمياهها البلورية ومناخها الاستوائي المثالي طوال العام.",
+                "highlights-title": "لماذا تزور نوسي بي؟",
+                "highlight1-title": "مياه فيروزية",
+                "highlight1-desc": "مياه بلورية ودافئة طوال العام، مثالية للسباحة، الغوص والغطس.",
+                "highlight2-title": "الحياة البحرية",
+                "highlight2-desc": "قابل الدلافين، السلاحف البحرية، شفانين البحر وعدد لا يحصى من الأسماك الاستوائية في موطنها الطبيعي.",
+                "highlight3-title": "الإيلانغ إيلانغ",
+                "highlight3-desc": "اكتشف مزارع الإيلانغ إيلانغ التي تعطي الجزيرة لقبها 'الجزيرة المعطرة' وجوهرتها الفريدة.",
+                "highlight4-title": "الضيافة",
+                "highlight4-desc": "سكان مرحبون وبنية تحتية سياحية عالية الجودة لإقامة مريحة وأصيلة.",
+                
+                "sites-title": "المواقع السياحية في نوسي بي",
+                "site1-type": "جزيرة جنة",
+                "site1-title": "نوسي إيرانجا",
+                "site1-desc": "جزيرة جنة متصلة بلسان رملي عند الجزر. مثالية للنزهات الرومانسية ومراقبة السلاحف.",
+                "site2-type": "جزيرة السلاحف",
+                "site2-title": "نوسي ساكاتيا",
+                "site2-desc": "مراقبة السلاحف البرية والغطس في مياه صافية. موقع بيئي ومحفوظ.",
+                "site3-type": "جزيرة الليمور",
+                "site3-title": "نوسي كومبا",
+                "site3-desc": "قابل أشهر ليمورات المكاك طليقة واكتشف الحرف المحلية في القرى التقليدية.",
+                "site4-type": "محمية بحرية",
+                "site4-title": "نوسي تانيكيلي",
+                "site4-desc": "محمية بحرية محمية بمياه بلورية مثالية للغطس مع الأسماك الاستوائية.",
+                "site5-type": "منتزه وطني",
+                "site5-title": "منتزه لوكوبي الوطني",
+                "site5-desc": "آخر غابة رطبة أولية في نوسي بي مع أنواع مستوطنة فريدة وليمورات.",
+                "site6-type": "منتزه الليمور",
+                "site6-title": "منتزه أرض الليمور",
+                "site6-desc": "اكتشاف النباتات والليمورات في حرية شبه كاملة. زيارة تعليمية وعائلية.",
+                "site7-type": "تاريخي",
+                "site7-title": "بيت مارودوكا الشبح",
+                "site7-desc": "تراث وغموض من العصر الاستعماري. اكتشف التاريخ الرائع لهذا المكان الأسطوري.",
+                "site8-type": "منظر بانورامي",
+                "site8-title": "جبل باسو",
+                "site8-desc": "أعلى نقطة في الجزيرة تقدم بانوراما 360° وبحيراتها المقدسة. مثالي لغروب الشمس.",
+                
+                "beaches-title": "الشواطئ الجميلة",
+                "beach1-type": "المفضلة لدى السياح",
+                "beach1-title": "شاطئ أنديلانا",
+                "beach1-desc": "أشهر شاطئ في نوسي بي برماله البيضاء النقية ومياهه الفيروزية. مثالي للتشمس، الرياضات المائية والمطاعم المطلة على البحر.",
+                "tag-longbeach": "شاطئ بطول 2 كم",
+                "tag-restaurants": "مطاعم و حانات",
+                "tag-watersports": "رياضات مائية",
+                "btn-beach1": "حجز زيارة",
+                "beach2-type": "نشيطة",
+                "beach2-title": "شاطئ أمباتولواكا",
+                "beach2-desc": "مركز الحياة الليلية مع العديد من الحانات، المطاعم والمحلات. نقطة انطلاق للرحلات البحرية والأنشطة المائية.",
+                "tag-nightlife": "حياة ليلية",
+                "tag-excursions": "انطلاق رحلات",
+                "tag-shopping": "محلات",
+                "btn-beach2": "حجز زيارة",
+                
+                "activities-title": "أنشطة في نوسي بي",
+                "activity1-title": "غوص وغطس",
+                "activity1-desc": "استكشف الشعاب المرجانية المحفوظة مع حياة بحرية استثنائية. مواقع مناسبة لجميع المستويات مع معدات مرفقة.",
+                "btn-activity1": "حجز",
+                "activity2-title": "رحلات بالقوارب",
+                "activity2-desc": "أيام استكشاف إلى الجزر التابعة، مراقبة الحيتان (يوليو-سبتمبر) واكتشاف الشواطئ المخفية.",
+                "btn-activity2": "حجز",
+                "activity3-title": "صيد الأسماك الكبيرة",
+                "activity3-desc": "مغامرة في البحر لصيد مارلن، تونة وأسماك كبيرة أخرى. معدات ومرشدين ذوي خبرة مرفقين.",
+                "btn-activity3": "حجز",
+                
+                "islands-title": "الجزر المحيطة",
+                "island1-title": "نوسي كومبا - جزيرة الليمور",
+                "island1-distance": "30 دقيقة من نوسي بي",
+                "island1-desc": "قابل أشهر ليمورات المكاك طليقة في المحمية. اكتشف أيضاً الحرف المحلية وقرى الصيادين التقليدية.",
+                "btn-island1": "حجز رحلة",
+                "island2-title": "نوسي تانيكيلي - محمية بحرية",
+                "island2-distance": "45 دقيقة من نوسي بي",
+                "island2-desc": "محمية بحرية محمية بمياه بلورية مثالية للغطس. اكتشف سلاحف، شفانين وأسماك استوائية في موطنها الطبيعي.",
+                "btn-island2": "حجز رحلة",
+                
+                "seasonality-title": "أفضل وقت للزيارة",
+                "season1-title": "الموسم العالي (يونيو إلى سبتمبر)",
+                "season1-period": "مثالي",
+                "season1-desc": "طقس جاف ومشمس، درجات حرارة مريحة (25-30°م). وقت مثالي لجميع الأنشطة المائية ومراقبة الحيتان الحدباء أثناء الهجرة.",
+                "season2-title": "موسم الأمطار (ديسمبر إلى مارس)",
+                "season2-period": "أمطار",
+                "season2-desc": "مناخ حار ورطب مع أمطار استوائية قصيرة لكن شديدة. نباتات خضراء وأسعار أكثر جاذبية.",
+                "season3-title": "مواسم متوسطة (أبريل-مايو وأكتوبر-نوفمبر)",
+                "season3-period": "جيد",
+                "season3-desc": "طقس مريح عموماً مع سياح أقل. حل وسط جيد للاستمتاع بالشواطئ بدون ازدحام وبأسعار مفيدة.",
+                
+                "itinerary-title": "مثال لخطة رحلة 5 أيام",
+                "day1-title": "وصول واسترخاء",
+                "day1-activity1": "نقل المطار - الفندق",
+                "day1-activity2": "تسجيل دخول الفندق",
+                "day1-activity3": "أول سباحة في شاطئ أنديلانا",
+                "day1-activity4": "عشاء مأكولات بحرية",
+                "day2-title": "نوسي كومبا وتانيكيلي",
+                "day2-activity1": "رحلة بالقارب إلى نوسي كومبا",
+                "day2-activity2": "لقاء مع الليمورات",
+                "day2-activity3": "غطس في نوسي تانيكيلي",
+                "day2-activity4": "عودة عند غروب الشمس",
+                "day3-title": "اكتشاف بري",
+                "day3-activity1": "زيارة مزارع الإيلانغ إيلانغ",
+                "day3-activity2": "اكتشاف مصنع الروم",
+                "day3-activity3": "صعود جبل باسو",
+                "day3-activity4": "غروب شمس بانورامي",
+                
+                "cta-title": "مستعد للجزيرة المعطرة؟",
+                "cta-text": "ننظم إقامتك المخصصة في نوسي بي: نقل من المطار، إقامة، رحلات وأنشطة. استفد من خبرتنا المحلية لرحلة لا تنسى.",
+                "cta-btn": "تخطيط إقامتي في نوسي بي",
+                "cta-diego": "اكتشف دييغو سوارز",
+                "cta-morondava": "اكتشف موروندافا",
+                "cta-home": "العودة للرئيسية",
+                
+                "footer-creator": "تم الإنشاء بواسطة حبيبة - خدمات سياحية احترافية",
+                "footer-phone": "الهاتف: +261 32 39 622 86",
+                "footer-email": "البريد الإلكتروني: hajahabibeabdou@gmail.com",
+                "footer-desc": "خدمات نقل المطار، خدمات الرحلات البحرية، والجولات الدولية متاحة",
+                "footer-copyright": "© 2024 Mada Vibe Discover - جميع الحقوق محفوظة.<br>ترخيص سياحي معتمد | عضو في المكتب الوطني للسياحة في مدغشقر"
+            },
+            zh: {
+                "header-tagline": "您的诺西贝岛指南",
+                "menu-home": "首页",
+                "menu-highlights": "亮点",
+                "menu-beaches": "海滩",
+                "menu-sites": "旅游景点",
+                "menu-activities": "活动",
+                "menu-islands": "岛屿",
+                "menu-contact": "联系我们",
+                
+                "page-title": "🏝️ 诺西贝岛 - 香岛",
+                "page-subtitle": "探索印度洋的宝石，拥有白色沙滩、绿松石海水、依兰依兰种植园和卓越的海洋生物。所有自然和海洋爱好者的天堂目的地。",
+                "highlight-title": "诺西贝岛：香岛",
+                "highlight-desc": "诺西贝岛因其依兰依兰种植园被称为'香岛'，以清澈的水域和全年理想的热带气候欢迎您。",
+                "highlights-title": "为什么访问诺西贝岛？",
+                "highlight1-title": "绿松石海水",
+                "highlight1-desc": "全年清澈温暖的海水，非常适合游泳、浮潜和水肺潜水。",
+                "highlight2-title": "海洋生物",
+                "highlight2-desc": "在其自然栖息地遇见海豚、海龟、蝠鲼和多种热带鱼。",
+                "highlight3-title": "依兰依兰",
+                "highlight3-desc": "发现为岛屿赢得'香岛'昵称及其独特精华的依兰依兰种植园。",
+                "highlight4-title": "热情好客",
+                "highlight4-desc": "热情好客的人口和优质的旅游基础设施，提供舒适真实的住宿。",
+                
+                "sites-title": "诺西贝岛旅游景点",
+                "site1-type": "天堂岛",
+                "site1-title": "诺西伊朗贾岛",
+                "site1-desc": "退潮时通过沙洲连接的天堂岛。非常适合浪漫漫步和海龟观察。",
+                "site2-type": "海龟岛",
+                "site2-title": "诺西萨卡蒂亚岛",
+                "site2-desc": "陆龟观察和清澈水域浮潜。一个生态和受保护的地点。",
+                "site3-type": "狐猴岛",
+                "site3-title": "诺西孔巴岛",
+                "site3-desc": "在自由中遇见著名的猕猴狐猴，并在传统村庄中发现当地手工艺。",
+                "site4-type": "海洋保护区",
+                "site4-title": "诺西塔尼凯利岛",
+                "site4-desc": "受保护的海洋保护区，拥有清澈的海水，非常适合与热带鱼一起浮潜。",
+                "site5-type": "国家公园",
+                "site5-title": "洛科贝国家公园",
+                "site5-desc": "诺西贝岛最后的主要潮湿森林，拥有独特的特有物种和狐猴。",
+                "site6-type": "狐猴公园",
+                "site6-title": "狐猴之地公园",
+                "site6-desc": "在半自由中发现植物和狐猴。一次教育和家庭参观。",
+                "site7-type": "历史",
+                "site7-title": "马罗多卡鬼屋",
+                "site7-desc": "殖民时代的遗产和神秘。发现这个传奇地方的迷人历史。",
+                "site8-type": "全景",
+                "site8-title": "帕索特山",
+                "site8-desc": "岛上最高点，提供360°全景及其圣湖。非常适合日落。",
+                
+                "beaches-title": "美丽海滩",
+                "beach1-type": "游客最爱",
+                "beach1-title": "安迪拉纳海滩",
+                "beach1-desc": "诺西贝岛最著名的海滩，拥有纯净的白色沙滩和绿松石海水。非常适合日光浴、水上运动和海边餐厅。",
+                "tag-longbeach": "2公里长海滩",
+                "tag-restaurants": "餐厅和酒吧",
+                "tag-watersports": "水上运动",
+                "btn-beach1": "预订访问",
+                "beach2-type": "热闹",
+                "beach2-title": "安巴托洛阿卡海滩",
+                "beach2-desc": "夜生活的神经中枢，拥有许多酒吧、餐厅和商店。海上短途旅行和水上活动的出发点。",
+                "tag-nightlife": "夜生活",
+                "tag-excursions": "短途旅行出发",
+                "tag-shopping": "商店",
+                "btn-beach2": "预订访问",
+                
+                "activities-title": "诺西贝岛活动",
+                "activity1-title": "潜水和浮潜",
+                "activity1-desc": "探索保存完好的珊瑚礁和卓越的海洋生物。适合所有级别的站点，提供设备。",
+                "btn-activity1": "预订",
+                "activity2-title": "乘船短途旅行",
+                "activity2-desc": "前往卫星岛屿的探索日，观鲸（七月至九月）和发现隐藏的海滩。",
+                "btn-activity2": "预订",
+                "activity3-title": "大鱼垂钓",
+                "activity3-desc": "海上冒险捕捉马林鱼、金枪鱼和其他大鱼。提供设备和经验丰富的导游。",
+                "btn-activity3": "预订",
+                
+                "islands-title": "周边岛屿",
+                "island1-title": "诺西孔巴岛 - 狐猴岛",
+                "island1-distance": "距离诺西贝岛30分钟",
+                "island1-desc": "在保护区内遇见著名的猕猴狐猴。同时发现当地手工艺和传统渔村。",
+                "btn-island1": "预订短途旅行",
+                "island2-title": "诺西塔尼凯利岛 - 海洋保护区",
+                "island2-distance": "距离诺西贝岛45分钟",
+                "island2-desc": "受保护的海洋保护区，拥有清澈的海水，非常适合浮潜。在其自然栖息地发现海龟、鳐鱼和热带鱼。",
+                "btn-island2": "预订短途旅行",
+                
+                "seasonality-title": "最佳访问时间",
+                "season1-title": "旺季（六月至九月）",
+                "season1-period": "理想",
+                "season1-desc": "干燥和阳光充足的天气，宜人的温度（25-30°C）。进行所有水上活动和观察迁徙期间的座头鲸的完美时间。",
+                "season2-title": "雨季（十二月至三月）",
+                "season2-period": "雨季",
+                "season2-desc": "炎热潮湿的气候，短暂但强烈的热带阵雨。郁郁葱葱的植被和更具吸引力的价格。",
+                "season3-title": "中间季节（四月至五月和十月至十一月）",
+                "season3-period": "良好",
+                "season3-desc": "通常宜人的天气，游客较少。在没有人群的情况下享受海滩并以优惠价格的良好折衷方案。",
+                
+                "itinerary-title": "5天行程示例",
+                "day1-title": "抵达和放松",
+                "day1-activity1": "机场至酒店接送",
+                "day1-activity2": "酒店入住",
+                "day1-activity3": "在安迪拉纳海滩首次游泳",
+                "day1-activity4": "海鲜晚餐",
+                "day2-title": "诺西孔巴岛和塔尼凯利岛",
+                "day2-activity1": "乘船前往诺西孔巴岛",
+                "day2-activity2": "与狐猴相遇",
+                "day2-activity3": "在诺西塔尼凯利岛浮潜",
+                "day2-activity4": "日落时返回",
+                "day3-title": "陆地发现",
+                "day3-activity1": "参观依兰依兰种植园",
+                "day3-activity2": "发现朗姆酒酿酒厂",
+                "day3-activity3": "攀登帕索特山",
+                "day3-activity4": "全景日落",
+                
+                "cta-title": "准备好前往香岛了吗？",
+                "cta-text": "我们为您组织量身定制的诺西贝岛住宿：机场接送、住宿、短途旅行和活动。受益于我们的当地专业知识，享受难忘的旅行。",
+                "cta-btn": "规划我的诺西贝岛住宿",
+                "cta-diego": "探索迭戈苏亚雷斯",
+                "cta-morondava": "探索穆龙达瓦",
+                "cta-home": "返回首页",
+                
+                "footer-creator": "由Habibe创建 - 专业旅游服务",
+                "footer-phone": "电话: +261 32 39 622 86",
+                "footer-email": "邮箱: hajahabibeabdou@gmail.com",
+                "footer-desc": "机场接送、游轮服务和国际旅游可用",
+                "footer-copyright": "© 2024 Mada Vibe Discover - 保留所有权利。<br>认证旅游执照 | 马达加斯加国家旅游局成员"
+            }
+        };
+
+        // ===== TRANSLATION FUNCTIONS =====
+        function setLanguage(lang) {
+            const langData = translations[lang];
+            if (!langData) return;
+            
+            // Update all elements with IDs
+            Object.keys(langData).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = langData[key];
+                }
+            });
+            
+            // Update language button
+            const langBtn = document.querySelector('.current-lang');
+            if (langBtn) {
+                langBtn.textContent = lang.toUpperCase();
+            }
+            
+            // Update active language options
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.lang === lang) {
+                    option.classList.add('active');
+                }
+            });
+            
+            // Save preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // ===== LANGUAGE EVENT HANDLERS =====
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = option.dataset.lang;
+                setLanguage(lang);
+            });
+        });
+
+        // ===== MOBILE MENU =====
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements with animations
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load preferred language (default to English)
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            setLanguage(savedLang);
+            
+            // Header entrance animation
+            setTimeout(() => {
+                document.getElementById('header').style.opacity = '1';
+                document.getElementById('header').style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Smooth scroll for anchors
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // ===== SCROLL HANDLING =====
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.getElementById('header');
+            
+            if (currentScroll <= 0) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                header.style.transform = 'translateY(-100%)';
+                header.style.boxShadow = 'none';
+            } else {
+                // Scrolling up
+                header.style.transform = 'translateY(0)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // ===== HEADER ANIMATION ON LOAD =====
+        window.onload = () => {
+            const header = document.getElementById('header');
+            header.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Progressive card animations
+            const cards = document.querySelectorAll('.fade-in');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        };
+
+        // ===== RESIZE HANDLING =====
+        window.addEventListener('resize', () => {
+            // Close mobile menu if switching to desktop
+            if (window.innerWidth > 768 && mobileMenu) {
+                mobileMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+</html>
