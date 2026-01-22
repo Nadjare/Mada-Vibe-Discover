@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego-Suarez - Mada Vibe Discover</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0a1929;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, 
+                rgba(10, 25, 47, 0.95) 0%, 
+                rgba(20, 40, 80, 0.93) 50%, 
+                rgba(52, 152, 219, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 10px 5%;
+            border-bottom: 2px solid #3498db;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 42px;
+            width: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #3498db;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            background: linear-gradient(45deg, #fff, #3498db, #85c1e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.85);
+            margin-top: 2px;
+        }
+
+        /* ===== HEADER CONTROLS ===== */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 180px;
+            background: rgba(20, 40, 80, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            z-index: 1001;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            color: #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .language-option:hover {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(20, 40, 80, 0.2));
+        }
+
+        .flag-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(20, 40, 80, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 20px 5%;
+            border-radius: 0 0 15px 15px;
+            display: none;
+            border-top: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 12px;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid #3498db;
+            transform: translateX(5px);
+        }
+
+        .mobile-menu i {
+            color: #3498db;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ===== HEADER SPACER ===== */
+        .header-spacer {
+            height: 60px;
+            width: 100%;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.8)), 
+                        url('https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 120px 0 100px;
+            position: relative;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            color: #85c1e9;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            padding: 0 15px;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(10, 25, 47, 0.4), 
+                rgba(20, 40, 80, 0.3), 
+                rgba(52, 152, 219, 0.2));
+            z-index: 1;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            padding: 0 15px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: #3498db;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: clamp(50px, 8vw, 100px) 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #3498db;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            font-weight: 700;
+            padding: 0 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
+            border-radius: 3px;
+        }
+
+        /* ===== SITES CAROUSEL ===== */
+        .sites-carousel {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            padding: 30px 10px;
+        }
+
+        .swiper-slide {
+            width: clamp(280px, 30vw, 350px);
+            height: clamp(450px, 60vw, 500px);
+        }
+
+        .site-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            height: 100%;
+            position: relative;
+        }
+
+        .site-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(52, 152, 219, 0.2);
+            border-color: #3498db;
+        }
+
+        .site-image {
+            height: clamp(220px, 30vw, 280px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .site-card:hover .site-image img {
+            transform: scale(1.15);
+        }
+
+        .site-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #3498db;
+            color: #0a1929;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .site-content {
+            padding: clamp(15px, 2vw, 25px);
+            height: calc(100% - clamp(220px, 30vw, 280px));
+            display: flex;
+            flex-direction: column;
+        }
+
+        .site-content h3 {
+            font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+            color: #85c1e9;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .site-content p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .site-details {
+            background: rgba(52, 152, 219, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 3px solid #3498db;
+        }
+
+        .site-details h4 {
+            color: #85c1e9;
+            margin-bottom: 8px;
+            font-size: clamp(1rem, 1.3vw, 1.1rem);
+        }
+
+        .site-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .site-details li {
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            padding-left: 20px;
+            font-size: clamp(0.8rem, 1vw, 0.9rem);
+        }
+
+        .site-details li:before {
+            content: "✓";
+            color: #3498db;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* ===== DETAILED SITES SECTION ===== */
+        .detailed-sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            padding: 0 15px;
+        }
+
+        .detailed-site-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(52, 152, 219, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .detailed-site-card:hover {
+            border-color: #3498db;
+            transform: translateY(-5px);
+        }
+
+        .detailed-site-image {
+            height: clamp(200px, 25vw, 250px);
+            overflow: hidden;
+        }
+
+        .detailed-site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detailed-site-info {
+            padding: clamp(20px, 3vw, 30px);
+        }
+
+        .detailed-site-info h3 {
+            color: #85c1e9;
+            font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+            margin-bottom: 15px;
+        }
+
+        .detailed-site-info .location {
+            color: #3498db;
+            font-size: clamp(0.85rem, 1vw, 0.9rem);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detailed-site-info .description {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: clamp(0.9rem, 1.1vw, 1rem);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .features-list li {
+            margin-bottom: 8px;
+            color: rgba(255,255,255,0.8);
+            padding-left: 25px;
+            position: relative;
+            font-size: clamp(0.85rem, 1vw, 0.9rem);
+        }
+
+        .features-list li:before {
+            content: "•";
+            color: #3498db;
+            position: absolute;
+            left: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* ===== BUTTON ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: clamp(14px, 2vw, 18px) clamp(30px, 4vw, 45px);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            margin: 30px 0;
+            width: fit-content;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(52, 152, 219, 0.5);
+            background: linear-gradient(135deg, #2980b9, #3498db);
+        }
+
+        /* ===== BOOKING SECTION ===== */
+        .booking-section {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)), 
+                        url('https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=70');
+            background-size: cover;
+            background-position: center;
+            border-radius: 25px;
+            padding: clamp(30px, 5vw, 80px);
+            text-align: center;
+            margin: clamp(40px, 6vw, 80px) 15px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .booking-section h3 {
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            color: #85c1e9;
+            margin-bottom: 20px;
+        }
+
+        .booking-section p {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0a0f1a;
+            padding: 40px 0 20px;
+            border-top: 3px solid #3498db;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+            font-size: clamp(0.85rem, 1vw, 0.95rem);
+            line-height: 1.6;
+            padding: 0 15px;
+        }
+
+        .creator {
+            color: #3498db;
+            font-weight: 700;
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+            margin-bottom: 20px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1.0s; }
+
+        /* ===== RESPONSIVE SWIPER ===== */
+        @media (max-width: 768px) {
+            .swiper-slide {
+                width: 280px;
+                height: 450px;
+            }
+            
+            .site-image {
+                height: 220px;
+            }
+            
+            .site-content {
+                height: calc(100% - 220px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                height: 55px;
+            }
+            
+            .header-spacer {
+                height: 55px;
+            }
+            
+            .logo-title {
+                font-size: 1.1rem;
+            }
+            
+            .logo img {
+                height: 36px;
+                width: 36px;
+            }
+            
+            .language-btn {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .menu-toggle {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
+            
+            .page-hero {
+                padding: 80px 0 60px;
+                min-height: 70vh;
+            }
+            
+            .hero-stats {
+                gap: 10px;
+            }
+            
+            .stat-item {
+                padding: 12px 15px;
+                min-width: 120px;
+            }
+            
+            .detailed-sites-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .booking-section {
+                padding: 25px 20px;
+                margin: 30px 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .logo-title {
+                font-size: 1rem;
+            }
+            
+            .logo-tagline {
+                font-size: 0.7rem;
+            }
+            
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+            
+            .stat-item {
+                padding: 10px 12px;
+                min-width: 100px;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
+        @media (hover: none) {
+            .site-card:hover {
+                transform: none;
+            }
+            
+            .site-card:active {
+                transform: translateY(-5px);
+            }
+            
+            .btn:hover {
+                transform: none;
+            }
+            
+            .btn:active {
+                transform: translateY(-2px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <img src="logo.png" alt="Mada Vibe Discover Logo">
+                <div class="logo-text">
+                    <div class="logo-title">MADA VIBE DISCOVER</div>
+                    <div class="logo-tagline" id="header-tagline">Your Guide to Diego-Suarez</div>
+                </div>
+            </a>
+
+            <!-- Controls -->
+            <div class="header-controls">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <i class="fas fa-globe-americas"></i>
+                        <span class="current-lang">EN</span>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" class="language-option active" data-lang="en">
+                            <img src="https://flagcdn.com/w20/us.png" class="flag-icon" alt="English">
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="fr">
+                            <img src="https://flagcdn.com/w20/fr.png" class="flag-icon" alt="Français">
+                            <span>Français</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="de">
+                            <img src="https://flagcdn.com/w20/de.png" class="flag-icon" alt="Deutsch">
+                            <span>Deutsch</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <img src="https://flagcdn.com/w20/es.png" class="flag-icon" alt="Español">
+                            <span>Español</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="it">
+                            <img src="https://flagcdn.com/w20/it.png" class="flag-icon" alt="Italiano">
+                            <span>Italiano</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ar">
+                            <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="العربية">
+                            <span>العربية</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> <span id="menu-home">Home</span></a></li>
+                <li><a href="#sites"><i class="fas fa-map-marker-alt"></i> <span id="menu-sites">Our Sites</span></a></li>
+                <li><a href="#details"><i class="fas fa-info-circle"></i> <span id="menu-details">Site Details</span></a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> <span id="menu-contact">Contact</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="header-spacer"></div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1 class="fade-in" id="page-title">Diego-Suarez (Antsiranana)</h1>
+            <p class="fade-in delay-1" id="page-subtitle">
+                Discover the jewels of northern Madagascar: majestic bays, unique landscapes, 
+                exceptional biodiversity and rich culture. Authentic adventure awaits you.
+            </p>
+            
+            <div class="hero-stats fade-in delay-2">
+                <div class="stat-item">
+                    <span class="stat-number" id="stat1">12</span>
+                    <span class="stat-label" id="stat1-label">Exceptional Sites</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat2">4</span>
+                    <span class="stat-label" id="stat2-label">Unique Ecosystems</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="stat3">100%</span>
+                    <span class="stat-label" id="stat3-label">Authenticity</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAIN SITES CAROUSEL ===== -->
+    <section id="sites" class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in" id="sites-title">Our Featured Sites</h2>
+            
+            <div class="sites-carousel">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <!-- Dunes Bay -->
+                        <div class="swiper-slide">
+                            <div class="site-card">
+                                <div class="site-image">
+                                    <img src="a.jpg" 
+                                         alt="Dunes Bay">
+                                    <span class="site-badge" id="site1-badge">BEACH</span>
+                                </div>
+                                <div class="site-content">
+                                    <h3 id="site1-title">Dunes Bay</h3>
+                                    <p id="site1-desc">White sand beach with impressive dunes. Panoramic view of the Indian Ocean.</p>
+                                    <div class="site-details">
+                                        <h4 id="site1-see-title">Must See:</h4>
+                                        <ul>
+                                            <li id="site1-detail1">Unique white sand dunes</li>
+                                            <li id="site1-detail2">Crystal turquoise waters</li>
+                                            <li id="site1-detail3">Spectacular sunsets</li>
+                                            <li id="site1-detail4">Marine wildlife (whales in season)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pigeon Bay -->
+                        <div class="swiper-slide">
+                            <div class="site-card">
+                                <div class="site-image">
+                                    <img src="b.jpg" 
+                                         alt="Pigeon Bay">
+                                    <span class="site-badge" id="site2-badge">BAY</span>
+                                </div>
+                                <div class="site-content">
+                                    <h3 id="site2-title">Pigeon Bay</h3>
+                                    <p id="site2-desc">Intimate small bay with unique rock formations and transparent water.</p>
+                                    <div class="site-details">
+                                        <h4 id="site2-see-title">Must See:</h4>
+                                        <ul>
+                                            <li id="site2-detail1">Sculpted rock formations</li>
+                                            <li id="site2-detail2">Exceptional snorkeling</li>
+                                            <li id="site2-detail3">Colony of seabirds</li>
+                                            <li id="site2-detail4">Fine sand beach</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ankarana Bay -->
+                        <div class="swiper-slide">
+                            <div class="site-card">
+                                <div class="site-image">
+                                    <img src="c.jpg" 
+                                         alt="Ankarana Bay">
+                                    <span class="site-badge" id="site3-badge">TSINGY</span>
+                                </div>
+                                <div class="site-content">
+                                    <h3 id="site3-title">Ankarana Bay</h3>
+                                    <p id="site3-desc">Nature reserve with famous Tsingy, unique limestone formations.</p>
+                                    <div class="site-details">
+                                        <h4 id="site3-see-title">Must See:</h4>
+                                        <ul>
+                                            <li id="site3-detail1">Tsingy (stone forest)</li>
+                                            <li id="site3-detail2">Caves and canyons</li>
+                                            <li id="site3-detail3">Lemurs and crocodiles</li>
+                                            <li id="site3-detail4">Underground rivers</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sugar Loaf -->
+                        <div class="swiper-slide">
+                            <div class="site-card">
+                                <div class="site-image">
+                                    <img src="d.jpg" 
+                                         alt="Sugar Loaf">
+                                    <span class="site-badge" id="site4-badge">ROCK</span>
+                                </div>
+                                <div class="site-content">
+                                    <h3 id="site4-title">Sugar Loaf</h3>
+                                    <p id="site4-desc">Iconic sugar loaf-shaped rock in the middle of the ocean.</p>
+                                    <div class="site-details">
+                                        <h4 id="site4-see-title">Must See:</h4>
+                                        <ul>
+                                            <li id="site4-detail1">Unique geological formation</li>
+                                            <li id="site4-detail2">Panoramic viewpoint</li>
+                                            <li id="site4-detail3">Navigation around the rock</li>
+                                            <li id="site4-detail4">Must-see photo site</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- French Mountain -->
+                        <div class="swiper-slide">
+                            <div class="site-card">
+                                <div class="site-image">
+                                    <img src="e.webp" 
+                                         alt="French Mountain">
+                                    <span class="site-badge" id="site5-badge">VIEW</span>
+                                </div>
+                                <div class="site-content">
+                                    <h3 id="site5-title">French Mountain</h3>
+                                    <p id="site5-desc">Highest point offering the best panoramic view of Diego-Suarez Bay.</p>
+                                    <div class="site-details">
+                                        <h4 id="site5-see-title">Must See:</h4>
+                                        <ul>
+                                            <li id="site5-detail1">360° view of the bay</li>
+                                            <li id="site5-detail2">Forest of dwarf baobabs</li>
+                                            <li id="site5-detail3">Historical fortifications</li>
+                                            <li id="site5-detail4">Unique endemic flora</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ramena Beach -->
+                        <div class="swiper-slide">
+                            <div class="site-card">
+                                <div class="site-image">
+                                    <img src="f.jpg" 
+                                         alt="Ramena Beach">
+                                    <span class="site-badge" id="site6-badge">RELAX</span>
+                                </div>
+                                <div class="site-content">
+                                    <h3 id="site6-title">Ramena Beach</h3>
+                                    <p id="site6-desc">Long white sand beach lined with coconut trees, perfect for relaxation.</p>
+                                    <div class="site-details">
+                                        <h4 id="site6-see-title">Must See:</h4>
+                                        <ul>
+                                            <li id="site6-detail1">3km long beach</li>
+                                            <li id="site6-detail2">Natural coconut groves</li>
+                                            <li id="site6-detail3">Fishing villages</li>
+                                            <li id="site6-detail4">Seafood restaurants</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SITE DETAILS SECTION ===== -->
+    <section id="details" class="content-section" style="background: linear-gradient(135deg, rgba(15, 30, 60, 0.95), rgba(25, 50, 100, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="details-title">Complete Site Details</h2>
+            
+            <div class="detailed-sites-grid">
+                <!-- The Three Bays -->
+                <div class="detailed-site-card fade-in">
+                    <div class="detailed-site-image">
+                        <img src="g.png" alt="The Three Bays">
+                    </div>
+                    <div class="detailed-site-info">
+                        <h3 id="detail1-title">The Three Bays</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="detail1-location">North coast of Diego-Suarez</span>
+                        </div>
+                        <p class="description" id="detail1-desc">
+                            <strong>Dunes Bay:</strong> Unique white sand dunes in the world plunging into the ocean. Ideal site for lounging, sunbathing and swimming in turquoise waters.
+                        </p>
+                        <p class="description">
+                            <strong>Pigeon Bay:</strong> Small intimate bay with rock formations sculpted by erosion. Paradise for snorkeling with great variety of tropical fish.
+                        </p>
+                        <p class="description">
+                            <strong>Ankarana Bay:</strong> Access to Ankarana reserve with its Tsingy, mysterious caves and underground rivers. Observation of lemurs and crocodiles.
+                        </p>
+                        <ul class="features-list">
+                            <li id="detail1-feature1">Some of the most beautiful dunes in the world</li>
+                            <li id="detail1-feature2">Crystal clear waters for swimming</li>
+                            <li id="detail1-feature3">Exceptional snorkeling</li>
+                            <li id="detail1-feature4">Panoramic viewpoints</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Red Tsingy -->
+                <div class="detailed-site-card fade-in delay-1">
+                    <div class="detailed-site-image">
+                        <img src="tsingyr.jpg" alt="Red Tsingy">
+                    </div>
+                    <div class="detailed-site-info">
+                        <h3 id="detail2-title">Red Tsingy</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="detail2-location">70km south of Diego-Suarez</span>
+                        </div>
+                        <p class="description" id="detail2-desc">
+                            Unique geological formation in the world: blood-red rocky peaks created by iron oxidation. Lunar and desert landscape that changes color depending on the time of day.
+                        </p>
+                        <p class="description">
+                            Red Tsingy are the result of millions of years of erosion. The iron-rich soil oxidized upon contact with air, giving this intense red color. The site is particularly spectacular at sunrise and sunset.
+                        </p>
+                        <ul class="features-list">
+                            <li id="detail2-feature1">Unique red rock formations</li>
+                            <li id="detail2-feature2">Lunar desert landscape</li>
+                            <li id="detail2-feature3">Colors changing with sunlight</li>
+                            <li id="detail2-feature4">Exceptional geological site</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Amber Mountain -->
+                <div class="detailed-site-card fade-in delay-2">
+                    <div class="detailed-site-image">
+                        <img src="h.jpg" alt="Amber Mountain">
+                    </div>
+                    <div class="detailed-site-info">
+                        <h3 id="detail3-title">Amber Mountain National Park</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="detail3-location">35km south of Diego-Suarez</span>
+                        </div>
+                        <p class="description" id="detail3-desc">
+                            Tropical rainforest with exceptional biodiversity: 7 species of lemurs, 75 species of birds, and unique flora. Cool and pleasant climate all year round.
+                        </p>
+                        <p class="description">
+                            This park houses spectacular waterfalls, crater lakes and preserved primary forest. Here you'll find the world's smallest chameleon, rare orchids and hundred-year-old trees.
+                        </p>
+                        <ul class="features-list">
+                            <li id="detail3-feature1">7 species of lemurs</li>
+                            <li id="detail3-feature2">Waterfalls and crater lakes</li>
+                            <li id="detail3-feature3">Exceptional tropical flora</li>
+                            <li id="detail3-feature4">Cool and pleasant climate</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Emerald Sea -->
+                <div class="detailed-site-card fade-in delay-3">
+                    <div class="detailed-site-image">
+                        <img src="i.jpeg" alt="Emerald Sea">
+                    </div>
+                    <div class="detailed-site-info">
+                        <h3 id="detail4-title">Emerald Sea</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="detail4-location">Diego-Suarez Bay</span>
+                        </div>
+                        <p class="description" id="detail4-desc">
+                            Lagoon with transparent emerald green waters, protected by a coral reef. Exceptional site for snorkeling and swimming in calm and shallow waters.
+                        </p>
+                        <p class="description">
+                            The seabed is populated by colorful corals, tropical fish, turtles and rays. The water rarely reaches more than 1.5m deep, making it an ideal site for the whole family.
+                        </p>
+                        <ul class="features-list">
+                            <li id="detail4-feature1">Crystal clear emerald green waters</li>
+                            <li id="detail4-feature2">Exceptional snorkeling</li>
+                            <li id="detail4-feature3">Abundant marine life</li>
+                            <li id="detail4-feature4">Shallow and calm waters</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- French Mountain with Baobabs -->
+                <div class="detailed-site-card fade-in delay-4">
+                    <div class="detailed-site-image">
+                        <img src="j.webp" alt="French Mountain - Baobabs">
+                    </div>
+                    <div class="detailed-site-info">
+                        <h3 id="detail5-title">French Mountain & Its Baobabs</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="detail5-location">Outskirts of Diego-Suarez</span>
+                        </div>
+                        <p class="description" id="detail5-desc">
+                            Historical site with breathtaking panoramic view of the bay. The mountain is home to a forest of endemic dwarf baobabs and well-preserved French fortifications.
+                        </p>
+                        <p class="description">
+                            The baobabs of French Mountain are unique: they are dwarf baobabs (Adansonia rubrostipa) that don't exceed 5m in height. The site also offers spectacular views of Sugar Loaf and the entire bay.
+                        </p>
+                        <ul class="features-list">
+                            <li id="detail5-feature1">360° panoramic view</li>
+                            <li id="detail5-feature2">Forest of endemic dwarf baobabs</li>
+                            <li id="detail5-feature3">Historical fortifications</li>
+                            <li id="detail5-feature4">Easy and accessible hike</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Antagnavo Town -->
+                <div class="detailed-site-card fade-in delay-5">
+                    <div class="detailed-site-image">
+                        <img src="k.webp" alt="Antagnavo Town">
+                    </div>
+                    <div class="detailed-site-info">
+                        <h3 id="detail6-title">Antagnavo Town</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="detail6-location">Diego-Suarez region</span>
+                        </div>
+                        <p class="description" id="detail6-desc">
+                            Authentic town offering a glimpse of Malagasy local life. Colorful markets, traditional crafts and warm hospitality of the inhabitants.
+                        </p>
+                        <p class="description">
+                            Antagnavo is renowned for its sacred lake and ancestral traditions. It's the ideal place to discover Sakalava culture, taste local cuisine and buy artisanal souvenirs.
+                        </p>
+                        <ul class="features-list">
+                            <li id="detail6-feature1">Sacred Lake of Antagnavo</li>
+                            <li id="detail6-feature2">Traditional markets</li>
+                            <li id="detail6-feature3">Authentic local crafts</li>
+                            <li id="detail6-feature4">Meeting with the population</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BOOKING SECTION ===== -->
+    <section id="contact" class="content-section">
+        <div class="container">
+            <div class="booking-section fade-in">
+                <h3 id="booking-title">Ready for Adventure in Diego-Suarez?</h3>
+                <p id="booking-desc">
+                    Organize your personalized circuit to discover the exceptional sites of Diego-Suarez. 
+                    Our local team guarantees you an authentic and memorable experience.
+                </p>
+                <a href="../pages/contact.html" class="btn">
+                    <i class="fas fa-calendar-check"></i>
+                    <span id="booking-btn">Book My Circuit</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="creator" id="footer-creator">Created by Habibe - Professional Tourist Guide</p>
+                <p id="footer-phone">Phone: +261 32 39 622 86</p>
+                <p id="footer-email">Email: hajahabibeabdou@gmail.com</p>
+                <p id="footer-desc">Specialist in circuits in Diego-Suarez and Northern Madagascar</p>
+                <p id="footer-copyright">
+                    © 2024 Mada Vibe Discover - All rights reserved.<br>
+                    Certified Official Guide - Responsible tourism
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <script>
+        // ===== SWIPER CAROUSEL =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.swiper', {
+                slidesPerView: 'auto',
+                spaceBetween: 20,
+                centeredSlides: false,
+                loop: true,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                breakpoints: {
+                    320: { 
+                        slidesPerView: 1,
+                        spaceBetween: 15
+                    },
+                    640: { 
+                        slidesPerView: 1.5,
+                        spaceBetween: 20
+                    },
+                    768: { 
+                        slidesPerView: 2,
+                        spaceBetween: 25
+                    },
+                    1024: { 
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    }
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+            });
+        });
+
+        // ===== MULTILINGUAL TRANSLATIONS =====
+        const translations = {
+            en: {
+                // Header & Menu
+                "header-tagline": "Your Guide to Diego-Suarez",
+                "menu-home": "Home",
+                "menu-sites": "Our Sites",
+                "menu-details": "Site Details",
+                "menu-contact": "Contact",
+                
+                // Hero
+                "page-title": "Diego-Suarez (Antsiranana)",
+                "page-subtitle": "Discover the jewels of northern Madagascar: majestic bays, unique landscapes, exceptional biodiversity and rich culture. Authentic adventure awaits you.",
+                "stat1": "12",
+                "stat1-label": "Exceptional Sites",
+                "stat2": "4",
+                "stat2-label": "Unique Ecosystems",
+                "stat3": "100%",
+                "stat3-label": "Authenticity",
+                
+                // Sites Carousel
+                "sites-title": "Our Featured Sites",
+                
+                "site1-badge": "BEACH", "site1-title": "Dunes Bay",
+                "site1-desc": "White sand beach with impressive dunes. Panoramic view of the Indian Ocean.",
+                "site1-see-title": "Must See:",
+                "site1-detail1": "Unique white sand dunes",
+                "site1-detail2": "Crystal turquoise waters",
+                "site1-detail3": "Spectacular sunsets",
+                "site1-detail4": "Marine wildlife (whales in season)",
+                
+                "site2-badge": "BAY", "site2-title": "Pigeon Bay",
+                "site2-desc": "Intimate small bay with unique rock formations and transparent water.",
+                "site2-see-title": "Must See:",
+                "site2-detail1": "Sculpted rock formations",
+                "site2-detail2": "Exceptional snorkeling",
+                "site2-detail3": "Colony of seabirds",
+                "site2-detail4": "Fine sand beach",
+                
+                "site3-badge": "TSINGY", "site3-title": "Ankarana Bay",
+                "site3-desc": "Nature reserve with famous Tsingy, unique limestone formations.",
+                "site3-see-title": "Must See:",
+                "site3-detail1": "Tsingy (stone forest)",
+                "site3-detail2": "Caves and canyons",
+                "site3-detail3": "Lemurs and crocodiles",
+                "site3-detail4": "Underground rivers",
+                
+                "site4-badge": "ROCK", "site4-title": "Sugar Loaf",
+                "site4-desc": "Iconic sugar loaf-shaped rock in the middle of the ocean.",
+                "site4-see-title": "Must See:",
+                "site4-detail1": "Unique geological formation",
+                "site4-detail2": "Panoramic viewpoint",
+                "site4-detail3": "Navigation around the rock",
+                "site4-detail4": "Must-see photo site",
+                
+                "site5-badge": "VIEW", "site5-title": "French Mountain",
+                "site5-desc": "Highest point offering the best panoramic view of Diego-Suarez Bay.",
+                "site5-see-title": "Must See:",
+                "site5-detail1": "360° view of the bay",
+                "site5-detail2": "Forest of dwarf baobabs",
+                "site5-detail3": "Historical fortifications",
+                "site5-detail4": "Unique endemic flora",
+                
+                "site6-badge": "RELAX", "site6-title": "Ramena Beach",
+                "site6-desc": "Long white sand beach lined with coconut trees, perfect for relaxation.",
+                "site6-see-title": "Must See:",
+                "site6-detail1": "3km long beach",
+                "site6-detail2": "Natural coconut groves",
+                "site6-detail3": "Fishing villages",
+                "site6-detail4": "Seafood restaurants",
+                
+                // Details Section
+                "details-title": "Complete Site Details",
+                
+                "detail1-title": "The Three Bays",
+                "detail1-location": "North coast of Diego-Suarez",
+                "detail1-desc": "Dunes Bay: Unique white sand dunes in the world plunging into the ocean. Ideal site for lounging, sunbathing and swimming in turquoise waters.",
+                "detail1-feature1": "Some of the most beautiful dunes in the world",
+                "detail1-feature2": "Crystal clear waters for swimming",
+                "detail1-feature3": "Exceptional snorkeling",
+                "detail1-feature4": "Panoramic viewpoints",
+                
+                "detail2-title": "Red Tsingy",
+                "detail2-location": "70km south of Diego-Suarez",
+                "detail2-desc": "Unique geological formation in the world: blood-red rocky peaks created by iron oxidation. Lunar and desert landscape that changes color depending on the time of day.",
+                "detail2-feature1": "Unique red rock formations",
+                "detail2-feature2": "Lunar desert landscape",
+                "detail2-feature3": "Colors changing with sunlight",
+                "detail2-feature4": "Exceptional geological site",
+                
+                "detail3-title": "Amber Mountain National Park",
+                "detail3-location": "35km south of Diego-Suarez",
+                "detail3-desc": "Tropical rainforest with exceptional biodiversity: 7 species of lemurs, 75 species of birds, and unique flora. Cool and pleasant climate all year round.",
+                "detail3-feature1": "7 species of lemurs",
+                "detail3-feature2": "Waterfalls and crater lakes",
+                "detail3-feature3": "Exceptional tropical flora",
+                "detail3-feature4": "Cool and pleasant climate",
+                
+                "detail4-title": "Emerald Sea",
+                "detail4-location": "Diego-Suarez Bay",
+                "detail4-desc": "Lagoon with transparent emerald green waters, protected by a coral reef. Exceptional site for snorkeling and swimming in calm and shallow waters.",
+                "detail4-feature1": "Crystal clear emerald green waters",
+                "detail4-feature2": "Exceptional snorkeling",
+                "detail4-feature3": "Abundant marine life",
+                "detail4-feature4": "Shallow and calm waters",
+                
+                "detail5-title": "French Mountain & Its Baobabs",
+                "detail5-location": "Outskirts of Diego-Suarez",
+                "detail5-desc": "Historical site with breathtaking panoramic view of the bay. The mountain is home to a forest of endemic dwarf baobabs and well-preserved French fortifications.",
+                "detail5-feature1": "360° panoramic view",
+                "detail5-feature2": "Forest of endemic dwarf baobabs",
+                "detail5-feature3": "Historical fortifications",
+                "detail5-feature4": "Easy and accessible hike",
+                
+                "detail6-title": "Antagnavo Town",
+                "detail6-location": "Diego-Suarez region",
+                "detail6-desc": "Authentic town offering a glimpse of Malagasy local life. Colorful markets, traditional crafts and warm hospitality of the inhabitants.",
+                "detail6-feature1": "Sacred Lake of Antagnavo",
+                "detail6-feature2": "Traditional markets",
+                "detail6-feature3": "Authentic local crafts",
+                "detail6-feature4": "Meeting with the population",
+                
+                // Booking
+                "booking-title": "Ready for Adventure in Diego-Suarez?",
+                "booking-desc": "Organize your personalized circuit to discover the exceptional sites of Diego-Suarez. Our local team guarantees you an authentic and memorable experience.",
+                "booking-btn": "Book My Circuit",
+                
+                // Footer
+                "footer-creator": "Created by Habibe - Professional Tourist Guide",
+                "footer-phone": "Phone: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Specialist in circuits in Diego-Suarez and Northern Madagascar",
+                "footer-copyright": "© 2024 Mada Vibe Discover - All rights reserved.<br>Certified Official Guide - Responsible tourism"
+            },
+            fr: {
+                "header-tagline": "Votre Guide à Diego-Suarez",
+                "menu-home": "Accueil", "menu-sites": "Nos Sites", "menu-details": "Détails des Sites", "menu-contact": "Contact",
+                "page-title": "Diego-Suarez (Antsiranana)",
+                "page-subtitle": "Découvrez les joyaux du Nord malgache : baies majestueuses, paysages uniques, biodiversité exceptionnelle et culture riche. L'aventure authentique vous attend.",
+                "stat1": "12", "stat1-label": "Sites Exceptionnels", "stat2": "4", "stat2-label": "Écosystèmes Uniques",
+                "stat3": "100%", "stat3-label": "Authenticité",
+                "sites-title": "Nos Sites Phares",
+                "site1-badge": "PLAGE", "site1-title": "Baie des Dunes",
+                "site1-desc": "Plage de sable blanc avec des dunes impressionnantes. Vue panoramique sur l'océan Indien.",
+                "site1-see-title": "À voir absolument :",
+                "site1-detail1": "Dunes de sable blanc uniques",
+                "site1-detail2": "Eaux turquoise cristallines",
+                "site1-detail3": "Couchers de soleil spectaculaires",
+                "site1-detail4": "Faune marine (baleines en saison)",
+                "site2-badge": "BAIE", "site2-title": "Baie des Pigeons",
+                "site2-desc": "Petite baie intime avec des formations rocheuses uniques et une eau transparente.",
+                "site2-see-title": "À voir absolument :",
+                "site2-detail1": "Formations rocheuses sculptées",
+                "site2-detail2": "Snorkeling exceptionnel",
+                "site2-detail3": "Colonie d'oiseaux marins",
+                "site2-detail4": "Plage de sable fin",
+                "site3-badge": "TSINGY", "site3-title": "Baie d'Ankarana",
+                "site3-desc": "Réserve naturelle avec les célèbres Tsingy, formations calcaires uniques au monde.",
+                "site3-see-title": "À voir absolument :",
+                "site3-detail1": "Tsingy (forêt de pierre)",
+                "site3-detail2": "Grottes et canyons",
+                "site3-detail3": "Lémuriens et crocodiles",
+                "site3-detail4": "Rivières souterraines",
+                "site4-badge": "ROCHER", "site4-title": "Pain de Sucre",
+                "site4-desc": "Rocher emblématique en forme de pain de sucre au milieu de l'océan.",
+                "site4-see-title": "À voir absolument :",
+                "site4-detail1": "Formation géologique unique",
+                "site4-detail2": "Point de vue panoramique",
+                "site4-detail3": "Navigation autour du rocher",
+                "site4-detail4": "Site photo incontournable",
+                "site5-badge": "VUE", "site5-title": "Montagne des Français",
+                "site5-desc": "Point culminant offrant la meilleure vue panoramique sur la baie de Diego-Suarez.",
+                "site5-see-title": "À voir absolument :",
+                "site5-detail1": "Vue à 360° sur la baie",
+                "site5-detail2": "Forêt de baobabs nains",
+                "site5-detail3": "Fortifications historiques",
+                "site5-detail4": "Flore endémique unique",
+                "site6-badge": "DÉTENTE", "site6-title": "Plage de Ramena",
+                "site6-desc": "Longue plage de sable blanc bordée de cocotiers, parfaite pour la détente.",
+                "site6-see-title": "À voir absolument :",
+                "site6-detail1": "Plage de 3km de long",
+                "site6-detail2": "Cocoteraies naturelles",
+                "site6-detail3": "Villages de pêcheurs",
+                "site6-detail4": "Restaurants de fruits de mer",
+                "details-title": "Détails Complets des Sites",
+                "detail1-title": "Les Trois Baies",
+                "detail1-location": "Côte nord de Diego-Suarez",
+                "detail1-desc": "Baie des Dunes : Dunes de sable blanc uniques au monde qui plongent dans l'océan. Site idéal pour le farniente, les bains de soleil et la baignade dans des eaux turquoise.",
+                "detail1-feature1": "Dunes parmi les plus belles au monde",
+                "detail1-feature2": "Eaux cristallines pour la baignade",
+                "detail1-feature3": "Snorkeling exceptionnel",
+                "detail1-feature4": "Points de vue panoramiques",
+                "detail2-title": "Tsingy Rouge",
+                "detail2-location": "70km au sud de Diego-Suarez",
+                "detail2-desc": "Formation géologique unique au monde : des pitons rocheux aux couleurs rouge sang créés par l'oxydation du fer. Paysage lunaire et désertique qui change de couleur selon l'heure de la journée.",
+                "detail2-feature1": "Formations rocheuses rouges uniques",
+                "detail2-feature2": "Paysage désertique lunaire",
+                "detail2-feature3": "Couleurs changeantes selon le soleil",
+                "detail2-feature4": "Site géologique exceptionnel",
+                "detail3-title": "Parc National de la Montagne d'Ambre",
+                "detail3-location": "35km au sud de Diego-Suarez",
+                "detail3-desc": "Forêt tropicale humide avec une biodiversité exceptionnelle : 7 espèces de lémuriens, 75 espèces d'oiseaux, et une flore unique. Climat frais et agréable toute l'année.",
+                "detail3-feature1": "7 espèces de lémuriens",
+                "detail3-feature2": "Cascades et lacs de cratère",
+                "detail3-feature3": "Flore tropicale exceptionnelle",
+                "detail3-feature4": "Climat frais et agréable",
+                "detail4-title": "Mer d'Émeraude",
+                "detail4-location": "Baie de Diego-Suarez",
+                "detail4-desc": "Lagune aux eaux vert émeraude transparentes, protégée par une barrière de corail. Site exceptionnel pour le snorkeling et la baignade dans des eaux calmes et peu profondes.",
+                "detail4-feature1": "Eaux vert émeraude cristallines",
+                "detail4-feature2": "Snorkeling exceptionnel",
+                "detail4-feature3": "Faune marine abondante",
+                "detail4-feature4": "Eaux peu profondes et calmes",
+                "detail5-title": "Montagne des Français & Ses Baobabs",
+                "detail5-location": "Périphérie de Diego-Suarez",
+                "detail5-desc": "Site historique avec vue panoramique imprenable sur la baie. La montagne abrite une forêt de baobabs nains endémiques et des fortifications françaises bien préservées.",
+                "detail5-feature1": "Vue panoramique à 360°",
+                "detail5-feature2": "Forêt de baobabs nains endémiques",
+                "detail5-feature3": "Fortifications historiques",
+                "detail5-feature4": "Randonnée facile et accessible",
+                "detail6-title": "Ville d'Antagnavo",
+                "detail6-location": "Région de Diego-Suarez",
+                "detail6-desc": "Ville authentique offrant un aperçu de la vie locale malgache. Marchés colorés, artisanat traditionnel et hospitalité chaleureuse des habitants.",
+                "detail6-feature1": "Lac sacré d'Antagnavo",
+                "detail6-feature2": "Marchés traditionnels",
+                "detail6-feature3": "Artisanat local authentique",
+                "detail6-feature4": "Rencontre avec la population",
+                "booking-title": "Prêt pour l'Aventure à Diego-Suarez ?",
+                "booking-desc": "Organisez votre circuit personnalisé pour découvrir les sites exceptionnels de Diego-Suarez. Notre équipe locale vous garantit une expérience authentique et mémorable.",
+                "booking-btn": "Réserver Mon Circuit",
+                "footer-creator": "Créé par Habibe - Guide Touristique Professionnel",
+                "footer-phone": "Téléphone : +261 32 39 622 86",
+                "footer-email": "Email : hajahabibeabdou@gmail.com",
+                "footer-desc": "Spécialiste des circuits à Diego-Suarez et dans le Nord de Madagascar",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Tous droits réservés.<br>Guide Officiel certifié - Tourisme responsable"
+            },
+            de: {
+                "header-tagline": "Ihr Reiseführer für Diego-Suarez",
+                "menu-home": "Startseite", "menu-sites": "Unsere Orte", "menu-details": "Ortsdetails", "menu-contact": "Kontakt",
+                "page-title": "Diego-Suarez (Antsiranana)",
+                "page-subtitle": "Entdecken Sie die Juwelen Nord-Madagaskars: majestätische Buchten, einzigartige Landschaften, außergewöhnliche Artenvielfalt und reiche Kultur. Echtes Abenteuer erwartet Sie.",
+                "stat1": "12", "stat1-label": "Außergewöhnliche Orte", "stat2": "4", "stat2-label": "Einzigartige Ökosysteme",
+                "stat3": "100%", "stat3-label": "Authentizität",
+                "sites-title": "Unsere Top-Orte",
+                "site1-badge": "STRAND", "site1-title": "Dünen-Bucht",
+                "site1-desc": "Weißer Sandstrand mit beeindruckenden Dünen. Panoramablick auf den Indischen Ozean.",
+                "site1-see-title": "Unbedingt sehen:",
+                "site1-detail1": "Einzigartige weiße Sanddünen",
+                "site1-detail2": "Kristallklare türkisfarbene Gewässer",
+                "site1-detail3": "Spektakuläre Sonnenuntergänge",
+                "site1-detail4": "Meereswildtiere (Wale in der Saison)",
+                "site2-badge": "BUCHT", "site2-title": "Tauben-Bucht",
+                "site2-desc": "Intime kleine Bucht mit einzigartigen Felsformationen und transparentem Wasser.",
+                "site2-see-title": "Unbedingt sehen:",
+                "site2-detail1": "Gemeißelte Felsformationen",
+                "site2-detail2": "Außergewöhnliches Schnorcheln",
+                "site2-detail3": "Kolonie von Seevögeln",
+                "site2-detail4": "Feinsandstrand",
+                "site3-badge": "TSINGY", "site3-title": "Ankarana-Bucht",
+                "site3-desc": "Naturschutzgebiet mit berühmten Tsingy, einzigartigen Kalksteinformationen.",
+                "site3-see-title": "Unbedingt sehen:",
+                "site3-detail1": "Tsingy (Steinwald)",
+                "site3-detail2": "Höhlen und Schluchten",
+                "site3-detail3": "Lemuren und Krokodile",
+                "site3-detail4": "Unterirdische Flüsse",
+                "site4-badge": "FELSEN", "site4-title": "Zuckerhut",
+                "site4-desc": "Ikonischer zuckerhutförmiger Felsen mitten im Ozean.",
+                "site4-see-title": "Unbedingt sehen:",
+                "site4-detail1": "Einzigartige geologische Formation",
+                "site4-detail2": "Panoramablickpunkt",
+                "site4-detail3": "Umrundung des Felsens",
+                "site4-detail4": "Fotomotiv, das man gesehen haben muss",
+                "site5-badge": "AUSSICHT", "site5-title": "Franzosenberg",
+                "site5-desc": "Höchster Punkt mit dem besten Panoramablick auf die Diego-Suarez-Bucht.",
+                "site5-see-title": "Unbedingt sehen:",
+                "site5-detail1": "360°-Blick auf die Bucht",
+                "site5-detail2": "Wald mit Zwergbaobabs",
+                "site5-detail3": "Historische Befestigungen",
+                "site5-detail4": "Einzigartige endemische Flora",
+                "site6-badge": "ENTSPANNUNG", "site6-title": "Ramena Strand",
+                "site6-desc": "Langer weißer Sandstrand gesäumt mit Kokospalmen, perfekt zur Entspannung.",
+                "site6-see-title": "Unbedingt sehen:",
+                "site6-detail1": "3km langer Strand",
+                "site6-detail2": "Natürliche Kokospalmenhaine",
+                "site6-detail3": "Fischerdörfer",
+                "site6-detail4": "Meeresfrüchte-Restaurants",
+                "details-title": "Vollständige Ortsdetails",
+                "detail1-title": "Die Drei Buchten",
+                "detail1-location": "Nordküste von Diego-Suarez",
+                "detail1-desc": "Dünen-Bucht: Einzigartige weiße Sanddünen der Welt, die in den Ozean stürzen. Idealer Ort zum Entspannen, Sonnenbaden und Schwimmen in türkisfarbenen Gewässern.",
+                "detail1-feature1": "Einige der schönsten Dünen der Welt",
+                "detail1-feature2": "Kristallklare Gewässer zum Schwimmen",
+                "detail1-feature3": "Außergewöhnliches Schnorcheln",
+                "detail1-feature4": "Panoramablickpunkte",
+                "detail2-title": "Rote Tsingy",
+                "detail2-location": "70km südlich von Diego-Suarez",
+                "detail2-desc": "Einzigartige geologische Formation der Welt: blutrote Felsgipfel durch Eisenoxidation entstanden. Mond- und Wüstenlandschaft, die je nach Tageszeit die Farbe ändert.",
+                "detail2-feature1": "Einzigartige rote Felsformationen",
+                "detail2-feature2": "Mondähnliche Wüstenlandschaft",
+                "detail2-feature3": "Farbenwechsel mit Sonnenlicht",
+                "detail2-feature4": "Außergewöhnlicher geologischer Ort",
+                "detail3-title": "Amber-Berg Nationalpark",
+                "detail3-location": "35km südlich von Diego-Suarez",
+                "detail3-desc": "Tropischer Regenwald mit außergewöhnlicher Artenvielfalt: 7 Lemurenarten, 75 Vogelarten und einzigartige Flora. Kühles und angenehmes Klima das ganze Jahr über.",
+                "detail3-feature1": "7 Arten von Lemuren",
+                "detail3-feature2": "Wasserfälle und Kraterseen",
+                "detail3-feature3": "Außergewöhnliche tropische Flora",
+                "detail3-feature4": "Kühles und angenehmes Klima",
+                "detail4-title": "Smaragdmeer",
+                "detail4-location": "Diego-Suarez-Bucht",
+                "detail4-desc": "Lagune mit transparenten smaragdgrünen Gewässern, geschützt durch ein Korallenriff. Außergewöhnlicher Ort zum Schnorcheln und Schwimmen in ruhigem und flachem Wasser.",
+                "detail4-feature1": "Kristallklare smaragdgrüne Gewässer",
+                "detail4-feature2": "Außergewöhnliches Schnorcheln",
+                "detail4-feature3": "Reichhaltiges Meeresleben",
+                "detail4-feature4": "Flaches und ruhiges Wasser",
+                "detail5-title": "Franzosenberg & Seine Baobabs",
+                "detail5-location": "Randgebiet von Diego-Suarez",
+                "detail5-desc": "Historischer Ort mit atemberaubendem Panoramablick auf die Bucht. Der Berg beherbergt einen Wald endemischer Zwergbaobabs und gut erhaltener französischer Befestigungen.",
+                "detail5-feature1": "360°-Panoramablick",
+                "detail5-feature2": "Wald endemischer Zwergbaobabs",
+                "detail5-feature3": "Historische Befestigungen",
+                "detail5-feature4": "Einfache und zugängliche Wanderung",
+                "detail6-title": "Antagnavo Stadt",
+                "detail6-location": "Region Diego-Suarez",
+                "detail6-desc": "Authentische Stadt, die einen Einblick in das madagassische Lokalleben bietet. Farbenfrohe Märkte, traditionelles Handwerk und warme Gastfreundschaft der Einwohner.",
+                "detail6-feature1": "Heiliger See von Antagnavo",
+                "detail6-feature2": "Traditionelle Märkte",
+                "detail6-feature3": "Authentisches lokales Handwerk",
+                "detail6-feature4": "Begegnung mit der Bevölkerung",
+                "booking-title": "Bereit für Abenteuer in Diego-Suarez?",
+                "booking-desc": "Organisieren Sie Ihre maßgeschneiderte Route, um die außergewöhnlichen Orte von Diego-Suarez zu entdecken. Unser lokales Team garantiert Ihnen ein authentisches und unvergessliches Erlebnis.",
+                "booking-btn": "Meine Route buchen",
+                "footer-creator": "Erstellt von Habibe - Professioneller Reiseführer",
+                "footer-phone": "Telefon: +261 32 39 622 86",
+                "footer-email": "E-Mail: hajahabibeabdou@gmail.com",
+                "footer-desc": "Spezialist für Routen in Diego-Suarez und Nord-Madagaskar",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Alle Rechte vorbehalten.<br>Zertifizierter offizieller Führer - Verantwortungsvoller Tourismus"
+            },
+            es: {
+                "header-tagline": "Tu Guía para Diego-Suarez",
+                "menu-home": "Inicio", "menu-sites": "Nuestros Sitios", "menu-details": "Detalles de Sitios", "menu-contact": "Contacto",
+                "page-title": "Diego-Suarez (Antsiranana)",
+                "page-subtitle": "Descubre las joyas del norte de Madagascar: bahías majestuosas, paisajes únicos, biodiversidad excepcional y cultura rica. Te espera una aventura auténtica.",
+                "stat1": "12", "stat1-label": "Sitios Excepcionales", "stat2": "4", "stat2-label": "Ecosistemas Únicos",
+                "stat3": "100%", "stat3-label": "Autenticidad",
+                "sites-title": "Nuestros Sitios Destacados",
+                "site1-badge": "PLAYA", "site1-title": "Bahía de las Dunas",
+                "site1-desc": "Playa de arena blanca con dunas impresionantes. Vista panorámica del Océano Índico.",
+                "site1-see-title": "Debes ver:",
+                "site1-detail1": "Dunas de arena blanca únicas",
+                "site1-detail2": "Aguas turquesa cristalinas",
+                "site1-detail3": "Atardeceres espectaculares",
+                "site1-detail4": "Fauna marina (ballenas en temporada)",
+                "site2-badge": "BAHÍA", "site2-title": "Bahía de las Palomas",
+                "site2-desc": "Pequeña bahía íntima con formaciones rocosas únicas y agua transparente.",
+                "site2-see-title": "Debes ver:",
+                "site2-detail1": "Formaciones rocosas esculpidas",
+                "site2-detail2": "Snorkel excepcional",
+                "site2-detail3": "Colonia de aves marinas",
+                "site2-detail4": "Playa de arena fina",
+                "site3-badge": "TSINGY", "site3-title": "Bahía de Ankarana",
+                "site3-desc": "Reserva natural con los famosos Tsingy, formaciones calcáreas únicas.",
+                "site3-see-title": "Debes ver:",
+                "site3-detail1": "Tsingy (bosque de piedra)",
+                "site3-detail2": "Cuevas y cañones",
+                "site3-detail3": "Lémures y cocodrilos",
+                "site3-detail4": "Ríos subterráneos",
+                "site4-badge": "ROCA", "site4-title": "Pan de Azúcar",
+                "site4-desc": "Roca icónica en forma de pan de azúcar en medio del océano.",
+                "site4-see-title": "Debes ver:",
+                "site4-detail1": "Formación geológica única",
+                "site4-detail2": "Punto de vista panorámico",
+                "site4-detail3": "Navegación alrededor de la roca",
+                "site4-detail4": "Sitio foto imprescindible",
+                "site5-badge": "VISTA", "site5-title": "Montaña de los Franceses",
+                "site5-desc": "Punto más alto que ofrece la mejor vista panorámica de la bahía de Diego-Suarez.",
+                "site5-see-title": "Debes ver:",
+                "site5-detail1": "Vista 360° de la bahía",
+                "site5-detail2": "Bosque de baobabs enanos",
+                "site5-detail3": "Fortificaciones históricas",
+                "site5-detail4": "Flora endémica única",
+                "site6-badge": "RELAJACIÓN", "site6-title": "Playa de Ramena",
+                "site6-desc": "Larga playa de arena blanca bordeada de cocoteros, perfecta para relajarse.",
+                "site6-see-title": "Debes ver:",
+                "site6-detail1": "Playa de 3km de largo",
+                "site6-detail2": "Cocoteros naturales",
+                "site6-detail3": "Pueblos pesqueros",
+                "site6-detail4": "Restaurantes de mariscos",
+                "details-title": "Detalles Completos de los Sitios",
+                "detail1-title": "Las Tres Bahías",
+                "detail1-location": "Costa norte de Diego-Suarez",
+               "detail1-desc": "Bahía de las Dunas: Dunas de arena blanca únicas en el mundo que se sumergen en el océano. Sitio ideal para relajarse, tomar el sol y nadar en aguas turquesa.",
+                "detail1-feature1": "Algunas de las dunas más hermosas del mundo",
+                "detail1-feature2": "Aguas cristalinas para nadar",
+                "detail1-feature3": "Snorkel excepcional",
+                "detail1-feature4": "Puntos de vista panorámicos",
+                
+                "detail2-title": "Tsingy Rojo",
+                "detail2-location": "70km al sur de Diego-Suarez",
+                "detail2-desc": "Formación geológica única en el mundo: picos rocosos de color rojo sangre creados por oxidación del hierro. Paisaje lunar y desértico que cambia de color según la hora del día.",
+                "detail2-feature1": "Formaciones rocosas rojas únicas",
+                "detail2-feature2": "Paisaje desértico lunar",
+                "detail2-feature3": "Colores cambiantes con la luz solar",
+                "detail2-feature4": "Sitio geológico excepcional",
+                
+                "detail3-title": "Parque Nacional Montaña de Ámbar",
+                "detail3-location": "35km al sur de Diego-Suarez",
+                "detail3-desc": "Selva tropical húmeda con biodiversidad excepcional: 7 especies de lémures, 75 especies de aves y flora única. Clima fresco y agradable todo el año.",
+                "detail3-feature1": "7 especies de lémures",
+                "detail3-feature2": "Cascadas y lagos de cráter",
+                "detail3-feature3": "Flora tropical excepcional",
+                "detail3-feature4": "Clima fresco y agradable",
+                
+                "detail4-title": "Mar de Esmeralda",
+                "detail4-location": "Bahía de Diego-Suarez",
+                "detail4-desc": "Laguna con aguas transparentes verde esmeralda, protegida por un arrecife de coral. Sitio excepcional para snorkel y natación en aguas tranquilas y poco profundas.",
+                "detail4-feature1": "Aguas cristalinas verde esmeralda",
+                "detail4-feature2": "Snorkel excepcional",
+                "detail4-feature3": "Abundante vida marina",
+                "detail4-feature4": "Aguas poco profundas y tranquilas",
+                
+                "detail5-title": "Montaña de los Franceses y sus Baobabs",
+                "detail5-location": "Afueras de Diego-Suarez",
+                "detail5-desc": "Sitio histórico con vista panorámica impresionante de la bahía. La montaña alberga un bosque de baobabs enanos endémicos y fortificaciones francesas bien conservadas.",
+                "detail5-feature1": "Vista panorámica 360°",
+                "detail5-feature2": "Bosque de baobabs enanos endémicos",
+                "detail5-feature3": "Fortificaciones históricas",
+                "detail5-feature4": "Caminata fácil y accesible",
+                
+                "detail6-title": "Ciudad de Antagnavo",
+                "detail6-location": "Región de Diego-Suarez",
+                "detail6-desc": "Ciudad auténtica que ofrece una visión de la vida local malgache. Mercados coloridos, artesanía tradicional y hospitalidad cálida de los habitantes.",
+                "detail6-feature1": "Lago Sagrado de Antagnavo",
+                "detail6-feature2": "Mercados tradicionales",
+                "detail6-feature3": "Artesanía local auténtica",
+                "detail6-feature4": "Encuentro con la población",
+                
+                // Booking
+                "booking-title": "¿Listo para la Aventura en Diego-Suarez?",
+                "booking-desc": "Organiza tu circuito personalizado para descubrir los sitios excepcionales de Diego-Suarez. Nuestro equipo local te garantiza una experiencia auténtica y memorable.",
+                "booking-btn": "Reservar Mi Circuito",
+                
+                // Footer
+                "footer-creator": "Creado por Habibe - Guía Turístico Profesional",
+                "footer-phone": "Teléfono: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Especialista en circuitos en Diego-Suarez y Norte de Madagascar",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Todos los derechos reservados.<br>Guía Oficial certificado - Turismo responsable"
+            },
+            it: {
+                "header-tagline": "La tua guida per Diego-Suarez",
+                "menu-home": "Home", "menu-sites": "I Nostri Siti", "menu-details": "Dettagli Siti", "menu-contact": "Contatto",
+                "page-title": "Diego-Suarez (Antsiranana)",
+                "page-subtitle": "Scopri i gioielli del nord del Madagascar: baie maestose, paesaggi unici, biodiversità eccezionale e cultura ricca. L'avventura autentica ti attende.",
+                "stat1": "12", "stat1-label": "Siti Eccezionali", "stat2": "4", "stat2-label": "Ecosistemi Unici",
+                "stat3": "100%", "stat3-label": "Autenticità",
+                "sites-title": "I Nostri Siti Principali",
+                "site1-badge": "SPIAGGIA", "site1-title": "Baia delle Dune",
+                "site1-desc": "Spiaggia di sabbia bianca con dune impressionanti. Vista panoramica sull'Oceano Indiano.",
+                "site1-see-title": "Da vedere assolutamente:",
+                "site1-detail1": "Dune di sabbia bianca uniche",
+                "site1-detail2": "Acque turchesi cristalline",
+                "site1-detail3": "Tramonti spettacolari",
+                "site1-detail4": "Fauna marina (balene in stagione)",
+                "site2-badge": "BAIA", "site2-title": "Baia dei Piccioni",
+                "site2-desc": "Piccola baia intima con formazioni rocciose uniche e acqua trasparente.",
+                "site2-see-title": "Da vedere assolutamente:",
+                "site2-detail1": "Formazioni rocciose scolpite",
+                "site2-detail2": "Snorkeling eccezionale",
+                "site2-detail3": "Colonia di uccelli marini",
+                "site2-detail4": "Spiaggia di sabbia fine",
+                "site3-badge": "TSINGY", "site3-title": "Baia di Ankarana",
+                "site3-desc": "Riserva naturale con i famosi Tsingy, formazioni calcaree uniche.",
+                "site3-see-title": "Da vedere assolutamente:",
+                "site3-detail1": "Tsingy (foresta di pietra)",
+                "site3-detail2": "Grotte e canyon",
+                "site3-detail3": "Lemuri e coccodrilli",
+                "site3-detail4": "Fiumi sotterranei",
+                "site4-badge": "ROCCIA", "site4-title": "Pan di Zucchero",
+                "site4-desc": "Roccia iconica a forma di pan di zucchero in mezzo all'oceano.",
+                "site4-see-title": "Da vedere assolutamente:",
+                "site4-detail1": "Formazione geologica unica",
+                "site4-detail2": "Punto di vista panoramico",
+                "site4-detail3": "Navigazione intorno alla roccia",
+                "site4-detail4": "Sito fotografico imperdibile",
+                "site5-badge": "VISTA", "site5-title": "Montagna dei Francesi",
+                "site5-desc": "Punto più alto che offre la migliore vista panoramica della baia di Diego-Suarez.",
+                "site5-see-title": "Da vedere assolutamente:",
+                "site5-detail1": "Vista a 360° della baia",
+                "site5-detail2": "Foresta di baobab nani",
+                "site5-detail3": "Fortificazioni storiche",
+                "site5-detail4": "Flora endemica unica",
+                "site6-badge": "RILASSAMENTO", "site6-title": "Spiaggia di Ramena",
+                "site6-desc": "Lunga spiaggia di sabbia bianca fiancheggiata da palme da cocco, perfetta per il relax.",
+                "site6-see-title": "Da vedere assolutamente:",
+                "site6-detail1": "Spiaggia di 3km di lunghezza",
+                "site6-detail2": "Palmeti naturali di cocco",
+                "site6-detail3": "Villaggi di pescatori",
+                "site6-detail4": "Ristoranti di frutti di mare",
+                "details-title": "Dettagli Completi dei Siti",
+                "detail1-title": "Le Tre Baie",
+                "detail1-location": "Costa nord di Diego-Suarez",
+                "detail1-desc": "Baia delle Dune: Dune di sabbia bianca uniche al mondo che si tuffano nell'oceano. Sito ideale per rilassarsi, prendere il sole e nuotare in acque turchesi.",
+                "detail1-feature1": "Alcune delle dune più belle del mondo",
+                "detail1-feature2": "Acque cristalline per nuotare",
+                "detail1-feature3": "Snorkeling eccezionale",
+                "detail1-feature4": "Punti di vista panoramici",
+                "detail2-title": "Tsingy Rosso",
+                "detail2-location": "70km a sud di Diego-Suarez",
+                "detail2-desc": "Formazione geologica unica al mondo: picchi rocciosi color rosso sangue creati dall'ossidazione del ferro. Paesaggio lunare e desertico che cambia colore in base all'ora del giorno.",
+                "detail2-feature1": "Formazioni rocciose rosse uniche",
+                "detail2-feature2": "Paesaggio desertico lunare",
+                "detail2-feature3": "Colori che cambiano con la luce solare",
+                "detail2-feature4": "Sito geologico eccezionale",
+                "detail3-title": "Parco Nazionale Montagna d'Ambra",
+                "detail3-location": "35km a sud di Diego-Suarez",
+                "detail3-desc": "Foresta pluviale tropicale con biodiversità eccezionale: 7 specie di lemuri, 75 specie di uccelli e flora unica. Clima fresco e piacevole tutto l'anno.",
+                "detail3-feature1": "7 specie di lemuri",
+                "detail3-feature2": "Cascate e laghi craterici",
+                "detail3-feature3": "Flora tropicale eccezionale",
+                "detail3-feature4": "Clima fresco e piacevole",
+                "detail4-title": "Mare di Smeraldo",
+                "detail4-location": "Baia di Diego-Suarez",
+                "detail4-desc": "Laguna con acque trasparenti verde smeraldo, protetta da una barriera corallina. Sito eccezionale per snorkeling e nuoto in acque calme e poco profonde.",
+                "detail4-feature1": "Acque cristalline verde smeraldo",
+                "detail4-feature2": "Snorkeling eccezionale",
+                "detail4-feature3": "Abbondante vita marina",
+                "detail4-feature4": "Acque poco profonde e calme",
+                "detail5-title": "Montagna dei Francesi e i suoi Baobab",
+                "detail5-location": "Periferia di Diego-Suarez",
+                "detail5-desc": "Sito storico con vista panoramica mozzafiato sulla baia. La montagna ospita una foresta di baobab nani endemici e fortificazioni francesi ben conservate.",
+                "detail5-feature1": "Vista panoramica a 360°",
+                "detail5-feature2": "Foresta di baobab nani endemici",
+                "detail5-feature3": "Fortificazioni storiche",
+                "detail5-feature4": "Escursione facile e accessibile",
+                "detail6-title": "Città di Antagnavo",
+                "detail6-location": "Regione di Diego-Suarez",
+                "detail6-desc": "Città autentica che offre uno spaccato della vita locale malgascia. Mercati colorati, artigianato tradizionale e calorosa ospitalità degli abitanti.",
+                "detail6-feature1": "Lago Sacro di Antagnavo",
+                "detail6-feature2": "Mercati tradizionali",
+                "detail6-feature3": "Artigianato locale autentico",
+                "detail6-feature4": "Incontro con la popolazione",
+                "booking-title": "Pronto per l'Avventura a Diego-Suarez?",
+                "booking-desc": "Organizza il tuo circuito personalizzato per scoprire i siti eccezionali di Diego-Suarez. Il nostro team locale ti garantisce un'esperienza autentica e memorabile.",
+                "booking-btn": "Prenota il Mio Circuito",
+                "footer-creator": "Creato da Habibe - Guida Turistica Professionale",
+                "footer-phone": "Telefono: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Specialista in circuiti a Diego-Suarez e Nord Madagascar",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Tutti i diritti riservati.<br>Guida Ufficiale certificata - Turismo responsabile"
+            },
+            ar: {
+                "header-tagline": "دليلك إلى دييغو سواريز",
+                "menu-home": "الرئيسية", "menu-sites": "مواقعنا", "menu-details": "تفاصيل المواقع", "menu-contact": "اتصل بنا",
+                "page-title": "دييغو سواريز (أنتسيرانانا)",
+                "page-subtitle": "اكتشف جوهرة شمال مدغشقر: خلجان مهيبة، مناظر طبيعية فريدة، تنوع بيولوجي استثنائي وثقافة غنية. مغامرة حقيقية تنتظرك.",
+                "stat1": "12", "stat1-label": "مواقع استثنائية", "stat2": "4", "stat2-label": "نظم بيئية فريدة",
+                "stat3": "100%", "stat3-label": "أصالة",
+                "sites-title": "مواقعنا الرئيسية",
+                "site1-badge": "شاطئ", "site1-title": "خليج الكثبان",
+                "site1-desc": "شاطئ رملي أبيض مع كثبان رملية مذهلة. منظر بانورامي للمحيط الهندي.",
+                "site1-see-title": "يجب رؤيته:",
+                "site1-detail1": "كثبان رملية بيضاء فريدة",
+                "site1-detail2": "مياه فيروزية بلورية",
+                "site1-detail3": "غروب شمس مذهل",
+                "site1-detail4": "حياة بحرية (حيتان في الموسم)",
+                "site2-badge": "خليج", "site2-title": "خليج الحمام",
+                "site2-desc": "خليج صغير حميم مع تكوينات صخرية فريدة ومياه شفافة.",
+                "site2-see-title": "يجب رؤيته:",
+                "site2-detail1": "تكوينات صخرية منحوتة",
+                "site2-detail2": "غوص سطحي استثنائي",
+                "site2-detail3": "مستعمرة طيور بحرية",
+                "site2-detail4": "شاطئ رملي ناعم",
+                "site3-badge": "تسينجي", "site3-title": "خليج أنكارانا",
+                "site3-desc": "محمية طبيعية مع تسينجي الشهيرة، تكوينات حجر جيري فريدة.",
+                "site3-see-title": "يجب رؤيته:",
+                "site3-detail1": "تسينجي (غابة حجرية)",
+                "site3-detail2": "كهوف وأخاديد",
+                "site3-detail3": "ليمور وتماسيح",
+                "site3-detail4": "أنهار تحت الأرض",
+                "site4-badge": "صخرة", "site4-title": "رغيف السكر",
+                "site4-desc": "صخرة أيقونية على شكل رغيف سكر في وسط المحيط.",
+                "site4-see-title": "يجب رؤيته:",
+                "site4-detail1": "تشكيل جيولوجي فريد",
+                "site4-detail2": "نقطة منظر بانورامي",
+                "site4-detail3": "ملاحة حول الصخرة",
+                "site4-detail4": "موقع تصوير يجب زيارته",
+                "site5-badge": "منظر", "site5-title": "جبل الفرنسيين",
+                "site5-desc": "أعلى نقطة توفر أفضل منظر بانورامي لخليج دييغو سواريز.",
+                "site5-see-title": "يجب رؤيته:",
+                "site5-detail1": "منظر 360 درجة للخليج",
+                "site5-detail2": "غابة باأوباب قزم",
+                "site5-detail3": "تحصينات تاريخية",
+                "site5-detail4": "نباتات متوطنة فريدة",
+                "site6-badge": "استرخاء", "site6-title": "شاطئ رامينا",
+                "site6-desc": "شاطئ رملي أبيض طويل تحيط به أشجار جوز الهند، مثالي للاسترخاء.",
+                "site6-see-title": "يجب رؤيته:",
+                "site6-detail1": "شاطئ بطول 3 كم",
+                "site6-detail2": "بساتين جوز الهند الطبيعية",
+                "site6-detail3": "قرى الصيادين",
+                "site6-detail4": "مطاعم المأكولات البحرية",
+                "details-title": "تفاصيل كاملة للمواقع",
+                "detail1-title": "الخلجان الثلاثة",
+                "detail1-location": "الساحل الشمالي لدييغو سواريز",
+                "detail1-desc": "خليج الكثبان: كثبان رملية بيضاء فريدة في العالم تغوص في المحيط. موقع مثالي للاسترخاء، حمامات الشمس والسباحة في مياه فيروزية.",
+                "detail1-feature1": "بعض أجمل الكثبان الرملية في العالم",
+                "detail1-feature2": "مياه بلورية للسباحة",
+                "detail1-feature3": "غوص سطحي استثنائي",
+                "detail1-feature4": "نقاط منظر بانورامية",
+                "detail2-title": "تسينجي الأحمر",
+                "detail2-location": "70 كم جنوب دييغو سواريز",
+                "detail2-desc": "تشكيل جيولوجي فريد في العالم: قمم صخرية حمراء قانية ناتجة عن أكسدة الحديد. منظر قمري وصحراوي يتغير لونه حسب وقت اليوم.",
+                "detail2-feature1": "تكوينات صخرية حمراء فريدة",
+                "detail2-feature2": "منظر صحراوي قمري",
+                "detail2-feature3": "ألوان متغيرة مع ضوء الشمس",
+                "detail2-feature4": "موقع جيولوجي استثنائي",
+                "detail3-title": "متنزه جبل العنبر الوطني",
+                "detail3-location": "35 كم جنوب دييغو سواريز",
+                "detail3-desc": "غابة مطيرة استوائية مع تنوع بيولوجي استثنائي: 7 أنواع من الليمور، 75 نوع من الطيور، ونباتات فريدة. مناخ بارد ولطيف طوال السنة.",
+                "detail3-feature1": "7 أنواع من الليمور",
+                "detail3-feature2": "شلالات وبحيرات فوهة بركان",
+                "detail3-feature3": "نباتات استوائية استثنائية",
+                "detail3-feature4": "مناخ بارد ولطيف",
+                "detail4-title": "البحر الزمردي",
+                "detail4-location": "خليج دييغو سواريز",
+                "detail4-desc": "بحيرة بمياه زمردية خضراء شفافة، محمية بشعاب مرجانية. موقع استثنائي للغوص السطحي والسباحة في مياه هادئة وغير عميقة.",
+                "detail4-feature1": "مياه زمردية خضراء بلورية",
+                "detail4-feature2": "غوص سطحي استثنائي",
+                "detail4-feature3": "حياة بحرية غنية",
+                "detail4-feature4": "مياه غير عميقة وهادئة",
+                "detail5-title": "جبل الفرنسيين وباأوبابه",
+                "detail5-location": "ضواحي دييغو سواريز",
+                "detail5-desc": "موقع تاريخي مع منظر بانورامي مذهل للخليج. الجبل يحتوي على غابة من باأوباب قزم متوطن و تحصينات فرنسية محفوظة جيداً.",
+                "detail5-feature1": "منظر بانورامي 360 درجة",
+                "detail5-feature2": "غابة باأوباب قزم متوطن",
+                "detail5-feature3": "تحصينات تاريخية",
+                "detail5-feature4": "نزهة سهلة ومتاحة",
+                "detail6-title": "مدينة أنتاغنافو",
+                "detail6-location": "منطقة دييغو سواريز",
+                "detail6-desc": "مدينة أصيلة تقدم لمحة عن الحياة المحلية المالاجاشية. أسواق ملونة، حرف تقليدية وضيافة دافئة من السكان.",
+                "detail6-feature1": "بحيرة أنتاغنافو المقدسة",
+                "detail6-feature2": "أسواق تقليدية",
+                "detail6-feature3": "حرف محلية أصلية",
+                "detail6-feature4": "لقاء مع السكان",
+                "booking-title": "مستعد للمغامرة في دييغو سواريز؟",
+                "booking-desc": "نظم رحلتك المخصصة لاكتشاف المواقع الاستثنائية في دييغو سواريز. فريقنا المحلي يضمن لك تجربة أصيلة ولا تنسى.",
+                "booking-btn": "احجز رحلتي",
+                "footer-creator": "أنشأه حبيب - دليل سياحي محترف",
+                "footer-phone": "هاتف: +261 32 39 622 86",
+                "footer-email": "بريد إلكتروني: hajahabibeabdou@gmail.com",
+                "footer-desc": "متخصص في رحلات دييغو سواريز وشمال مدغشقر",
+                "footer-copyright": "© 2024 مادا فايب ديسكفر - جميع الحقوق محفوظة.<br>دليل رسمي معتمد - سياحة مسؤولة"
+            }
+        };
+
+        // ===== LANGUAGE SWITCHER FUNCTIONALITY =====
+        let currentLang = 'en';
+
+        function changeLanguage(lang) {
+            if (!translations[lang]) return;
+            
+            currentLang = lang;
+            
+            // Update all translatable elements
+            document.querySelectorAll('[id]').forEach(element => {
+                const key = element.id;
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Update language button
+            const langBtn = document.querySelector('.current-lang');
+            if (langBtn) {
+                langBtn.textContent = lang.toUpperCase();
+            }
+            
+            // Update active class in dropdown
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.lang === lang) {
+                    option.classList.add('active');
+                }
+            });
+            
+            // Save preference
+            localStorage.setItem('preferredLanguage', lang);
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved language or default to English
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            changeLanguage(savedLang);
+            
+            // Setup language selector events
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.dataset.lang;
+                    changeLanguage(lang);
+                });
+            });
+        });
+
+        // ===== MOBILE MENU TOGGLE =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (mobileMenu.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                
+                // Close menu when clicking a link
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+            }
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Skip if it's just "#"
+                    if (href === '#') return;
+                    
+                    // Don't prevent default for language selector links
+                    if (this.closest('.language-dropdown')) return;
+                    
+                    e.preventDefault();
+                    
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        // Close mobile menu if open
+                        const mobileMenu = document.getElementById('mobileMenu');
+                        const menuToggle = document.getElementById('menuToggle');
+                        if (mobileMenu && mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            const icon = menuToggle.querySelector('i');
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                        
+                        // Calculate header height
+                        const headerHeight = document.getElementById('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // ===== TOUCH DEVICE DETECTION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            
+            if (isTouchDevice) {
+                document.body.classList.add('touch-device');
+                
+                // Add touch feedback for buttons
+                document.querySelectorAll('.btn, .site-card, .detailed-site-card').forEach(element => {
+                    element.addEventListener('touchstart', function() {
+                        this.classList.add('touch-active');
+                    });
+                    
+                    element.addEventListener('touchend', function() {
+                        this.classList.remove('touch-active');
+                    });
+                });
+            }
+        });
+
+        // ===== RESPONSIVE IMAGE LOADING =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loading="lazy" to all images
+            document.querySelectorAll('img').forEach(img => {
+                if (!img.loading) {
+                    img.loading = 'lazy';
+                }
+            });
+        });
+
+        // ===== PERFORMANCE OPTIMIZATIONS =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Debounce resize events
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function() {
+                    // Handle resize events here if needed
+                }, 250);
+            });
+        });
+    </script>
+</body>
+</html>
