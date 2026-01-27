@@ -1,0 +1,2401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mada Vibe Descover - Sites Touristiques Principaux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a192f 0%, #1a365d 100%);
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(21, 101, 192, 0.95) 0%, rgba(13, 71, 161, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 10px 5%;
+            border-bottom: 3px solid #0d47a1;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .logo-tagline {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.9);
+            margin-top: 3px;
+        }
+
+        /* ===== HEADER CONTROLS ===== */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 200px;
+            background: rgba(13, 71, 161, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 1001;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            color: #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+        }
+
+        .language-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .language-option.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .flag-icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 71, 161, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 25px 5%;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            display: none;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 15px;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            font-weight: 600;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-left: 4px solid #64b5f6;
+            transform: translateX(10px);
+        }
+
+        .mobile-menu i {
+            color: #64b5f6;
+            width: 24px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        /* ===== HEADER SPACER ===== */
+        .header-spacer {
+            height: 70px;
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
+                        url('2a.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: #64b5f6;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.7);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.95);
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            max-width: 800px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(33, 150, 243, 0.3), 
+                rgba(13, 71, 161, 0.4), 
+                rgba(21, 101, 192, 0.3));
+            z-index: 1;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #64b5f6;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 700;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #64b5f6, transparent);
+            border-radius: 2px;
+        }
+
+        /* ===== SITES GRID ===== */
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .site-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: 1px solid rgba(100, 181, 246, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .site-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(100, 181, 246, 0.3);
+            border-color: #64b5f6;
+        }
+
+        .site-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .site-card:hover .site-image img {
+            transform: scale(1.15);
+        }
+
+        .site-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            z-index: 1;
+        }
+
+        .site-type {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #64b5f6;
+            color: #0a192f;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .site-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(10, 25, 47, 0.7);
+        }
+
+        .site-content h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .site-location {
+            color: #64b5f6;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .site-location i {
+            font-size: 1.1rem;
+        }
+
+        .site-desc {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+            font-size: 1.05rem;
+        }
+
+        .site-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .feature-tag {
+            padding: 6px 15px;
+            background: rgba(100, 181, 246, 0.15);
+            color: #64b5f6;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(100, 181, 246, 0.3);
+        }
+
+        .site-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #64b5f6, #2196f3);
+            color: #0a192f;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(100, 181, 246, 0.4);
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .site-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(100, 181, 246, 0.5);
+            background: linear-gradient(135deg, #2196f3, #64b5f6);
+        }
+
+        /* ===== TRADITIONS SECTION ===== */
+        .traditions-section {
+            background: linear-gradient(135deg, rgba(21, 101, 192, 0.1), rgba(13, 71, 161, 0.1));
+            padding: 100px 0;
+            margin: 80px 0;
+        }
+
+        .traditions-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .traditions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .tradition-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(100, 181, 246, 0.1);
+        }
+
+        .tradition-card:hover {
+            transform: translateY(-10px);
+            border-color: #64b5f6;
+            box-shadow: 0 20px 40px rgba(100, 181, 246, 0.15);
+        }
+
+        .tradition-icon {
+            font-size: 3rem;
+            color: #64b5f6;
+            margin-bottom: 20px;
+        }
+
+        .tradition-card h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .tradition-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ===== BEST TIME SECTION ===== */
+        .best-time-section {
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.1), rgba(21, 101, 192, 0.1));
+            padding: 100px 0;
+            margin: 80px 0;
+        }
+
+        .best-time-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .time-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(100, 181, 246, 0.1);
+        }
+
+        .time-card:hover {
+            transform: translateY(-10px);
+            border-color: #64b5f6;
+            box-shadow: 0 20px 40px rgba(100, 181, 246, 0.15);
+        }
+
+        .time-period {
+            font-size: 2.2rem;
+            color: #64b5f6;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .time-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .time-desc {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .time-recommendation {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(100, 181, 246, 0.2);
+            color: #64b5f6;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            background: linear-gradient(135deg, rgba(21, 101, 192, 0.1), rgba(13, 71, 161, 0.1));
+            padding: 100px 0;
+            margin: 80px 0;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #64b5f6;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .about-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            min-width: 150px;
+            border: 1px solid rgba(100, 181, 246, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: #64b5f6;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0a192f;
+            padding: 60px 0 30px;
+            border-top: 3px solid #64b5f6;
+        }
+
+        .footer-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: 60px;
+            border-radius: 10px;
+            border: 2px solid #64b5f6;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .footer-title {
+            font-size: 1.8rem;
+            color: white;
+            font-weight: 800;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            margin-top: 5px;
+        }
+
+        .footer-info {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .footer-creator {
+            color: #64b5f6;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 25px 0;
+        }
+
+        .footer-copyright {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .sites-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                height: 60px;
+            }
+            
+            .header-spacer {
+                height: 60px;
+            }
+            
+            .logo img {
+                height: 45px;
+                width: 45px;
+            }
+            
+            .logo-title {
+                font-size: 1.3rem;
+            }
+            
+            .hero {
+                min-height: 80vh;
+                padding: 100px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+            
+            .sites-grid,
+            .traditions-grid,
+            .time-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .site-image {
+                height: 220px;
+            }
+            
+            .traditions-section,
+            .best-time-section,
+            .about-section {
+                padding: 80px 0;
+            }
+            
+            .about-content h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content p {
+                font-size: 1.1rem;
+            }
+            
+            .about-stats {
+                gap: 20px;
+            }
+            
+            .stat-item {
+                min-width: 100px;
+                padding: 15px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .menu-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .language-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .site-content {
+                padding: 20px;
+            }
+            
+            .site-content h3 {
+                font-size: 1.4rem;
+            }
+            
+            .site-desc {
+                font-size: 1rem;
+            }
+            
+            .tradition-card,
+            .time-card {
+                padding: 25px;
+            }
+            
+            .about-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-content p {
+                font-size: 1rem;
+            }
+            
+            .footer-title {
+                font-size: 1.5rem;
+            }
+            
+            .footer-logo {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .footer-logo-text {
+                align-items: center;
+            }
+            
+            .mobile-menu a {
+                padding: 14px 18px;
+                font-size: 0.95rem;
+            }
+            
+            .mobile-menu i {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .site-type {
+                font-size: 0.75rem;
+                padding: 6px 15px;
+            }
+            
+            .feature-tag {
+                padding: 5px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .time-period {
+                font-size: 1.8rem;
+            }
+            
+            .stat-item {
+                min-width: 80px;
+                padding: 12px;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat-label {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="#hero" class="logo">
+                <img src="logo.png" alt="Drapeau Madagascar">
+                <div class="logo-text">
+                    <div class="logo-title" id="logo-title">MAD VIBE DISCOVER</div>
+                    <div class="logo-tagline" id="logo-tagline">Sites Touristiques Incontournables</div>
+                </div>
+            </a>
+
+            <!-- Controls -->
+            <div class="header-controls">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <i class="fas fa-globe-americas"></i>
+                        <span class="current-lang">FR</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" class="language-option" data-lang="en">
+                            <img src="https://flagcdn.com/w20/gb.png" class="flag-icon" alt="English">
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option active" data-lang="fr">
+                            <img src="https://flagcdn.com/w20/fr.png" class="flag-icon" alt="Français">
+                            <span>Français</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="de">
+                            <img src="https://flagcdn.com/w20/de.png" class="flag-icon" alt="Deutsch">
+                            <span>Deutsch</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <img src="https://flagcdn.com/w20/es.png" class="flag-icon" alt="Español">
+                            <span>Español</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="it">
+                            <img src="https://flagcdn.com/w20/it.png" class="flag-icon" alt="Italiano">
+                            <span>Italiano</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ar">
+                            <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="العربية">
+                            <span>العربية</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span id="menu-home">Accueil</span></a></li>
+                <li><a href="#sites"><i class="fas fa-leaf"></i> <span id="menu-sites">Sites Incontournables</span></a></li>
+                <li><a href="#traditions"><i class="fas fa-users"></i> <span id="menu-traditions">Traditions</span></a></li>
+                <li><a href="#best-time"><i class="fas fa-calendar-alt"></i> <span id="menu-besttime">Meilleure Période</span></a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> <span id="menu-about">À Propos</span></a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> <span id="menu-contact">Contact</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="header-spacer"></div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-in">
+            <h1 id="hero-title">Découvrez la Région SAVA</h1>
+            <p id="hero-subtitle">La Région SAVA, une destination où la nature reste intacte, la vanille parfume la forêt et l'océan rencontre les montagnes.</p>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <!-- Les 8 Sites Touristiques Incontournables -->
+        <div class="container">
+            <h2 class="section-title fade-in" id="sites-title">Les 8 Sites Incontournables</h2>
+            
+            <div class="sites-grid">
+                <!-- Site 1 -->
+                <div class="site-card fade-in">
+                    <div class="site-image">
+                        <img src="2b.jpg" 
+                             alt="Parc National de Marojejy">
+                        <span class="site-type" id="site1-type">UNESCO</span>
+                    </div>
+                    <div class="site-content">
+                        <h3 id="site1-title">Parc National de Marojejy</h3>
+                        <div class="site-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="site1-location">Massif de Marojejy</span>
+                        </div>
+                        <p class="site-desc" id="site1-desc">
+                            Forêt tropicale classée, sommets spectaculaires et biodiversité exceptionnelle. 
+                            Idéal pour la randonnée et l'écotourisme dans un cadre naturel préservé.
+                        </p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag1-1">Randonnée</span>
+                            <span class="feature-tag" id="tag1-2">Biodiversité</span>
+                            <span class="feature-tag" id="tag1-3">Écotourisme</span>
+                        </div>
+                        <a href="#" class="site-btn" id="btn-site1">
+                            <i class="fas fa-eye"></i>
+                            <span>Découvrir</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Site 2 -->
+                <div class="site-card fade-in delay-1">
+                    <div class="site-image">
+                        <img src="2c.jpg" 
+                             alt="Réserve Spéciale d'Anjanaharibe-Sud">
+                        <span class="site-type" id="site2-type">RÉSERVE</span>
+                    </div>
+                    <div class="site-content">
+                        <h3 id="site2-title">Réserve Spéciale d'Anjanaharibe-Sud</h3>
+                        <div class="site-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="site2-location">Massif d'Anjanaharibe</span>
+                        </div>
+                        <p class="site-desc" id="site2-desc">
+                            Réserve sauvage et préservée, connue pour sa faune endémique et ses paysages 
+                            de forêt primaire. Sanctuaire naturel unique en son genre.
+                        </p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag2-1">Faune Endémique</span>
+                            <span class="feature-tag" id="tag2-2">Forêt Primaire</span>
+                            <span class="feature-tag" id="tag2-3">Préservation</span>
+                        </div>
+                        <a href="#" class="site-btn" id="btn-site2">
+                            <i class="fas fa-eye"></i>
+                            <span>Découvrir</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Site 3 -->
+                <div class="site-card fade-in delay-2">
+                    <div class="site-image">
+                        <img src="2d.jpg" 
+                             alt="Réserve Naturelle d'Antanetiambo">
+                        <span class="site-type" id="site3-type">NATURE</span>
+                    </div>
+                    <div class="site-content">
+                        <h3 id="site3-title">Réserve Naturelle d'Antanetiambo</h3>
+                        <div class="site-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="site3-location">Près d'Andapa</span>
+                        </div>
+                        <p class="site-desc" id="site3-desc">
+                            Site accessible près d'Andapa, parfait pour l'observation des lémuriens 
+                            et la découverte de la nature locale dans un cadre intime et préservé.
+                        </p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag3-1">Lémuriens</span>
+                            <span class="feature-tag" id="tag3-2">Observation</span>
+                            <span class="feature-tag" id="tag3-3">Accessible</span>
+                        </div>
+                        <a href="#" class="site-btn" id="btn-site3">
+                            <i class="fas fa-eye"></i>
+                            <span>Découvrir</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Site 4 -->
+                <div class="site-card fade-in delay-3">
+                    <div class="site-image">
+                        <img src="2e.jpg" 
+                             alt="Sources chaudes de Ranomafana">format&fit=crop&w=800&q=80
+                        <span class="site-type" id="site4-type">THERMAL</span>
+                    </div>
+                    <div class="site-content">
+                        <h3 id="site4-title">Sources chaudes de Ranomafana (Andapa)</h3>
+                        <div class="site-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="site4-location">Andapa</span>
+                        </div>
+                        <p class="site-desc" id="site4-desc">
+                            Sources naturelles offrant un moment de détente après une randonnée en pleine forêt. 
+                            Eaux thermales bénéfiques dans un environnement naturel.
+                        </p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag4-1">Thermal</span>
+                            <span class="feature-tag" id="tag4-2">Détente</span>
+                            <span class="feature-tag" id="tag4-3">Nature</span>
+                        </div>
+                        <a href="#" class="site-btn" id="btn-site4">
+                            <i class="fas fa-eye"></i>
+                            <span>Découvrir</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Site 5 -->
+                <div class="site-card fade-in">
+                    <div class="site-image">
+                        <img src="2f.jpg" 
+                             alt="Vallée d'Andapa">
+                        <span class="site-type" id="site5-type">AGRICOLE</span>
+                    </div>
+                    <div class="site-content">
+                        <h3 id="site5-title">Vallée d'Andapa</h3>
+                        <div class="site-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="site5-location">Andapa</span>
+                        </div>
+                        <p class="site-desc" id="site5-desc">
+                            Vaste vallée verdoyante aux rizières luxuriantes, considérée comme le cœur 
+                            agricole de la région SAVA. Paysages à couper le souffle.
+                        </p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag5-1">Rizières</span>
+                            <span class="feature-tag" id="tag5-2">Vallée</span>
+                            <span class="feature-tag" id="tag5-3">Agriculture</span>
+                        </div>
+                        <a href="#" class="site-btn" id="btn-site5">
+                            <i class="fas fa-eye"></i>
+                            <span>Découvrir</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Site 6 -->
+                <div class="site-card fade-in delay-1">
+                    <div class="site-image">
+                        <img src="2g.png" 
+                             alt="Plantations de Vanille">
+                        <span class="site-type" id="site6-type">OR NOIR</span>
+                    </div>
+                    <div class="site-content">
+                        <h3 id="site6-title">Plantations de Vanille de la SAVA</h3>
+                        <div class="site-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="site6-location">Région SAVA</span>
+                        </div>
+                        <p class="site-desc" id="site6-desc">
+                            Capitale mondiale de la vanille Bourbon, la région offre une immersion dans 
+                            un savoir-faire traditionnel unique. Découvrez le processus de A à Z.
+                        </p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag6-1">Vanille</span>
+                            <span class="feature-tag" id="tag6-2">Tradition</span>
+                            <span class="feature-tag" id="tag6-3">Dégustation</span>
+                        </div>
+                        <a href="#" class="site-btn" id="btn-site6">
+                            <i class="fas fa-eye"></i>
+                            <span>Découvrir</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Site 7 -->
+                <div class="site-card fade-in delay-2">
+                    <div class="site-image">
+                        <img src="2h.jpg" 
+                             alt="Plages de Sambava">
+                        <span class="site-type" id="site7-type">PLAGE</span>
+                    </div>
+                    <div class="site-content">
+                        <h3 id="site7-title">Plages de Sambava</h3>
+                        <div class="site-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="site7-location">Sambava</span>
+                        </div>
+                        <p class="site-desc" id="site7-desc">
+                            Plages calmes bordées de cocotiers, idéales pour la détente et les paysages 
+                            marins de l'océan Indien. Paradis des amateurs de farniente.
+                        </p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag7-1">Plage</span>
+                            <span class="feature-tag" id="tag7-2">Détente</span>
+                            <span class="feature-tag" id="tag7-3">Océan</span>
+                        </div>
+                        <a href="#" class="site-btn" id="btn-site7">
+                            <i class="fas fa-eye"></i>
+                            <span>Découvrir</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Site 8 -->
+                <div class="site-card fade-in delay-3">
+                    <div class="site-image">
+                        <img src="2i.avif" 
+                             alt="Culture et Vie Locale">
+                        <span class="site-type" id="site8-type">CULTURE</span>
+                    </div>
+                    <div class="site-content">
+                        <h3 id="site8-title">Culture et Vie Locale SAVA</h3>
+                        <div class="site-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="site8-location">Toute la région</span>
+                        </div>
+                        <p class="site-desc" id="site8-desc">
+                            Marchés, villages traditionnels et accueil chaleureux, pour une expérience 
+                            humaine authentique. Découvrez l'âme de la région SAVA.
+                        </p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag8-1">Culture</span>
+                            <span class="feature-tag" id="tag8-2">Traditions</span>
+                            <span class="feature-tag" id="tag8-3">Authenticité</span>
+                        </div>
+                        <a href="#" class="site-btn" id="btn-site8">
+                            <i class="fas fa-eye"></i>
+                            <span>Découvrir</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Traditions Section -->
+        <section id="traditions" class="traditions-section">
+            <div class="container">
+                <div class="traditions-content">
+                    <h2 class="section-title fade-in" id="traditions-title">Traditions et Culture</h2>
+                    
+                    <div class="traditions-grid">
+                        <div class="tradition-card fade-in">
+                            <div class="tradition-icon">👑</div>
+                            <h3 id="tradition1-title">Savoir-faire de la Vanille</h3>
+                            <p id="tradition1-desc">
+                                Découvrez les techniques ancestrales de culture et de préparation 
+                                de la vanille Bourbon, transmises de génération en génération 
+                                dans les familles de cultivateurs.
+                            </p>
+                        </div>
+
+                        <div class="tradition-card fade-in delay-1">
+                            <div class="tradition-icon">🎭</div>
+                            <h3 id="tradition2-title">Arts et Artisanat</h3>
+                            <p id="tradition2-desc">
+                                Explorez l'artisanat local unique : vannerie, sculpture sur bois, 
+                                tissage traditionnel et instruments de musique fabriqués à la main.
+                            </p>
+                        </div>
+
+                        <div class="tradition-card fade-in delay-2">
+                            <div class="tradition-icon">🍽️</div>
+                            <h3 id="tradition3-title">Gastronomie Locale</h3>
+                            <p id="tradition3-desc">
+                                Savourez la cuisine traditionnelle malgache avec des spécialités 
+                                régionales uniques préparées avec des produits frais du terroir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Time to Visit Section -->
+        <section id="best-time" class="best-time-section">
+            <div class="container">
+                <div class="best-time-content">
+                    <h2 class="section-title fade-in" id="besttime-title">Meilleure Période pour Visiter</h2>
+                    
+                    <div class="time-grid">
+                        <div class="time-card fade-in">
+                            <div class="time-period" id="time1-period">AVRIL - NOVEMBRE</div>
+                            <h3 class="time-title" id="time1-title">Saison Sèche</h3>
+                            <p class="time-desc" id="time1-desc">
+                                Conditions idéales pour la randonnée et l'exploration. 
+                                Temps ensoleillé, températures agréables et routes accessibles. 
+                                Parfaite pour découvrir tous les sites.
+                            </p>
+                            <span class="time-recommendation" id="time1-rec">RECOMMANDÉ</span>
+                        </div>
+
+                        <div class="time-card fade-in delay-1">
+                            <div class="time-period" id="time2-period">JUILLET - OCTOBRE</div>
+                            <h3 class="time-title" id="time2-title">Saison Fraîche</h3>
+                            <p class="time-desc" id="time2-desc">
+                                Températures plus fraîches, idéales pour le trekking. 
+                                Période de floraison de nombreuses espèces végétales. 
+                                Nuits fraîches mais journées agréables.
+                            </p>
+                            <span class="time-recommendation" id="time2-rec">IDÉAL</span>
+                        </div>
+
+                        <div class="time-card fade-in delay-2">
+                            <div class="time-period" id="time3-period">DÉCEMBRE - MARS</div>
+                            <h3 class="time-title" id="time3-title">Saison des Pluies</h3>
+                            <p class="time-desc" id="time3-desc">
+                                Paysages très verts et luxuriants. Période de croissance 
+                                de la vanille. Certaines zones peuvent être moins accessibles 
+                                mais la beauté naturelle est à son apogée.
+                            </p>
+                            <span class="time-recommendation" id="time3-rec">AVERTISSEMENT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content fade-in">
+                    <h2 id="about-title">À Propos de la Région SAVA</h2>
+                    <p id="about-desc">
+                        La région SAVA (Sambava, Antalaha, Vohemar, Andapa) est une zone 
+                        préservée du nord-est de Madagascar, réputée pour être la capitale 
+                        mondiale de la vanille. Cette région combine richesses naturelles 
+                        exceptionnelles, biodiversité unique et culture authentique.
+                    </p>
+                    <p id="about-desc2">
+                        Entre forêts primaires classées UNESCO, plantations de vanille, 
+                        plages sauvages et vallées verdoyantes, la SAVA offre une expérience 
+                        touristique unique loin des sentiers battus, où nature et traditions 
+                        se rencontrent harmonieusement.
+                    </p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" id="stat1">80%</div>
+                            <div class="stat-label" id="stat1-label">Vanille mondiale</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="stat2">8</div>
+                            <div class="stat-label" id="stat2-label">Sites incontournables</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="stat3">3</div>
+                            <div class="stat-label" id="stat3-label">Réserves naturelles</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="stat4">12+</div>
+                            <div class="stat-label" id="stat4-label">Espèces endémiques</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://flagcdn.com/w320/mg.png" alt="Drapeau Madagascar">
+                    <div class="footer-logo-text">
+                        <div class="footer-title" id="footer-title">SAVA MADAGASCAR</div>
+                        <div class="footer-tagline" id="footer-tagline">Découvrez le cœur vert du Nord-Est</div>
+                    </div>
+                </div>
+                
+                <p class="footer-info" id="footer-info">
+                    Site officiel des sites incontournables de la région SAVA.<br>
+                    Informations, visites guidées et conseils pratiques pour votre voyage.
+                </p>
+                
+                <p class="footer-creator" id="footer-creator">Site créé par Habibe - Guide Touristique Professionnel</p>
+                
+                <p class="footer-info" id="footer-contact">
+                    <i class="fas fa-phone"></i> +261 32 39 622 86<br>
+                    <i class="fas fa-envelope"></i> hajahabibeabdou@gmail.com
+                </p>
+                
+                <p class="footer-info" id="footer-services">
+                    Transferts aéroport • Guides francophones • Organisation de circuits • Réservations d'hébergement
+                </p>
+                
+                <div class="footer-copyright" id="footer-copyright">
+                    © 2024 Mada Vibe Descover - Tous droits réservés.<br>
+                    Région SAVA, Madagascar • Licence Touristique #MT2024
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== TRADUCTIONS MULTILANGUES =====
+        const translations = {
+            en: {
+                // Header
+                "logo-title": "SAVA MADAGASCAR",
+                "logo-tagline": "Must-See Tourist Sites",
+                "menu-home": "Home",
+                "menu-sites": "Must-See Sites",
+                "menu-traditions": "Traditions",
+                "menu-besttime": "Best Time",
+                "menu-about": "About",
+                "menu-contact": "Contact",
+                
+                // Hero
+                "hero-title": "Discover the SAVA Region",
+                "hero-subtitle": "The SAVA Region, a destination where nature remains intact, vanilla scents the forest, and the ocean meets the mountains.",
+                
+                // Sites Section
+                "sites-title": "The 8 Must-See Sites",
+                
+                // Site 1
+                "site1-type": "UNESCO",
+                "site1-title": "Marojejy National Park",
+                "site1-location": "Marojejy Massif",
+                "site1-desc": "Classified tropical forest, spectacular peaks and exceptional biodiversity. Ideal for hiking and ecotourism in a preserved natural setting.",
+                "tag1-1": "Hiking",
+                "tag1-2": "Biodiversity",
+                "tag1-3": "Ecotourism",
+                "btn-site1": "Discover",
+                
+                // Site 2
+                "site2-type": "RESERVE",
+                "site2-title": "Anjanaharibe-Sud Special Reserve",
+                "site2-location": "Anjanaharibe Massif",
+                "site2-desc": "Wild and preserved reserve, known for its endemic wildlife and primary forest landscapes. Unique natural sanctuary.",
+                "tag2-1": "Endemic Wildlife",
+                "tag2-2": "Primary Forest",
+                "tag2-3": "Preservation",
+                "btn-site2": "Discover",
+                
+                // Site 3
+                "site3-type": "NATURE",
+                "site3-title": "Antanetiambo Natural Reserve",
+                "site3-location": "Near Andapa",
+                "site3-desc": "Accessible site near Andapa, perfect for lemur watching and discovering local nature in an intimate and preserved setting.",
+                "tag3-1": "Lemurs",
+                "tag3-2": "Observation",
+                "tag3-3": "Accessible",
+                "btn-site3": "Discover",
+                
+                // Site 4
+                "site4-type": "THERMAL",
+                "site4-title": "Ranomafana Hot Springs (Andapa)",
+                "site4-location": "Andapa",
+                "site4-desc": "Natural springs offering a moment of relaxation after a hike in the forest. Beneficial thermal waters in a natural environment.",
+                "tag4-1": "Thermal",
+                "tag4-2": "Relaxation",
+                "tag4-3": "Nature",
+                "btn-site4": "Discover",
+                
+                // Site 5
+                "site5-type": "AGRICULTURAL",
+                "site5-title": "Andapa Valley",
+                "site5-location": "Andapa",
+                "site5-desc": "Vast green valley with lush rice paddies, considered the agricultural heart of the SAVA region. Breathtaking landscapes.",
+                "tag5-1": "Rice Fields",
+                "tag5-2": "Valley",
+                "tag5-3": "Agriculture",
+                "btn-site5": "Discover",
+                
+                // Site 6
+                "site6-type": "BLACK GOLD",
+                "site6-title": "SAVA Vanilla Plantations",
+                "site6-location": "SAVA Region",
+                "site6-desc": "World capital of Bourbon vanilla, the region offers immersion in a unique traditional know-how. Discover the process from A to Z.",
+                "tag6-1": "Vanilla",
+                "tag6-2": "Tradition",
+                "tag6-3": "Tasting",
+                "btn-site6": "Discover",
+                
+                // Site 7
+                "site7-type": "BEACH",
+                "site7-title": "Sambava Beaches",
+                "site7-location": "Sambava",
+                "site7-desc": "Calm beaches lined with coconut trees, ideal for relaxation and Indian Ocean marine landscapes. Paradise for relaxation lovers.",
+                "tag7-1": "Beach",
+                "tag7-2": "Relaxation",
+                "tag7-3": "Ocean",
+                "btn-site7": "Discover",
+                
+                // Site 8
+                "site8-type": "CULTURE",
+                "site8-title": "SAVA Culture and Local Life",
+                "site8-location": "Entire region",
+                "site8-desc": "Markets, traditional villages and warm welcome, for an authentic human experience. Discover the soul of the SAVA region.",
+                "tag8-1": "Culture",
+                "tag8-2": "Traditions",
+                "tag8-3": "Authenticity",
+                "btn-site8": "Discover",
+                
+                // Traditions Section
+                "traditions-title": "Traditions and Culture",
+                "tradition1-title": "Vanilla Know-How",
+                "tradition1-desc": "Discover the ancestral techniques of growing and preparing Bourbon vanilla, passed down from generation to generation in grower families.",
+                "tradition2-title": "Arts and Crafts",
+                "tradition2-desc": "Explore unique local craftsmanship: basketry, wood carving, traditional weaving and handmade musical instruments.",
+                "tradition3-title": "Local Gastronomy",
+                "tradition3-desc": "Enjoy traditional Malagasy cuisine with unique regional specialties prepared with fresh local products.",
+                
+                // Best Time Section
+                "besttime-title": "Best Time to Visit",
+                "time1-period": "APRIL - NOVEMBER",
+                "time1-title": "Dry Season",
+                "time1-desc": "Ideal conditions for hiking and exploration. Sunny weather, pleasant temperatures and accessible roads. Perfect for discovering all sites.",
+                "time1-rec": "RECOMMENDED",
+                "time2-period": "JULY - OCTOBER",
+                "time2-title": "Cool Season",
+                "time2-desc": "Cooler temperatures, ideal for trekking. Flowering period of many plant species. Cool nights but pleasant days.",
+                "time2-rec": "IDEAL",
+                "time3-period": "DECEMBER - MARCH",
+                "time3-title": "Rainy Season",
+                "time3-desc": "Very green and lush landscapes. Vanilla growth period. Some areas may be less accessible but natural beauty is at its peak.",
+                "time3-rec": "WARNING",
+                
+                // About Section
+                "about-title": "About the SAVA Region",
+                "about-desc": "The SAVA region (Sambava, Antalaha, Vohemar, Andapa) is a preserved area in northeastern Madagascar, renowned as the world capital of vanilla. This region combines exceptional natural wealth, unique biodiversity and authentic culture.",
+                "about-desc2": "Between UNESCO-classified primary forests, vanilla plantations, wild beaches and green valleys, SAVA offers a unique tourist experience off the beaten track, where nature and traditions meet harmoniously.",
+                "stat1": "80%",
+                "stat1-label": "World vanilla",
+                "stat2": "8",
+                "stat2-label": "Must-see sites",
+                "stat3": "3",
+                "stat3-label": "Nature reserves",
+                "stat4": "12+",
+                "stat4-label": "Endemic species",
+                
+                // Footer
+                "footer-title": "SAVA MADAGASCAR",
+                "footer-tagline": "Discover the green heart of the Northeast",
+                "footer-info": "Official website of the must-see sites in the SAVA region.<br>Information, guided tours and practical advice for your trip.",
+                "footer-creator": "Site created by Habibe - Professional Tour Guide",
+                "footer-contact": "<i class='fas fa-phone'></i> +261 32 39 622 86<br><i class='fas fa-envelope'></i> hajahabibeabdou@gmail.com",
+                "footer-services": "Airport transfers • French-speaking guides • Tour organization • Accommodation bookings",
+                "footer-copyright": "© 2024 Mada Vibe Descover - All rights reserved.<br>SAVA Region, Madagascar • Tourism License #MT2024"
+            },
+            fr: {
+                "logo-title": "SAVA MADAGASCAR",
+                "logo-tagline": "Sites Touristiques Incontournables",
+                "menu-home": "Accueil",
+                "menu-sites": "Sites Incontournables",
+                "menu-traditions": "Traditions",
+                "menu-besttime": "Meilleure Période",
+                "menu-about": "À Propos",
+                "menu-contact": "Contact",
+                
+                "hero-title": "Découvrez la Région SAVA",
+                "hero-subtitle": "La Région SAVA, une destination où la nature reste intacte, la vanille parfume la forêt et l'océan rencontre les montagnes.",
+                
+                "sites-title": "Les 8 Sites Incontournables",
+                
+                "site1-type": "UNESCO",
+                "site1-title": "Parc National de Marojejy",
+                "site1-location": "Massif de Marojejy",
+                "site1-desc": "Forêt tropicale classée, sommets spectaculaires et biodiversité exceptionnelle. Idéal pour la randonnée et l'écotourisme dans un cadre naturel préservé.",
+                "tag1-1": "Randonnée",
+                "tag1-2": "Biodiversité",
+                "tag1-3": "Écotourisme",
+                "btn-site1": "Découvrir",
+                
+                "site2-type": "RÉSERVE",
+                "site2-title": "Réserve Spéciale d'Anjanaharibe-Sud",
+                "site2-location": "Massif d'Anjanaharibe",
+                "site2-desc": "Réserve sauvage et préservée, connue pour sa faune endémique et ses paysages de forêt primaire. Sanctuaire naturel unique en son genre.",
+                "tag2-1": "Faune Endémique",
+                "tag2-2": "Forêt Primaire",
+                "tag2-3": "Préservation",
+                "btn-site2": "Découvrir",
+                
+                "site3-type": "NATURE",
+                "site3-title": "Réserve Naturelle d'Antanetiambo",
+                "site3-location": "Près d'Andapa",
+                "site3-desc": "Site accessible près d'Andapa, parfait pour l'observation des lémuriens et la découverte de la nature locale dans un cadre intime et préservé.",
+                "tag3-1": "Lémuriens",
+                "tag3-2": "Observation",
+                "tag3-3": "Accessible",
+                "btn-site3": "Découvrir",
+                
+                "site4-type": "THERMAL",
+                "site4-title": "Sources chaudes de Ranomafana (Andapa)",
+                "site4-location": "Andapa",
+                "site4-desc": "Sources naturelles offrant un moment de détente après une randonnée en pleine forêt. Eaux thermales bénéfiques dans un environnement naturel.",
+                "tag4-1": "Thermal",
+                "tag4-2": "Détente",
+                "tag4-3": "Nature",
+                "btn-site4": "Découvrir",
+                
+                "site5-type": "AGRICOLE",
+                "site5-title": "Vallée d'Andapa",
+                "site5-location": "Andapa",
+                "site5-desc": "Vaste vallée verdoyante aux rizières luxuriantes, considérée comme le cœur agricole de la région SAVA. Paysages à couper le souffle.",
+                "tag5-1": "Rizières",
+                "tag5-2": "Vallée",
+                "tag5-3": "Agriculture",
+                "btn-site5": "Découvrir",
+                
+                "site6-type": "OR NOIR",
+                "site6-title": "Plantations de Vanille de la SAVA",
+                "site6-location": "Région SAVA",
+                "site6-desc": "Capitale mondiale de la vanille Bourbon, la région offre une immersion dans un savoir-faire traditionnel unique. Découvrez le processus de A à Z.",
+                "tag6-1": "Vanille",
+                "tag6-2": "Tradition",
+                "tag6-3": "Dégustation",
+                "btn-site6": "Découvrir",
+                
+                "site7-type": "PLAGE",
+                "site7-title": "Plages de Sambava",
+                "site7-location": "Sambava",
+                "site7-desc": "Plages calmes bordées de cocotiers, idéales pour la détente et les paysages marins de l'océan Indien. Paradis des amateurs de farniente.",
+                "tag7-1": "Plage",
+                "tag7-2": "Détente",
+                "tag7-3": "Océan",
+                "btn-site7": "Découvrir",
+                
+                "site8-type": "CULTURE",
+                "site8-title": "Culture et Vie Locale SAVA",
+                "site8-location": "Toute la région",
+                "site8-desc": "Marchés, villages traditionnels et accueil chaleureux, pour une expérience humaine authentique. Découvrez l'âme de la région SAVA.",
+                "tag8-1": "Culture",
+                "tag8-2": "Traditions",
+                "tag8-3": "Authenticité",
+                "btn-site8": "Découvrir",
+                
+                "traditions-title": "Traditions et Culture",
+                "tradition1-title": "Savoir-faire de la Vanille",
+                "tradition1-desc": "Découvrez les techniques ancestrales de culture et de préparation de la vanille Bourbon, transmises de génération en génération dans les familles de cultivateurs.",
+                "tradition2-title": "Arts et Artisanat",
+                "tradition2-desc": "Explorez l'artisanat local unique : vannerie, sculpture sur bois, tissage traditionnel et instruments de musique fabriqués à la main.",
+                "tradition3-title": "Gastronomie Locale",
+                "tradition3-desc": "Savourez la cuisine traditionnelle malgache avec des spécialités régionales uniques préparées avec des produits frais du terroir.",
+                
+                "besttime-title": "Meilleure Période pour Visiter",
+                "time1-period": "AVRIL - NOVEMBRE",
+                "time1-title": "Saison Sèche",
+                "time1-desc": "Conditions idéales pour la randonnée et l'exploration. Temps ensoleillé, températures agréables et routes accessibles. Parfaite pour découvrir tous les sites.",
+                "time1-rec": "RECOMMANDÉ",
+                "time2-period": "JUILLET - OCTOBRE",
+                "time2-title": "Saison Fraîche",
+                "time2-desc": "Températures plus fraîches, idéales pour le trekking. Période de floraison de nombreuses espèces végétales. Nuits fraîches mais journées agréables.",
+                "time2-rec": "IDÉAL",
+                "time3-period": "DÉCEMBRE - MARS",
+                "time3-title": "Saison des Pluies",
+                "time3-desc": "Paysages très verts et luxuriants. Période de croissance de la vanille. Certaines zones peuvent être moins accessibles mais la beauté naturelle est à son apogée.",
+                "time3-rec": "AVERTISSEMENT",
+                
+                "about-title": "À Propos de la Région SAVA",
+                "about-desc": "La région SAVA (Sambava, Antalaha, Vohemar, Andapa) est une zone préservée du nord-est de Madagascar, réputée pour être la capitale mondiale de la vanille. Cette région combine richesses naturelles exceptionnelles, biodiversité unique et culture authentique.",
+                "about-desc2": "Entre forêts primaires classées UNESCO, plantations de vanille, plages sauvages et vallées verdoyantes, la SAVA offre une expérience touristique unique loin des sentiers battus, où nature et traditions se rencontrent harmonieusement.",
+                "stat1": "80%",
+                "stat1-label": "Vanille mondiale",
+                "stat2": "8",
+                "stat2-label": "Sites incontournables",
+                "stat3": "3",
+                "stat3-label": "Réserves naturelles",
+                "stat4": "12+",
+                "stat4-label": "Espèces endémiques",
+                
+                "footer-title": "SAVA MADAGASCAR",
+                "footer-tagline": "Découvrez le cœur vert du Nord-Est",
+                "footer-info": "Site officiel des sites incontournables de la région SAVA.<br>Informations, visites guidées et conseils pratiques pour votre voyage.",
+                "footer-creator": "Site créé par Habibe - Guide Touristique Professionnel",
+                "footer-contact": "<i class='fas fa-phone'></i> +261 32 39 622 86<br><i class='fas fa-envelope'></i> hajahabibeabdou@gmail.com",
+                "footer-services": "Transferts aéroport • Guides francophones • Organisation de circuits • Réservations d'hébergement",
+                "footer-copyright": "© 2024 Mada Vibe Descover - Tous droits réservés.<br>Région SAVA, Madagascar • Licence Touristique #MT2024"
+            },
+            de: {
+                "logo-title": "SAVA MADAGASKAR",
+                "logo-tagline": "Unverzichtbare Sehenswürdigkeiten",
+                "menu-home": "Startseite",
+                "menu-sites": "Sehenswürdigkeiten",
+                "menu-traditions": "Traditionen",
+                "menu-besttime": "Beste Reisezeit",
+                "menu-about": "Über uns",
+                "menu-contact": "Kontakt",
+                
+                "hero-title": "Entdecken Sie die SAVA-Region",
+                "hero-subtitle": "Die SAVA-Region, ein Reiseziel, an dem die Natur unberührt bleibt, Vanille den Wald parfümiert und das Meer auf die Berge trifft.",
+                
+                "sites-title": "Die 8 unverzichtbaren Sehenswürdigkeiten",
+                
+                "site1-type": "UNESCO",
+                "site1-title": "Nationalpark Marojejy",
+                "site1-location": "Marojejy-Massiv",
+                "site1-desc": "Klassifizierter Tropenwald, spektakuläre Gipfel und außergewöhnliche Artenvielfalt. Ideal zum Wandern und für Ökotourismus in einer geschützten Naturumgebung.",
+                "tag1-1": "Wandern",
+                "tag1-2": "Biodiversität",
+                "tag1-3": "Ökotourismus",
+                "btn-site1": "Entdecken",
+                
+                "site2-type": "RESERVAT",
+                "site2-title": "Anjanaharibe-Sud-Spezialreservat",
+                "site2-location": "Anjanaharibe-Massiv",
+                "site2-desc": "Wildes und geschütztes Reservat, bekannt für seine endemische Tierwelt und Primärwaldlandschaften. Einzigartiges Naturschutzgebiet.",
+                "tag2-1": "Endemische Tierwelt",
+                "tag2-2": "Primärwald",
+                "tag2-3": "Schutz",
+                "btn-site2": "Entdecken",
+                
+                "site3-type": "NATUR",
+                "site3-title": "Antanetiambo-Naturreservat",
+                "site3-location": "Bei Andapa",
+                "site3-desc": "Zugängliche Stätte in der Nähe von Andapa, perfekt zur Lemurenbeobachtung und Entdeckung der lokalen Natur in einer intimen und geschützten Umgebung.",
+                "tag3-1": "Lemuren",
+                "tag3-2": "Beobachtung",
+                "tag3-3": "Zugänglich",
+                "btn-site3": "Entdecken",
+                
+                "site4-type": "THERMAL",
+                "site4-title": "Ranomafana-Heißquellen (Andapa)",
+                "site4-location": "Andapa",
+                "site4-desc": "Natürliche Quellen, die nach einer Wanderung im Wald Entspannung bieten. Wohltuende Thermalwässer in natürlicher Umgebung.",
+                "tag4-1": "Thermal",
+                "tag4-2": "Entspannung",
+                "tag4-3": "Natur",
+                "btn-site4": "Entdecken",
+                
+                "site5-type": "LANDWIRTSCHAFT",
+                "site5-title": "Andapa-Tal",
+                "site5-location": "Andapa",
+                "site5-desc": "Weites grünes Tal mit üppigen Reisfeldern, gilt als landwirtschaftliches Herz der SAVA-Region. Atemberaubende Landschaften.",
+                "tag5-1": "Reisfelder",
+                "tag5-2": "Tal",
+                "tag5-3": "Landwirtschaft",
+                "btn-site5": "Entdecken",
+                
+                "site6-type": "SCHWARZES GOLD",
+                "site6-title": "SAVA-Vanilleplantagen",
+                "site6-location": "SAVA-Region",
+                "site6-desc": "Weltkapital der Bourbon-Vanille, die Region bietet Einblick in ein einzigartiges traditionelles Know-how. Entdecken Sie den Prozess von A bis Z.",
+                "tag6-1": "Vanille",
+                "tag6-2": "Tradition",
+                "tag6-3": "Verkostung",
+                "btn-site6": "Entdecken",
+                
+                "site7-type": "STRAND",
+                "site7-title": "Sambava-Strände",
+                "site7-location": "Sambava",
+                "site7-desc": "Ruhige Strände gesäumt von Kokospalmen, ideal zur Entspannung und für indische Ozeanlandschaften. Paradies für Entspannungsliebhaber.",
+                "tag7-1": "Strand",
+                "tag7-2": "Entspannung",
+                "tag7-3": "Ozean",
+                "btn-site7": "Entdecken",
+                
+                "site8-type": "KULTUR",
+                "site8-title": "SAVA-Kultur und lokales Leben",
+                "site8-location": "Gesamte Region",
+                "site8-desc": "Märkte, traditionelle Dörfer und herzlicher Empfang für ein authentisches menschliches Erlebnis. Entdecken Sie die Seele der SAVA-Region.",
+                "tag8-1": "Kultur",
+                "tag8-2": "Traditionen",
+                "tag8-3": "Authentizität",
+                "btn-site8": "Entdecken",
+                
+                "traditions-title": "Traditionen und Kultur",
+                "tradition1-title": "Vanille-Know-how",
+                "tradition1-desc": "Entdecken Sie die ancestralen Techniken des Vanilleanbaus und -verarbeitens, die von Generation zu Generation in Anbauerfamilien weitergegeben werden.",
+                "tradition2-title": "Kunst und Handwerk",
+                "tradition2-desc": "Entdecken Sie einzigartiges lokales Handwerk: Korbflechterei, Holzschnitzerei, traditionelles Weben und handgefertigte Musikinstrumente.",
+                "tradition3-title": "Lokale Gastronomie",
+                "tradition3-desc": "Genießen Sie traditionelle madagassische Küche mit einzigartigen regionalen Spezialitäten, zubereitet mit frischen lokalen Produkten.",
+                
+                "besttime-title": "Beste Reisezeit",
+                "time1-period": "APRIL - NOVEMBER",
+                "time1-title": "Trockenzeit",
+                "time1-desc": "Ideale Bedingungen zum Wandern und Erkunden. Sonniges Wetter, angenehme Temperaturen und zugängliche Straßen. Perfekt zur Entdeckung aller Stätten.",
+                "time1-rec": "EMPFOHLEN",
+                "time2-period": "JULI - OKTOBER",
+                "time2-title": "Kühle Jahreszeit",
+                "time2-desc": "Kühlere Temperaturen, ideal zum Trekking. Blütezeit vieler Pflanzenarten. Kühle Nächte aber angenehme Tage.",
+                "time2-rec": "IDEAL",
+                "time3-period": "DEZEMBER - MÄRZ",
+                "time3-title": "Regenzeit",
+                "time3-desc": "Sehr grüne und üppige Landschaften. Vanille-Wachstumsperiode. Einige Gebiete können weniger zugänglich sein, aber die natürliche Schönheit ist auf ihrem Höhepunkt.",
+                "time3-rec": "WARNUNG",
+                
+                "about-title": "Über die SAVA-Region",
+                "about-desc": "Die SAVA-Region (Sambava, Antalaha, Vohemar, Andapa) ist ein geschütztes Gebiet im Nordosten Madagaskars, bekannt als Weltvanillehauptstadt. Diese Region vereint außergewöhnlichen natürlichen Reichtum, einzigartige Artenvielfalt und authentische Kultur.",
+                "about-desc2": "Zwischen UNESCO-klassifizierten Primärwäldern, Vanilleplantagen, wilden Stränden und grünen Tälern bietet SAVA ein einzigartiges touristisches Erlebnis abseits der ausgetretenen Pfade, wo Natur und Tradition harmonisch zusammentreffen.",
+                "stat1": "80%",
+                "stat1-label": "Weltvanille",
+                "stat2": "8",
+                "stat2-label": "Sehenswürdigkeiten",
+                "stat3": "3",
+                "stat3-label": "Naturschutzgebiete",
+                "stat4": "12+",
+                "stat4-label": "Endemische Arten",
+                
+                "footer-title": "SAVA MADAGASKAR",
+                "footer-tagline": "Entdecken Sie das grüne Herz des Nordostens",
+                "footer-info": "Offizielle Website der unverzichtbaren Sehenswürdigkeiten in der SAVA-Region.<br>Informationen, geführte Touren und praktische Ratschläge für Ihre Reise.",
+                "footer-creator": "Website erstellt von Habibe - Professioneller Reiseführer",
+                "footer-contact": "<i class='fas fa-phone'></i> +261 32 39 622 86<br><i class='fas fa-envelope'></i> hajahabibeabdou@gmail.com",
+                "footer-services": "Flughafentransfers • Deutschsprachige Führer • Tourorganisation • Unterkunftsbuchungen",
+                "footer-copyright": "© 2024 Mada Vibe Descover - Alle Rechte vorbehalten.<br>SAVA-Region, Madagaskar • Tourismuslizenz #MT2024"
+            },
+            es: {
+                "logo-title": "SAVA MADAGASCAR",
+                "logo-tagline": "Sitios Turísticos Imprescindibles",
+                "menu-home": "Inicio",
+                "menu-sites": "Sitios Imprescindibles",
+                "menu-traditions": "Tradiciones",
+                "menu-besttime": "Mejor Época",
+                "menu-about": "Acerca de",
+                "menu-contact": "Contacto",
+                
+                "hero-title": "Descubra la Región SAVA",
+                "hero-subtitle": "La Región SAVA, un destino donde la naturaleza permanece intacta, la vainilla perfuma el bosque y el océano se encuentra con las montañas.",
+                
+                "sites-title": "Los 8 Sitios Imprescindibles",
+                
+                "site1-type": "UNESCO",
+                "site1-title": "Parque Nacional Marojejy",
+                "site1-location": "Macizo de Marojejy",
+                "site1-desc": "Bosque tropical clasificado, picos espectaculares y biodiversidad excepcional. Ideal para senderismo y ecoturismo en un entorno natural preservado.",
+                "tag1-1": "Senderismo",
+                "tag1-2": "Biodiversidad",
+                "tag1-3": "Ecoturismo",
+                "btn-site1": "Descubrir",
+                
+                "site2-type": "RESERVA",
+                "site2-title": "Reserva Especial de Anjanaharibe-Sud",
+                "site2-location": "Macizo de Anjanaharibe",
+                "site2-desc": "Reserva salvaje y preservada, conocida por su fauna endémica y paisajes de bosque primario. Santuario natural único en su género.",
+                "tag2-1": "Fauna Endémica",
+                "tag2-2": "Bosque Primario",
+                "tag2-3": "Preservación",
+                "btn-site2": "Descubrir",
+                
+                "site3-type": "NATURALEZA",
+                "site3-title": "Reserva Natural de Antanetiambo",
+                "site3-location": "Cerca de Andapa",
+                "site3-desc": "Sitio accesible cerca de Andapa, perfecto para observar lémures y descubrir la naturaleza local en un entorno íntimo y preservado.",
+                "tag3-1": "Lémures",
+                "tag3-2": "Observación",
+                "tag3-3": "Accesible",
+                "btn-site3": "Descubrir",
+                
+                "site4-type": "TERMAL",
+                "site4-title": "Aguas Termales de Ranomafana (Andapa)",
+                "site4-location": "Andapa",
+                "site4-desc": "Fuentes naturales que ofrecen un momento de relajación después de una caminata en el bosque. Aguas termales beneficiosas en un entorno natural.",
+                "tag4-1": "Termal",
+                "tag4-2": "Relajación",
+                "tag4-3": "Naturaleza",
+                "btn-site4": "Descubrir",
+                
+                "site5-type": "AGRÍCOLA",
+                "site5-title": "Valle de Andapa",
+                "site5-location": "Andapa",
+                "site5-desc": "Vasto valle verde con arrozales exuberantes, considerado el corazón agrícola de la región SAVA. Paisajes impresionantes.",
+                "tag5-1": "Arrozales",
+                "tag5-2": "Valle",
+                "tag5-3": "Agricultura",
+                "btn-site5": "Descubrir",
+                
+                "site6-type": "ORO NEGRO",
+                "site6-title": "Plantaciones de Vainilla de SAVA",
+                "site6-location": "Región SAVA",
+                "site6-desc": "Capital mundial de la vainilla Bourbon, la región ofrece inmersión en un saber hacer tradicional único. Descubra el proceso de la A a la Z.",
+                "tag6-1": "Vainilla",
+                "tag6-2": "Tradición",
+                "tag6-3": "Degustación",
+                "btn-site6": "Descubrir",
+                
+                "site7-type": "PLAYA",
+                "site7-title": "Playas de Sambava",
+                "site7-location": "Sambava",
+                "site7-desc": "Playas tranquilas bordeadas de cocoteros, ideales para relajarse y paisajes marinos del Océano Índico. Paraíso para los amantes del descanso.",
+                "tag7-1": "Playa",
+                "tag7-2": "Relajación",
+                "tag7-3": "Océano",
+                "btn-site7": "Descubrir",
+                
+                "site8-type": "CULTURA",
+                "site8-title": "Cultura y Vida Local de SAVA",
+                "site8-location": "Toda la región",
+                "site8-desc": "Mercados, pueblos tradicionales y acogida cálida, para una experiencia humana auténtica. Descubra el alma de la región SAVA.",
+                "tag8-1": "Cultura",
+                "tag8-2": "Tradiciones",
+                "tag8-3": "Autenticidad",
+                "btn-site8": "Descubrir",
+                
+                "traditions-title": "Tradiciones y Cultura",
+                "tradition1-title": "Saber hacer de la Vainilla",
+                "tradition1-desc": "Descubra las técnicas ancestrales de cultivo y preparación de la vainilla Bourbon, transmitidas de generación en generación en familias cultivadoras.",
+                "tradition2-title": "Artes y Artesanía",
+                "tradition2-desc": "Explore la artesanía local única: cestería, tallado en madera, tejido tradicional e instrumentos musicales hechos a mano.",
+                "tradition3-title": "Gastronomía Local",
+                "tradition3-desc": "Disfrute de la cocina tradicional malgache con especialidades regionales únicas preparadas con productos locales frescos.",
+                
+                "besttime-title": "Mejor Época para Visitar",
+                "time1-period": "ABRIL - NOVIEMBRE",
+                "time1-title": "Temporada Seca",
+                "time1-desc": "Condiciones ideales para senderismo y exploración. Tiempo soleado, temperaturas agradables y carreteras accesibles. Perfecta para descubrir todos los sitios.",
+                "time1-rec": "RECOMENDADO",
+                "time2-period": "JULIO - OCTUBRE",
+                "time2-title": "Temporada Fresca",
+                "time2-desc": "Temperaturas más frescas, ideales para trekking. Período de floración de muchas especies vegetales. Noches frescas pero días agradables.",
+                "time2-rec": "IDEAL",
+                "time3-period": "DICIEMBRE - MARZO",
+                "time3-title": "Temporada de Lluvias",
+                "time3-desc": "Paisajes muy verdes y exuberantes. Período de crecimiento de la vainilla. Algunas zonas pueden ser menos accesibles pero la belleza natural está en su apogeo.",
+                "time3-rec": "ADVERTENCIA",
+                
+                "about-title": "Acerca de la Región SAVA",
+                "about-desc": "La región SAVA (Sambava, Antalaha, Vohemar, Andapa) es un área preservada del noreste de Madagascar, renombrada como capital mundial de la vainilla. Esta región combina riquezas naturales excepcionales, biodiversidad única y cultura auténtica.",
+                "about-desc2": "Entre bosques primarios clasificados UNESCO, plantaciones de vainilla, playas salvajes y valles verdes, SAVA ofrece una experiencia turística única lejos de los caminos trillados, donde naturaleza y tradiciones se encuentran armoniosamente.",
+                "stat1": "80%",
+                "stat1-label": "Vainilla mundial",
+                "stat2": "8",
+                "stat2-label": "Sitios imprescindibles",
+                "stat3": "3",
+                "stat3-label": "Reservas naturales",
+                "stat4": "12+",
+                "stat4-label": "Especies endémicas",
+                
+                "footer-title": "SAVA MADAGASCAR",
+                "footer-tagline": "Descubra el corazón verde del Noreste",
+                "footer-info": "Sitio oficial de los sitios imprescindibles de la región SAVA.<br>Información, visitas guiadas y consejos prácticos para su viaje.",
+                "footer-creator": "Sitio creado por Habibe - Guía Turístico Profesional",
+                "footer-contact": "<i class='fas fa-phone'></i> +261 32 39 622 86<br><i class='fas fa-envelope'></i> hajahabibeabdou@gmail.com",
+                "footer-services": "Traslados aeropuerto • Guías hispanohablantes • Organización de circuitos • Reservas de alojamiento",
+                "footer-copyright": "© 2024 Mada Vibe Descover - Todos los derechos reservados.<br>Región SAVA, Madagascar • Licencia Turística #MT2024"
+            },
+            it: {
+                "logo-title": "SAVA MADAGASCAR",
+                "logo-tagline": "Siti Turistici Imperdibili",
+                "menu-home": "Home",
+                "menu-sites": "Siti Imperdibili",
+                "menu-traditions": "Tradizioni",
+                "menu-besttime": "Periodo Migliore",
+                "menu-about": "Informazioni",
+                "menu-contact": "Contatto",
+                
+                "hero-title": "Scopri la Regione SAVA",
+                "hero-subtitle": "La Regione SAVA, una destinazione dove la natura rimane intatta, la vaniglia profuma la foresta e l'oceano incontra le montagne.",
+                
+                "sites-title": "Gli 8 Siti Imperdibili",
+                
+                "site1-type": "UNESCO",
+                "site1-title": "Parco Nazionale Marojejy",
+                "site1-location": "Massiccio di Marojejy",
+                "site1-desc": "Foresta tropicale classificata, vette spettacolari e biodiversità eccezionale. Ideale per escursionismo ed ecoturismo in un ambiente naturale preservato.",
+                "tag1-1": "Escursionismo",
+                "tag1-2": "Biodiversità",
+                "tag1-3": "Ecoturismo",
+                "btn-site1": "Scopri",
+                
+                "site2-type": "RISERVA",
+                "site2-title": "Riserva Speciale Anjanaharibe-Sud",
+                "site2-location": "Massiccio di Anjanaharibe",
+                "site2-desc": "Riserva selvaggia e preservata, nota per la sua fauna endemica e paesaggi di foresta primaria. Santuario naturale unico nel suo genere.",
+                "tag2-1": "Fauna Endemica",
+                "tag2-2": "Foresta Primaria",
+                "tag2-3": "Preservazione",
+                "btn-site2": "Scopri",
+                
+                "site3-type": "NATURA",
+                "site3-title": "Riserva Naturale Antanetiambo",
+                "site3-location": "Vicino ad Andapa",
+                "site3-desc": "Sito accessibile vicino ad Andapa, perfetto per osservare i lemuri e scoprire la natura locale in un ambiente intimo e preservato.",
+                "tag3-1": "Lemuri",
+                "tag3-2": "Osservazione",
+                "tag3-3": "Accessibile",
+                "btn-site3": "Scopri",
+                
+                "site4-type": "TERMALE",
+                "site4-title": "Sorgenti Termali di Ranomafana (Andapa)",
+                "site4-location": "Andapa",
+                "site4-desc": "Sorgenti naturali che offrono un momento di relax dopo un'escursione nella foresta. Acque termali benefiche in ambiente naturale.",
+                "tag4-1": "Termale",
+                "tag4-2": "Rilassamento",
+                "tag4-3": "Natura",
+                "btn-site4": "Scopri",
+                
+                "site5-type": "AGRICOLO",
+                "site5-title": "Valle di Andapa",
+                "site5-location": "Andapa",
+                "site5-desc": "Vasta valle verdeggiante con risaie lussureggianti, considerata il cuore agricolo della regione SAVA. Paesaggi mozzafiato.",
+                "tag5-1": "Risaie",
+                "tag5-2": "Valle",
+                "tag5-3": "Agricoltura",
+                "btn-site5": "Scopri",
+                
+                "site6-type": "ORO NERO",
+                "site6-title": "Piantagioni di Vaniglia SAVA",
+                "site6-location": "Regione SAVA",
+                "site6-desc": "Capitale mondiale della vaniglia Bourbon, la regione offre immersione in un saper fare tradizionale unico. Scopri il processo dalla A alla Z.",
+                "tag6-1": "Vaniglia",
+                "tag6-2": "Tradizione",
+                "tag6-3": "Degustazione",
+                "btn-site6": "Scopri",
+                
+                "site7-type": "SPIAGGIA",
+                "site7-title": "Spiagge di Sambava",
+                "site7-location": "Sambava",
+                "site7-desc": "Spiegge calme bordate di palme da cocco, ideali per rilassarsi e paesaggi marini dell'Oceano Indiano. Paradiso per gli amanti del relax.",
+                "tag7-1": "Spiaggia",
+                "tag7-2": "Rilassamento",
+                "tag7-3": "Oceano",
+                "btn-site7": "Scopri",
+                
+                "site8-type": "CULTURA",
+                "site8-title": "Cultura e Vita Locale SAVA",
+                "site8-location": "Tutta la regione",
+                "site8-desc": "Mercati, villaggi tradizionali e accoglienza calorosa, per un'esperienza umana autentica. Scopri l'anima della regione SAVA.",
+                "tag8-1": "Cultura",
+                "tag8-2": "Tradizioni",
+                "tag8-3": "Autenticità",
+                "btn-site8": "Scopri",
+                
+                "traditions-title": "Tradizioni e Cultura",
+                "tradition1-title": "Saper fare della Vaniglia",
+                "tradition1-desc": "Scopri le tecniche ancestrali di coltivazione e preparazione della vaniglia Bourbon, tramandate di generazione in generazione nelle famiglie coltivatrici.",
+                "tradition2-title": "Arti e Artigianato",
+                "tradition2-desc": "Esplora l'artigianato locale unico: cesteria, intaglio del legno, tessitura tradizionale e strumenti musicali fatti a mano.",
+                "tradition3-title": "Gastronomia Locale",
+                "tradition3-desc": "Assapora la cucina tradizionale malgascia con specialità regionali uniche preparate con prodotti locali freschi.",
+                
+                "besttime-title": "Periodo Migliore per Visitare",
+                "time1-period": "APRILE - NOVEMBRE",
+                "time1-title": "Stagione Secca",
+                "time1-desc": "Condizioni ideali per escursionismo ed esplorazione. Tempo soleggiato, temperature piacevoli e strade accessibili. Perfetta per scoprire tutti i siti.",
+                "time1-rec": "RACCOMANDATO",
+                "time2-period": "LUGLIO - OTTOBRE",
+                "time2-title": "Stagione Fresca",
+                "time2-desc": "Temperature più fresche, ideali per trekking. Periodo di fioritura di molte specie vegetali. Notti fresche ma giornate piacevoli.",
+                "time2-rec": "IDEALE",
+                "time3-period": "DICEMBRE - MARZO",
+                "time3-title": "Stagione delle Piogge",
+                "time3-desc": "Paesaggi molto verdi e lussureggianti. Periodo di crescita della vaniglia. Alcune zone possono essere meno accessibili ma la bellezza naturale è al suo apice.",
+                "time3-rec": "ATTENZIONE",
+                
+                "about-title": "Informazioni sulla Regione SAVA",
+                "about-desc": "La regione SAVA (Sambava, Antalaha, Vohemar, Andapa) è un'area preservata del Madagascar nordorientale, rinomata come capitale mondiale della vaniglia. Questa regione combina ricchezze naturali eccezionali, biodiversità unica e cultura autentica.",
+                "about-desc2": "Tra foreste primarie classificate UNESCO, piantagioni di vaniglia, spiagge selvagge e valli verdi, SAVA offre un'esperienza turistica unica lontana dai sentieri battuti, dove natura e tradizioni s'incontrano armoniosamente.",
+                "stat1": "80%",
+                "stat1-label": "Vaniglia mondiale",
+                "stat2": "8",
+                "stat2-label": "Siti imperdibili",
+                "stat3": "3",
+                "stat3-label": "Riserve naturali",
+                "stat4": "12+",
+                "stat4-label": "Specie endemiche",
+                
+                "footer-title": "SAVA MADAGASCAR",
+                "footer-tagline": "Scopri il cuore verde del Nordest",
+                "footer-info": "Sito ufficiale dei siti imperdibili della regione SAVA.<br>Informazioni, visite guidate e consigli pratici per il tuo viaggio.",
+                "footer-creator": "Sito creato da Habibe - Guida Turistica Professionale",
+                "footer-contact": "<i class='fas fa-phone'></i> +261 32 39 622 86<br><i class='fas fa-envelope'></i> hajahabibeabdou@gmail.com",
+                "footer-services": "Trasferimenti aeroportuali • Guide italofone • Organizzazione circuiti • Prenotazioni alloggio",
+                "footer-copyright": "© 2024 Mada Vibe Descover - Tutti i diritti riservati.<br>Regione SAVA, Madagascar • Licenza Turistica #MT2024"
+            },
+            ar: {
+                "logo-title": "سافا مدغشقر",
+                "logo-tagline": "مواقع سياحية لا تفوت",
+                "menu-home": "الرئيسية",
+                "menu-sites": "مواقع لا تفوت",
+                "menu-traditions": "التقاليد",
+                "menu-besttime": "أفضل وقت",
+                "menu-about": "حول",
+                "menu-contact": "اتصل بنا",
+                
+                "hero-title": "اكتشف منطقة سافا",
+                "hero-subtitle": "منطقة سافا، وجهة تظل فيها الطبيعة سليمة، وتعطر الفانيليا الغابة، ويقابل المحيط الجبال.",
+                
+                "sites-title": "المواقع الثمانية التي لا تفوت",
+                
+                "site1-type": "اليونسكو",
+                "site1-title": "المنتزه الوطني ماروجيجي",
+                "site1-location": "كتلة ماروجيجي",
+                "site1-desc": "غابة استوائية مصنفة، قمم مذهلة وتنوع بيولوجي استثنائي. مثالي للمشي لمسافات طويلة والسياحة البيئية في بيئة طبيعية محفوظة.",
+                "tag1-1": "تنزه",
+                "tag1-2": "تنوع بيولوجي",
+                "tag1-3": "سياحة بيئية",
+                "btn-site1": "اكتشف",
+                
+                "site2-type": "محمية",
+                "site2-title": "محمية أنجاناهاريبي-سود الخاصة",
+                "site2-location": "كتلة أنجاناهاريبي",
+                "site2-desc": "محمية برية ومحفوظة، معروفة بحياتها البرية المستوطنة ومناظر الغابات الأولية. ملاذ طبيعي فريد من نوعه.",
+                "tag2-1": "حياة برية مستوطنة",
+                "tag2-2": "غابة أولية",
+                "tag2-3": "حماية",
+                "btn-site2": "اكتشف",
+                
+                "site3-type": "طبيعة",
+                "site3-title": "محمية أنتانيتيامبو الطبيعية",
+                "site3-location": "قرب أندابا",
+                "site3-desc": "موقع يمكن الوصول إليه بالقرب من أندابا، مثالي لمشاهدة الليمور واكتشاف الطبيعة المحلية في إطار حميمي ومحفوظ.",
+                "tag3-1": "ليمور",
+                "tag3-2": "مراقبة",
+                "tag3-3": "يمكن الوصول",
+                "btn-site3": "اكتشف",
+                
+                "site4-type": "حراري",
+                "site4-title": "الينابيع الساخنة رانومافانا (أندابا)",
+                "site4-location": "أندابا",
+                "site4-desc": "ينابيع طبيعية تقدم لحظة استرخاء بعد نزهة في الغابة. مياه حرارية مفيدة في بيئة طبيعية.",
+                "tag4-1": "حراري",
+                "tag4-2": "استرخاء",
+                "tag4-3": "طبيعة",
+                "btn-site4": "اكتشف",
+                
+                "site5-type": "زراعي",
+                "site5-title": "وادي أندابا",
+                "site5-location": "أندابا",
+                "site5-desc": "وادي شاسع أخضر بحقول أرز خصبة، يعتبر قلب منطقة سافا الزراعي. مناظر طبيعية تأخذ الأنفاس.",
+                "tag5-1": "حقول أرز",
+                "tag5-2": "وادي",
+                "tag5-3": "زراعة",
+                "btn-site5": "اكتشف",
+                
+                "site6-type": "الذهب الأسود",
+                "site6-title": "مزارع فانيليا سافا",
+                "site6-location": "منطقة سافا",
+                "site6-desc": "عاصمة فانيليا بوربون العالمية، تقدم المنطقة انغماسًا في معرفة تقليدية فريدة. اكتشف العملية من الألف إلى الياء.",
+                "tag6-1": "فانيليا",
+                "tag6-2": "تقليد",
+                "tag6-3": "تذوق",
+                "btn-site6": "اكتشف",
+                
+                "site7-type": "شاطئ",
+                "site7-title": "شواطئ سامبافا",
+                "site7-location": "سامبافا",
+                "site7-desc": "شواطئ هادئة محاطة بأشجار جوز الهند، مثالية للاسترخاء ومناظر المحيط الهندي البحرية. جنة لعشاق الاسترخاء.",
+                "tag7-1": "شاطئ",
+                "tag7-2": "استرخاء",
+                "tag7-3": "محيط",
+                "btn-site7": "اكتشف",
+                
+                "site8-type": "ثقافة",
+                "site8-title": "ثقافة وحياة محلية سافا",
+                "site8-location": "كل المنطقة",
+                "site8-desc": "أسواق، قرى تقليدية وترحيب حار، لتجربة إنسانية أصيلة. اكتشف روح منطقة سافا.",
+                "tag8-1": "ثقافة",
+                "tag8-2": "تقاليد",
+                "tag8-3": "أصالة",
+                "btn-site8": "اكتشف",
+                
+                "traditions-title": "التقاليد والثقافة",
+                "tradition1-title": "معرفة الفانيليا",
+                "tradition1-desc": "اكتشف تقنيات زراعة وتحضير فانيليا بوربون الأسلافية، التي تنتقل من جيل إلى جيل في عائلات المزارعين.",
+                "tradition2-title": "فنون وحرف يدوية",
+                "tradition2-desc": "استكشف الحرف اليدوية المحلية الفريدة: السلال، نحت الخشب، النسيج التقليدي وآلات موسيقية مصنوعة يدويًا.",
+                "tradition3-title": "مطبخ محلي",
+                "tradition3-desc": "استمتع بالمطبخ الملغاشي التقليدي مع تخصصات إقليمية فريدة محضرة بمنتجات محلية طازجة.",
+                
+                "besttime-title": "أفضل وقت للزيارة",
+                "time1-period": "أبريل - نوفمبر",
+                "time1-title": "موسم الجفاف",
+                "time1-desc": "ظروف مثالية للمشي لمسافات طويلة والاستكشاف. طقس مشمس، درجات حرارة لطيفة وطرق يمكن الوصول إليها. مثالية لاكتشاف جميع المواقع.",
+                "time1-rec": "مُوصى به",
+                "time2-period": "يوليو - أكتوبر",
+                "time2-title": "موسم بارد",
+                "time2-desc": "درجات حرارة أكثر برودة، مثالية للتسلق. فترة إزهار العديد من الأنواع النباتية. ليالي باردة ولكن أيام لطيفة.",
+                "time2-rec": "مثالي",
+                "time3-period": "ديسمبر - مارس",
+                "time3-title": "موسم الأمطار",
+                "time3-desc": "مناظر طبيعية خضراء جدًا وخصبة. فترة نمو الفانيليا. بعض المناطق قد تكون أقل سهولة في الوصول لكن الجمال الطبيعي في ذروته.",
+                "time3-rec": "تحذير",
+                
+                "about-title": "حول منطقة سافا",
+                "about-desc": "منطقة سافا (سامبافا، أنتالاها، فوهمار، أندابا) هي منطقة محفوظة في شمال شرق مدغشقر، تشتهر بأنها عاصمة الفانيليا العالمية. تجمع هذه المنطقة بين ثروات طبيعية استثنائية، تنوع بيولوجي فريد وثقافة أصيلة.",
+                "about-desc2": "بين غابات أولية مصنفة من اليونسكو، مزارع الفانيليا، شواطئ برية ووديان خضراء، تقدم سافا تجربة سياحية فريدة بعيدًا عن الطرق المطروقة، حيث تلتقي الطبيعة والتقاليد بتناغم.",
+                "stat1": "80%",
+                "stat1-label": "فانيليا عالمية",
+                "stat2": "8",
+                "stat2-label": "مواقع لا تفوت",
+                "stat3": "3",
+                "stat3-label": "محميات طبيعية",
+                "stat4": "12+",
+                "stat4-label": "أنواع مستوطنة",
+                
+                "footer-title": "سافا مدغشقر",
+                "footer-tagline": "اكتشف القلب الأخضر للشمال الشرقي",
+                "footer-info": "الموقع الرسمي للمواقع التي لا تفوت في منطقة سافا.<br>معلومات، جولات إرشادية ونصائح عملية لرحلتك.",
+                "footer-creator": "تم إنشاء الموقع بواسطة حبيبة - مرشد سياحي محترف",
+                "footer-contact": "<i class='fas fa-phone'></i> +261 32 39 622 86<br><i class='fas fa-envelope'></i> hajahabibeabdou@gmail.com",
+                "footer-services": "نقل المطار • مرشدون ناطقون بالعربية • تنظيم رحلات • حجوزات إقامة",
+                "footer-copyright": "© 2024 سافا مدغشقر - جميع الحقوق محفوظة.<br>منطقة سافا، مدغشقر • رخصة سياحية #MT2024"
+            }
+        };
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize current language (French by default)
+            let currentLang = 'fr';
+            updateLanguage(currentLang);
+
+            // ===== MOBILE MENU TOGGLE =====
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    menuToggle.innerHTML = mobileMenu.classList.contains('active') 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+
+                // Close menu when clicking on a link
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            }
+
+            // ===== LANGUAGE SWITCHER =====
+            const languageOptions = document.querySelectorAll('.language-option');
+            const languageBtn = document.querySelector('.language-btn .current-lang');
+
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    currentLang = lang;
+                    
+                    // Update button text
+                    languageBtn.textContent = lang.toUpperCase();
+                    
+                    // Update active class
+                    languageOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update content
+                    updateLanguage(lang);
+                });
+            });
+
+            // ===== SMOOTH SCROLLING =====
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const headerHeight = document.getElementById('header').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // ===== ANIMATION ON SCROLL =====
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements with fade-in class
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // ===== CURRENT YEAR IN FOOTER =====
+            const copyrightElement = document.querySelector('#footer-copyright');
+            if (copyrightElement) {
+                const currentYear = new Date().getFullYear();
+                copyrightElement.innerHTML = copyrightElement.innerHTML.replace('2024', currentYear);
+            }
+        });
+
+        // ===== LANGUAGE UPDATE FUNCTION =====
+        function updateLanguage(lang) {
+            // Update all translatable elements
+            const elements = document.querySelectorAll('[id]');
+            
+            elements.forEach(element => {
+                const id = element.getAttribute('id');
+                
+                if (translations[lang] && translations[lang][id]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = translations[lang][id];
+                    } else {
+                        // Handle HTML content (like footer contact)
+                        if (id.includes('footer-contact') || id.includes('footer-info')) {
+                            element.innerHTML = translations[lang][id];
+                        } else {
+                            element.textContent = translations[lang][id];
+                        }
+                    }
+                }
+            });
+
+            // Update page title
+            const titleElement = document.querySelector('title');
+            if (translations[lang] && translations[lang]['logo-title']) {
+                titleElement.textContent = translations[lang]['logo-title'] + ' - ' + translations[lang]['logo-tagline'];
+            }
+        }
+    </script>
+</body>
+</html>
