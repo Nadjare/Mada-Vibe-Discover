@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambanja & Sambirano - Mada Vibe Discover</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, 
+                rgba(20, 60, 30, 0.95) 0%, 
+                rgba(30, 80, 40, 0.93) 50%, 
+                rgba(50, 120, 60, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 10px 5%;
+            border-bottom: 2px solid #4caf50;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 42px;
+            width: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #4caf50;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            background: linear-gradient(45deg, #fff, #4caf50, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.85);
+            margin-top: 2px;
+        }
+
+        /* ===== HEADER CONTROLS ===== */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 180px;
+            background: rgba(10, 40, 20, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            z-index: 1001;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            color: #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .language-option:hover {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(30, 80, 40, 0.2));
+        }
+
+        .flag-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 40, 20, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 20px 5%;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            display: none;
+            border-top: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 12px;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid #4caf50;
+            transform: translateX(5px);
+        }
+
+        .mobile-menu i {
+            color: #4caf50;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ===== HEADER SPACER ===== */
+        .header-spacer {
+            height: 60px;
+            width: 100%;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
+                        url('1a.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 140px 0 100px;
+            position: relative;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            color: #4caf50;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.7);
+        }
+
+        .page-hero p {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #4caf50;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #4caf50, transparent);
+            border-radius: 3px;
+        }
+
+        /* ===== SITES GRID ===== */
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 50px;
+            margin: 60px 0;
+        }
+
+        @media (max-width: 768px) {
+            .sites-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .site-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+
+        .site-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(76, 175, 80, 0.2);
+            border-color: #4caf50;
+        }
+
+        .site-image {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .site-card:hover .site-image img {
+            transform: scale(1.15);
+        }
+
+        .site-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 25px;
+            color: white;
+        }
+
+        .site-type {
+            display: inline-block;
+            background: #4caf50;
+            color: #0a0a0a;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .site-overlay h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .site-overlay p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .site-content {
+            padding: 30px;
+            background: rgba(15, 35, 20, 0.8);
+        }
+
+        .site-content p {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        .site-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .feature-tag {
+            padding: 6px 15px;
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        /* ===== TRADITION SECTION ===== */
+        .tradition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .tradition-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+
+        .tradition-card:hover {
+            transform: translateY(-10px);
+            border-color: #4caf50;
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
+        }
+
+        .tradition-icon {
+            font-size: 3.5rem;
+            color: #4caf50;
+            margin-bottom: 25px;
+        }
+
+        .tradition-card h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .tradition-card p {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ===== SEASON SECTION ===== */
+        .season-timeline {
+            max-width: 900px;
+            margin: 60px auto;
+            position: relative;
+        }
+
+        .season-item {
+            background: rgba(30, 45, 30, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4caf50;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .season-item:hover {
+            transform: translateX(10px);
+            background: rgba(30, 45, 30, 0.9);
+        }
+
+        .season-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .season-icon {
+            font-size: 2rem;
+            color: #4caf50;
+        }
+
+        .season-title {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .season-period {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .season-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ===== EXPERIENCE SECTION ===== */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .experience-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-10px);
+            border-color: #4caf50;
+            box-shadow: 0 20px 50px rgba(76, 175, 80, 0.15);
+        }
+
+        .experience-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 80, 40, 0.5);
+            font-size: 3.5rem;
+            color: #4caf50;
+        }
+
+        .experience-info {
+            padding: 30px;
+        }
+
+        .experience-info h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .experience-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        /* ===== WHY VISIT SECTION ===== */
+        .why-visit {
+            background: linear-gradient(135deg, rgba(20, 40, 25, 0.95), rgba(30, 60, 35, 0.9));
+            padding: 100px 0;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .reason-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .reason-number {
+            font-size: 3rem;
+            color: #4caf50;
+            font-weight: 800;
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        .reason-card h3 {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .reason-card p {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+        }
+
+        /* ===== BUTTON ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+            margin: 30px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.5);
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+        }
+
+        .btn-small {
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+
+        /* ===== IMAGE HIGHLIGHT ===== */
+        .image-highlight {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .highlight-container {
+            position: relative;
+            height: 500px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .highlight-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+            transition: transform 0.8s ease;
+        }
+
+        .highlight-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .highlight-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            text-align: left;
+        }
+
+        .highlight-text h3 {
+            font-size: 2.5rem;
+            color: #4caf50;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .highlight-text p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #000;
+            padding: 60px 0 30px;
+            border-top: 3px solid #4caf50;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .creator {
+            color: #4caf50;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 1000px;
+            }
+            
+            .page-hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .sites-grid {
+                grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .highlight-container {
+                height: 400px;
+            }
+            
+            .highlight-text {
+                padding: 30px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 2rem;
+            }
+            
+            .highlight-text p {
+                font-size: 1.1rem;
+            }
+            
+            .sites-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                height: 55px;
+            }
+            
+            .header-spacer {
+                height: 55px;
+            }
+            
+            .page-hero {
+                min-height: 70vh;
+                padding: 100px 0 80px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .tradition-grid,
+            .experience-grid,
+            .reasons-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .site-image {
+                height: 300px;
+            }
+            
+            .highlight-container {
+                height: 350px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 1.8rem;
+            }
+            
+            .highlight-text p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 16px 35px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .site-image {
+                height: 250px;
+            }
+            
+            .site-content {
+                padding: 25px;
+            }
+            
+            .site-overlay {
+                padding: 20px;
+            }
+            
+            .site-overlay h3 {
+                font-size: 1.5rem;
+            }
+            
+            .highlight-container {
+                height: 300px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 1.6rem;
+            }
+            
+            .highlight-text p {
+                font-size: 0.9rem;
+            }
+            
+            .mobile-menu {
+                padding: 15px 5%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .site-type {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .feature-tag {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .season-period {
+                padding: 4px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .highlight-text {
+                padding: 20px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 1.4rem;
+            }
+            
+            .highlight-text p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="../index.html" class="logo">
+                <img src="logo.png" alt="Drapeau Madagascar">
+                <div class="logo-text">
+                    <div class="logo-title">MADA VIBE DISCOVER</div>
+                    <div class="logo-tagline" id="header-tagline">L'Essence Authentique d'Ambanja & Anivorano</div>
+                </div>
+            </a>
+
+            <!-- Controls -->
+            <div class="header-controls">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <i class="fas fa-globe-americas"></i>
+                        <span class="current-lang">FR</span>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" class="language-option" data-lang="en">
+                            <img src="https://flagcdn.com/w20/us.png" class="flag-icon" alt="English">
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option active" data-lang="fr">
+                            <img src="https://flagcdn.com/w20/fr.png" class="flag-icon" alt="Français">
+                            <span>Français</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <img src="https://flagcdn.com/w20/es.png" class="flag-icon" alt="Español">
+                            <span>Español</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="it">
+                            <img src="https://flagcdn.com/w20/it.png" class="flag-icon" alt="Italiano">
+                            <span>Italiano</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ar">
+                            <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="العربية">
+                            <span>العربية</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span id="menu-home">Accueil</span></a></li>
+                <li><a href="#ambanja"><i class="fas fa-tree"></i> <span id="menu-ambanja">Ambanja</span></a></li>
+                <li><a href="#anivorano"><i class="fas fa-thermometer-three-quarters"></i> <span id="menu-anivorano">Anivorano</span></a></li>
+                <li><a href="#traditions"><i class="fas fa-users"></i> <span id="menu-traditions">Traditions</span></a></li>
+                <li><a href="#seasons"><i class="fas fa-calendar-alt"></i> <span id="menu-seasons">Meilleure Période</span></a></li>
+                <li><a href="#experiences"><i class="fas fa-star"></i> <span id="menu-experiences">Expériences</span></a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> <span id="menu-contact">Réserver</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="header-spacer"></div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 id="page-title">🌿 Ambanja & Anivorano - Authenticité & Émerveillement</h1>
+            <p id="page-subtitle">
+                Découvrez le vrai visage de Madagascar. Une immersion culturelle profonde dans les traditions Sakalava, 
+                une rencontre authentique avec les producteurs de cacao, et des paysages à couper le souffle.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== WHY VISIT ===== -->
+    <section class="why-visit">
+        <div class="container">
+            <h2 class="section-title" id="why-title">Pourquoi Choisir Ambanja & Anivorano ?</h2>
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-number">01</div>
+                    <h3 id="reason1-title">Authenticité Préservée</h3>
+                    <p id="reason1-desc">Échappez au tourisme de masse. Ici, les traditions sont vivantes, les sourires sincères, l'accueil chaleureux.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-number">02</div>
+                    <h3 id="reason2-title">Gastronomie Unique</h3>
+                    <p id="reason2-desc">Goûtez au meilleur cacao du monde, savourez des fruits tropicaux frais, découvrez des saveurs uniques.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-number">03</div>
+                    <h3 id="reason3-title">Bien-être Naturel</h3>
+                    <p id="reason3-desc">Sources thermales thérapeutiques, air pur, rythme de vie paisible : une cure de jouvence naturelle.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-number">04</div>
+                    <h3 id="reason4-title">Photos Spectaculaires</h3>
+                    <p id="reason4-desc">Baobab majestueux, marchés colorés, rizières verdoyantes : un paradis pour photographes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AMBANJA SECTION ===== -->
+    <section id="ambanja" class="region-section">
+        <div class="container">
+            <!-- Image Highlight -->
+            <div class="image-highlight">
+                <div class="highlight-container">
+                    <img src="1a.jpg" 
+                         alt="Ambanja">
+                    <div class="highlight-text">
+                        <h3 id="highlight-ambanja-title">Ambanja - Le Jardin Secret de Madagascar</h3>
+                        <p id="highlight-ambanja-desc">Là où la terre rouge rencontre le ciel bleu, où le cacao pousse sous les baobabs centenaires. Une expérience sensorielle complète.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title" id="ambanja-title">Les Perles d'Ambanja</h2>
+            
+            <div class="sites-grid">
+                <!-- Site 1 -->
+                <div class="site-card">
+                    <div class="site-image">
+                        <img src="1b.jpg" 
+                             alt="Baobab d'Ambanja">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site1-type">SANCTUAIRE NATUREL</span>
+                            <h3 id="site1-title">Le Grand Baobab Sacré</h3>
+                            <p id="site1-subtitle">Symbole Vivant d'Ambanja</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site1-desc">Plus qu'un arbre, un gardien des secrets. Ce baobab millénaire est le cœur battant de la ville, témoin silencieux des générations. Venez toucher son écorce rugueuse, écouter les légendes qu'il murmure au vent du soir.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag1-1">Site Sacré</span>
+                            <span class="feature-tag" id="tag1-2">Photographie Unique</span>
+                            <span class="feature-tag" id="tag1-3">Légendes Locales</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site 2 -->
+                <div class="site-card">
+                    <div class="site-image">
+                        <img src="1c.webp" 
+                             alt="Marché d'Ambanja">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site2-type">EXPÉRIENCE SENSORIELLE</span>
+                            <h3 id="site2-title">Le Marché aux Mille Parfums</h3>
+                            <p id="site2-subtitle">Cœur Économique & Culturel</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site2-desc">Un festival de couleurs, d'odeurs et de sons. Marchandez le cacao aromatique, sentez la vanille fraîche, goûtez aux fruits juteux. Chaque étal raconte une histoire, chaque sourire vous accueille comme un ami.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag2-1">Cacao Premium</span>
+                            <span class="feature-tag" id="tag2-2">Vanille Bourbon</span>
+                            <span class="feature-tag" id="tag2-3">Artisanat Local</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site 3 -->
+                <div class="site-card">
+                    <div class="site-image">
+                        <img src="1d.webp" 
+                             alt="Pont Sambirano">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site3-type">VUE IMPRENABLE</span>
+                            <h3 id="site3-title">Le Pont sur le Sambirano</h3>
+                            <p id="site3-subtitle">Balcon sur la Vie Fluviale</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site3-desc">À l'heure dorée, le pont s'embrase. Regardez les pirogues glisser sur l'eau miroir, écoutez les rires des enfants qui se baignent, sentez la brise fraîche venue des montagnes. Le meilleur spot photo pour capturer l'âme de la région.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag3-1">Coucher de Soleil</span>
+                            <span class="feature-tag" id="tag3-2">Vie Fluviale</span>
+                            <span class="feature-tag" id="tag3-3">Point de Vue</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site 4 -->
+                <div class="site-card">
+                    <div class="site-image">
+                        <img src="1e.webp" 
+                             alt="Plantations de cacao">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site4-type">DÉGUSTATION EXCLUSIVE</span>
+                            <h3 id="site4-title">Les Plantations de Cacao Criollo</h3>
+                            <p id="site4-subtitle">L'Or Brun du Sambirano</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site4-desc">Rencontrez les gardiens du meilleur cacao au monde. De la fève à la tablette, découvrez les secrets d'un chocolat d'exception. Dégustation privée avec les producteurs, une expérience gustative inoubliable.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag4-1">Cacao Criollo</span>
+                            <span class="feature-tag" id="tag4-2">Visite Guidée</span>
+                            <span class="feature-tag" id="tag4-3">Dégustation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ANIVORANO SECTION ===== -->
+    <section id="anivorano" class="region-section" style="background: rgba(20, 40, 25, 0.3);">
+        <div class="container">
+            <!-- Image Highlight -->
+            <div class="image-highlight">
+                <div class="highlight-container">
+                    <img src="1f.jpeg" 
+                         alt="Anivorano">
+                    <div class="highlight-text">
+                        <h3 id="highlight-anivorano-title">Anivorano - Le Spa Naturel de Madagascar</h3>
+                        <p id="highlight-anivorano-desc">Là où l'eau chaude de la terre rencontre la fraîcheur des rizières. Un sanctuaire de bien-être au cœur d'un paysage pastoral.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title" id="anivorano-title">Les Trésors d'Anivorano</h2>
+            
+            <div class="sites-grid">
+                <!-- Site 5 -->
+                <div class="site-card">
+                    <div class="site-image">
+                        <img src="1g.webp" 
+                             alt="Sources thermales">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site5-type">BIEN-ÊTRE NATUREL</span>
+                            <h3 id="site5-title">Les Sources Thermales Sacrées</h3>
+                            <p id="site5-subtitle">(Antsirabe Nord) - Eaux Curatives</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site5-desc">Plongez dans des eaux aux propriétés magiques. Les sources chaudes d'Anivorano sont réputées depuis des siècles pour soulager les douleurs et revitaliser l'organisme. Une expérience de détente profonde dans un cadre naturel préservé.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag5-1">Eaux Thérapeutiques</span>
+                            <span class="feature-tag" id="tag5-2">Détente Absolue</span>
+                            <span class="feature-tag" id="tag5-3">Site Naturel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site 6 -->
+                <div class="site-card">
+                    <div class="site-image">
+                        <img src="1h.webp" 
+                             alt="Rizières Anivorano">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site6-type">PAYSAGE SEREIN</span>
+                            <h3 id="site6-title">Les Rizières Verdoyantes</h3>
+                            <p id="site6-subtitle">Tapis de Jade de la Vallée</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site6-desc">Marchez entre les rizières où le vert a mille nuances. Observez les techniques ancestrales de culture, rencontrez les agriculteurs au sourire franc, respirez l'air pur de la campagne malgache. Une balade apaisante pour l'âme.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag6-1">Rizières</span>
+                            <span class="feature-tag" id="tag6-2">Agriculture Traditionnelle</span>
+                            <span class="feature-tag" id="tag6-3">Paysage Pittoresque</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRADITIONS SECTION ===== -->
+    <section id="traditions" style="background: linear-gradient(135deg, rgba(25, 45, 30, 0.95), rgba(35, 65, 40, 0.9));">
+        <div class="container">
+            <h2 class="section-title" id="traditions-title">Traditions & Culture Vivante</h2>
+            <p class="highlight-text" style="text-align: center; margin-bottom: 50px; font-size: 1.3rem;" id="traditions-subtitle">
+                Plongez au cœur des traditions Sakalava, des rituels ancestraux aux savoir-faire préservés.
+            </p>
+            
+            <div class="tradition-grid">
+                <div class="tradition-card">
+                    <div class="tradition-icon">👑</div>
+                    <h3 id="tradition1-title">Royauté Sakalava</h3>
+                    <p id="tradition1-desc">Découvrez l'histoire des rois Sakalava, leurs palais traditionnels et l'organisation sociale unique de cette ethnie côtière.</p>
+                </div>
+
+                <div class="tradition-card">
+                    <div class="tradition-icon">🎵</div>
+                    <h3 id="tradition2-title">Musique & Danse</h3>
+                    <p id="tradition2-desc">Initiez-vous aux rythmes envoûtants du salegy et aux danses traditionnelles lors de cérémonies villageoises.</p>
+                </div>
+
+                <div class="tradition-card">
+                    <div class="tradition-icon">🍛</div>
+                    <h3 id="tradition3-title">Cuisine Ancestrale</h3>
+                    <p id="tradition3-desc">Participez à la préparation du romazava (bouillon traditionnel) et découvrez les secrets culinaires transmis de mère en fille.</p>
+                </div>
+
+                <div class="tradition-card">
+                    <div class="tradition-icon">🌿</div>
+                    <h3 id="tradition4-title">Médecine Traditionnelle</h3>
+                    <p id="tradition4-desc">Rencontrez les guérisseurs (ombiasy) et découvrez les plantes médicinales utilisées depuis des générations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BEST TIME TO VISIT ===== -->
+    <section id="seasons" style="background: linear-gradient(135deg, rgba(30, 45, 30, 0.95), rgba(40, 55, 35, 0.9));">
+        <div class="container">
+            <h2 class="section-title" id="seasons-title">Quand Visiter ? Le Guide Parfait</h2>
+            
+            <div class="season-timeline">
+                <div class="season-item">
+                    <div class="season-header">
+                        <div class="season-icon">☀️</div>
+                        <h3 class="season-title" id="season1-title">Avril à Octobre - Saison Idéale</h3>
+                        <span class="season-period" id="season1-period">PERFECT</span>
+                    </div>
+                    <p class="season-desc" id="season1-desc">
+                        Ciel bleu, températures agréables (25-30°C), peu de pluie. Parfait pour explorer les plantations, 
+                        photographier les paysages, et profiter des sources thermales. La récolte du cacao en juin-juillet 
+                        est un spectacle unique.
+                    </p>
+                </div>
+
+                <div class="season-item">
+                    <div class="season-header">
+                        <div class="season-icon">🌧️</div>
+                        <h3 class="season-title" id="season2-title">Novembre à Mars - Saison Verte</h3>
+                        <span class="season-period" id="season2-period">LUSH</span>
+                    </div>
+                    <p class="season-desc" id="season2-desc">
+                        La nature explose de vie ! Paysages d'un vert intense, cascades impressionnantes, atmosphère 
+                        tropicale authentique. Idéal pour les amoureux de photographie et ceux qui cherchent l'authenticité 
+                        absolue malgré quelques averses.
+                    </p>
+                </div>
+
+                <div class="season-item">
+                    <div class="season-header">
+                        <div class="season-icon">🎉</div>
+                        <h3 class="season-title" id="season3-title">Événements Incontournables</h3>
+                        <span class="season-period" id="season3-period">FESTIVE</span>
+                    </div>
+                    <p class="season-desc" id="season3-desc">
+                        <strong>Mai :</strong> Fête du Cacao - Dégustations et danses traditionnelles<br>
+                        <strong>Juin :</strong> Festival de la Vanille - Marchés spécialisés et animations<br>
+                        <strong>Septembre :</strong> Cérémonies Sakalava - Rituels ancestraux ouverts aux visiteurs<br>
+                        <strong>Décembre :</strong> Fêtes de fin d'année - Ambiance chaleureuse et repas festifs
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== UNIQUE EXPERIENCES ===== -->
+    <section id="experiences">
+        <div class="container">
+            <h2 class="section-title" id="experiences-title">Expériences Exclusives</h2>
+            <p class="highlight-text" style="text-align: center; margin-bottom: 50px; font-size: 1.3rem;" id="experiences-subtitle">
+                Bien plus qu'une visite, une immersion totale dans la vie locale.
+            </p>
+            
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="experience-info">
+                        <h3 id="experience1-title">Rencontre avec les Producteurs</h3>
+                        <p class="experience-desc" id="experience1-desc">
+                            Passez une journée dans une famille de planteurs. Apprenez à polliniser la vanille, 
+                            récoltez le cacao, partagez leur repas. Une connexion humaine authentique.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="experience-info">
+                        <h3 id="experience2-title">Safari Photo Privé</h3>
+                        <p class="experience-desc" id="experience2-desc">
+                            Guide photographe local. Accès aux meilleurs spots aux heures magiques (lever/coucher du soleil). 
+                            Cours de photo ethnographique inclus.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="experience-info">
+                        <h3 id="experience3-title">Atelier Cuisine "De la Terre à l'Assiette"</h3>
+                        <p class="experience-desc" id="experience3-desc">
+                            Marché + cueillette + cuisine. Préparez un repas traditionnel avec une chef locale. 
+                            Livret de recettes offert.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="experience-info">
+                        <h3 id="experience4-title">Retraite Bien-être</h3>
+                        <p class="experience-desc" id="experience4-desc">
+                            3 jours de détente aux sources thermales. Massages traditionnels, méditation en pleine nature, 
+                            alimentation locale et saine.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" style="background: linear-gradient(135deg, rgba(40, 50, 35, 0.95), rgba(50, 60, 40, 0.9));">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="section-title" id="contact-title">Prêt pour l'Aventure de Votre Vie ?</h2>
+                <p style="margin-bottom: 40px; font-size: 1.3rem; max-width: 900px; margin-left: auto; margin-right: auto;" id="contact-text">
+                    Nous créons des expériences sur mesure pour voyageurs exigeants. Guides locaux francophones, 
+                    hébergement authentique, accès exclusif aux sites, transport privé. Votre voyage 100% personnalisé.
+                </p>
+                <a href="tel:+261323962286" class="btn">
+                    <i class="fas fa-phone-alt"></i>
+                    <span id="contact-btn">Appelez-nous: +261 32 39 622 86</span>
+                </a>
+                <br>
+                <a href="mailto:hajahabibeabdou@gmail.com" class="btn btn-small" style="margin-top: 20px; background: transparent; border: 2px solid #4caf50;">
+                    <i class="fas fa-envelope"></i>
+                    <span id="email-btn">Email: hajahabibeabdou@gmail.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="creator" id="footer-creator">Habibe - Créateur d'Expériences Authentiques</p>
+                <p id="footer-phone">Téléphone/WhatsApp : +261 32 39 622 86</p>
+                <p id="footer-email">Email : hajahabibeabdou@gmail.com</p>
+                <p id="footer-desc">Spécialiste des voyages immersifs à Madagascar - Circuits sur mesure depuis 2015</p>
+                <p style="margin-top: 25px; color: rgba(255,255,255,0.6); font-size: 0.85rem;">
+                    © 2024 Mada Vibe Discover - Pour voyageurs en quête d'authenticité
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== TRADUCTIONS COMPLÈTES =====
+        const translations = {
+            fr: {
+                // Header
+                "header-tagline": "L'Essence Authentique d'Ambanja & Anivorano",
+                "menu-home": "Accueil",
+                "menu-ambanja": "Ambanja",
+                "menu-anivorano": "Anivorano",
+                "menu-traditions": "Traditions",
+                "menu-seasons": "Meilleure Période",
+                "menu-experiences": "Expériences",
+                "menu-contact": "Réserver",
+                
+                // Hero
+                "page-title": "🌿 Ambanja & Anivorano - Authenticité & Émerveillement",
+                "page-subtitle": "Découvrez le vrai visage de Madagascar. Une immersion culturelle profonde dans les traditions Sakalava, une rencontre authentique avec les producteurs de cacao, et des paysages à couper le souffle.",
+                
+                // Why Visit
+                "why-title": "Pourquoi Choisir Ambanja & Anivorano ?",
+                "reason1-title": "Authenticité Préservée",
+                "reason1-desc": "Échappez au tourisme de masse. Ici, les traditions sont vivantes, les sourires sincères, l'accueil chaleureux.",
+                "reason2-title": "Gastronomie Unique",
+                "reason2-desc": "Goûtez au meilleur cacao du monde, savourez des fruits tropicaux frais, découvrez des saveurs uniques.",
+                "reason3-title": "Bien-être Naturel",
+                "reason3-desc": "Sources thermales thérapeutiques, air pur, rythme de vie paisible : une cure de jouvence naturelle.",
+                "reason4-title": "Photos Spectaculaires",
+                "reason4-desc": "Baobab majestueux, marchés colorés, rizières verdoyantes : un paradis pour photographes.",
+                
+                // Ambanja
+                "highlight-ambanja-title": "Ambanja - Le Jardin Secret de Madagascar",
+                "highlight-ambanja-desc": "Là où la terre rouge rencontre le ciel bleu, où le cacao pousse sous les baobabs centenaires. Une expérience sensorielle complète.",
+                "ambanja-title": "Les Perles d'Ambanja",
+                
+                // Sites Ambanja
+                "site1-type": "SANCTUAIRE NATUREL",
+                "site1-title": "Le Grand Baobab Sacré",
+                "site1-subtitle": "Symbole Vivant d'Ambanja",
+                "site1-desc": "Plus qu'un arbre, un gardien des secrets. Ce baobab millénaire est le cœur battant de la ville, témoin silencieux des générations. Venez toucher son écorce rugueuse, écouter les légendes qu'il murmure au vent du soir.",
+                "tag1-1": "Site Sacré",
+                "tag1-2": "Photographie Unique",
+                "tag1-3": "Légendes Locales",
+                
+                "site2-type": "EXPÉRIENCE SENSORIELLE",
+                "site2-title": "Le Marché aux Mille Parfums",
+                "site2-subtitle": "Cœur Économique & Culturel",
+                "site2-desc": "Un festival de couleurs, d'odeurs et de sons. Marchandez le cacao aromatique, sentez la vanille fraîche, goûtez aux fruits juteux. Chaque étal raconte une histoire, chaque sourire vous accueille comme un ami.",
+                "tag2-1": "Cacao Premium",
+                "tag2-2": "Vanille Bourbon",
+                "tag2-3": "Artisanat Local",
+                
+                "site3-type": "VUE IMPRENABLE",
+                "site3-title": "Le Pont sur le Sambirano",
+                "site3-subtitle": "Balcon sur la Vie Fluviale",
+                "site3-desc": "À l'heure dorée, le pont s'embrase. Regardez les pirogues glisser sur l'eau miroir, écoutez les rires des enfants qui se baignent, sentez la brise fraîche venue des montagnes. Le meilleur spot photo pour capturer l'âme de la région.",
+                "tag3-1": "Coucher de Soleil",
+                "tag3-2": "Vie Fluviale",
+                "tag3-3": "Point de Vue",
+                
+                "site4-type": "DÉGUSTATION EXCLUSIVE",
+                "site4-title": "Les Plantations de Cacao Criollo",
+                "site4-subtitle": "L'Or Brun du Sambirano",
+                "site4-desc": "Rencontrez les gardiens du meilleur cacao au monde. De la fève à la tablette, découvrez les secrets d'un chocolat d'exception. Dégustation privée avec les producteurs, une expérience gustative inoubliable.",
+                "tag4-1": "Cacao Criollo",
+                "tag4-2": "Visite Guidée",
+                "tag4-3": "Dégustation",
+                
+                // Anivorano
+                "highlight-anivorano-title": "Anivorano - Le Spa Naturel de Madagascar",
+                "highlight-anivorano-desc": "Là où l'eau chaude de la terre rencontre la fraîcheur des rizières. Un sanctuaire de bien-être au cœur d'un paysage pastoral.",
+                "anivorano-title": "Les Trésors d'Anivorano",
+                
+                // Sites Anivorano
+                "site5-type": "BIEN-ÊTRE NATUREL",
+                "site5-title": "Les Sources Thermales Sacrées",
+                "site5-subtitle": "(Antsirabe Nord) - Eaux Curatives",
+                "site5-desc": "Plongez dans des eaux aux propriétés magiques. Les sources chaudes d'Anivorano sont réputées depuis des siècles pour soulager les douleurs et revitaliser l'organisme. Une expérience de détente profonde dans un cadre naturel préservé.",
+                "tag5-1": "Eaux Thérapeutiques",
+                "tag5-2": "Détente Absolue",
+                "tag5-3": "Site Naturel",
+                
+                "site6-type": "PAYSAGE SEREIN",
+                "site6-title": "Les Rizières Verdoyantes",
+            
+                "tag6-2": "Agriculture Traditionnelle",
+                "tag6-3": "Paysage Pittoresque",
+                
+                // Traditions
+                "traditions-title": "Traditions & Culture Vivante",
+                "traditions-subtitle": "Plongez au cœur des traditions Sakalava, des rituels ancestraux aux savoir-faire préservés.",
+                "tradition1-title": "Royauté Sakalava",
+                "tradition1-desc": "Découvrez l'histoire des rois Sakalava, leurs palais traditionnels et l'organisation sociale unique de cette ethnie côtière.",
+                "tradition2-title": "Musique & Danse",
+                "tradition2-desc": "Initiez-vous aux rythmes envoûtants du salegy et aux danses traditionnelles lors de cérémonies villageoises.",
+                "tradition3-title": "Cuisine Ancestrale",
+                "tradition3-desc": "Participez à la préparation du romazava (bouillon traditionnel) et découvrez les secrets culinaires transmis de mère en fille.",
+                "tradition4-title": "Médecine Traditionnelle",
+                "tradition4-desc": "Rencontrez les guérisseurs (ombiasy) et découvrez les plantes médicinales utilisées depuis des générations.",
+                
+                // Seasons
+                "seasons-title": "Quand Visiter ? Le Guide Parfait",
+                "season1-title": "Avril à Octobre - Saison Idéale",
+                "season1-period": "PERFECT",
+                "season1-desc": "Ciel bleu, températures agréables (25-30°C), peu de pluie. Parfait pour explorer les plantations, photographier les paysages, et profiter des sources thermales. La récolte du cacao en juin-juillet est un spectacle unique.",
+                "season2-title": "Novembre à Mars - Saison Verte",
+                "season2-period": "LUSH",
+                "season2-desc": "La nature explose de vie ! Paysages d'un vert intense, cascades impressionnantes, atmosphère tropicale authentique. Idéal pour les amoureux de photographie et ceux qui cherchent l'authenticité absolue malgré quelques averses.",
+                "season3-title": "Événements Incontournables",
+                "season3-period": "FESTIVE",
+                "season3-desc": "<strong>Mai :</strong> Fête du Cacao - Dégustations et danses traditionnelles<br><strong>Juin :</strong> Festival de la Vanille - Marchés spécialisés et animations<br><strong>Septembre :</strong> Cérémonies Sakalava - Rituels ancestraux ouverts aux visiteurs<br><strong>Décembre :</strong> Fêtes de fin d'année - Ambiance chaleureuse et repas festifs",
+                
+                // Experiences
+                "experiences-title": "Expériences Exclusives",
+                "experiences-subtitle": "Bien plus qu'une visite, une immersion totale dans la vie locale.",
+                "experience1-title": "Rencontre avec les Producteurs",
+                "experience1-desc": "Passez une journée dans une famille de planteurs. Apprenez à polliniser la vanille, récoltez le cacao, partagez leur repas. Une connexion humaine authentique.",
+                "experience2-title": "Safari Photo Privé",
+                "experience2-desc": "Guide photographe local. Accès aux meilleurs spots aux heures magiques (lever/coucher du soleil). Cours de photo ethnographique inclus.",
+                "experience3-title": "Atelier Cuisine 'De la Terre à l'Assiette'",
+                "experience3-desc": "Marché + cueillette + cuisine. Préparez un repas traditionnel avec une chef locale. Livret de recettes offert.",
+                "experience4-title": "Retraite Bien-être",
+                "experience4-desc": "3 jours de détente aux sources thermales. Massages traditionnels, méditation en pleine nature, alimentation locale et saine.",
+                
+                // Contact
+                "contact-title": "Prêt pour l'Aventure de Votre Vie ?",
+                "contact-text": "Nous créons des expériences sur mesure pour voyageurs exigeants. Guides locaux francophones, hébergement authentique, accès exclusif aux sites, transport privé. Votre voyage 100% personnalisé.",
+                "contact-btn": "Appelez-nous: +261 32 39 622 86",
+                "email-btn": "Email: hajahabibeabdou@gmail.com",
+                
+                // Footer
+                "footer-creator": "Habibe - Créateur d'Expériences Authentiques",
+                "footer-phone": "Téléphone/WhatsApp : +261 32 39 622 86",
+                "footer-email": "Email : hajahabibeabdou@gmail.com",
+                "footer-desc": "Spécialiste des voyages immersifs à Madagascar - Circuits sur mesure depuis 2015"
+            },
+            en: {
+                "header-tagline": "The Authentic Essence of Ambanja & Anivorano",
+                "menu-home": "Home",
+                "menu-ambanja": "Ambanja",
+                "menu-anivorano": "Anivorano",
+                "menu-traditions": "Traditions",
+                "menu-seasons": "Best Time",
+                "menu-experiences": "Experiences",
+                "menu-contact": "Book Now",
+                
+                "page-title": "🌿 Ambanja & Anivorano - Authenticity & Wonder",
+                "page-subtitle": "Discover the true face of Madagascar. Deep cultural immersion in Sakalava traditions, authentic encounters with cocoa producers, and breathtaking landscapes.",
+                
+                "why-title": "Why Choose Ambanja & Anivorano?",
+                "reason1-title": "Preserved Authenticity",
+                "reason1-desc": "Escape mass tourism. Here, traditions are alive, smiles are sincere, welcome is warm.",
+                "reason2-title": "Unique Gastronomy",
+                "reason2-desc": "Taste the world's best cocoa, savor fresh tropical fruits, discover unique flavors.",
+                "reason3-title": "Natural Well-being",
+                "reason3-desc": "Therapeutic hot springs, pure air, peaceful pace of life: a natural rejuvenation cure.",
+                "reason4-title": "Spectacular Photos",
+                "reason4-desc": "Majestic baobab, colorful markets, green rice fields: a photographer's paradise.",
+                
+                "highlight-ambanja-title": "Ambanja - Madagascar's Secret Garden",
+                "highlight-ambanja-desc": "Where red earth meets blue sky, where cocoa grows under centuries-old baobabs. A complete sensory experience.",
+                "ambanja-title": "Ambanja's Pearls",
+                
+                "site1-type": "NATURAL SANCTUARY",
+                "site1-title": "The Sacred Grand Baobab",
+                "site1-subtitle": "Living Symbol of Ambanja",
+                "site1-desc": "More than a tree, a guardian of secrets. This thousand-year-old baobab is the beating heart of the city, silent witness of generations. Come touch its rough bark, listen to the legends it whispers to the evening wind.",
+                "tag1-1": "Sacred Site",
+                "tag1-2": "Unique Photography",
+                "tag1-3": "Local Legends",
+                
+                "site2-type": "SENSORY EXPERIENCE",
+                "site2-title": "The Market of a Thousand Scents",
+                "site2-subtitle": "Economic & Cultural Heart",
+                "site2-desc": "A festival of colors, smells and sounds. Bargain for aromatic cocoa, smell fresh vanilla, taste juicy fruits. Each stall tells a story, each smile welcomes you as a friend.",
+                "tag2-1": "Premium Cocoa",
+                "tag2-2": "Bourbon Vanilla",
+                "tag2-3": "Local Crafts",
+                
+                "site3-type": "UNBEATABLE VIEW",
+                "site3-title": "The Sambirano Bridge",
+                "site3-subtitle": "Balcony on River Life",
+                "site3-desc": "At golden hour, the bridge ignites. Watch pirogues glide on mirror water, hear children's laughter bathing, feel the cool breeze from the mountains. The best photo spot to capture the soul of the region.",
+                "tag3-1": "Sunset",
+                "tag3-2": "River Life",
+                "tag3-3": "Viewpoint",
+                
+                "site4-type": "EXCLUSIVE TASTING",
+                "site4-title": "Criollo Cocoa Plantations",
+                "site4-subtitle": "The Brown Gold of Sambirano",
+                "site4-desc": "Meet the guardians of the world's best cocoa. From bean to bar, discover the secrets of exceptional chocolate. Private tasting with producers, an unforgettable gustatory experience.",
+                "tag4-1": "Criollo Cocoa",
+                "tag4-2": "Guided Tour",
+                "tag4-3": "Tasting",
+                
+                "highlight-anivorano-title": "Anivorano - Madagascar's Natural Spa",
+                "highlight-anivorano-desc": "Where the earth's hot water meets the freshness of rice fields. A wellness sanctuary in the heart of pastoral landscape.",
+                "anivorano-title": "Anivorano's Treasures",
+                
+                "site5-type": "NATURAL WELL-BEING",
+                "site5-title": "The Sacred Thermal Springs",
+                "site5-subtitle": "(Antsirabe North) - Curative Waters",
+                "site5-desc": "Plunge into waters with magical properties. Anivorano's hot springs have been renowned for centuries to relieve pain and revitalize the body. A deep relaxation experience in a preserved natural setting.",
+                "tag5-1": "Therapeutic Waters",
+                "tag5-2": "Absolute Relaxation",
+                "tag5-3": "Natural Site",
+                
+                "site6-type": "SERENE LANDSCAPE",
+                "site6-title": "The Verdant Rice Fields",
+                "site6-subtitle": "Valley's Jade Carpet",
+                "site6-desc": "Walk between rice fields where green has a thousand shades. Observe ancestral cultivation techniques, meet farmers with frank smiles, breathe the pure air of the Malagasy countryside. A soothing walk for the soul.",
+                "tag6-1": "Rice Fields",
+                "tag6-2": "Traditional Agriculture",
+                "tag6-3": "Picturesque Landscape",
+                
+                "traditions-title": "Traditions & Living Culture",
+                "traditions-subtitle": "Dive into the heart of Sakalava traditions, from ancestral rituals to preserved know-how.",
+                "tradition1-title": "Sakalava Royalty",
+                "tradition1-desc": "Discover the history of Sakalava kings, their traditional palaces and the unique social organization of this coastal ethnicity.",
+                "tradition2-title": "Music & Dance",
+                "tradition2-desc": "Initiate yourself to the enchanting rhythms of salegy and traditional dances during village ceremonies.",
+                "tradition3-title": "Ancestral Cuisine",
+                "tradition3-desc": "Participate in the preparation of romazava (traditional broth) and discover culinary secrets passed from mother to daughter.",
+                "tradition4-title": "Traditional Medicine",
+                "tradition4-desc": "Meet healers (ombiasy) and discover medicinal plants used for generations.",
+                
+                "seasons-title": "When to Visit? The Perfect Guide",
+                "season1-title": "April to October - Ideal Season",
+                "season1-period": "PERFECT",
+                "season1-desc": "Blue sky, pleasant temperatures (25-30°C), little rain. Perfect for exploring plantations, photographing landscapes, and enjoying thermal springs. The cocoa harvest in June-July is a unique spectacle.",
+                "season2-title": "November to March - Green Season",
+                "season2-period": "LUSH",
+                "season2-desc": "Nature explodes with life! Intensely green landscapes, impressive waterfalls, authentic tropical atmosphere. Ideal for photography lovers and those seeking absolute authenticity despite some showers.",
+                "season3-title": "Unmissable Events",
+                "season3-period": "FESTIVE",
+                "season3-desc": "<strong>May:</strong> Cocoa Festival - Tastings and traditional dances<br><strong>June:</strong> Vanilla Festival - Specialized markets and animations<br><strong>September:</strong> Sakalava Ceremonies - Ancestral rituals open to visitors<br><strong>December:</strong> Year-end Festivities - Warm atmosphere and festive meals",
+                
+                "experiences-title": "Exclusive Experiences",
+                "experiences-subtitle": "Much more than a visit, total immersion in local life.",
+                "experience1-title": "Meeting with Producers",
+                "experience1-desc": "Spend a day with a planter family. Learn to pollinate vanilla, harvest cocoa, share their meal. Authentic human connection.",
+                "experience2-title": "Private Photo Safari",
+                "experience2-desc": "Local photographer guide. Access to best spots at magic hours (sunrise/sunset). Ethnographic photography course included.",
+                "experience3-title": "Cooking Workshop 'From Earth to Plate'",
+                "experience3-desc": "Market + picking + cooking. Prepare a traditional meal with a local chef. Recipe booklet offered.",
+                "experience4-title": "Wellness Retreat",
+                "experience4-desc": "3 days of relaxation at thermal springs. Traditional massages, meditation in nature, local and healthy food.",
+                
+                "contact-title": "Ready for the Adventure of Your Life?",
+                "contact-text": "We create tailor-made experiences for demanding travelers. French-speaking local guides, authentic accommodation, exclusive access to sites, private transport. Your 100% personalized trip.",
+                "contact-btn": "Call us: +261 32 39 622 86",
+                "email-btn": "Email: hajahabibeabdou@gmail.com",
+                
+                "footer-creator": "Habibe - Creator of Authentic Experiences",
+                "footer-phone": "Phone/WhatsApp: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Specialist in immersive travel in Madagascar - Custom tours since 2015"
+            },
+            es: {
+                "header-tagline": "La Esencia Auténtica de Ambanja & Anivorano",
+                "menu-home": "Inicio",
+                "menu-ambanja": "Ambanja",
+                "menu-anivorano": "Anivorano",
+                "menu-traditions": "Tradiciones",
+                "menu-seasons": "Mejor Época",
+                "menu-experiences": "Experiencias",
+                "menu-contact": "Reservar",
+                
+                "page-title": "🌿 Ambanja & Anivorano - Autenticidad & Asombro",
+                "page-subtitle": "Descubre el verdadero rostro de Madagascar. Inmersión cultural profunda en tradiciones Sakalava, encuentros auténticos con productores de cacao y paisajes impresionantes.",
+                
+                "why-title": "¿Por Qué Elegir Ambanja & Anivorano?",
+                "reason1-title": "Autenticidad Preservada",
+                "reason1-desc": "Escapa del turismo masivo. Aquí, las tradiciones están vivas, las sonrisas son sinceras, la bienvenida es cálida.",
+                "reason2-title": "Gastronomía Única",
+                "reason2-desc": "Prueba el mejor cacao del mundo, saborea frutas tropicales frescas, descubre sabores únicos.",
+                "reason3-title": "Bienestar Natural",
+                "reason3-desc": "Aguas termales terapéuticas, aire puro, ritmo de vida tranquilo: una cura de rejuvenecimiento natural.",
+                "reason4-title": "Fotos Espectaculares",
+                "reason4-desc": "Baobab majestuoso, mercados coloridos, arrozales verdes: paraíso para fotógrafos.",
+                
+                "highlight-ambanja-title": "Ambanja - El Jardín Secreto de Madagascar",
+                "highlight-ambanja-desc": "Donde la tierra roja se encuentra con el cielo azul, donde el cacao crece bajo baobabs centenarios. Una experiencia sensorial completa.",
+                "ambanja-title": "Las Perlas de Ambanja",
+                
+                "site1-type": "SANTUARIO NATURAL",
+                "site1-title": "El Gran Baobab Sagrado",
+                "site1-subtitle": "Símbolo Viviente de Ambanja",
+                "site1-desc": "Más que un árbol, un guardián de secretos. Este baobab milenario es el corazón latente de la ciudad, testigo silencioso de generaciones. Ven a tocar su corteza rugosa, escucha las leyendas que susurra al viento de la tarde.",
+                "tag1-1": "Sitio Sagrado",
+                "tag1-2": "Fotografía Única",
+                "tag1-3": "Leyendas Locales",
+                
+                "site2-type": "EXPERIENCIA SENSORIAL",
+                "site2-title": "El Mercado de los Mil Aromas",
+                "site2-subtitle": "Corazón Económico & Cultural",
+                "site2-desc": "Un festival de colores, olores y sonidos. Regatea el cacao aromático, huele la vainilla fresca, prueba frutas jugosas. Cada puesto cuenta una historia, cada sonrisa te recibe como amigo.",
+                "tag2-1": "Cacao Premium",
+                "tag2-2": "Vainilla Bourbon",
+                "tag2-3": "Artesanía Local",
+                
+                "site3-type": "VISTA IMPRESIONANTE",
+                "site3-title": "El Puente sobre el Sambirano",
+                "site3-subtitle": "Balcón a la Vida Fluvial",
+                "site3-desc": "En la hora dorada, el puente se enciende. Observa las piraguas deslizarse sobre el agua espejo, escucha las risas de los niños bañándose, siente la brisa fresca de las montañas. El mejor lugar para fotos para capturar el alma de la región.",
+                "tag3-1": "Atardecer",
+                "tag3-2": "Vida Fluvial",
+                "tag3-3": "Mirador",
+                
+                "site4-type": "CATA EXCLUSIVA",
+                "site4-title": "Plantaciones de Cacao Criollo",
+                "site4-subtitle": "El Oro Marrón del Sambirano",
+                "site4-desc": "Conoce a los guardianes del mejor cacao del mundo. Del grano a la tableta, descubre los secretos de un chocolate excepcional. Cata privada con productores, una experiencia gustativa inolvidable.",
+                "tag4-1": "Cacao Criollo",
+                "tag4-2": "Visita Guiada",
+                "tag4-3": "Cata",
+                
+                "highlight-anivorano-title": "Anivorano - El Spa Natural de Madagascar",
+                "highlight-anivorano-desc": "Donde el agua caliente de la tierra encuentra la frescura de los arrozales. Un santuario de bienestar en el corazón del paisaje pastoral.",
+                "anivorano-title": "Tesoros de Anivorano",
+                
+                "site5-type": "BIENESTAR NATURAL",
+                "site5-title": "Las Fuentes Termales Sagradas",
+                "site5-subtitle": "(Antsirabe Norte) - Aguas Curativas",
+                "site5-desc": "Sumérgete en aguas con propiedades mágicas. Las aguas termales de Anivorano son renombradas desde siglos para aliviar dolores y revitalizar el organismo. Una experiencia de relajación profunda en un entorno natural preservado.",
+                "tag5-1": "Aguas Terapéuticas",
+                "tag5-2": "Relajación Absoluta",
+                "tag5-3": "Sitio Natural",
+                
+                "site6-type": "PAISAJE SERENO",
+                "site6-title": "Los Arrozales Verdeantes",
+                "site6-subtitle": "Alfombra de Jade del Valle",
+                "site6-desc": "Camina entre arrozales donde el verde tiene mil matices. Observa técnicas ancestrales de cultivo, conoce agricultores de sonrisa franca, respira el aire puro del campo malgache. Un paseo apacible para el alma.",
+                "tag6-1": "Arrozales",
+                "tag6-2": "Agricultura Tradicional",
+                "tag6-3": "Paisaje Pintoresco",
+                
+                "traditions-title": "Tradiciones & Cultura Viva",
+                "traditions-subtitle": "Sumérgete en el corazón de las tradiciones Sakalava, de rituales ancestrales a saberes preservados.",
+                "tradition1-title": "Realeza Sakalava",
+                "tradition1-desc": "Descubre la historia de los reyes Sakalava, sus palacios tradicionales y la organización social única de esta etnia costera.",
+                "tradition2-title": "Música & Danza",
+                "tradition2-desc": "Iníciate en los ritmos embriagadores del salegy y las danzas tradicionales durante ceremonias aldeanas.",
+                "tradition3-title": "Cocina Ancestral",
+                "tradition3-desc": "Participa en la preparación del romazava (caldo tradicional) y descubre secretos culinarios transmitidos de madre a hija.",
+                "tradition4-title": "Medicina Tradicional",
+                "tradition4-desc": "Encuentra a curanderos (ombiasy) y descubre plantas medicinales usadas por generaciones.",
+                
+                "seasons-title": "¿Cuándo Visitar? La Guía Perfecta",
+                "season1-title": "Abril a Octubre - Temporada Ideal",
+                "season1-period": "PERFECTO",
+                "season1-desc": "Cielo azul, temperaturas agradables (25-30°C), poca lluvia. Perfecto para explorar plantaciones, fotografiar paisajes y disfrutar fuentes termales. La cosecha de cacao en junio-julio es un espectáculo único.",
+                "season2-title": "Noviembre a Marzo - Temporada Verde",
+                "season2-period": "VERDE LUSH",
+                "season2-desc": "¡La naturaleza explota de vida! Paisajes de verde intenso, cascadas impresionantes, atmósfera tropical auténtica. Ideal para amantes de fotografía y quienes buscan autenticidad absoluta a pesar de algunos chubascos.",
+                "season3-title": "Eventos Imperdibles",
+                "season3-period": "FESTIVO",
+                "season3-desc": "<strong>Mayo:</strong> Fiesta del Cacao - Catas y danzas tradicionales<br><strong>Junio:</strong> Festival de la Vainilla - Mercados especializados y animaciones<br><strong>Septiembre:</strong> Ceremonias Sakalava - Rituales ancestrales abiertos a visitantes<br><strong>Diciembre:</strong> Fiestas de Fin de Año - Ambiente cálido y comidas festivas",
+                
+                "experiences-title": "Experiencias Exclusivas",
+                "experiences-subtitle": "Mucho más que una visita, inmersión total en la vida local.",
+                "experience1-title": "Encuentro con Productores",
+                "experience1-desc": "Pasa un día con una familia de plantadores. Aprende a polinizar vainilla, cosecha cacao, comparte su comida. Conexión humana auténtica.",
+                "experience2-title": "Safari Fotográfico Privado",
+                "experience2-desc": "Guía fotógrafo local. Acceso a mejores lugares en horas mágicas (amanecer/atardecer). Curso de fotografía etnográfica incluido.",
+                "experience3-title": "Taller de Cocina 'De la Tierra al Plato'",
+                "experience3-desc": "Mercado + recolección + cocina. Prepara una comida tradicional con chef local. Cuaderno de recetas ofrecido.",
+                "experience4-title": "Retiro de Bienestar",
+                "experience4-desc": "3 días de relajación en fuentes termales. Masajes tradicionales, meditación en naturaleza, alimentación local y sana.",
+                
+                "contact-title": "¿Listo para la Aventura de tu Vida?",
+                "contact-text": "Creamos experiencias a medida para viajeros exigentes. Guías locales francófonos, alojamiento auténtico, acceso exclusivo a sitios, transporte privado. Tu viaje 100% personalizado.",
+                "contact-btn": "Llámanos: +261 32 39 622 86",
+                "email-btn": "Email: hajahabibeabdou@gmail.com",
+                
+                "footer-creator": "Habibe - Creador de Experiencias Auténticas",
+                "footer-phone": "Teléfono/WhatsApp: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Especialista en viajes inmersivos en Madagascar - Circuitos a medida desde 2015"
+            },
+            it: {
+                "header-tagline": "L'Essenza Autentica di Ambanja & Anivorano",
+                "menu-home": "Home",
+                "menu-ambanja": "Ambanja",
+                "menu-anivorano": "Anivorano",
+                "menu-traditions": "Tradizioni",
+                "menu-seasons": "Miglior Periodo",
+                "menu-experiences": "Esperienze",
+                "menu-contact": "Prenota",
+                
+                "page-title": "🌿 Ambanja & Anivorano - Autenticità & Meraviglia",
+                "page-subtitle": "Scopri il vero volto del Madagascar. Immersione culturale profonda nelle tradizioni Sakalava, incontri autentici con produttori di cacao e paesaggi mozzafiato.",
+                
+                "why-title": "Perché Scegliere Ambanja & Anivorano?",
+                "reason1-title": "Autenticità Preservata",
+                "reason1-desc": "Fuggi dal turismo di massa. Qui, le tradizioni sono vive, i sorrisi sono sinceri, il benvenuto è caloroso.",
+                "reason2-title": "Gastronomia Unica",
+                "reason2-desc": "Assaggia il miglior cacao del mondo, assapora frutti tropicali freschi, scopri sapori unici.",
+                "reason3-title": "Benessere Naturale",
+                "reason3-desc": "Sorgenti termali terapeutiche, aria pura, ritmo di vita pacifico: una cura di ringiovanimento naturale.",
+                "reason4-title": "Foto Spettacolari",
+                "reason4-desc": "Baobab maestoso, mercati colorati, risaie verdi: paradiso per fotografi.",
+                
+                "highlight-ambanja-title": "Ambanja - Il Giardino Segreto del Madagascar",
+                "highlight-ambanja-desc": "Dove la terra rossa incontra il cielo blu, dove il cacao cresce sotto baobab secolari. Un'esperienza sensoriale completa.",
+                "ambanja-title": "Le Perle di Ambanja",
+                
+                "site1-type": "SANTUARIO NATURALE",
+                "site1-title": "Il Grande Baobab Sacro",
+                "site1-subtitle": "Simbolo Vivente di Ambanja",
+                "site1-desc": "Più di un albero, un guardiano di segreti. Questo baobab millenario è il cuore pulsante della città, testimone silenzioso di generazioni. Vieni a toccare la sua corteccia ruvida, ascolta le leggende che sussurra al vento della sera.",
+                "tag1-1": "Sito Sacro",
+                "tag1-2": "Fotografia Unica",
+                "tag1-3": "Leggende Locali",
+                
+                "site2-type": "ESPERIENZA SENSORIALE",
+                "site2-title": "Il Mercato dei Mille Profumi",
+                "site2-subtitle": "Cuore Economico & Culturale",
+                "site2-desc": "Un festival di colori, odori e suoni. Mercanteggia il cacao aromatico, annusa la vaniglia fresca, assaggia frutti succosi. Ogni bancarella racconta una storia, ogni sorriso ti accoglie come amico.",
+                "tag2-1": "Cacao Premium",
+                "tag2-2": "Vaniglia Bourbon",
+                "tag2-3": "Artigianato Locale",
+                
+                "site3-type": "VISTA IMPRESSIONANTE",
+                "site3-title": "Il Ponte sul Sambirano",
+                "site3-subtitle": "Balcone sulla Vita Fluviale",
+                "site3-desc": "All'ora dorata, il ponte s'infiamma. Guarda le piroghe scivolare sull'acqua specchio, ascolta le risate dei bambini che si bagnano, senti la brezza fresca dalle montagne. Il miglior posto foto per catturare l'anima della regione.",
+                "tag3-1": "Tramonto",
+                "tag3-2": "Vita Fluviale",
+                "tag3-3": "Punto di Vista",
+                
+                "site4-type": "DEGUSTAZIONE ESCLUSIVA",
+                "site4-title": "Piantagioni di Cacao Criollo",
+                "site4-subtitle": "L'Oro Bruno del Sambirano",
+                "site4-desc": "Incontra i guardiani del miglior cacao al mondo. Dal chicco alla tavoletta, scopri i segreti di un cioccolato eccezionale. Degustazione privata con produttori, un'esperienza gustativa indimenticabile.",
+                "tag4-1": "Cacao Criollo",
+                "tag4-2": "Visita Guidata",
+                "tag4-3": "Degustazione",
+                
+                "highlight-anivorano-title": "Anivorano - Il Spa Naturale del Madagascar",
+                "highlight-anivorano-desc": "Dove l'acqua calda della terra incontra la freschezza delle risaie. Un santuario di benessere nel cuore del paesaggio pastorale.",
+                "anivorano-title": "Tesori di Anivorano",
+                
+                "site5-type": "BENESSERE NATURALE",
+                "site5-title": "Le Sorgenti Termali Sacre",
+                "site5-subtitle": "(Antsirabe Nord) - Acque Curative",
+                "site5-desc": "Tuffati in acque con proprietà magiche. Le sorgenti calde di Anivorano sono rinomate da secoli per alleviare dolori e rivitalizzare l'organismo. Un'esperienza di rilassamento profondo in un ambiente naturale preservato.",
+                "tag5-1": "Acque Terapeutiche",
+                "tag5-2": "Rilassamento Assoluto",
+                "tag5-3": "Sito Naturale",
+                
+                "site6-type": "PAESAGGIO SERENO",
+                "site6-title": "Le Risaie Verdissime",
+                "site6-subtitle": "Tappeto di Giada della Valle",
+                "site6-desc": "Cammina tra risaie dove il verde ha mille sfumature. Osserva tecniche ancestrali di coltivazione, incontra agricoltori dal sorriso franco, respira l'aria pura della campagna malgascia. Una passeggiata calmante per l'anima.",
+                "tag6-1": "Risaie",
+                "tag6-2": "Agricoltura Tradizionale",
+                "tag6-3": "Paesaggio Pittoresco",
+                
+                "traditions-title": "Tradizioni & Cultura Viva",
+                "traditions-subtitle": "Tuffati nel cuore delle tradizioni Sakalava, da rituali ancestrali a saperi preservati.",
+                "tradition1-title": "Regalità Sakalava",
+                "tradition1-desc": "Scopri la storia dei re Sakalava, i loro palazzi tradizionali e l'organizzazione sociale unica di questa etnia costiera.",
+                "tradition2-title": "Musica & Danza",
+                "tradition2-desc": "Iniziati ai ritmi ipnotici del salegy e alle danze tradizionali durante cerimonie villaggiane.",
+                "tradition3-title": "Cucina Ancestrale",
+                "tradition3-desc": "Partecipa alla preparazione del romazava (brodo tradizionale) e scopri segreti culinari trasmessi da madre a figlia.",
+                "tradition4-title": "Medicina Tradizionale",
+                "tradition4-desc": "Incontra guaritori (ombiasy) e scopri piante medicinali usate per generazioni.",
+                
+                "seasons-title": "Quando Visitare? La Guida Perfetta",
+                "season1-title": "Aprile a Ottobre - Stagione Ideale",
+                "season1-period": "PERFETTO",
+                "season1-desc": "Cielo blu, temperature piacevoli (25-30°C), poca pioggia. Perfetto per esplorare piantagioni, fotografare paesaggi e godere sorgenti termali. La raccolta del cacao in giugno-luglio è uno spettacolo unico.",
+                "season2-title": "Novembre a Marzo - Stagione Verde",
+                "season2-period": "LUSSURGIANTE",
+                "season2-desc": "La natura esplode di vita! Paesaggi di verde intenso, cascate impressionanti, atmosfera tropicale autentica. Ideale per amanti della fotografia e chi cerca autenticità assoluta nonostante alcuni acquazzoni.",
+                "season3-title": "Eventi Imperdibili",
+                "season3-period": "FESTIVO",
+                "season3-desc": "<strong>Maggio:</strong> Festa del Cacao - Degustazioni e danze tradizionali<br><strong>Giugno:</strong> Festival della Vaniglia - Mercati specializzati e animazioni<br><strong>Settembre:</strong> Cerimonie Sakalava - Rituali ancestrali aperti a visitatori<br><strong>Dicembre:</strong> Feste di Fine Anno - Atmosfera calorosa e pasti festivi",
+                
+                "experiences-title": "Esperienze Esclusive",
+                "experiences-subtitle": "Molto più di una visita, immersione totale nella vita locale.",
+                "experience1-title": "Incontro con Produttori",
+                "experience1-desc": "Passa una giornata con una famiglia di coltivatori. Impara a impollinare vaniglia, raccogli cacao, condividi il loro pasto. Connessione umana autentica.",
+                "experience2-title": "Safari Fotografico Privato",
+                "experience2-desc": "Guida fotografo locale. Accesso a migliori posti alle ore magiche (alba/tramonto). Corso di fotografia etnografica incluso.",
+                "experience3-title": "Laboratorio Cucina 'Dalla Terra al Piatto'",
+                "experience3-desc": "Mercato + raccolta + cucina. Prepara un pasto tradizionale con chef locale. Quaderno di ricette offerto.",
+                "experience4-title": "Ritiro Benessere",
+                "experience4-desc": "3 giorni di relax a sorgenti termali. Massaggi tradizionali, meditazione in natura, alimentazione locale e sana.",
+                
+                "contact-title": "Pronto per l'Avventura della Tua Vita?",
+                "contact-text": "Creiamo esperienze su misura per viaggiatori esigenti. Guide locali francofone, alloggio autentico, accesso esclusivo a siti, trasporto privato. Il tuo viaggio 100% personalizzato.",
+                "contact-btn": "Chiamaci: +261 32 39 622 86",
+                "email-btn": "Email: hajahabibeabdou@gmail.com",
+                
+                "footer-creator": "Habibe - Creatore di Esperienze Autentiche",
+                "footer-phone": "Telefono/WhatsApp: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Specialista in viaggi immersivi in Madagascar - Circuiti su misura dal 2015"
+            },
+            ar: {
+                "header-tagline": "الجوهر الأصيل لأمبانجا وأنيفورانو",
+                "menu-home": "الرئيسية",
+                "menu-ambanja": "أمبانجا",
+                "menu-anivorano": "أنيفورانو",
+                "menu-traditions": "التقاليد",
+                "menu-seasons": "أفضل وقت",
+                "menu-experiences": "تجارب",
+                "menu-contact": "احجز الآن",
+                
+                "page-title": "🌿 أمبانجا وأنيفورانو - الأصالة والدهشة",
+                "page-subtitle": "اكتشف الوجه الحقيقي لمدغشقر. انغمس في تقاليد ساكالافا، قابل منتجي الكاكاو، واستمتع بمناظر طبيعية تأخذ الأنفاس.",
+                
+                "why-title": "لماذا تختار أمبانجا وأنيفورانو؟",
+                "reason1-title": "أصالة محفوظة",
+                "reason1-desc": "اهرب من السياحة الجماعية. هنا التقاليد حية، الابتسامات صادقة، الترحيب دافئ.",
+                "reason2-title": "مأكولات فريدة",
+                "reason2-desc": "تذوق أفضل كاكاو في العالم، استمتع بالفواكه الاستوائية الطازجة، اكتشف نكهات فريدة.",
+                "reason3-title": "صحة طبيعية",
+                "reason3-desc": "ينابيع حرارية علاجية، هواء نقي، إيقاع حياة هادئ: علاج تجديد طبيعي.",
+                "reason4-title": "صور مذهلة",
+                "reason4-desc": "شجرة باوباب مهيبة، أسواق ملونة، حقول أرز خضراء: جنة للمصورين.",
+                
+                "highlight-ambanja-title": "أمبانجا - الحديقة السرية لمدغشقر",
+                "highlight-ambanja-desc": "حيث تلتقي الأرض الحمراء بالسماء الزرقاء، حيث ينمو الكاكاو تحت أشجار الباوباب المئوية. تجربة حسية كاملة.",
+                "ambanja-title": "لآلئ أمبانجا",
+                
+                "site1-type": "ملاذ طبيعي",
+                "site1-title": "شجرة الباوباب المقدسة العظيمة",
+                "site1-subtitle": "رمز حي لأمبانجا",
+                "site1-desc": "أكثر من مجرد شجرة، حارسة للأسرار. هذه الشجرة الباوباب الألفية هي القلب النابض للمدينة، شاهد صامت على الأجيال. تعال المس لحائها الخشن، استمع للأساطير التي تهمس بها لرياح المساء.",
+                "tag1-1": "موقع مقدس",
+                "tag1-2": "تصوير فريد",
+                "tag1-3": "أساطير محلية",
+                
+                "site2-type": "تجربة حسية",
+                "site2-title": "سوق الألف رائحة",
+                "site2-subtitle": "القلب الاقتصادي والثقافي",
+                "site2-desc": "مهرجان من الألوان، الروائح والأصوات. تفاوض على الكاكاو العطري، اشم الفانيليا الطازجة، تذوق الفواكه العصيرية. كل كشك يحكي قصة، كل ابتسامة ترحب بك كصديق.",
+                "tag2-1": "كاكاو ممتاز",
+                "tag2-2": "فانيليا بوربون",
+                "tag2-3": "حرف محلية",
+                
+                "site3-type": "منظر خلاب",
+                "site3-title": "الجسر على نهر سامبيرانو",
+                "site3-subtitle": "شرفة على الحياة النهرية",
+                "site3-desc": "في الساعة الذهبية، يشتعل الجسر. شاهد القوارب تنزلق على الماء المرآة، اسمع ضحكات الأطفال يسبحون، اشعر بنسيم الجبل المنعش. أفضل مكان للتصوير لالتقاط روح المنطقة.",
+                "tag3-1": "غروب الشمس",
+                "tag3-2": "حياة نهرية",
+                "tag3-3": "نقطة مشاهدة",
+                
+                "site4-type": "تذوق حصري",
+                "site4-title": "مزارع كاكاو كريولو",
+                "site4-subtitle": "الذهب البني لسامبيرانو",
+                "site4-desc": "قابل حراس أفضل كاكاو في العالم. من الحبة إلى اللوح، اكتشف أسرار الشوكولاتة الاستثنائية. تذوق خاص مع المنتجين، تجربة تذوق لا تنسى.",
+                "tag4-1": "كاكاو كريولو",
+                "tag4-2": "جولة مرشدة",
+                "tag4-3": "تذوق",
+                
+                "highlight-anivorano-title": "أنيفورانو - السبا الطبيعي لمدغشقر",
+                "highlight-anivorano-desc": "حيث ماء الأرض الساخن يلتقي بنضارة حقول الأرز. ملاذ صحي في قلب المنظر الريفي.",
+                "anivorano-title": "كنوز أنيفورانو",
+                
+                "site5-type": "صحة طبيعية",
+                "site5-title": "الينابيع الحرارية المقدسة",
+                "site5-subtitle": "(أنتسيرابي الشمالية) - مياه علاجية",
+                "site5-desc": "اغطس في مياه بخصائص سحرية. الينابيع الحارة لأنيفورانو مشهورة منذ قرون لتخفيف الآلام وتنشيط الجسم. تجربة استرخاء عميقة في إطار طبيعي محفوظ.",
+                "tag5-1": "مياه علاجية",
+                "tag5-2": "استرخاء مطلق",
+                "tag5-3": "موقع طبيعي",
+                
+                "site6-type": "منظر هادئ",
+                "site6-title": "حقول الأرز المخضرة",
+                "site6-subtitle": "سجادة اليشم للوادي",
+                "site6-desc": "امشي بين حقول الأرز حيث للألف درجة خضراء. لاحظ تقنيات الزراعة القديمة، قابل مزارعين بابتسامة صريحة، تنفس الهواء النقي للريف الملغاشي. نزهة مهدئة للروح.",
+                "tag6-1": "حقول أرز",
+                "tag6-2": "زراعة تقليدية",
+                "tag6-3": "منظر خلاب",
+                
+                "traditions-title": "تقاليد وثقافة حية",
+                "traditions-subtitle": "انغمس في قلب تقاليد ساكالافا، من الطقوس القديمة إلى المعارف المحفوظة.",
+                "tradition1-title": "الملكية الساكالافية",
+                "tradition1-desc": "اكتشف تاريخ ملوك ساكالافا، قصورهم التقليدية والتنظيم الاجتماعي الفريد لهذه المجموعة الساحلية.",
+                "tradition2-title": "موسيقى ورقص",
+                "tradition2-desc": "ابدأ بإيقاعات ساليجي الساحرة والرقصات التقليدية خلال احتفالات القرية.",
+                "tradition3-title": "مطبخ قديم",
+                "tradition3-desc": "شارك في تحضير الرومازافا (مرق تقليدي) واكتشف الأسرار الغذائية المنقولة من الأم للابنة.",
+                "tradition4-title": "طب تقليدي",
+                "tradition4-desc": "قابل المعالجين (أومبياسي) واكتشف النباتات الطبية المستخدمة لأجيال.",
+                
+                "seasons-title": "متى تزور؟ الدليل المثالي",
+                "season1-title": "أبريل إلى أكتوبر - الموسم المثالي",
+                "season1-period": "مثالي",
+                "season1-desc": "سماء زرقاء، درجات حرارة لطيفة (25-30°م)، قليل من المطر. مثالي لاستكشاف المزارع، تصوير المناظر، والتمتع بالينابيع الحرارية. حصاد الكاكاو في يونيو-يوليو مشهد فريد.",
+                "season2-title": "نوفمبر إلى مارس - الموسم الأخضر",
+                "season2-period": "خضرة",
+                "season2-desc": "الطبيعة تنفجر بالحياة! مناظر خضراء مكثفة، شلالات مثيرة، جو استوائي أصيل. مثالي لعشاق التصوير والذين يبحثون عن الأصالة المطلقة رغم بعض الأمطار.",
+                "season3-title": "أحداث لا تفوت",
+                "season3-period": "احتفالي",
+                "season3-desc": "<strong>مايو:</strong> عيد الكاكاو - تذوقات ورقصات تقليدية<br><strong>يونيو:</strong> مهرجان الفانيليا - أسواق متخصصة وفعاليات<br><strong>سبتمبر:</strong> احتفالات ساكالافا - طقوس قديمة مفتوحة للزوار<br><strong>ديسمبر:</strong> احتفالات نهاية السنة - جو دافئ ووجبات احتفالية",
+                
+                "experiences-title": "تجارب حصرية",
+                "experiences-subtitle": "أكثر من مجرد زيارة، انغماس كامل في الحياة المحلية.",
+                "experience1-title": "لقاء مع المنتجين",
+                "experience1-desc": "اقضي يوماً مع عائلة مزارعين. تعلم تلقيح الفانيليا، احصد الكاكاو، شارك وجبتهم. اتصال إنساني أصيل.",
+                "experience2-title": "سفاري تصوير خاص",
+                "experience2-desc": "مرشد مصور محلي. دخول لأفضل الأماكن في الساعات السحرية (شروق/غروب الشمس). دورة تصوير إثنوغرافي مشمولة.",
+                "experience3-title": "ورشة طبخ 'من الأرض للطبق'",
+                "experience3-desc": "سوق + قطف + طبخ. حضّر وجبة تقليدية مع شيف محلي. دفتر وصفات مقدم.",
+                "experience4-title": "ملاذ صحي",
+                "experience4-desc": "3 أيام استرخاء في الينابيع الحرارية. مساج تقليدي، تأمل في الطبيعة، غذاء محلي وصحي.",
+                
+                "contact-title": "مستعد لمغامرة حياتك؟",
+                "contact-text": "نخلق تجارب مخصصة للمسافرين المطالبين. مرشدين محليين ناطقين بالفرنسية، إقامة أصلية، دخول حصري للمواقع، نقل خاص. رحلتك 100% مخصصة.",
+                "contact-btn": "اتصل بنا: +261 32 39 622 86",
+                "email-btn": "البريد: hajahabibeabdou@gmail.com",
+                
+                "footer-creator": "حبيبة - خالق تجارب أصيلة",
+                "footer-phone": "هاتف/واتساب: +261 32 39 622 86",
+                "footer-email": "البريد: hajahabibeabdou@gmail.com",
+                "footer-desc": "متخصص في الرحلات الغامرة بمدغشقر - جولات مخصصة منذ 2015"
+            }
+        };
+
+        // ===== LANGUAGE FUNCTION =====
+        function setLanguage(lang) {
+            const langData = translations[lang];
+            if (!langData) return;
+            
+            Object.keys(langData).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = langData[key];
+                }
+            });
+            
+            // Update language button
+            const langBtn = document.querySelector('.current-lang');
+            if (langBtn) {
+                langBtn.textContent = lang.toUpperCase();
+            }
+            
+            // Set active language option
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.lang === lang) {
+                    option.classList.add('active');
+                }
+            });
+            
+            // Save preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // ===== MOBILE MENU =====
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Close menu when clicking on a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // ===== SMOOTH SCROLLING =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial language
+            const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
+            setLanguage(savedLang);
+            
+            // Language selector events
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = option.dataset.lang;
+                    setLanguage(lang);
+                });
+            });
+            
+            // Header animation on load
+            setTimeout(() => {
+                document.getElementById('header').style.opacity = '1';
+                document.getElementById('header').style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Add animation delays to cards
+            const cards = document.querySelectorAll('.site-card, .tradition-card, .experience-card, .reason-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // ===== SCROLL EFFECTS =====
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.getElementById('header');
+            
+            if (currentScroll <= 0) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.style.transform = 'translateY(-100%)';
+                header.style.boxShadow = 'none';
+            } else {
+                header.style.transform = 'translateY(0)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // ===== RESPONSIVE ADJUSTMENTS =====
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && mobileMenu) {
+                mobileMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+</html>
