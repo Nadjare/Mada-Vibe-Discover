@@ -1,0 +1,2607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antananarivo - Capital et Hauts Plateaux | Mada Vibe Discover</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, 
+                rgba(10, 60, 30, 0.95) 0%, 
+                rgba(20, 90, 50, 0.93) 50%, 
+                rgba(40, 140, 90, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 10px 5%;
+            border-bottom: 2px solid #28c76f;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 42px;
+            width: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #28c76f;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            background: linear-gradient(45deg, #fff, #28c76f, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.85);
+            margin-top: 2px;
+        }
+
+        /* ===== HEADER CONTROLS ===== */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 180px;
+            background: rgba(10, 50, 25, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(40, 140, 90, 0.3);
+            z-index: 1001;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            color: #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .language-option:hover {
+            background: linear-gradient(135deg, rgba(40, 140, 90, 0.2), rgba(20, 90, 50, 0.2));
+        }
+
+        .flag-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 50, 25, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 20px 5%;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            display: none;
+            border-top: 1px solid rgba(40, 140, 90, 0.3);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 12px;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid #28c76f;
+            transform: translateX(5px);
+        }
+
+        .mobile-menu i {
+            color: #28c76f;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ===== HEADER SPACER ===== */
+        .header-spacer {
+            height: 60px;
+            width: 100%;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
+                        url('antananarivo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 140px 0 100px;
+            position: relative;
+        }
+
+        .page-hero h1 {
+            font-size: 4.5rem;
+            color: #28c76f;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero p {
+            font-size: 1.6rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(10, 60, 30, 0.4), 
+                rgba(20, 90, 50, 0.3), 
+                rgba(40, 140, 90, 0.2));
+            z-index: 1;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #28c76f;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #28c76f, transparent);
+            border-radius: 3px;
+        }
+
+        /* ===== HIGHLIGHTS SECTION ===== */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 70px 0;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(40, 140, 90, 0.1);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            border-color: #28c76f;
+            box-shadow: 0 20px 50px rgba(40, 140, 90, 0.15);
+        }
+
+        .highlight-icon {
+            font-size: 3.5rem;
+            color: #28c76f;
+            margin-bottom: 25px;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .highlight-card p {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ===== SITES COMPACTS ===== */
+        .compact-sites-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(15, 30, 20, 0.95), rgba(25, 45, 30, 0.9));
+        }
+
+        .compact-sites-title {
+            font-size: 2.5rem;
+            color: #28c76f;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .compact-sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .compact-site-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(40, 140, 90, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .compact-site-card:hover {
+            transform: translateY(-8px);
+            border-color: #28c76f;
+            box-shadow: 0 15px 35px rgba(40, 140, 90, 0.2);
+        }
+
+        .compact-site-image {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .compact-site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .compact-site-card:hover .compact-site-image img {
+            transform: scale(1.08);
+        }
+
+        .compact-site-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .compact-site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .compact-site-title {
+            font-size: 1.3rem;
+            color: white;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-right: 10px;
+        }
+
+        .compact-site-type {
+            display: inline-block;
+            background: #28c76f;
+            color: #0a0a0a;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .compact-site-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .compact-site-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0;
+        }
+
+        .compact-feature-tag {
+            padding: 4px 10px;
+            background: rgba(40, 140, 90, 0.15);
+            color: #28c76f;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(40, 140, 90, 0.3);
+        }
+
+        .compact-site-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #28c76f, #1a7c4b);
+            color: #0a0a0a;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .compact-site-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(40, 140, 90, 0.4);
+        }
+
+        /* ===== ACTIVITIES SECTION ===== */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 70px 0;
+        }
+
+        .activity-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(40, 140, 90, 0.1);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            border-color: #28c76f;
+            box-shadow: 0 20px 50px rgba(40, 140, 90, 0.15);
+        }
+
+        .activity-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(20, 90, 50, 0.5);
+            font-size: 3.5rem;
+            color: #28c76f;
+        }
+
+        .activity-info {
+            padding: 30px;
+        }
+
+        .activity-info h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .activity-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        /* ===== CULTURE SECTION ===== */
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin: 70px 0;
+        }
+
+        .culture-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(40, 140, 90, 0.1);
+        }
+
+        .culture-card:hover {
+            transform: translateY(-15px);
+            border-color: #28c76f;
+            box-shadow: 0 25px 60px rgba(40, 140, 90, 0.2);
+        }
+
+        .culture-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .culture-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .culture-card:hover .culture-image img {
+            transform: scale(1.15);
+        }
+
+        .culture-info {
+            padding: 30px;
+            background: rgba(30, 40, 35, 0.8);
+        }
+
+        .culture-info h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .culture-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        /* ===== SEASONALITY ===== */
+        .season-timeline {
+            max-width: 800px;
+            margin: 70px auto;
+            position: relative;
+        }
+
+        .season-item {
+            background: rgba(30, 45, 35, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #28c76f;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .season-item:hover {
+            transform: translateX(10px);
+            background: rgba(30, 45, 35, 0.9);
+        }
+
+        .season-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .season-icon {
+            font-size: 2rem;
+            color: #28c76f;
+        }
+
+        .season-title {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .season-period {
+            background: rgba(40, 140, 90, 0.2);
+            color: #28c76f;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .season-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ===== BUTTON ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #28c76f, #1a7c4b);
+            color: #0a0a0a;
+            padding: 18px 45px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(40, 140, 90, 0.4);
+            margin: 30px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(40, 140, 90, 0.5);
+            background: linear-gradient(135deg, #1a7c4b, #28c76f);
+        }
+
+        .btn-small {
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #28c76f;
+            color: #28c76f;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(40, 140, 90, 0.1);
+        }
+
+        /* ===== IMAGE HIGHLIGHT ===== */
+        .image-highlight {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .highlight-container {
+            position: relative;
+            height: 600px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .highlight-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+            transition: transform 0.8s ease;
+        }
+
+        .highlight-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .highlight-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 50px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            text-align: left;
+        }
+
+        .highlight-text h3 {
+            font-size: 2.5rem;
+            color: #28c76f;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .highlight-text p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #000;
+            padding: 60px 0 30px;
+            border-top: 3px solid #28c76f;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .creator {
+            color: #28c76f;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 1000px;
+            }
+            
+            .page-hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .compact-sites-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .highlight-container {
+                height: 500px;
+            }
+            
+            .highlight-text {
+                padding: 30px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 2rem;
+            }
+            
+            .highlight-text p {
+                font-size: 1.1rem;
+            }
+            
+            .compact-sites-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 25px;
+            }
+            
+            .compact-sites-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                height: 55px;
+            }
+            
+            .header-spacer {
+                height: 55px;
+            }
+            
+            .page-hero {
+                min-height: 70vh;
+                padding: 100px 0 80px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            .compact-sites-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .highlights-grid,
+            .activities-grid,
+            .culture-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .compact-sites-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                max-width: 500px;
+            }
+            
+            .compact-site-image {
+                height: 160px;
+            }
+            
+            .highlight-container {
+                height: 400px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 1.8rem;
+            }
+            
+            .highlight-text p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 16px 35px;
+                font-size: 1rem;
+            }
+            
+            .language-btn span {
+                display: none;
+            }
+            
+            .language-btn {
+                padding: 8px 12px;
+            }
+            
+            .language-btn i {
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .compact-sites-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
+            .compact-site-image {
+                height: 140px;
+            }
+            
+            .compact-site-content {
+                padding: 15px;
+            }
+            
+            .compact-site-title {
+                font-size: 1.2rem;
+            }
+            
+            .compact-site-desc {
+                font-size: 0.9rem;
+            }
+            
+            .compact-site-header {
+                flex-direction: column;
+                gap: 8px;
+                align-items: flex-start;
+            }
+            
+            .compact-site-type {
+                align-self: flex-start;
+            }
+            
+            .culture-image {
+                height: 200px;
+            }
+            
+            .culture-info {
+                padding: 25px;
+            }
+            
+            .highlight-container {
+                height: 350px;
+            }
+            
+            .highlight-text {
+                padding: 20px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 1.6rem;
+            }
+            
+            .highlight-text p {
+                font-size: 0.9rem;
+            }
+            
+            .mobile-menu {
+                padding: 15px 5%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+                margin: 20px 0;
+            }
+            
+            .compact-site-btn {
+                width: 100%;
+            }
+            
+            .language-dropdown {
+                width: 150px;
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .compact-site-type {
+                font-size: 0.65rem;
+                padding: 3px 8px;
+            }
+            
+            .compact-feature-tag {
+                font-size: 0.7rem;
+                padding: 3px 8px;
+            }
+            
+            .season-period {
+                padding: 4px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .logo-title {
+                font-size: 1.1rem;
+            }
+            
+            .logo img {
+                height: 36px;
+                width: 36px;
+            }
+            
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-hero p {
+                font-size: 1rem;
+            }
+            
+            .compact-sites-grid {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 350px) {
+            .compact-sites-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-btn {
+                padding: 6px 8px;
+                font-size: 0.85rem;
+            }
+            
+            .menu-toggle {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Madagascar Flag">
+                <div class="logo-text">
+                    <div class="logo-title">MADA VIBE DISCOVER</div>
+                    <div class="logo-tagline" id="header-tagline">Your Antananarivo Guide</div>
+                </div>
+            </a>
+
+            <!-- Controls -->
+            <div class="header-controls">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <i class="fas fa-globe-americas"></i>
+                        <span class="current-lang">EN</span>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" class="language-option" data-lang="en">
+                            <img src="https://flagcdn.com/w20/us.png" class="flag-icon" alt="English">
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="fr">
+                            <img src="https://flagcdn.com/w20/fr.png" class="flag-icon" alt="Français">
+                            <span>Français</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="de">
+                            <img src="https://flagcdn.com/w20/de.png" class="flag-icon" alt="Deutsch">
+                            <span>Deutsch</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <img src="https://flagcdn.com/w20/es.png" class="flag-icon" alt="Español">
+                            <span>Español</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="it">
+                            <img src="https://flagcdn.com/w20/it.png" class="flag-icon" alt="Italiano">
+                            <span>Italiano</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ar">
+                            <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="العربية">
+                            <span>العربية</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span id="menu-home">Home</span></a></li>
+                <li><a href="#highlights"><i class="fas fa-star"></i> <span id="menu-highlights">Highlights</span></a></li>
+                <li><a href="#sites"><i class="fas fa-landmark"></i> <span id="menu-sites">Tourist Sites</span></a></li>
+                <li><a href="#activities"><i class="fas fa-hiking"></i> <span id="menu-activities">Activities</span></a></li>
+                <li><a href="#culture"><i class="fas fa-users"></i> <span id="menu-culture">Culture</span></a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> <span id="menu-contact">Contact</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="header-spacer"></div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1 class="fade-in" id="page-title">🏛️ Antananarivo - Capital of the Highlands</h1>
+            <p class="fade-in delay-1" id="page-subtitle">
+                The City of a Thousand, perched at 1,300 meters altitude. Discover the Queen's Palace, 
+                lively markets, authentic Malagasy cuisine, and the green landscapes of the Highlands.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== IMAGE HIGHLIGHT ===== -->
+    <section class="image-highlight">
+        <div class="container">
+            <div class="highlight-container fade-in">
+                <img src="antananarivo.jpg" 
+                     alt="Antananarivo View">
+                <div class="highlight-text">
+                    <h3 id="highlight-title">The Royal Hill - Queen's Palace</h3>
+                    <p id="highlight-desc">Dominating the capital from its height of 1,468 meters, the Rova of Antananarivo 
+                    is the most important historical site in Madagascar, witness to Merina royal history.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HIGHLIGHTS ===== -->
+    <section id="highlights" class="content-section" style="background: linear-gradient(135deg, rgba(20, 35, 25, 0.95), rgba(30, 50, 35, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="highlights-title">Why Visit Antananarivo?</h2>
+            
+            <div class="highlights-grid">
+                <div class="highlight-card fade-in">
+                    <div class="highlight-icon">🏛️</div>
+                    <h3 id="highlight1-title">Royal History</h3>
+                    <p id="highlight1-desc">Explore the history of Merina kings and queens at the Queen's Palace, 
+                    UNESCO World Heritage site and symbol of Malagasy identity.</p>
+                </div>
+
+                <div class="highlight-card fade-in delay-1">
+                    <div class="highlight-icon">🛍️</div>
+                    <h3 id="highlight2-title">Lively Markets</h3>
+                    <p id="highlight2-desc">Discover the colorful markets of Analakely and Andravoahangy, 
+                    true concentrates of Malagasy life with crafts, spices and local products.</p>
+                </div>
+
+                <div class="highlight-card fade-in delay-2">
+                    <div class="highlight-icon">🍲</div>
+                    <h3 id="highlight3-title">Authentic Cuisine</h3>
+                    <p id="highlight3-desc">Taste Highlands specialties: ravitoto, romazava, mofo gasy 
+                    and many rice-based dishes, staple food of Malagasy people.</p>
+                </div>
+
+                <div class="highlight-card fade-in delay-3">
+                    <div class="highlight-icon">🌄</div>
+                    <h3 id="highlight4-title">Green Landscapes</h3>
+                    <p id="highlight4-desc">The Highlands offer terraced rice fields, rounded hills 
+                    and deep valleys landscapes, particularly beautiful at sunrise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SITES COMPACTS ===== -->
+    <section id="sites" class="compact-sites-section">
+        <div class="container">
+            <h2 class="compact-sites-title fade-in" id="sites-title">Tourist Sites of Antananarivo</h2>
+            
+            <div class="compact-sites-grid">
+                <!-- Site 1: Palais de la Reine (Rova) -->
+                <div class="compact-site-card fade-in">
+                    <div class="compact-site-image">
+                        <img src="3a.jpg" 
+                             alt="Queen's Palace">
+                    </div>
+                    <div class="compact-site-content">
+                        <div class="compact-site-header">
+                            <h3 class="compact-site-title" id="site1-title">Queen's Palace (Rova)</h3>
+                            <span class="compact-site-type" id="site1-type">HERITAGE</span>
+                        </div>
+                        <p class="compact-site-desc" id="site1-desc">Former royal palace of Merina rulers, offering exceptional panoramic view of the city.</p>
+                        <div class="compact-site-features">
+                            <span class="compact-feature-tag" id="tag1-1">History</span>
+                            <span class="compact-feature-tag" id="tag1-2">Panoramic View</span>
+                            <span class="compact-feature-tag" id="tag1-3">Culture</span>
+                        </div>
+                        <a href="#contact" class="compact-site-btn" id="btn-site1">Visit</a>
+                    </div>
+                </div>
+
+                <!-- Site 2: Marché d'Analakely (Zoma) -->
+                <div class="compact-site-card fade-in delay-1">
+                    <div class="compact-site-image">
+                        <img src="3b.png" 
+                             alt="Analakely Market">
+                    </div>
+                    <div class="compact-site-content">
+                        <div class="compact-site-header">
+                            <h3 class="compact-site-title" id="site2-title">Analakely Market (Zoma)</h3>
+                            <span class="compact-site-type" id="site2-type">MARKET</span>
+                        </div>
+                        <p class="compact-site-desc" id="site2-desc">Largest open-air market in the capital, total immersion in Malagasy life.</p>
+                        <div class="compact-site-features">
+                            <span class="compact-feature-tag" id="tag2-1">Local Market</span>
+                            <span class="compact-feature-tag" id="tag2-2">Shopping</span>
+                            <span class="compact-feature-tag" id="tag2-3">Specialties</span>
+                        </div>
+                        <a href="#contact" class="compact-site-btn" id="btn-site2">Visit</a>
+                    </div>
+                </div>
+
+                <!-- Site 3: Lac Anosy et Ange Noir -->
+                <div class="compact-site-card fade-in delay-2">
+                    <div class="compact-site-image">
+                        <img src="3c.png" 
+                             alt="Lake Anosy">
+                    </div>
+                    <div class="compact-site-content">
+                        <div class="compact-site-header">
+                            <h3 class="compact-site-title" id="site3-title">Lake Anosy and Black Angel</h3>
+                            <span class="compact-site-type" id="site3-type">URBAN</span>
+                        </div>
+                        <p class="compact-site-desc" id="site3-desc">Artificial heart-shaped lake with War Memorial, romantic symbol of the capital.</p>
+                        <div class="compact-site-features">
+                            <span class="compact-feature-tag" id="tag3-1">Lake</span>
+                            <span class="compact-feature-tag" id="tag3-2">Romantic</span>
+                            <span class="compact-feature-tag" id="tag3-3">Walking</span>
+                        </div>
+                        <a href="#contact" class="compact-site-btn" id="btn-site3">Visit</a>
+                    </div>
+                </div>
+
+                <!-- Site 4: Ambohimanga (Colline Royale) -->
+                <div class="compact-site-card fade-in delay-3">
+                    <div class="compact-site-image">
+                        <img src="3d.png" 
+                             alt="Ambohimanga">
+                    </div>
+                    <div class="compact-site-content">
+                        <div class="compact-site-header">
+                            <h3 class="compact-site-title" id="site4-title">Ambohimanga (Royal Hill)</h3>
+                            <span class="compact-site-type" id="site4-type">UNESCO</span>
+                        </div>
+                        <p class="compact-site-desc" id="site4-desc">UNESCO site, ancient royal city and sacred place with preserved traditional architecture.</p>
+                        <div class="compact-site-features">
+                            <span class="compact-feature-tag" id="tag4-1">UNESCO</span>
+                            <span class="compact-feature-tag" id="tag4-2">Sacred</span>
+                            <span class="compact-feature-tag" id="tag4-3">Architecture</span>
+                        </div>
+                        <a href="#contact" class="compact-site-btn" id="btn-site4">Visit</a>
+                    </div>
+                </div>
+
+                <!-- Site 5: Musée d'Art et d'Archéologie -->
+                <div class="compact-site-card fade-in">
+                    <div class="compact-site-image">
+                        <img src="3e.png" 
+                             alt="Art Museum">
+                    </div>
+                    <div class="compact-site-content">
+                        <div class="compact-site-header">
+                            <h3 class="compact-site-title" id="site5-title">Art and Archaeology Museum</h3>
+                            <span class="compact-site-type" id="site5-type">MUSEUM</span>
+                        </div>
+                        <p class="compact-site-desc" id="site5-desc">To understand Malagasy history and cultures through unique artifact collection.</p>
+                        <div class="compact-site-features">
+                            <span class="compact-feature-tag" id="tag5-1">Museum</span>
+                            <span class="compact-feature-tag" id="tag5-2">Art</span>
+                            <span class="compact-feature-tag" id="tag5-3">History</span>
+                        </div>
+                        <a href="#contact" class="compact-site-btn" id="btn-site5">Visit</a>
+                    </div>
+                </div>
+
+                <!-- Site 6: Marché de la Digue -->
+                <div class="compact-site-card fade-in delay-1">
+                    <div class="compact-site-image">
+                        <img src="3f.png" 
+                             alt="Digue Market">
+                    </div>
+                    <div class="compact-site-content">
+                        <div class="compact-site-header">
+                            <h3 class="compact-site-title" id="site6-title">Digue Market</h3>
+                            <span class="compact-site-type" id="site6-type">MARKET</span>
+                        </div>
+                        <p class="compact-site-desc" id="site6-desc">Very popular market for fresh products, meat, fish and everyday objects.</p>
+                        <div class="compact-site-features">
+                            <span class="compact-feature-tag" id="tag6-1">Fresh Products</span>
+                            <span class="compact-feature-tag" id="tag6-2">Local</span>
+                            <span class="compact-feature-tag" id="tag6-3">Authentic</span>
+                        </div>
+                        <a href="#contact" class="compact-site-btn" id="btn-site6">Visit</a>
+                    </div>
+                </div>
+
+                <!-- Site 7: Parc de Tsarasaotra (oiseaux) -->
+                <div class="compact-site-card fade-in delay-2">
+                    <div class="compact-site-image">
+                        <img src="3g.png" 
+                             alt="Tsarasaotra Park">
+                    </div>
+                    <div class="compact-site-content">
+                        <div class="compact-site-header">
+                            <h3 class="compact-site-title" id="site7-title">Tsarasaotra Park (birds)</h3>
+                            <span class="compact-site-type" id="site7-type">NATURE</span>
+                        </div>
+                        <p class="compact-site-desc" id="site7-desc">Unique Ramsar site in urban area in Africa, refuge for endemic birds.</p>
+                        <div class="compact-site-features">
+                            <span class="compact-feature-tag" id="tag7-1">Birds</span>
+                            <span class="compact-feature-tag" id="tag7-2">Nature</span>
+                            <span class="compact-feature-tag" id="tag7-3">Tranquility</span>
+                        </div>
+                        <a href="#contact" class="compact-site-btn" id="btn-site7">Visit</a>
+                    </div>
+                </div>
+
+                <!-- Site 8: Avenue de l'Indépendance -->
+                <div class="compact-site-card fade-in delay-3">
+                    <div class="compact-site-image">
+                        <img src="3h.png" 
+                             alt="Independence Avenue">
+                    </div>
+                    <div class="compact-site-content">
+                        <div class="compact-site-header">
+                            <h3 class="compact-site-title" id="site8-title">Independence Avenue</h3>
+                            <span class="compact-site-type" id="site8-type">HISTORICAL</span>
+                        </div>
+                        <p class="compact-site-desc" id="site8-desc">Main historical artery of Antananarivo with preserved colonial architecture.</p>
+                        <div class="compact-site-features">
+                            <span class="compact-feature-tag" id="tag8-1">Historical</span>
+                            <span class="compact-feature-tag" id="tag8-2">Architecture</span>
+                            <span class="compact-feature-tag" id="tag8-3">City Center</span>
+                        </div>
+                        <a href="#contact" class="compact-site-btn" id="btn-site8">Visit</a>
+                    </div>
+                </div>
+
+                <!-- Site 9: Marché artisanal d'Andravoahangy -->
+                <div class="compact-site-card fade-in">
+                    <div class="compact-site-image">
+                        <img src="3i.png" 
+                             alt="Craft Market">
+                    </div>
+                    <div class="compact-site-content">
+                        <div class="compact-site-header">
+                            <h3 class="compact-site-title" id="site9-title">Andravoahangy Craft Market</h3>
+                            <span class="compact-site-type" id="site9-type">CRAFTS</span>
+                        </div>
+                        <p class="compact-site-desc" id="site9-desc">Best place to buy authentic souvenirs and Malagasy handicrafts.</p>
+                        <div class="compact-site-features">
+                            <span class="compact-feature-tag" id="tag9-1">Handicrafts</span>
+                            <span class="compact-feature-tag" id="tag9-2">Souvenirs</span>
+                            <span class="compact-feature-tag" id="tag9-3">Local Products</span>
+                        </div>
+                        <a href="#contact" class="compact-site-btn" id="btn-site9">Visit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACTIVITIES ===== -->
+    <section id="activities" class="content-section" style="background: linear-gradient(135deg, rgba(25, 40, 30, 0.95), rgba(35, 55, 40, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="activities-title">Activities in Antananarivo</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card fade-in">
+                    <div class="activity-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity1-title">Gastronomic Tour</h3>
+                        <p class="activity-desc" id="activity1-desc">
+                            Discovery of traditional Malagasy cuisine: tasting romazava, ravitoto, 
+                            mofo gasy and other specialties in authentic restaurants.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity1">Book</a>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in delay-1">
+                    <div class="activity-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity2-title">Craft Shopping</h3>
+                        <p class="activity-desc" id="activity2-desc">
+                            Tour of best craft shops: wild silk, marquetry, precious stones, 
+                            vanilla and spices with expert advice.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity2">Book</a>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in delay-2">
+                    <div class="activity-icon">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity3-title">Historical Hiking</h3>
+                        <p class="activity-desc" id="activity3-desc">
+                            Guided visit of sacred hills around Antananarivo: Ambohimanga, 
+                            Ilafy and other historical sites with specialized guides.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity3">Book</a>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in delay-3">
+                    <div class="activity-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity4-title">Highlands Excursion</h3>
+                        <p class="activity-desc" id="activity4-desc">
+                            Full day to discover Highlands landscapes: terraced rice fields, 
+                            traditional villages, waterfalls and spectacular viewpoints.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity4">Book</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CULTURE ===== -->
+    <section id="culture" class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in" id="culture-title">Merina Culture and Traditions</h2>
+            
+            <div class="culture-grid">
+                <div class="culture-card fade-in">
+                    <div class="culture-image">
+                        <img src="3j.png" 
+                             alt="Famadihana">
+                    </div>
+                    <div class="culture-info">
+                        <h3 id="culture1-title">Ancestral Traditions</h3>
+                        <p class="culture-desc" id="culture1-desc">
+                            Discover Famadihana (turning of the bones), ancestor worship, 
+                            importance of fady (taboos) and traditional social structure.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-culture1">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="culture-card fade-in delay-1">
+                    <div class="culture-image">
+                        <img src="3k.png" 
+                             alt="Crafts">
+                    </div>
+                    <div class="culture-info">
+                        <h3 id="culture2-title">Local Crafts</h3>
+                        <p class="culture-desc" id="culture2-desc">
+                            Traditional techniques: precious wood marquetry, wild silk weaving, 
+                            Antaimoro paper making, zebu horn and silver work.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-culture2">Visit Workshops</a>
+                    </div>
+                </div>
+
+                <div class="culture-card fade-in delay-2">
+                    <div class="culture-image">
+                        <img src="3l.png" 
+                             alt="Music">
+                    </div>
+                    <div class="culture-info">
+                        <h3 id="culture3-title">Music and Dance</h3>
+                        <p class="culture-desc" id="culture3-desc">
+                            Traditional music shows with valiha (national string instrument), 
+                            kabosy and hira gasy (popular opera). Ritual and contemporary dances.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-culture3">Attend Show</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEASONALITY ===== -->
+    <section class="content-section" style="background: linear-gradient(135deg, rgba(30, 45, 35, 0.95), rgba(40, 60, 45, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="seasonality-title">Best Time to Visit</h2>
+            
+            <div class="season-timeline">
+                <div class="season-item fade-in">
+                    <div class="season-header">
+                        <div class="season-icon">🌤️</div>
+                        <h3 class="season-title" id="season1-title">Cool Season (April to October)</h3>
+                        <span class="season-period" id="season1-period">IDEAL</span>
+                    </div>
+                    <p class="season-desc" id="season1-desc">
+                        Dry and cool weather (15-25°C), ideal for city visits and excursions. 
+                        Clear sky for photos, optimal conditions for hiking in the Highlands.
+                    </p>
+                </div>
+
+                <div class="season-item fade-in delay-1">
+                    <div class="season-header">
+                        <div class="season-icon">🌧️</div>
+                        <h3 class="season-title" id="season2-title">Rainy Season (November to March)</h3>
+                        <span class="season-period" id="season2-period">RAINY</span>
+                    </div>
+                    <p class="season-desc" id="season2-desc">
+                        Heavy daily rainfall, warmer temperatures (20-28°C). 
+                        Very green landscapes but sometimes difficult travel. Frequent traditional ceremonies.
+                    </p>
+                </div>
+
+                <div class="season-item fade-in delay-2">
+                    <div class="season-header">
+                        <div class="season-icon">🎉</div>
+                        <h3 class="season-title" id="season3-title">Cultural Events</h3>
+                        <span class="season-period" id="season3-period">SPECIAL</span>
+                    </div>
+                    <p class="season-desc" id="season3-desc">
+                        June: National holiday (June 26). August: Famadihana (turning of the bones). 
+                        October: Jacaranda flowering. December: Animated year-end celebrations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT CTA ===== -->
+    <section id="contact" class="content-section" style="background: linear-gradient(135deg, rgba(35, 50, 40, 0.95), rgba(45, 65, 50, 0.9));">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="section-title fade-in" id="cta-title">Ready to Discover the Capital?</h2>
+                <p class="fade-in delay-1" style="margin-bottom: 40px; font-size: 1.3rem; max-width: 900px; margin-left: auto; margin-right: auto;" id="cta-text">
+                    We organize your stay in Antananarivo: airport transfers, charming accommodation, 
+                    French-speaking history specialists, personalized visits and Highlands excursions.
+                </p>
+                <a href="contact.html" class="btn fade-in delay-2">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="cta-btn">Plan My Antananarivo Stay</span>
+                </a>
+                <br>
+                <div style="margin-top: 30px;">
+                    <a href="morondava.html" class="btn btn-outline fade-in delay-3" style="margin-right: 15px;">
+                        <i class="fas fa-tree"></i>
+                        <span id="cta-morondava">Discover Morondava</span>
+                    </a>
+                    <a href="nosy-be.html" class="btn btn-outline fade-in delay-4" style="margin-right: 15px;">
+                        <i class="fas fa-umbrella-beach"></i>
+                        <span id="cta-nosybe">Discover Nosy Be</span>
+                    </a>
+                    <a href="antsiranana.html" class="btn btn-outline fade-in delay-5">
+                        <i class="fas fa-mountain"></i>
+                        <span id="cta-diego">Discover Diego-Suarez</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="creator" id="footer-creator">Created by Habibe - Professional Tourism Services</p>
+                <p id="footer-phone">Phone: +261 32 39 622 86</p>
+                <p id="footer-email">Email: hajahabibeabdou@gmail.com</p>
+                <p id="footer-desc">Airport transfers, cruise services and international tours available</p>
+                <p id="footer-copyright" style="margin-top: 30px; color: rgba(255,255,255,0.6);">
+                    © 2024 Mada Vibe Discover - All rights reserved.<br>
+                    Tourism License certified | Member of Madagascar National Tourism Board
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== TRANSLATIONS =====
+        const translations = {
+            en: {
+                // Header
+                "header-tagline": "Your Antananarivo Guide",
+                "menu-home": "Home",
+                "menu-highlights": "Highlights",
+                "menu-sites": "Tourist Sites",
+                "menu-activities": "Activities",
+                "menu-culture": "Culture",
+                "menu-contact": "Contact",
+                
+                // Hero
+                "page-title": "🏛️ Antananarivo - Capital of the Highlands",
+                "page-subtitle": "The City of a Thousand, perched at 1,300 meters altitude. Discover the Queen's Palace, lively markets, authentic Malagasy cuisine, and the green landscapes of the Highlands.",
+                "highlight-title": "The Royal Hill - Queen's Palace",
+                "highlight-desc": "Dominating the capital from its height of 1,468 meters, the Rova of Antananarivo is the most important historical site in Madagascar, witness to Merina royal history.",
+                
+                // Highlights
+                "highlights-title": "Why Visit Antananarivo?",
+                "highlight1-title": "Royal History",
+                "highlight1-desc": "Explore the history of Merina kings and queens at the Queen's Palace, UNESCO World Heritage site and symbol of Malagasy identity.",
+                "highlight2-title": "Lively Markets",
+                "highlight2-desc": "Discover the colorful markets of Analakely and Andravoahangy, true concentrates of Malagasy life with crafts, spices and local products.",
+                "highlight3-title": "Authentic Cuisine",
+                "highlight3-desc": "Taste Highlands specialties: ravitoto, romazava, mofo gasy and many rice-based dishes, staple food of Malagasy people.",
+                "highlight4-title": "Green Landscapes",
+                "highlight4-desc": "The Highlands offer terraced rice fields, rounded hills and deep valleys landscapes, particularly beautiful at sunrise.",
+                
+                // Sites
+                "sites-title": "Tourist Sites of Antananarivo",
+                "site1-title": "Queen's Palace (Rova)",
+                "site1-type": "HERITAGE",
+                "site1-desc": "Former royal palace of Merina rulers, offering exceptional panoramic view of the city.",
+                "tag1-1": "History",
+                "tag1-2": "Panoramic View",
+                "tag1-3": "Culture",
+                "btn-site1": "Visit",
+                
+                "site2-title": "Analakely Market (Zoma)",
+                "site2-type": "MARKET",
+                "site2-desc": "Largest open-air market in the capital, total immersion in Malagasy life.",
+                "tag2-1": "Local Market",
+                "tag2-2": "Shopping",
+                "tag2-3": "Specialties",
+                "btn-site2": "Visit",
+                
+                "site3-title": "Lake Anosy and Black Angel",
+                "site3-type": "URBAN",
+                "site3-desc": "Artificial heart-shaped lake with War Memorial, romantic symbol of the capital.",
+                "tag3-1": "Lake",
+                "tag3-2": "Romantic",
+                "tag3-3": "Walking",
+                "btn-site3": "Visit",
+                
+                "site4-title": "Ambohimanga (Royal Hill)",
+                "site4-type": "UNESCO",
+                "site4-desc": "UNESCO site, ancient royal city and sacred place with preserved traditional architecture.",
+                "tag4-1": "UNESCO",
+                "tag4-2": "Sacred",
+                "tag4-3": "Architecture",
+                "btn-site4": "Visit",
+                
+                "site5-title": "Art and Archaeology Museum",
+                "site5-type": "MUSEUM",
+                "site5-desc": "To understand Malagasy history and cultures through unique artifact collection.",
+                "tag5-1": "Museum",
+                "tag5-2": "Art",
+                "tag5-3": "History",
+                "btn-site5": "Visit",
+                
+                "site6-title": "Digue Market",
+                "site6-type": "MARKET",
+                "site6-desc": "Very popular market for fresh products, meat, fish and everyday objects.",
+                "tag6-1": "Fresh Products",
+                "tag6-2": "Local",
+                "tag6-3": "Authentic",
+                "btn-site6": "Visit",
+                
+                "site7-title": "Tsarasaotra Park (birds)",
+                "site7-type": "NATURE",
+                "site7-desc": "Unique Ramsar site in urban area in Africa, refuge for endemic birds.",
+                "tag7-1": "Birds",
+                "tag7-2": "Nature",
+                "tag7-3": "Tranquility",
+                "btn-site7": "Visit",
+                
+                "site8-title": "Independence Avenue",
+                "site8-type": "HISTORICAL",
+                "site8-desc": "Main historical artery of Antananarivo with preserved colonial architecture.",
+                "tag8-1": "Historical",
+                "tag8-2": "Architecture",
+                "tag8-3": "City Center",
+                "btn-site8": "Visit",
+                
+                "site9-title": "Andravoahangy Craft Market",
+                "site9-type": "CRAFTS",
+                "site9-desc": "Best place to buy authentic souvenirs and Malagasy handicrafts.",
+                "tag9-1": "Handicrafts",
+                "tag9-2": "Souvenirs",
+                "tag9-3": "Local Products",
+                "btn-site9": "Visit",
+                
+                // Activities
+                "activities-title": "Activities in Antananarivo",
+                "activity1-title": "Gastronomic Tour",
+                "activity1-desc": "Discovery of traditional Malagasy cuisine: tasting romazava, ravitoto, mofo gasy and other specialties in authentic restaurants.",
+                "btn-activity1": "Book",
+                "activity2-title": "Craft Shopping",
+                "activity2-desc": "Tour of best craft shops: wild silk, marquetry, precious stones, vanilla and spices with expert advice.",
+                "btn-activity2": "Book",
+                "activity3-title": "Historical Hiking",
+                "activity3-desc": "Guided visit of sacred hills around Antananarivo: Ambohimanga, Ilafy and other historical sites with specialized guides.",
+                "btn-activity3": "Book",
+                "activity4-title": "Highlands Excursion",
+                "activity4-desc": "Full day to discover Highlands landscapes: terraced rice fields, traditional villages, waterfalls and spectacular viewpoints.",
+                "btn-activity4": "Book",
+                
+                // Culture
+                "culture-title": "Merina Culture and Traditions",
+                "culture1-title": "Ancestral Traditions",
+                "culture1-desc": "Discover Famadihana (turning of the bones), ancestor worship, importance of fady (taboos) and traditional social structure.",
+                "btn-culture1": "Learn More",
+                "culture2-title": "Local Crafts",
+                "culture2-desc": "Traditional techniques: precious wood marquetry, wild silk weaving, Antaimoro paper making, zebu horn and silver work.",
+                "btn-culture2": "Visit Workshops",
+                "culture3-title": "Music and Dance",
+                "culture3-desc": "Traditional music shows with valiha (national string instrument), kabosy and hira gasy (popular opera). Ritual and contemporary dances.",
+                "btn-culture3": "Attend Show",
+                
+                // Seasons
+                "seasonality-title": "Best Time to Visit",
+                "season1-title": "Cool Season (April to October)",
+                "season1-period": "IDEAL",
+                "season1-desc": "Dry and cool weather (15-25°C), ideal for city visits and excursions. Clear sky for photos, optimal conditions for hiking in the Highlands.",
+                "season2-title": "Rainy Season (November to March)",
+                "season2-period": "RAINY",
+                "season2-desc": "Heavy daily rainfall, warmer temperatures (20-28°C). Very green landscapes but sometimes difficult travel. Frequent traditional ceremonies.",
+                "season3-title": "Cultural Events",
+                "season3-period": "SPECIAL",
+                "season3-desc": "June: National holiday (June 26). August: Famadihana (turning of the bones). October: Jacaranda flowering. December: Animated year-end celebrations.",
+                
+                // CTA
+                "cta-title": "Ready to Discover the Capital?",
+                "cta-text": "We organize your stay in Antananarivo: airport transfers, charming accommodation, French-speaking history specialists, personalized visits and Highlands excursions.",
+                "cta-btn": "Plan My Antananarivo Stay",
+                "cta-morondava": "Discover Morondava",
+                "cta-nosybe": "Discover Nosy Be",
+                "cta-diego": "Discover Diego-Suarez",
+                
+                // Footer
+                "footer-creator": "Created by Habibe - Professional Tourism Services",
+                "footer-phone": "Phone: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Airport transfers, cruise services and international tours available",
+                "footer-copyright": "© 2024 Mada Vibe Discover - All rights reserved.<br>Tourism License certified | Member of Madagascar National Tourism Board"
+            },
+            
+            fr: {
+                "header-tagline": "Votre Guide à Antananarivo",
+                "menu-home": "Accueil",
+                "menu-highlights": "Points Forts",
+                "menu-sites": "Sites Touristiques",
+                "menu-activities": "Activités",
+                "menu-culture": "Culture",
+                "menu-contact": "Contact",
+                "page-title": "🏛️ Antananarivo - Capitale des Hauts Plateaux",
+                "page-subtitle": "La ville des Mille, perchée à 1 300 mètres d'altitude. Découvrez le palais de la Reine, les marchés animés, la cuisine malgache authentique et les paysages verdoyants des Hauts Plateaux.",
+                "highlight-title": "La Colline Royale - Palais de la Reine",
+                "highlight-desc": "Dominant la capitale du haut de ses 1 468 mètres, le Rova d'Antananarivo est le site historique le plus important de Madagascar, témoin de l'histoire royale Merina.",
+                "highlights-title": "Pourquoi Visiter Antananarivo ?",
+                "highlight1-title": "Histoire Royale",
+                "highlight1-desc": "Explorez l'histoire des rois et reines Merina au Palais de la Reine, classé patrimoine mondial UNESCO et symbole de l'identité malgache.",
+                "highlight2-title": "Marchés Animés",
+                "highlight2-desc": "Découvrez les marchés colorés d'Analakely et d'Andravoahangy, véritables concentrés de la vie malgache avec artisanat, épices et produits locaux.",
+                "highlight3-title": "Cuisine Authentique",
+                "highlight3-desc": "Goûtez aux spécialités des Hauts Plateaux : ravitoto, romazava, mofo gasy et les nombreux plats à base de riz, aliment de base des Malgaches.",
+                "highlight4-title": "Paysages Verdoyants",
+                "highlight4-desc": "Les Hauts Plateaux offrent des paysages de rizières en terrasses, de collines arrondies et de vallées profondes, particulièrement belles au lever du soleil.",
+                "sites-title": "Sites Touristiques d'Antananarivo",
+                "site1-title": "Palais de la Reine (Rova)",
+                "site1-type": "PATRIMOINE",
+                "site1-desc": "Ancien palais royal des souverains Merina, offrant une vue panoramique exceptionnelle sur la ville.",
+                "tag1-1": "Histoire",
+                "tag1-2": "Vue Panoramique",
+                "tag1-3": "Culture",
+                "btn-site1": "Visiter",
+                "site2-title": "Marché d'Analakely (Zoma)",
+                "site2-type": "MARCHÉ",
+                "site2-desc": "Le plus grand marché en plein air de la capitale, immersion totale dans la vie malgache.",
+                "tag2-1": "Marché Local",
+                "tag2-2": "Shopping",
+                "tag2-3": "Spécialités",
+                "btn-site2": "Visiter",
+                "site3-title": "Lac Anosy et Ange Noir",
+                "site3-type": "URBAIN",
+                "site3-desc": "Lac artificiel en forme de cœur avec le Monument aux Morts, symbole romantique de la capitale.",
+                "tag3-1": "Lac",
+                "tag3-2": "Romantique",
+                "tag3-3": "Promenade",
+                "btn-site3": "Visiter",
+                "site4-title": "Ambohimanga (Colline Royale)",
+                "site4-type": "UNESCO",
+                "site4-desc": "Site UNESCO, ancienne cité royale et lieu sacré avec architecture traditionnelle préservée.",
+                "tag4-1": "UNESCO",
+                "tag4-2": "Sacré",
+                "tag4-3": "Architecture",
+                "btn-site4": "Visiter",
+                "site5-title": "Musée d'Art et d'Archéologie",
+                "site5-type": "MUSÉE",
+                "site5-desc": "Pour comprendre l'histoire et les cultures malgaches à travers une collection unique d'artefacts.",
+                "tag5-1": "Musée",
+                "tag5-2": "Art",
+                "tag5-3": "Histoire",
+                "btn-site5": "Visiter",
+                "site6-title": "Marché de la Digue",
+                "site6-type": "MARCHÉ",
+                "site6-desc": "Marché très populaire pour les produits frais, viande, poisson et objets du quotidien.",
+                "tag6-1": "Produits Frais",
+                "tag6-2": "Local",
+                "tag6-3": "Authentique",
+                "btn-site6": "Visiter",
+                "site7-title": "Parc de Tsarasaotra (oiseaux)",
+                "site7-type": "NATURE",
+                "site7-desc": "Unique site Ramsar en milieu urbain en Afrique, refuge pour oiseaux endémiques.",
+                "tag7-1": "Oiseaux",
+                "tag7-2": "Nature",
+                "tag7-3": "Tranquillité",
+                "btn-site7": "Visiter",
+                "site8-title": "Avenue de l'Indépendance",
+                "site8-type": "HISTORIQUE",
+                "site8-desc": "Artère principale historique d'Antananarivo avec architecture coloniale préservée.",
+                "tag8-1": "Historique",
+                "tag8-2": "Architecture",
+                "tag8-3": "Centre-ville",
+                "btn-site8": "Visiter",
+                "site9-title": "Marché artisanal d'Andravoahangy",
+                "site9-type": "ARTISANAT",
+                "site9-desc": "Meilleur endroit pour acheter des souvenirs authentiques et de l'artisanat malgache.",
+                "tag9-1": "Artisanat",
+                "tag9-2": "Souvenirs",
+                "tag9-3": "Produits Locaux",
+                "btn-site9": "Visiter",
+                "activities-title": "Activités à Antananarivo",
+                "activity1-title": "Visite Gastronomique",
+                "activity1-desc": "Découverte de la cuisine malgache traditionnelle : dégustation de romazava, ravitoto, mofo gasy et autres spécialités dans des restaurants authentiques.",
+                "btn-activity1": "Réserver",
+                "activity2-title": "Shopping Artisanal",
+                "activity2-desc": "Tour des meilleures boutiques d'artisanat : soie sauvage, marqueterie, pierres précieuses, vanille et épices avec conseils d'experts.",
+                "btn-activity2": "Réserver",
+                "activity3-title": "Randonnée Historique",
+                "activity3-desc": "Visite guidée des collines sacrées autour d'Antananarivo : Ambohimanga, Ilafy et autres sites historiques avec guides spécialisés.",
+                "btn-activity3": "Réserver",
+                "activity4-title": "Excursion aux Hauts Plateaux",
+                "activity4-desc": "Journée complète pour découvrir les paysages des Hauts Plateaux : rizières en terrasses, villages traditionnels, chutes d'eau et points de vue spectaculaires.",
+                "btn-activity4": "Réserver",
+                "culture-title": "Culture et Traditions Merina",
+                "culture1-title": "Traditions Ancestrales",
+                "culture1-desc": "Découvrez le Famadihana (retournement des morts), les cultes ancestraux, l'importance des fady (tabous) et la structure sociale traditionnelle.",
+                "btn-culture1": "En savoir plus",
+                "culture2-title": "Artisanat Local",
+                "culture2-desc": "Techniques traditionnelles : marqueterie de bois précieux, tissage de la soie sauvage, fabrication de papier Antaimoro, travail de la corne de zébu et de l'argent.",
+                "btn-culture2": "Visiter les ateliers",
+                "culture3-title": "Musique et Danse",
+                "culture3-desc": "Spectacles de musique traditionnelle avec valiha (instrument à cordes national), kabosy et hira gasy (opéra populaire). Danses rituelles et contemporaines.",
+                "btn-culture3": "Assister à un spectacle",
+                "seasonality-title": "Meilleure Période pour Visiter",
+                "season1-title": "Saison Fraîche (Avril à Octobre)",
+                "season1-period": "IDÉAL",
+                "season1-desc": "Temps sec et frais (15-25°C), idéal pour la visite de la ville et les excursions. Ciel clair pour les photos, conditions optimales pour la randonnée dans les Hauts Plateaux.",
+                "season2-title": "Saison des Pluies (Novembre à Mars)",
+                "season2-period": "PLUIES",
+                "season2-desc": "Fortes précipitations quotidiennes, températures plus chaudes (20-28°C). Paysages très verts mais déplacements parfois difficiles. Cérémonies traditionnelles fréquentes.",
+                "season3-title": "Événements Culturels",
+                "season3-period": "SPÉCIAL",
+                "season3-desc": "Juin : Fête nationale (26 juin). Août : Famadihana (retournement des morts). Octobre : Floraison des jacarandas. Décembre : Célébrations de fin d'année animées.",
+                "cta-title": "Prêt à Découvrir la Capitale ?",
+                "cta-text": "Nous organisons votre séjour à Antananarivo : transferts aéroport, hébergement de charme, guides francophones spécialisés en histoire, visites personnalisées et excursions dans les Hauts Plateaux.",
+                "cta-btn": "Planifier Mon Séjour à Antananarivo",
+                "cta-morondava": "Découvrir Morondava",
+                "cta-nosybe": "Découvrir Nosy Be",
+                "cta-diego": "Découvrir Diego-Suarez",
+                "footer-creator": "Créé par Habibe - Services Touristiques Professionnels",
+                "footer-phone": "Téléphone : +261 32 39 622 86",
+                "footer-email": "Email : hajahabibeabdou@gmail.com",
+                "footer-desc": "Transferts aéroport, services croisière et circuits internationaux disponibles",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Tous droits réservés.<br>Licence Touristique certifiée | Membre de l'Office National du Tourisme de Madagascar"
+            },
+            
+            de: {
+                "header-tagline": "Ihr Reiseführer für Antananarivo",
+                "menu-home": "Startseite",
+                "menu-highlights": "Highlights",
+                "menu-sites": "Sehenswürdigkeiten",
+                "menu-activities": "Aktivitäten",
+                "menu-culture": "Kultur",
+                "menu-contact": "Kontakt",
+                "page-title": "🏛️ Antananarivo - Hauptstadt der Hochländer",
+                "page-subtitle": "Die Stadt der Tausend, auf 1.300 Metern Höhe gelegen. Entdecken Sie den Königspalast, lebendige Märkte, authentische madagassische Küche und die grünen Landschaften der Hochländer.",
+                "highlight-title": "Der Königshügel - Palast der Königin",
+                "highlight-desc": "Überragt die Hauptstadt aus 1.468 Metern Höhe, die Rova von Antananarivo ist die wichtigste historische Stätte Madagaskars, Zeuge der königlichen Merina-Geschichte.",
+                "highlights-title": "Warum Antananarivo besuchen?",
+                "highlight1-title": "Königliche Geschichte",
+                "highlight1-desc": "Erkunden Sie die Geschichte der Merina-Könige und Königinnen im Palast der Königin, UNESCO-Weltkulturerbe und Symbol der madagassischen Identität.",
+                "highlight2-title": "Lebendige Märkte",
+                "highlight2-desc": "Entdecken Sie die farbenfrohen Märkte von Analakely und Andravoahangy, wahre Konzentrate madagassischen Lebens mit Kunsthandwerk, Gewürzen und lokalen Produkten.",
+                "highlight3-title": "Authentische Küche",
+                "highlight3-desc": "Probieren Sie Hochland-Spezialitäten: Ravitoto, Romazava, Mofo Gasy und die vielen Reisgerichte, Grundnahrungsmittel der Madagassen.",
+                "highlight4-title": "Grüne Landschaften",
+                "highlight4-desc": "Die Hochländer bieten Landschaften mit Terrassenreisfeldern, abgerundeten Hügeln und tiefen Tälern, besonders schön bei Sonnenaufgang.",
+                "sites-title": "Sehenswürdigkeiten von Antananarivo",
+                "site1-title": "Königspalast (Rova)",
+                "site1-type": "ERBE",
+                "site1-desc": "Ehemaliger Königspalast der Merina-Herrscher, bietet außergewöhnliche Panoramaaussicht auf die Stadt.",
+                "tag1-1": "Geschichte",
+                "tag1-2": "Panoramablick",
+                "tag1-3": "Kultur",
+                "btn-site1": "Besuchen",
+                "site2-title": "Analakely-Markt (Zoma)",
+                "site2-type": "MARKT",
+                "site2-desc": "Größter Freiluftmarkt der Hauptstadt, vollständiges Eintauchen ins madagassische Leben.",
+                "tag2-1": "Lokaler Markt",
+                "tag2-2": "Einkaufen",
+                "tag2-3": "Spezialitäten",
+                "btn-site2": "Besuchen",
+                "site3-title": "Anosy-See und Schwarzer Engel",
+                "site3-type": "STADT",
+                "site3-desc": "Künstlicher herzförmiger See mit Kriegerdenkmal, romantisches Symbol der Hauptstadt.",
+                "tag3-1": "See",
+                "tag3-2": "Romantisch",
+                "tag3-3": "Spaziergang",
+                "btn-site3": "Besuchen",
+                "site4-title": "Ambohimanga (Königshügel)",
+                "site4-type": "UNESCO",
+                "site4-desc": "UNESCO-Stätte, antike Königsstadt und heiliger Ort mit erhaltener traditioneller Architektur.",
+                "tag4-1": "UNESCO",
+                "tag4-2": "Heilig",
+                "tag4-3": "Architektur",
+                "btn-site4": "Besuchen",
+                "site5-title": "Kunst- und Archäologiemuseum",
+                "site5-type": "MUSEUM",
+                "site5-desc": "Madagassische Geschichte und Kulturen durch einzigartige Artefaktsammlung verstehen.",
+                "tag5-1": "Museum",
+                "tag5-2": "Kunst",
+                "tag5-3": "Geschichte",
+                "btn-site5": "Besuchen",
+                "site6-title": "Digue-Markt",
+                "site6-type": "MARKT",
+                "site6-desc": "Sehr beliebter Markt für frische Produkte, Fleisch, Fisch und Alltagsgegenstände.",
+                "tag6-1": "Frische Produkte",
+                "tag6-2": "Lokal",
+                "tag6-3": "Authentisch",
+                "btn-site6": "Besuchen",
+                "site7-title": "Tsarasaotra-Park (Vögel)",
+                "site7-type": "NATUR",
+                "site7-desc": "Einzigartiges Ramsar-Gebiet im städtischen Raum in Afrika, Zuflucht für endemische Vögel.",
+                "tag7-1": "Vögel",
+                "tag7-2": "Natur",
+                "tag7-3": "Ruhe",
+                "btn-site7": "Besuchen",
+                "site8-title": "Unabhängigkeitsallee",
+                "site8-type": "HISTORISCH",
+                "site8-desc": "Haupt historische Verkehrsader von Antananarivo mit erhaltener Kolonialarchitektur.",
+                "tag8-1": "Historisch",
+                "tag8-2": "Architektur",
+                "tag8-3": "Stadtzentrum",
+                "btn-site8": "Besuchen",
+                "site9-title": "Andravoahangy Kunsthandwerksmarkt",
+                "site9-type": "KUNSTHANDWERK",
+                "site9-desc": "Bester Ort zum Kauf authentischer Souvenirs und madagassischen Kunsthandwerks.",
+                "tag9-1": "Kunsthandwerk",
+                "tag9-2": "Souvenirs",
+                "tag9-3": "Lokale Produkte",
+                "btn-site9": "Besuchen",
+                "activities-title": "Aktivitäten in Antananarivo",
+                "activity1-title": "Kulinarische Tour",
+                "activity1-desc": "Entdeckung traditioneller madagassischer Küche: Verkostung von Romazava, Ravitoto, Mofo Gasy und anderen Spezialitäten in authentischen Restaurants.",
+                "btn-activity1": "Buchen",
+                "activity2-title": "Kunsthandwerk-Einkauf",
+                "activity2-desc": "Tour durch beste Kunsthandwerksläden: Wildseide, Marketerie, Edelsteine, Vanille und Gewürze mit Expertenberatung.",
+                "btn-activity2": "Buchen",
+                "activity3-title": "Historische Wanderung",
+                "activity3-desc": "Geführte Besichtigung heiliger Hügel um Antananarivo: Ambohimanga, Ilafy und andere historische Stätten mit spezialisierten Führern.",
+                "btn-activity3": "Buchen",
+                "activity4-title": "Hochland-Ausflug",
+                "activity4-desc": "Ganztag zur Entdeckung von Hochland-Landschaften: Terrassenreisfelder, traditionelle Dörfer, Wasserfälle und spektakuläre Aussichtspunkte.",
+                "btn-activity4": "Buchen",
+                "culture-title": "Merina-Kultur und Traditionen",
+                "culture1-title": "Ahnenüberlieferungen",
+                "culture1-desc": "Entdecken Sie Famadihana (Totenwende), Ahnenkult, Bedeutung der Fady (Tabus) und traditionelle soziale Struktur.",
+                "btn-culture1": "Mehr erfahren",
+                "culture2-title": "Lokales Handwerk",
+                "culture2-desc": "Traditionelle Techniken: Marketerie von Edelhölzern, Wildseideweberei, Antaimoro-Papierherstellung, Zebuhorn- und Silberarbeit.",
+                "btn-culture2": "Werkstätten besuchen",
+                "culture3-title": "Musik und Tanz",
+                "culture3-desc": "Traditionelle Musikvorführungen mit Valiha (Nationalinstrument), Kabosy und Hira Gasy (Volksoper). Rituelle und zeitgenössische Tänze.",
+                "btn-culture3": "Vorstellung besuchen",
+                "seasonality-title": "Beste Reisezeit",
+                "season1-title": "Kühle Jahreszeit (April bis Oktober)",
+                "season1-period": "IDEAL",
+                "season1-desc": "Trockenes und kühles Wetter (15-25°C), ideal für Stadtbesichtigungen und Ausflüge. Klarer Himmel für Fotos, optimale Bedingungen zum Wandern in den Hochländern.",
+                "season2-title": "Regenzeit (November bis März)",
+                "season2-period": "REGEN",
+                "season2-desc": "Starker täglicher Regenfall, wärmere Temperaturen (20-28°C). Sehr grüne Landschaften aber manchmal schwierige Fortbewegung. Häufige traditionelle Zeremonien.",
+                "season3-title": "Kulturelle Veranstaltungen",
+                "season3-period": "SPEZIELL",
+                "season3-desc": "Juni: Nationalfeiertag (26. Juni). August: Famadihana (Totenwende). Oktober: Jacaranda-Blüte. Dezember: Animierte Jahresendfeiern.",
+                "cta-title": "Bereit die Hauptstadt zu entdecken?",
+                "cta-text": "Wir organisieren Ihren Aufenthalt in Antananarivo: Flughafentransfers, charmante Unterkünfte, französischsprachige Geschichtsspezialisten, personalisierte Besuche und Hochland-Ausflüge.",
+                "cta-btn": "Meinen Antananarivo-Aufenthalt planen",
+                "cta-morondava": "Morondava entdecken",
+                "cta-nosybe": "Nosy Be entdecken",
+                "cta-diego": "Diego-Suarez entdecken",
+                "footer-creator": "Erstellt von Habibe - Professionelle Tourismusdienstleistungen",
+                "footer-phone": "Telefon: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Flughafentransfers, Kreuzfahrtdienste und internationale Touren verfügbar",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Alle Rechte vorbehalten.<br>Zertifizierte Tourismuskarte | Mitglied des madagassischen Nationalen Tourismusbüros"
+            },
+            
+            es: {
+                "header-tagline": "Tu Guía en Antananarivo",
+                "menu-home": "Inicio",
+                "menu-highlights": "Destacados",
+                "menu-sites": "Sitios Turísticos",
+                "menu-activities": "Actividades",
+                "menu-culture": "Cultura",
+                "menu-contact": "Contacto",
+                "page-title": "🏛️ Antananarivo - Capital de las Tierras Altas",
+                "page-subtitle": "La Ciudad de los Mil, encaramada a 1.300 metros de altitud. Descubre el Palacio de la Reina, los mercados animados, la auténtica cocina malgache y los paisajes verdes de las Tierras Altas.",
+                "highlight-title": "La Colina Real - Palacio de la Reina",
+                "highlight-desc": "Domina la capital desde sus 1.468 metros, el Rova de Antananarivo es el sitio histórico más importante de Madagascar, testigo de la historia real Merina.",
+                "highlights-title": "¿Por Qué Visitar Antananarivo?",
+                "highlight1-title": "Historia Real",
+                "highlight1-desc": "Explora la historia de los reyes y reinas Merina en el Palacio de la Reina, sitio patrimonio UNESCO y símbolo de la identidad malgache.",
+                "highlight2-title": "Mercados Animados",
+                "highlight2-desc": "Descubre los mercados coloridos de Analakely y Andravoahangy, verdaderos concentrados de vida malgache con artesanía, especias y productos locales.",
+                "highlight3-title": "Cocina Auténtica",
+                "highlight3-desc": "Prueba las especialidades de las Tierras Altas: ravitoto, romazava, mofo gasy y los numerosos platos a base de arroz, alimento básico de los malgaches.",
+                "highlight4-title": "Paisajes Verdes",
+                "highlight4-desc": "Las Tierras Altas ofrecen paisajes de arrozales en terraza, colinas redondeadas y valles profundos, particularmente bellos al amanecer.",
+                "sites-title": "Sitios Turísticos de Antananarivo",
+                "site1-title": "Palacio de la Reina (Rova)",
+                "site1-type": "PATRIMONIO",
+                "site1-desc": "Antiguo palacio real de los soberanos Merina, ofrece vista panorámica excepcional de la ciudad.",
+                "tag1-1": "Historia",
+                "tag1-2": "Vista Panorámica",
+                "tag1-3": "Cultura",
+                "btn-site1": "Visitar",
+                "site2-title": "Mercado de Analakely (Zoma)",
+                "site2-type": "MERCADO",
+                "site2-desc": "Mercado al aire libre más grande de la capital, inmersión total en la vida malgache.",
+                "tag2-1": "Mercado Local",
+                "tag2-2": "Compras",
+                "tag2-3": "Especialidades",
+                "btn-site2": "Visitar",
+                "site3-title": "Lago Anosy y Ángel Negro",
+                "site3-type": "URBANO",
+                "site3-desc": "Lago artificial en forma de corazón con Monumento a los Caídos, símbolo romántico de la capital.",
+                "tag3-1": "Lago",
+                "tag3-2": "Romántico",
+                "tag3-3": "Paseo",
+                "btn-site3": "Visitar",
+                "site4-title": "Ambohimanga (Colina Real)",
+                "site4-type": "UNESCO",
+                "site4-desc": "Sitio UNESCO, antigua ciudad real y lugar sagrado con arquitectura tradicional preservada.",
+                "tag4-1": "UNESCO",
+                "tag4-2": "Sagrado",
+                "tag4-3": "Arquitectura",
+                "btn-site4": "Visitar",
+                "site5-title": "Museo de Arte y Arqueología",
+                "site5-type": "MUSEO",
+                "site5-desc": "Para entender la historia y culturas malgaches a través de colección única de artefactos.",
+                "tag5-1": "Museo",
+                "tag5-2": "Arte",
+                "tag5-3": "Historia",
+                "btn-site5": "Visitar",
+                "site6-title": "Mercado de la Digue",
+                "site6-type": "MERCADO",
+                "site6-desc": "Mercado muy popular para productos frescos, carne, pescado y objetos cotidianos.",
+                "tag6-1": "Productos Frescos",
+                "tag6-2": "Local",
+                "tag6-3": "Auténtico",
+                "btn-site6": "Visitar",
+                "site7-title": "Parque Tsarasaotra (aves)",
+                "site7-type": "NATURALEZA",
+                "site7-desc": "Único sitio Ramsar en área urbana en África, refugio para aves endémicas.",
+                "tag7-1": "Aves",
+                "tag7-2": "Naturaleza",
+                "tag7-3": "Tranquilidad",
+                "btn-site7": "Visitar",
+                "site8-title": "Avenida de la Independencia",
+                "site8-type": "HISTÓRICO",
+                "site8-desc": "Principal arteria histórica de Antananarivo con arquitectura colonial preservada.",
+                "tag8-1": "Histórico",
+                "tag8-2": "Arquitectura",
+                "tag8-3": "Centro Ciudad",
+                "btn-site8": "Visitar",
+                "site9-title": "Mercado artesanal Andravoahangy",
+                "site9-type": "ARTESANÍA",
+                "site9-desc": "Mejor lugar para comprar souvenirs auténticos y artesanía malgache.",
+                "tag9-1": "Artesanía",
+                "tag9-2": "Souvenirs",
+                "tag9-3": "Productos Locales",
+                "btn-site9": "Visitar",
+                "activities-title": "Actividades en Antananarivo",
+                "activity1-title": "Tour Gastronómico",
+                "activity1-desc": "Descubrimiento de la cocina tradicional malgache: degustación de romazava, ravitoto, mofo gasy y otras especialidades en restaurantes auténticos.",
+                "btn-activity1": "Reservar",
+                "activity2-title": "Compras de Artesanía",
+                "activity2-desc": "Tour de las mejores tiendas de artesanía: seda salvaje, marquetería, piedras preciosas, vainilla y especias con consejos de expertos.",
+                "btn-activity2": "Reservar",
+                "activity3-title": "Senderismo Histórico",
+                "activity3-desc": "Visita guiada de las colinas sagradas alrededor de Antananarivo: Ambohimanga, Ilafy y otros sitios históricos con guías especializados.",
+                "btn-activity3": "Reservar",
+                "activity4-title": "Excursión a las Tierras Altas",
+                "activity4-desc": "Día completo para descubrir paisajes de las Tierras Altas: arrozales en terraza, pueblos tradicionales, cascadas y miradores espectaculares.",
+                "btn-activity4": "Reservar",
+                "culture-title": "Cultura y Tradiciones Merina",
+                "culture1-title": "Tradiciones Ancestrales",
+                "culture1-desc": "Descubre el Famadihana (vuelta de los muertos), los cultos ancestrales, la importancia de los fady (tabúes) y la estructura social tradicional.",
+                "btn-culture1": "Saber más",
+                "culture2-title": "Artesanía Local",
+                "culture2-desc": "Técnicas tradicionales: marquetería de maderas preciosas, tejido de seda salvaje, fabricación de papel Antaimoro, trabajo de cuerno de cebú y plata.",
+                "btn-culture2": "Visitar talleres",
+                "culture3-title": "Música y Danza",
+                "culture3-desc": "Espectáculos de música tradicional con valiha (instrumento de cuerda nacional), kabosy y hira gasy (ópera popular). Danzas rituales y contemporáneas.",
+                "btn-culture3": "Asistir a espectáculo",
+                "seasonality-title": "Mejor Época para Visitar",
+                "season1-title": "Temporada Seca (Abril a Octubre)",
+                "season1-period": "IDEAL",
+                "season1-desc": "Tiempo seco y fresco (15-25°C), ideal para visitas de la ciudad y excursiones. Cielo despejado para fotos, condiciones óptimas para senderismo en las Tierras Altas.",
+                "season2-title": "Temporada de Lluvias (Noviembre a Marzo)",
+                "season2-period": "LLUVIAS",
+                "season2-desc": "Fuertes precipitaciones diarias, temperaturas más cálidas (20-28°C). Paisajes muy verdes pero desplazamientos a veces difíciles. Ceremonias tradicionales frecuentes.",
+                "season3-title": "Eventos Culturales",
+                "season3-period": "ESPECIAL",
+                "season3-desc": "Junio: Fiesta nacional (26 junio). Agosto: Famadihana (vuelta de los muertos). Octubre: Floración de los jacarandás. Diciembre: Celebraciones animadas de fin de año.",
+                "cta-title": "¿Listo para Descubrir la Capital?",
+                "cta-text": "Organizamos tu estancia en Antananarivo: traslados aeropuerto, alojamiento con encanto, guías francófonos especializados en historia, visitas personalizadas y excursiones en las Tierras Altas.",
+                "cta-btn": "Planificar Mi Estancia en Antananarivo",
+                "cta-morondava": "Descubrir Morondava",
+                "cta-nosybe": "Descubrir Nosy Be",
+                "cta-diego": "Descubrir Diego-Suarez",
+                "footer-creator": "Creado por Habibe - Servicios Turísticos Profesionales",
+                "footer-phone": "Teléfono: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Traslados aeropuerto, servicios de crucero y circuitos internacionales disponibles",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Todos los derechos reservados.<br>Licencia Turística certificada | Miembro de la Oficina Nacional de Turismo de Madagascar"
+            },
+            
+            it: {
+                "header-tagline": "La Tua Guida ad Antananarivo",
+                "menu-home": "Home",
+                "menu-highlights": "Punti Salienti",
+                "menu-sites": "Siti Turistici",
+                "menu-activities": "Attività",
+                "menu-culture": "Cultura",
+                "menu-contact": "Contatto",
+                "page-title": "🏛️ Antananarivo - Capitale degli Altipiani",
+                "page-subtitle": "La Città dei Mille, arroccata a 1.300 metri di altitudine. Scopri il Palazzo della Regina, i mercati animati, l'autentica cucina malgascia e i paesaggi verdeggianti degli Altipiani.",
+                "highlight-title": "La Collina Reale - Palazzo della Regina",
+                "highlight-desc": "Domina la capitale dall'alto dei suoi 1.468 metri, il Rova di Antananarivo è il sito storico più importante del Madagascar, testimone della storia reale Merina.",
+                "highlights-title": "Perché Visitare Antananarivo?",
+                "highlight1-title": "Storia Reale",
+                "highlight1-desc": "Esplora la storia dei re e regine Merina al Palazzo della Regina, sito patrimonio UNESCO e simbolo dell'identità malgascia.",
+                "highlight2-title": "Mercati Animati",
+                "highlight2-desc": "Scopri i mercati colorati di Analakely e Andravoahangy, veri concentrati di vita malgascia con artigianato, spezie e prodotti locali.",
+                "highlight3-title": "Cucina Autentica",
+                "highlight3-desc": "Assaggia le specialità degli Altipiani: ravitoto, romazava, mofo gasy e i numerosi piatti a base di riso, alimento base dei malgasci.",
+                "highlight4-title": "Paesaggi Verdeggianti",
+                "highlight4-desc": "Gli Altipiani offrono paesaggi di risaie a terrazze, colline arrotondate e valli profonde, particolarmente belle all'alba.",
+                "sites-title": "Siti Turistici di Antananarivo",
+                "site1-title": "Palazzo della Regina (Rova)",
+                "site1-type": "PATRIMONIO",
+                "site1-desc": "Antico palazzo reale dei sovrani Merina, offre vista panoramica eccezionale sulla città.",
+                "tag1-1": "Storia",
+                "tag1-2": "Vista Panoramica",
+                "tag1-3": "Cultura",
+                "btn-site1": "Visitare",
+                "site2-title": "Mercato di Analakely (Zoma)",
+                "site2-type": "MERCATO",
+                "site2-desc": "Mercato all'aperto più grande della capitale, immersione totale nella vita malgascia.",
+                "tag2-1": "Mercato Locale",
+                "tag2-2": "Shopping",
+                "tag2-3": "Specialità",
+                "btn-site2": "Visitare",
+                "site3-title": "Lago Anosy e Angelo Nero",
+                "site3-type": "URBANO",
+                "site3-desc": "Lago artificiale a forma di cuore con Monumento ai Caduti, simbolo romantico della capitale.",
+                "tag3-1": "Lago",
+                "tag3-2": "Romantico",
+                "tag3-3": "Passeggiata",
+                "btn-site3": "Visitare",
+                "site4-title": "Ambohimanga (Collina Reale)",
+                "site4-type": "UNESCO",
+                "site4-desc": "Sito UNESCO, antica città reale e luogo sacro con architettura tradizionale preservata.",
+                "tag4-1": "UNESCO",
+                "tag4-2": "Sacro",
+                "tag4-3": "Architettura",
+                "btn-site4": "Visitare",
+                "site5-title": "Museo d'Arte e Archeologia",
+                "site5-type": "MUSEO",
+                "site5-desc": "Per comprendere storia e culture malgasce attraverso collezione unica di manufatti.",
+                "tag5-1": "Museo",
+                "tag5-2": "Arte",
+                "tag5-3": "Storia",
+                "btn-site5": "Visitare",
+                "site6-title": "Mercato della Digue",
+                "site6-type": "MERCATO",
+                "site6-desc": "Mercato molto popolare per prodotti freschi, carne, pesce e oggetti quotidiani.",
+                "tag6-1": "Prodotti Freschi",
+                "tag6-2": "Locale",
+                "tag6-3": "Autentico",
+                "btn-site6": "Visitare",
+                "site7-title": "Parco Tsarasaotra (uccelli)",
+                "site7-type": "NATURA",
+                "site7-desc": "Unico sito Ramsar in area urbana in Africa, rifugio per uccelli endemici.",
+                "tag7-1": "Uccelli",
+                "tag7-2": "Natura",
+                "tag7-3": "Tranquillità",
+                "btn-site7": "Visitare",
+                "site8-title": "Viale dell'Indipendenza",
+                "site8-type": "STORICO",
+                "site8-desc": "Principale arteria storica di Antananarivo con architettura coloniale preservata.",
+                "tag8-1": "Storico",
+                "tag8-2": "Architettura",
+                "tag8-3": "Centro Città",
+                "btn-site8": "Visitare",
+                "site9-title": "Mercato artigianale Andravoahangy",
+                "site9-type": "ARTIGIANATO",
+                "site9-desc": "Miglior posto per comprare souvenir autentici e artigianato malgascio.",
+                "tag9-1": "Artigianato",
+                "tag9-2": "Souvenir",
+                "tag9-3": "Prodotti Locali",
+                "btn-site9": "Visitare",
+                "activities-title": "Attività ad Antananarivo",
+                "activity1-title": "Tour Gastronomico",
+                "activity1-desc": "Scoperta della cucina tradizionale malgascia: degustazione di romazava, ravitoto, mofo gasy e altre specialità in ristoranti autentici.",
+                "btn-activity1": "Prenotare",
+                "activity2-title": "Shopping Artigianale",
+                "activity2-desc": "Tour dei migliori negozi di artigianato: seta selvatica, tarsia, pietre preziose, vaniglia e spezie con consigli di esperti.",
+                "btn-activity2": "Prenotare",
+                "activity3-title": "Escursione Storica",
+                "activity3-desc": "Visita guidata delle colline sacre intorno ad Antananarivo: Ambohimanga, Ilafy e altri siti storici con guide specializzate.",
+                "btn-activity3": "Prenotare",
+                "activity4-title": "Escursione negli Altipiani",
+                "activity4-desc": "Giornata intera per scoprire i paesaggi degli Altipiani: risaie a terrazze, villaggi tradizionali, cascate e punti panoramici spettacolari.",
+                "btn-activity4": "Prenotare",
+                "culture-title": "Cultura e Tradizioni Merina",
+                "culture1-title": "Tradizioni Antenate",
+                "culture1-desc": "Scopri il Famadihana (rivolgimento dei morti), i culti ancestrali, l'importanza dei fady (tabù) e la struttura sociale tradizionale.",
+                "btn-culture1": "Scopri di più",
+                "culture2-title": "Artigianato Locale",
+                "culture2-desc": "Tecniche tradizionali: tarsia di legni pregiati, tessitura della seta selvatica, fabbricazione della carta Antaimoro, lavoro del corno di zebù e dell'argento.",
+                "btn-culture2": "Visita i laboratori",
+                "culture3-title": "Musica e Danza",
+                "culture3-desc": "Spettacoli di musica tradizionale con valiha (strumento a corde nazionale), kabosy e hira gasy (opera popolare). Danze rituali e contemporanee.",
+                "btn-culture3": "Assisti a spettacolo",
+                "seasonality-title": "Miglior Periodo per Visitare",
+                "season1-title": "Stagione Secca (Aprile a Ottobre)",
+                "season1-period": "IDEALE",
+                "season1-desc": "Tempo secco e fresco (15-25°C), ideale per visite della città ed escursioni. Cielo limpido per foto, condizioni ottimali per escursioni negli Altipiani.",
+                "season2-title": "Stagione delle Piogge (Novembre a Marzo)",
+                "season2-period": "PIOGGE",
+                "season2-desc": "Forti precipitazioni quotidiane, temperature più calde (20-28°C). Paesaggi molto verdi ma spostamenti a volte difficili. Cerimonie tradizionali frequenti.",
+                "season3-title": "Eventi Culturali",
+                "season3-period": "SPECIALE",
+                "season3-desc": "Giugno: Festa nazionale (26 giugno). Agosto: Famadihana (rivolgimento dei morti). Ottobre: Fioritura dei jacaranda. Dicembre: Celebrazioni animate di fine anno.",
+                "cta-title": "Pronto a Scoprire la Capitale?",
+                "cta-text": "Organizziamo il tuo soggiorno ad Antananarivo: trasferimenti aeroporto, alloggio di charme, guide francofone specializzate in storia, visite personalizzate ed escursioni negli Altipiani.",
+                "cta-btn": "Pianifica il Mio Soggiorno ad Antananarivo",
+                "cta-morondava": "Scopri Morondava",
+                "cta-nosybe": "Scopri Nosy Be",
+                "cta-diego": "Scopri Diego-Suarez",
+                "footer-creator": "Creato da Habibe - Servizi Turistici Professionali",
+                "footer-phone": "Telefono: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Trasferimenti aeroporto, servizi crociera e circuiti internazionali disponibili",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Tutti i diritti riservati.<br>Licenza Turistica certificata | Membro dell'Ufficio Nazionale del Turismo del Madagascar"
+            },
+            
+            ar: {
+                "header-tagline": "دليلك في أنتاناناريفو",
+                "menu-home": "الرئيسية",
+                "menu-highlights": "أبرز المعالم",
+                "menu-sites": "المواقع السياحية",
+                "menu-activities": "الأنشطة",
+                "menu-culture": "الثقافة",
+                "menu-contact": "اتصل بنا",
+                "page-title": "🏛️ أنتاناناريفو - عاصمة الهضاب المرتفعة",
+                "page-subtitle": "مدينة الألف، تقع على ارتفاع 1300 متر. اكتشف قصر الملكة، الأسواق النابضة بالحياة، المطبخ الملغاشي الأصيل والمناظر الخضراء للهضاب المرتفعة.",
+                "highlight-title": "التل الملكي - قصر الملكة",
+                "highlight-desc": "يطل على العاصمة من ارتفاع 1468 متراً، روفا أنتاناناريفو هو أهم موقع تاريخي في مدغشقر، شاهد على التاريخ الملكي لميرينا.",
+                "highlights-title": "لماذا تزور أنتاناناريفو؟",
+                "highlight1-title": "التاريخ الملكي",
+                "highlight1-desc": "استكشف تاريخ ملوك وملكات ميرينا في قصر الملكة، موقع تراث عالمي لليونسكو ورمز للهوية الملغاشية.",
+                "highlight2-title": "الأسواق النابضة",
+                "highlight2-desc": "اكتشف الأسواق الملونة في أنالاكيلي وأندرفواهانغي، مركز حقيقي للحياة الملغاشية مع الحرف والتوابل والمنتجات المحلية.",
+                "highlight3-title": "المطبخ الأصيل",
+                "highlight3-desc": "تذوق أطباق الهضاب المرتفعة: رافيتوتو، رومازافا، موفو غاسي والعديد من الأطباق المعتمدة على الأرز، الغذاء الأساسي للملغاشيين.",
+                "highlight4-title": "المناظر الخضراء",
+                "highlight4-desc": "تقدم الهضاب المرتفعة مناظر لحقول الأرز المدرجة، التلال المستديرة والوديان العميقة، جميلة بشكل خاص عند شروق الشمس.",
+                "sites-title": "المواقع السياحية في أنتاناناريفو",
+                "site1-title": "قصر الملكة (روفا)",
+                "site1-type": "تراث",
+                "site1-desc": "القصر الملكي القديم لحكام ميرينا، يوفر إطلالة بانورامية استثنائية على المدينة.",
+                "tag1-1": "التاريخ",
+                "tag1-2": "إطلالة بانورامية",
+                "tag1-3": "الثقافة",
+                "btn-site1": "زيارة",
+                "site2-title": "سوق أنالاكيلي (زوما)",
+                "site2-type": "سوق",
+                "site2-desc": "أكبر سوق في العاصمة، انغمس تماماً في الحياة الملغاشية.",
+                "tag2-1": "سوق محلي",
+                "tag2-2": "تسوق",
+                "tag2-3": "أطباق محلية",
+                "btn-site2": "زيارة",
+                "site3-title": "بحيرة أنوسي والملاك الأسود",
+                "site3-type": "حضري",
+                "site3-desc": "بحيرة اصطناعية على شكل قلب مع النصب التذكاري للحرب، رمز رومانسي للعاصمة.",
+                "tag3-1": "بحيرة",
+                "tag3-2": "رومانسي",
+                "tag3-3": "مشي",
+                "btn-site3": "زيارة",
+                "site4-title": "أمبوهمانغا (التل الملكي)",
+                "site4-type": "اليونسكو",
+                "site4-desc": "موقع اليونسكو، مدينة ملكية قديمة ومكان مقدس مع هندسة معمارية تقليدية محفوظة.",
+                "tag4-1": "اليونسكو",
+                "tag4-2": "مقدس",
+                "tag4-3": "الهندسة المعمارية",
+                "btn-site4": "زيارة",
+                "site5-title": "متحف الفن والآثار",
+                "site5-type": "متحف",
+                "site5-desc": "لفهم التاريخ والثقافات الملغاشية من خلال مجموعة فريدة من القطع الأثرية.",
+                "tag5-1": "متحف",
+                "tag5-2": "فن",
+                "tag5-3": "تاريخ",
+                "btn-site5": "زيارة",
+                "site6-title": "سوق الديغ",
+                "site6-type": "سوق",
+                "site6-desc": "سوق شعبي جداً للمنتجات الطازجة، اللحوم، الأسماك والأشياء اليومية.",
+                "tag6-1": "منتجات طازجة",
+                "tag6-2": "محلي",
+                "tag6-3": "أصيل",
+                "btn-site6": "زيارة",
+                "site7-title": "حديقة تساراساوترا (طيور)",
+                "site7-type": "طبيعة",
+                "site7-desc": "موقع رامسار فريد في منطقة حضرية في أفريقيا، ملاذ للطيور المتوطنة.",
+                "tag7-1": "طيور",
+                "tag7-2": "طبيعة",
+                "tag7-3": "هدوء",
+                "btn-site7": "زيارة",
+                "site8-title": "شارع الاستقلال",
+                "site8-type": "تاريخي",
+                "site8-desc": "الشريان التاريخي الرئيسي لأنتاناناريفو مع هندسة معمارية استعمارية محفوظة.",
+                "tag8-1": "تاريخي",
+                "tag8-2": "هندسة معمارية",
+                "tag8-3": "مركز المدينة",
+                "btn-site8": "زيارة",
+                "site9-title": "سوق أندرفواهانغي الحرفي",
+                "site9-type": "حرف يدوية",
+                "site9-desc": "أفضل مكان لشراء تذكارات أصلية وحرف يدوية ملغاشية.",
+                "tag9-1": "حرف يدوية",
+                "tag9-2": "تذكارات",
+                "tag9-3": "منتجات محلية",
+                "btn-site9": "زيارة",
+                "activities-title": "الأنشطة في أنتاناناريفو",
+                "activity1-title": "جولة تذوق الطعام",
+                "activity1-desc": "اكتشاف المطبخ الملغاشي التقليدي: تذوق الرومازافا، الرافيتوتو، موفو غاسي وأطباق أخرى في مطاعم أصلية.",
+                "btn-activity1": "حجز",
+                "activity2-title": "تسوق الحرف اليدوية",
+                "activity2-desc": "جولة لأفضل متاجر الحرف اليدوية: حرير بري، موزايك، أحجار كريمة، فانيلا وتوابل بنصائح خبراء.",
+                "btn-activity2": "حجز",
+                "activity3-title": "تنزه تاريخي",
+                "activity3-desc": "زيارة موجهة للتلال المقدسة حول أنتاناناريفو: أمبوهمانغا، إيلافي ومواقع تاريخية أخرى مع مرشدين متخصصين.",
+                "btn-activity3": "حجز",
+                "activity4-title": "رحلة إلى الهضاب المرتفعة",
+                "activity4-desc": "يوم كامل لاكتشاف مناظر الهضاب المرتفعة: حقول أرز مدرجة، قرى تقليدية، شلالات ونقاط مشاهدة مذهلة.",
+                "btn-activity4": "حجز",
+                "culture-title": "ثقافة وتقاليد ميرينا",
+                "culture1-title": "التقاليد الأسلافية",
+                "culture1-desc": "اكتشف فاماديانا (قلب الموتى)، عبادة الأسلاف، أهمية الفادي (المحرمات) والبنية الاجتماعية التقليدية.",
+                "btn-culture1": "اعرف المزيد",
+                "culture2-title": "الحرف اليدوية المحلية",
+                "culture2-desc": "تقنيات تقليدية: موزايك الأخشاب الثمينة، نسج الحرير البري، صنع ورق أنتيمورو، عمل قرن الزيبو والفضة.",
+                "btn-culture2": "زيارة الورشات",
+                "culture3-title": "الموسيقى والرقص",
+                "culture3-desc": "عروض موسيقية تقليدية بالفاليها (آلة وترية وطنية)، كابوسي وهيرا غاسي (أوبرا شعبية). رقصات طقسية ومعاصرة.",
+                "btn-culture3": "حضر عرضاً",
+                "seasonality-title": "أفضل وقت للزيارة",
+                "season1-title": "الموسم الجاف (أبريل إلى أكتوبر)",
+                "season1-period": "مثالي",
+                "season1-desc": "طقس جاف وبارد (15-25°م)، مثالي لزيارة المدينة والرحلات. سماء صافية للصور، ظروف مثالية للمشي في الهضاب المرتفعة.",
+                "season2-title": "موسم الأمطار (نوفمبر إلى مارس)",
+                "season2-period": "أمطار",
+                "season2-desc": "هطول أمطار غزيرة يومية، درجات حرارة أكثر دفئاً (20-28°م). مناظر طبيعية خضراء جداً ولكن تنقلات صعبة أحياناً. طقوس تقليدية متكررة.",
+                "season3-title": "الفعاليات الثقافية",
+                "season3-period": "خاص",
+                "season3-desc": "يونيو: العيد الوطني (26 يونيو). أغسطس: فاماديانا (قلب الموتى). أكتوبر: إزهار الجاكراندا. ديسمبر: احتفالات نهاية السنة النابضة بالحياة.",
+                "cta-title": "مستعد لاكتشاف العاصمة؟",
+                "cta-text": "ننظم إقامتك في أنتاناناريفو: نقل من المطار، إقامة مميزة، مرشدين ناطقين بالفرنسية متخصصين في التاريخ، زيارات مخصصة ورحلات في الهضاب المرتفعة.",
+                "cta-btn": "خطط لإقامتي في أنتاناناريفو",
+                "cta-morondava": "اكتشف موروندافا",
+                "cta-nosybe": "اكتشف نوسي بي",
+                "cta-diego": "اكتشف دييغو سواريز",
+                "footer-creator": "من إنشاء حبيب - خدمات سياحية احترافية",
+                "footer-phone": "الهاتف: +261 32 39 622 86",
+                "footer-email": "البريد الإلكتروني: hajahabibeabdou@gmail.com",
+                "footer-desc": "نقل من المطار، خدمات الرحلات البحرية والجولات الدولية متاحة",
+                "footer-copyright": "© 2024 مادا فايب ديسكفر - جميع الحقوق محفوظة.<br>رخصة سياحية معتمدة | عضو في المكتب الوطني للسياحة في مدغشقر"
+            }
+        };
+
+        // ===== TRANSLATION FUNCTIONS =====
+        function setLanguage(lang) {
+            const langData = translations[lang];
+            if (!langData) return;
+            
+            Object.keys(langData).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = langData[key];
+                }
+            });
+            
+            const langBtn = document.querySelector('.current-lang');
+            if (langBtn) {
+                langBtn.textContent = lang.toUpperCase();
+            }
+            
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.lang === lang) {
+                    option.classList.add('active');
+                }
+            });
+            
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // ===== EVENT HANDLERS =====
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = option.dataset.lang;
+                setLanguage(lang);
+            });
+        });
+
+        // ===== MOBILE MENU =====
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // ===== ANIMATIONS =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            setLanguage(savedLang);
+            
+            setTimeout(() => {
+                document.getElementById('header').style.opacity = '1';
+                document.getElementById('header').style.transform = 'translateY(0)';
+            }, 100);
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // ===== SCROLL HANDLING =====
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.getElementById('header');
+            
+            if (currentScroll <= 0) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.style.transform = 'translateY(-100%)';
+                header.style.boxShadow = 'none';
+            } else {
+                header.style.transform = 'translateY(0)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // ===== HEADER ANIMATION =====
+        window.onload = () => {
+            const header = document.getElementById('header');
+            header.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+            }, 300);
+            
+            const cards = document.querySelectorAll('.fade-in');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        };
+
+        // ===== RESIZE HANDLING =====
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && mobileMenu) {
+                mobileMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+</html>
