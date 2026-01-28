@@ -1,0 +1,2794 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toamasina (Tamatave) - Côte Est | Mada Vibe Discover</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, 
+                rgba(0, 80, 120, 0.95) 0%, 
+                rgba(0, 120, 180, 0.93) 50%, 
+                rgba(50, 180, 230, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 10px 5%;
+            border-bottom: 2px solid #32b4e6;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 42px;
+            width: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #32b4e6;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            background: linear-gradient(45deg, #fff, #32b4e6, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.85);
+            margin-top: 2px;
+        }
+
+        /* ===== HEADER CONTROLS ===== */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 180px;
+            background: rgba(0, 60, 90, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(50, 180, 230, 0.3);
+            z-index: 1001;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            color: #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .language-option:hover {
+            background: linear-gradient(135deg, rgba(50, 180, 230, 0.2), rgba(0, 120, 180, 0.2));
+        }
+
+        .flag-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 60, 90, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 20px 5%;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            display: none;
+            border-top: 1px solid rgba(50, 180, 230, 0.3);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 12px;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 3px solid #32b4e6;
+            transform: translateX(5px);
+        }
+
+        .mobile-menu i {
+            color: #32b4e6;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ===== HEADER SPACER ===== */
+        .header-spacer {
+            height: 60px;
+            width: 100%;
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
+                        url('porttamatav.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 140px 0 100px;
+            position: relative;
+        }
+
+        .page-hero h1 {
+            font-size: 4.5rem;
+            color: #32b4e6;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero p {
+            font-size: 1.6rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(0, 80, 120, 0.4), 
+                rgba(0, 120, 180, 0.3), 
+                rgba(50, 180, 230, 0.2));
+            z-index: 1;
+        }
+
+        /* ===== CONTENT SECTIONS ===== */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #32b4e6;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #32b4e6, transparent);
+            border-radius: 3px;
+        }
+
+        /* ===== HIGHLIGHTS SECTION ===== */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 70px 0;
+        }
+
+        .highlight-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(50, 180, 230, 0.1);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            border-color: #32b4e6;
+            box-shadow: 0 20px 50px rgba(50, 180, 230, 0.15);
+        }
+
+        .highlight-icon {
+            font-size: 3.5rem;
+            color: #32b4e6;
+            margin-bottom: 25px;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .highlight-card p {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ===== SITES GRID ===== */
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 60px;
+            margin: 70px 0;
+        }
+
+        .site-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(50, 180, 230, 0.1);
+            position: relative;
+        }
+
+        .site-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(50, 180, 230, 0.2);
+            border-color: #32b4e6;
+        }
+
+        .site-image {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .site-card:hover .site-image img {
+            transform: scale(1.15);
+        }
+
+        .site-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 25px;
+            color: white;
+        }
+
+        .site-type {
+            display: inline-block;
+            background: #32b4e6;
+            color: #0a0a0a;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .site-overlay h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .site-overlay p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .site-content {
+            padding: 35px;
+            background: rgba(15, 30, 40, 0.8);
+        }
+
+        .site-content p {
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        .site-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .feature-tag {
+            padding: 6px 15px;
+            background: rgba(50, 180, 230, 0.15);
+            color: #32b4e6;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(50, 180, 230, 0.3);
+        }
+
+        /* ===== ACTIVITIES SECTION ===== */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 70px 0;
+        }
+
+        .activity-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(50, 180, 230, 0.1);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            border-color: #32b4e6;
+            box-shadow: 0 20px 50px rgba(50, 180, 230, 0.15);
+        }
+
+        .activity-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 120, 180, 0.5);
+            font-size: 3.5rem;
+            color: #32b4e6;
+        }
+
+        .activity-info {
+            padding: 30px;
+        }
+
+        .activity-info h3 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .activity-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        /* ===== CULTURE SECTION ===== */
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin: 70px 0;
+        }
+
+        .culture-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(50, 180, 230, 0.1);
+        }
+
+        .culture-card:hover {
+            transform: translateY(-15px);
+            border-color: #32b4e6;
+            box-shadow: 0 25px 60px rgba(50, 180, 230, 0.2);
+        }
+
+        .culture-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .culture-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .culture-card:hover .culture-image img {
+            transform: scale(1.15);
+        }
+
+        .culture-info {
+            padding: 30px;
+            background: rgba(20, 35, 45, 0.8);
+        }
+
+        .culture-info h3 {
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .culture-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        /* ===== SEASONALITY ===== */
+        .season-timeline {
+            max-width: 800px;
+            margin: 70px auto;
+            position: relative;
+        }
+
+        .season-item {
+            background: rgba(20, 40, 55, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #32b4e6;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .season-item:hover {
+            transform: translateX(10px);
+            background: rgba(20, 40, 55, 0.9);
+        }
+
+        .season-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .season-icon {
+            font-size: 2rem;
+            color: #32b4e6;
+        }
+
+        .season-title {
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .season-period {
+            background: rgba(50, 180, 230, 0.2);
+            color: #32b4e6;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .season-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* ===== BUTTON ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #32b4e6, #0a8cc4);
+            color: #0a0a0a;
+            padding: 18px 45px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(50, 180, 230, 0.4);
+            margin: 30px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(50, 180, 230, 0.5);
+            background: linear-gradient(135deg, #0a8cc4, #32b4e6);
+        }
+
+        .btn-small {
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #32b4e6;
+            color: #32b4e6;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(50, 180, 230, 0.1);
+        }
+
+        /* ===== IMAGE HIGHLIGHT ===== */
+        .image-highlight {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .highlight-container {
+            position: relative;
+            height: 600px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .highlight-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+            transition: transform 0.8s ease;
+        }
+
+        .highlight-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .highlight-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 50px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            text-align: left;
+        }
+
+        .highlight-text h3 {
+            font-size: 2.5rem;
+            color: #32b4e6;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .highlight-text p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 800px;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #000;
+            padding: 60px 0 30px;
+            border-top: 3px solid #32b4e6;
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .creator {
+            color: #32b4e6;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 1000px;
+            }
+            
+            .page-hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .sites-grid {
+                grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .highlight-container {
+                height: 500px;
+            }
+            
+            .highlight-text {
+                padding: 30px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 2rem;
+            }
+            
+            .highlight-text p {
+                font-size: 1.1rem;
+            }
+            
+            .sites-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                height: 55px;
+            }
+            
+            .header-spacer {
+                height: 55px;
+            }
+            
+            .page-hero {
+                min-height: 70vh;
+                padding: 100px 0 80px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .highlights-grid,
+            .activities-grid,
+            .culture-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .site-image {
+                height: 300px;
+            }
+            
+            .highlight-container {
+                height: 400px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 1.8rem;
+            }
+            
+            .highlight-text p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 16px 35px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .site-image {
+                height: 250px;
+            }
+            
+            .site-content {
+                padding: 25px;
+            }
+            
+            .site-overlay {
+                padding: 20px;
+            }
+            
+            .site-overlay h3 {
+                font-size: 1.5rem;
+            }
+            
+            .culture-image {
+                height: 200px;
+            }
+            
+            .culture-info {
+                padding: 25px;
+            }
+            
+            .highlight-container {
+                height: 350px;
+            }
+            
+            .highlight-text h3 {
+                font-size: 1.6rem;
+            }
+            
+            .highlight-text p {
+                font-size: 0.9rem;
+            }
+            
+            .mobile-menu {
+                padding: 15px 5%;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+                margin: 20px 0;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .site-type {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .feature-tag {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .season-period {
+                padding: 4px 10px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header id="header">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Drapeau Madagascar">
+                <div class="logo-text">
+                    <div class="logo-title">MADA VIBE DISCOVER</div>
+                    <div class="logo-tagline" id="header-tagline">Votre Guide à Toamasina</div>
+                </div>
+            </a>
+
+            <!-- Controls -->
+            <div class="header-controls">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <i class="fas fa-globe-americas"></i>
+                        <span class="current-lang">FR</span>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" class="language-option" data-lang="en">
+                            <img src="https://flagcdn.com/w20/us.png" class="flag-icon" alt="English">
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="language-option active" data-lang="fr">
+                            <img src="https://flagcdn.com/w20/fr.png" class="flag-icon" alt="Français">
+                            <span>Français</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="de">
+                            <img src="https://flagcdn.com/w20/de.png" class="flag-icon" alt="Deutsch">
+                            <span>Deutsch</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="it">
+                            <img src="https://flagcdn.com/w20/it.png" class="flag-icon" alt="Italiano">
+                            <span>Italiano</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="es">
+                            <img src="https://flagcdn.com/w20/es.png" class="flag-icon" alt="Español">
+                            <span>Español</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="ar">
+                            <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="العربية">
+                            <span>العربية</span>
+                        </a>
+                        <a href="#" class="language-option" data-lang="zh">
+                            <img src="https://flagcdn.com/w20/cn.png" class="flag-icon" alt="中文">
+                            <span>中文</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> <span id="menu-home">Accueil</span></a></li>
+                <li><a href="#highlights"><i class="fas fa-star"></i> <span id="menu-highlights">Points Forts</span></a></li>
+                <li><a href="#sites"><i class="fas fa-ship"></i> <span id="menu-sites">Sites Majeurs</span></a></li>
+                <li><a href="#activities"><i class="fas fa-hiking"></i> <span id="menu-activities">Activités</span></a></li>
+                <li><a href="#culture"><i class="fas fa-users"></i> <span id="menu-culture">Culture</span></a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt"></i> <span id="menu-contact">Contact</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="header-spacer"></div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1 class="fade-in" id="page-title">⚓ Toamasina (Tamatave) - Perle de l'Océan Indien</h1>
+            <p class="fade-in delay-1" id="page-subtitle">
+                Premier port de Madagascar, ville métissée aux influences créoles, africaines et asiatiques. 
+                Découvrez les plages de sable fin, le canal des Pangalanes, les plantations d'ylang-ylang et 
+                la douceur de vivre de la côte est.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== IMAGE HIGHLIGHT ===== -->
+    <section class="image-highlight">
+        <div class="container">
+            <div class="highlight-container fade-in">
+                <img src="4a.png" 
+                     alt="Plage de Toamasina">
+                <div class="highlight-text">
+                    <h3 id="highlight-title">Boulevard de l'Océan Indien - Promenade Maritime</h3>
+                    <p id="highlight-desc">La célèbre corniche de Toamasina, bordée de filaos centenaires, 
+                    offre des panoramas spectaculaires sur l'océan et des couchers de soleil inoubliables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HIGHLIGHTS ===== -->
+    <section id="highlights" class="content-section" style="background: linear-gradient(135deg, rgba(10, 40, 60, 0.95), rgba(20, 60, 90, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="highlights-title">Pourquoi Visiter Toamasina ?</h2>
+            
+            <div class="highlights-grid">
+                <div class="highlight-card fade-in">
+                    <div class="highlight-icon">🏖️</div>
+                    <h3 id="highlight1-title">Plages Paradisiaques</h3>
+                    <p id="highlight1-desc">Sable blanc, eau turquoise et cocotiers. Les plages de Foulpointe, 
+                    Mahambo et d'Île aux Prunes offrent des paysages de carte postale.</p>
+                </div>
+
+                <div class="highlight-card fade-in delay-1">
+                    <div class="highlight-icon">🛶</div>
+                    <h3 id="highlight2-title">Canal des Pangalanes</h3>
+                    <p id="highlight2-desc">Réseau de lagunes et canaux naturels de 600km, véritable autoroute 
+                    fluviale à travers la forêt tropicale et les villages de pêcheurs.</p>
+                </div>
+
+                <div class="highlight-card fade-in delay-2">
+                    <div class="highlight-icon">🌸</div>
+                    <h3 id="highlight3-title">Plantes Aromatiques</h3>
+                    <p id="highlight3-desc">Région productrice d'ylang-ylang, vanille, girofle et poivre. 
+                    Visitez les distilleries et découvrez les secrets des parfums naturels.</p>
+                </div>
+
+                <div class="highlight-card fade-in delay-3">
+                    <div class="highlight-icon">🌴</div>
+                    <h3 id="highlight4-title">Climat Tropical</h3>
+                    <p id="highlight4-desc">Température agréable toute l'année (25-30°C), végétation luxuriante 
+                    et ambiance détendue typique des villes côtières malgaches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SITES MAJEURS ===== -->
+    <section id="sites" class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in" id="sites-title">Sites Majeurs de Toamasina</h2>
+            
+            <div class="sites-grid">
+                <!-- Site 1 -->
+                <div class="site-card fade-in">
+                    <div class="site-image">
+                        <img src="4b.png" 
+                             alt="Canal des Pangalanes">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site1-type">MERVEILLE NATURELLE</span>
+                            <h3 id="site1-title">Canal des Pangalanes</h3>
+                            <p id="site1-subtitle">Côte est de Madagascar</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site1-desc">Ensemble de lagunes et canaux naturels parallèles à la côte, 
+                        s'étendant sur 600km. Voie de transport historique, aujourd'hui paradis pour 
+                        l'écotourisme. Navigation en pirogue à travers paysages de mangroves, forêts 
+                        primaires et villages traditionnels.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-canal">Canal naturel</span>
+                            <span class="feature-tag" id="tag-ecotourism">Écotourisme</span>
+                            <span class="feature-tag" id="tag-canoe">Pirogue</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site1">Réserver une visite</a>
+                    </div>
+                </div>
+
+                <!-- Site 2 -->
+                <div class="site-card fade-in delay-1">
+                    <div class="site-image">
+                        <img src="4c.png" 
+                             alt="Foulpointe">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site2-type">PLAGE PARADISIAQUE</span>
+                            <h3 id="site2-title">Foulpointe (Mahavelona)</h3>
+                            <p id="site2-subtitle">À 60km au nord de Toamasina</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site2-desc">Station balnéaire prisée des habitants de Toamasina. Plage de 
+                        sable blanc protégée par une barrière de corail, eau peu profonde idéale pour la 
+                        baignade. Fortin historique construit par les marchands d'esclaves au 19ème siècle, 
+                        restaurants de fruits de mer renommés.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-beach">Plage</span>
+                            <span class="feature-tag" id="tag-swimming">Baignade</span>
+                            <span class="feature-tag" id="tag-seafood">Fruits de mer</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site2">Réserver une visite</a>
+                    </div>
+                </div>
+
+                <!-- Site 3 -->
+                <div class="site-card fade-in delay-2">
+                    <div class="site-image">
+                        <img src="4d.png" 
+                             alt="Île aux Prunes">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site3-type">ÎLE SANCTUAIRE</span>
+                            <h3 id="site3-title">Île aux Prunes (Nosy Alagnagna)</h3>
+                            <p id="site3-subtitle">Dans la baie de Toamasina</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site3-desc">Îlot corallien classé réserve naturelle, refuge d'oiseaux marins 
+                        et site de ponte pour tortues. Plage déserte de sable blanc, eau cristalline avec 
+                        fonds marins exceptionnels pour le snorkeling. Phare historique datant de l'époque 
+                        coloniale.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-island">Île</span>
+                            <span class="feature-tag" id="tag-reserve">Réserve naturelle</span>
+                            <span class="feature-tag" id="tag-snorkeling">Snorkeling</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site3">Réserver une visite</a>
+                    </div>
+                </div>
+
+                <!-- Site 4 -->
+                <div class="site-card fade-in delay-3">
+                    <div class="site-image">
+                        <img src="4e.png" 
+                             alt="Port de Toamasina">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site4-type">PORT HISTORIQUE</span>
+                            <h3 id="site4-title">Port de Toamasina</h3>
+                            <p id="site4-subtitle">Centre-ville de Toamasina</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site4-desc">Premier port de Madagascar, point d'entrée historique du commerce 
+                        maritime. Animation permanente avec navires de commerce, bateaux de pêche traditionnels 
+                        et ferries. Marché aux poissons matinal, architecture coloniale préservée dans le 
+                        quartier du port.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-port">Port</span>
+                            <span class="feature-tag" id="tag-history">Histoire</span>
+                            <span class="feature-tag" id="tag-fishing">Pêche</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site4">Réserver une visite</a>
+                    </div>
+                </div>
+
+                <!-- Site 5 -->
+                <div class="site-card fade-in delay-1">
+                    <div class="site-image">
+                        <img src="4f.png" 
+                             alt="Mahambo">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site5-type">SPOT DE SURF</span>
+                            <h3 id="site5-title">Mahambo</h3>
+                            <p id="site5-subtitle">À 80km au nord de Toamasina</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site5-desc">Village de pêcheurs devenu spot de surf réputé. Vagues régulières 
+                        adaptées à tous niveaux, écoles de surf disponibles. Ambiance décontractée, hébergements 
+                        eco-friendly, plage sauvage préservée du tourisme de masse.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-surf">Surf</span>
+                            <span class="feature-tag" id="tag-village">Village</span>
+                            <span class="feature-tag" id="tag-wild">Sauvage</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site5">Réserver une visite</a>
+                    </div>
+                </div>
+
+                <!-- Site 6 -->
+                <div class="site-card fade-in delay-2">
+                    <div class="site-image">
+                        <img src="4g.png" 
+                             alt="Distillerie d'ylang-ylang">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site6-type">ARÔMATHÉRAPIE</span>
+                            <h3 id="site6-title">Plantations d'Ylang-Ylang</h3>
+                            <p id="site6-subtitle">Région de Toamasina</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site6-desc">Madagascar produit 80% de l'ylang-ylang mondial. Visitez les 
+                        plantations et distilleries traditionnelles, découvrez le processus de fabrication 
+                        des huiles essentielles. Possibilité d'achat d'huiles pures et de produits dérivés.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-ylang">Ylang-ylang</span>
+                            <span class="feature-tag" id="tag-perfume">Parfum</span>
+                            <span class="feature-tag" id="tag-plantation">Plantation</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site6">Réserver une visite</a>
+                    </div>
+                </div>
+
+                <!-- Site 7 -->
+                <div class="site-card fade-in delay-3">
+                    <div class="site-image">
+                        <img src="4h.png" 
+                             alt="Forêt d'Analalava">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site7-type">FORÊT TROPICALE</span>
+                            <h3 id="site7-title">Forêt d'Analalava</h3>
+                            <p id="site7-subtitle">À 40km de Toamasina</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site7-desc">Forêt primaire humide abritant une biodiversité exceptionnelle : 
+                        lémuriens, caméléons, orchidées rares. Sentiers de randonnée bien aménagés, cascades 
+                        rafraîchissantes. Guide naturaliste indispensable pour apprécier la richesse écologique 
+                        du site.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-forest">Forêt</span>
+                            <span class="feature-tag" id="tag-biodiversity">Biodiversité</span>
+                            <span class="feature-tag" id="tag-hiking">Randonnée</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site7">Réserver une visite</a>
+                    </div>
+                </div>
+
+                <!-- Site 8 -->
+                <div class="site-card fade-in delay-4">
+                    <div class="site-image">
+                        <img src="4i.png" 
+                             alt="Lac Rasoabe">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site8-type">LAC SACRÉ</span>
+                            <h3 id="site8-title">Lac Rasoabe</h3>
+                            <p id="site8-subtitle">Région de Toamasina</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site8-desc">Lac sacré selon les croyances locales, entouré de végétation 
+                        luxuriante. Site paisible pour la méditation et la détente. Croisières en pirogue 
+                        traditionnelle, observation d'oiseaux aquatiques. Lieux de pique-nique aménagés avec 
+                        vue sur le lac.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-lake2">Lac</span>
+                            <span class="feature-tag" id="tag-sacred">Sacré</span>
+                            <span class="feature-tag" id="tag-relaxation">Détente</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site8">Réserver une visite</a>
+                    </div>
+                </div>
+
+                <!-- Site 9 -->
+                <div class="site-card fade-in">
+                    <div class="site-image">
+                        <img src="4j.png" 
+                             alt="Musée de Toamasina">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site9-type">CULTURE ET HISTOIRE</span>
+                            <h3 id="site9-title">Musée Portuaire</h3>
+                            <p id="site9-subtitle">Centre-ville de Toamasina</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site9-desc">Musée retraçant l'histoire maritime de Toamasina, de l'époque 
+                        des pirates à nos jours. Collections d'objets historiques, maquettes de navires, 
+                        documents d'archive. Comprendre le rôle stratégique de Toamasina dans l'histoire 
+                        économique de Madagascar.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-museum">Musée</span>
+                            <span class="feature-tag" id="tag-history2">Histoire maritime</span>
+                            <span class="feature-tag" id="tag-culture">Culture</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site9">Réserver une visite</a>
+                    </div>
+                </div>
+
+                <!-- Site 10 -->
+                <div class="site-card fade-in delay-1">
+                    <div class="site-image">
+                        <img src="4k.png" 
+                             alt="Marché aux épices">
+                        <div class="site-overlay">
+                            <span class="site-type" id="site10-type">MARCHÉ COLORÉ</span>
+                            <h3 id="site10-title">Marché aux Épices de Bazar Be</h3>
+                            <p id="site10-subtitle">Toamasina centre</p>
+                        </div>
+                    </div>
+                    <div class="site-content">
+                        <p id="site10-desc">Immense marché couvert aux senteurs envoûtantes de vanille, 
+                        girofle, poivre, cannelle et autres épices. Centre névralgique du commerce des 
+                        produits de la région. Artisanat local, tissus traditionnels, souvenirs typiques 
+                        de la côte est.</p>
+                        <div class="site-features">
+                            <span class="feature-tag" id="tag-market">Marché</span>
+                            <span class="feature-tag" id="tag-spices">Épices</span>
+                            <span class="feature-tag" id="tag-shopping">Shopping</span>
+                        </div>
+                        <a href="#contact" class="btn btn-small" id="btn-site10">Réserver une visite</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACTIVITIES ===== -->
+    <section id="activities" class="content-section" style="background: linear-gradient(135deg, rgba(15, 45, 65, 0.95), rgba(25, 65, 95, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="activities-title">Activités à Toamasina</h2>
+            
+            <div class="activities-grid">
+                <div class="activity-card fade-in">
+                    <div class="activity-icon">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity1-title">Croisière sur le Canal</h3>
+                        <p class="activity-desc" id="activity1-desc">
+                            Journée complète en pirogue traditionnelle sur le canal des Pangalanes, 
+                            avec arrêt dans les villages de pêcheurs et déjeuner de poisson frais.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity1">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in delay-1">
+                    <div class="activity-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity2-title">Dégustation de Fruits de Mer</h3>
+                        <p class="activity-desc" id="activity2-desc">
+                            Repas typique sur la plage avec langoustes grillées, crabes, poissons frais 
+                            pêchés du jour, accompagnés de riz coco et brèdes.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity2">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in delay-2">
+                    <div class="activity-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity3-title">Visite de Distillerie</h3>
+                        <p class="activity-desc" id="activity3-desc">
+                            Découverte des plantations d'ylang-ylang et processus de distillation, 
+                            avec atelier de création de parfum personnalisé.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity3">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="activity-card fade-in delay-3">
+                    <div class="activity-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <div class="activity-info">
+                        <h3 id="activity4-title">Pêche Traditionnelle</h3>
+                        <p class="activity-desc" id="activity4-desc">
+                            Sortie en mer avec les pêcheurs locaux, apprentissage des techniques 
+                            traditionnelles et retour avec votre prise du jour.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-activity4">Réserver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CULTURE ===== -->
+    <section id="culture" class="content-section">
+        <div class="container">
+            <h2 class="section-title fade-in" id="culture-title">Culture et Traditions Cotières</h2>
+            
+            <div class="culture-grid">
+                <div class="culture-card fade-in">
+                    <div class="culture-image">
+                        <img src="4l.png" 
+                             alt="Culture Betsimisaraka">
+                    </div>
+                    <div class="culture-info">
+                        <h3 id="culture1-title">Peuple Betsimisaraka</h3>
+                        <p class="culture-desc" id="culture1-desc">
+                            "Les Inséparables", peuple côtier connu pour leur hospitalité et leur connaissance 
+                            de la mer. Découvrez leurs danses traditionnelles, musique et rites ancestraux 
+                            liés à l'océan.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-culture1">Rencontrer la communauté</a>
+                    </div>
+                </div>
+
+                <div class="culture-card fade-in delay-1">
+                    <div class="culture-image">
+                        <img src="4m.png" 
+                             alt="Cuisine créole">
+                    </div>
+                    <div class="culture-info">
+                        <h3 id="culture2-title">Cuisine Créole de l'Est</h3>
+                        <p class="culture-desc" id="culture2-desc">
+                            Influences africaines, indiennes et chinoises. Spécialités : rougail de poisson, 
+                            carry de crabe, soupe de poisson, mofo menakely (beignets). Cours de cuisine 
+                            avec les femmes locales.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-culture2">Participer à un cours</a>
+                    </div>
+                </div>
+
+                <div class="culture-card fade-in delay-2">
+                    <div class="culture-image">
+                        <img src="4n.png" 
+                             alt="Artisanat marin">
+                    </div>
+                    <div class="culture-info">
+                        <h3 id="culture3-title">Artisanat Marin</h3>
+                        <p class="culture-desc" id="culture3-desc">
+                            Fabrication de modèles réduits de boutres, vannerie en feuilles de raphia, 
+                            bijoux en coquillages et corail. Ateliers démonstratifs dans les villages 
+                            artisanaux.
+                        </p>
+                        <a href="#contact" class="btn btn-small btn-outline" id="btn-culture3">Découvrir l'artisanat</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEASONALITY ===== -->
+    <section class="content-section" style="background: linear-gradient(135deg, rgba(20, 50, 70, 0.95), rgba(30, 70, 100, 0.9));">
+        <div class="container">
+            <h2 class="section-title fade-in" id="seasonality-title">Meilleure Période pour Visiter</h2>
+            
+            <div class="season-timeline">
+                <div class="season-item fade-in">
+                    <div class="season-header">
+                        <div class="season-icon">🌞</div>
+                        <h3 class="season-title" id="season1-title">Saison Sèche (Avril à Novembre)</h3>
+                        <span class="season-period" id="season1-period">IDÉAL</span>
+                    </div>
+                    <p class="season-desc" id="season1-desc">
+                        Temps ensoleillé avec peu de pluie, températures agréables (24-28°C). Conditions 
+                        optimales pour les activités nautiques, la navigation sur le canal et les visites 
+                        des plantations.
+                    </p>
+                </div>
+
+                <div class="season-item fade-in delay-1">
+                    <div class="season-header">
+                        <div class="season-icon">🌧️</div>
+                        <h3 class="season-title" id="season2-title">Saison des Pluies (Décembre à Mars)</h3>
+                        <span class="season-period" id="season2-period">CYCLONES</span>
+                    </div>
+                    <p class="season-desc" id="season2-desc">
+                        Fortes précipitations, humidité élevée, risque de cyclones (surtout janvier-février). 
+                        Paysages très verts mais certaines activités limitées. Tarifs plus avantageux.
+                    </p>
+                </div>
+
+                <div class="season-item fade-in delay-2">
+                    <div class="season-header">
+                        <div class="season-icon">🐢</div>
+                        <h3 id="season3-title">Ponte des Tortues (Octobre à Mars)</h3>
+                        <span class="season-period" id="season3-period">SPÉCIAL</span>
+                    </div>
+                    <p class="season-desc" id="season3-desc">
+                        Observation nocturne des tortues marines venues pondre sur les plages de l'Île aux 
+                        Prunes et Foulpointe. Expérience unique et émouvante, encadrée par des guides spécialisés.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT CTA ===== -->
+    <section id="contact" class="content-section" style="background: linear-gradient(135deg, rgba(25, 55, 75, 0.95), rgba(35, 75, 105, 0.9));">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 class="section-title fade-in" id="cta-title">Prêt à Découvrir la Côte Est ?</h2>
+                <p class="fade-in delay-1" style="margin-bottom: 40px; font-size: 1.3rem; max-width: 900px; margin-left: auto; margin-right: auto;" id="cta-text">
+                    Nous organisons votre séjour à Toamasina : transferts depuis Antananarivo, 
+                    hébergement en bord de mer, guides francophones spécialistes de la région, 
+                    croisières sur le canal des Pangalanes et visites personnalisées.
+                </p>
+                <a href="contact.html" class="btn fade-in delay-2">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="cta-btn">Planifier Mon Séjour à Toamasina</span>
+                </a>
+                <br>
+                <div style="margin-top: 30px;">
+                    <a href="antananarivo.html" class="btn btn-outline fade-in delay-3" style="margin-right: 15px;">
+                        <i class="fas fa-landmark"></i>
+                        <span id="cta-antananarivo">Découvrir Antananarivo</span>
+                    </a>
+                    <a href="morondava.html" class="btn btn-outline fade-in delay-4" style="margin-right: 15px;">
+                        <i class="fas fa-tree"></i>
+                        <span id="cta-morondava">Découvrir Morondava</span>
+                    </a>
+                    <a href="nosy-be.html" class="btn btn-outline fade-in delay-5">
+                        <i class="fas fa-umbrella-beach"></i>
+                        <span id="cta-nosybe">Découvrir Nosy Be</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="creator" id="footer-creator">Créé par Habibe - Services Touristiques Professionnels</p>
+                <p id="footer-phone">Téléphone : +261 32 39 622 86</p>
+                <p id="footer-email">Email : hajahabibeabdou@gmail.com</p>
+                <p id="footer-desc">Transferts aéroport, services croisière et circuits internationaux disponibles</p>
+                <p id="footer-copyright" style="margin-top: 30px; color: rgba(255,255,255,0.6);">
+                    © 2024 Mada Vibe Discover - Tous droits réservés.<br>
+                    Licence Touristique certifiée | Membre de l'Office National du Tourisme de Madagascar
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== TRADUCTIONS MULTILANGUES =====
+        const translations = {
+            fr: {
+                // Header
+                "header-tagline": "Votre Guide à Toamasina",
+                "menu-home": "Accueil",
+                "menu-highlights": "Points Forts",
+                "menu-sites": "Sites Majeurs",
+                "menu-activities": "Activités",
+                "menu-culture": "Culture",
+                "menu-contact": "Contact",
+                
+                // Page content
+                "page-title": "⚓ Toamasina (Tamatave) - Perle de l'Océan Indien",
+                "page-subtitle": "Premier port de Madagascar, ville métissée aux influences créoles, africaines et asiatiques. Découvrez les plages de sable fin, le canal des Pangalanes, les plantations d'ylang-ylang et la douceur de vivre de la côte est.",
+                "highlight-title": "Boulevard de l'Océan Indien - Promenade Maritime",
+                "highlight-desc": "La célèbre corniche de Toamasina, bordée de filaos centenaires, offre des panoramas spectaculaires sur l'océan et des couchers de soleil inoubliables.",
+                "highlights-title": "Pourquoi Visiter Toamasina ?",
+                "highlight1-title": "Plages Paradisiaques",
+                "highlight1-desc": "Sable blanc, eau turquoise et cocotiers. Les plages de Foulpointe, Mahambo et d'Île aux Prunes offrent des paysages de carte postale.",
+                "highlight2-title": "Canal des Pangalanes",
+                "highlight2-desc": "Réseau de lagunes et canaux naturels de 600km, véritable autoroute fluviale à travers la forêt tropicale et les villages de pêcheurs.",
+                "highlight3-title": "Plantes Aromatiques",
+                "highlight3-desc": "Région productrice d'ylang-ylang, vanille, girofle et poivre. Visitez les distilleries et découvrez les secrets des parfums naturels.",
+                "highlight4-title": "Climat Tropical",
+                "highlight4-desc": "Température agréable toute l'année (25-30°C), végétation luxuriante et ambiance détendue typique des villes côtières malgaches.",
+                "sites-title": "Sites Majeurs de Toamasina",
+                "site1-type": "MERVEILLE NATURELLE",
+                "site1-title": "Canal des Pangalanes",
+                "site1-subtitle": "Côte est de Madagascar",
+                "site1-desc": "Ensemble de lagunes et canaux naturels parallèles à la côte, s'étendant sur 600km. Voie de transport historique, aujourd'hui paradis pour l'écotourisme. Navigation en pirogue à travers paysages de mangroves, forêts primaires et villages traditionnels.",
+                "tag-canal": "Canal naturel",
+                "tag-ecotourism": "Écotourisme",
+                "tag-canoe": "Pirogue",
+                "btn-site1": "Réserver une visite",
+                "site2-type": "PLAGE PARADISIAQUE",
+                "site2-title": "Foulpointe (Mahavelona)",
+                "site2-subtitle": "À 60km au nord de Toamasina",
+                "site2-desc": "Station balnéaire prisée des habitants de Toamasina. Plage de sable blanc protégée par une barrière de corail, eau peu profonde idéale pour la baignade. Fortin historique construit par les marchands d'esclaves au 19ème siècle, restaurants de fruits de mer renommés.",
+                "tag-beach": "Plage",
+                "tag-swimming": "Baignade",
+                "tag-seafood": "Fruits de mer",
+                "btn-site2": "Réserver une visite",
+                "site3-type": "ÎLE SANCTUAIRE",
+                "site3-title": "Île aux Prunes (Nosy Alagnagna)",
+                "site3-subtitle": "Dans la baie de Toamasina",
+                "site3-desc": "Îlot corallien classé réserve naturelle, refuge d'oiseaux marins et site de ponte pour tortues. Plage déserte de sable blanc, eau cristalline avec fonds marins exceptionnels pour le snorkeling. Phare historique datant de l'époque coloniale.",
+                "tag-island": "Île",
+                "tag-reserve": "Réserve naturelle",
+                "tag-snorkeling": "Snorkeling",
+                "btn-site3": "Réserver une visite",
+                "site4-type": "PORT HISTORIQUE",
+                "site4-title": "Port de Toamasina",
+                "site4-subtitle": "Centre-ville de Toamasina",
+                "site4-desc": "Premier port de Madagascar, point d'entrée historique du commerce maritime. Animation permanente avec navires de commerce, bateaux de pêche traditionnels et ferries. Marché aux poissons matinal, architecture coloniale préservée dans le quartier du port.",
+                "tag-port": "Port",
+                "tag-history": "Histoire",
+                "tag-fishing": "Pêche",
+                "btn-site4": "Réserver une visite",
+                "site5-type": "SPOT DE SURF",
+                "site5-title": "Mahambo",
+                "site5-subtitle": "À 80km au nord de Toamasina",
+                "site5-desc": "Village de pêcheurs devenu spot de surf réputé. Vagues régulières adaptées à tous niveaux, écoles de surf disponibles. Ambiance décontractée, hébergements eco-friendly, plage sauvage préservée du tourisme de masse.",
+                "tag-surf": "Surf",
+                "tag-village": "Village",
+                "tag-wild": "Sauvage",
+                "btn-site5": "Réserver une visite",
+                "site6-type": "ARÔMATHÉRAPIE",
+                "site6-title": "Plantations d'Ylang-Ylang",
+                "site6-subtitle": "Région de Toamasina",
+                "site6-desc": "Madagascar produit 80% de l'ylang-ylang mondial. Visitez les plantations et distilleries traditionnelles, découvrez le processus de fabrication des huiles essentielles. Possibilité d'achat d'huiles pures et de produits dérivés.",
+                "tag-ylang": "Ylang-ylang",
+                "tag-perfume": "Parfum",
+                "tag-plantation": "Plantation",
+                "btn-site6": "Réserver une visite",
+                "site7-type": "FORÊT TROPICALE",
+                "site7-title": "Forêt d'Analalava",
+                "site7-subtitle": "À 40km de Toamasina",
+                "site7-desc": "Forêt primaire humide abritant une biodiversité exceptionnelle : lémuriens, caméléons, orchidées rares. Sentiers de randonnée bien aménagés, cascades rafraîchissantes. Guide naturaliste indispensable pour apprécier la richesse écologique du site.",
+                "tag-forest": "Forêt",
+                "tag-biodiversity": "Biodiversité",
+                "tag-hiking": "Randonnée",
+                "btn-site7": "Réserver une visite",
+                "site8-type": "LAC SACRÉ",
+                "site8-title": "Lac Rasoabe",
+                "site8-subtitle": "Région de Toamasina",
+                "site8-desc": "Lac sacré selon les croyances locales, entouré de végétation luxuriante. Site paisible pour la méditation et la détente. Croisières en pirogue traditionnelle, observation d'oiseaux aquatiques. Lieux de pique-nique aménagés avec vue sur le lac.",
+                "tag-lake2": "Lac",
+                "tag-sacred": "Sacré",
+                "tag-relaxation": "Détente",
+                "btn-site8": "Réserver une visite",
+                "site9-type": "CULTURE ET HISTOIRE",
+                "site9-title": "Musée Portuaire",
+                "site9-subtitle": "Centre-ville de Toamasina",
+                "site9-desc": "Musée retraçant l'histoire maritime de Toamasina, de l'époque des pirates à nos jours. Collections d'objets historiques, maquettes de navires, documents d'archive. Comprendre le rôle stratégique de Toamasina dans l'histoire économique de Madagascar.",
+                "tag-museum": "Musée",
+                "tag-history2": "Histoire maritime",
+                "tag-culture": "Culture",
+                "btn-site9": "Réserver une visite",
+                "site10-type": "MARCHÉ COLORÉ",
+                "site10-title": "Marché aux Épices de Bazar Be",
+                "site10-subtitle": "Toamasina centre",
+                "site10-desc": "Immense marché couvert aux senteurs envoûtantes de vanille, girofle, poivre, cannelle et autres épices. Centre névralgique du commerce des produits de la région. Artisanat local, tissus traditionnels, souvenirs typiques de la côte est.",
+                "tag-market": "Marché",
+                "tag-spices": "Épices",
+                "tag-shopping": "Shopping",
+                "btn-site10": "Réserver une visite",
+                "activities-title": "Activités à Toamasina",
+                "activity1-title": "Croisière sur le Canal",
+                "activity1-desc": "Journée complète en pirogue traditionnelle sur le canal des Pangalanes, avec arrêt dans les villages de pêcheurs et déjeuner de poisson frais.",
+                "btn-activity1": "Réserver",
+                "activity2-title": "Dégustation de Fruits de Mer",
+                "activity2-desc": "Repas typique sur la plage avec langoustes grillées, crabes, poissons frais pêchés du jour, accompagnés de riz coco et brèdes.",
+                "btn-activity2": "Réserver",
+                "activity3-title": "Visite de Distillerie",
+                "activity3-desc": "Découverte des plantations d'ylang-ylang et processus de distillation, avec atelier de création de parfum personnalisé.",
+                "btn-activity3": "Réserver",
+                "activity4-title": "Pêche Traditionnelle",
+                "activity4-desc": "Sortie en mer avec les pêcheurs locaux, apprentissage des techniques traditionnelles et retour avec votre prise du jour.",
+                "btn-activity4": "Réserver",
+                "culture-title": "Culture et Traditions Cotières",
+                "culture1-title": "Peuple Betsimisaraka",
+                "culture1-desc": "'Les Inséparables', peuple côtier connu pour leur hospitalité et leur connaissance de la mer. Découvrez leurs danses traditionnelles, musique et rites ancestraux liés à l'océan.",
+                "btn-culture1": "Rencontrer la communauté",
+                "culture2-title": "Cuisine Créole de l'Est",
+                "culture2-desc": "Influences africaines, indiennes et chinoises. Spécialités : rougail de poisson, carry de crabe, soupe de poisson, mofo menakely (beignets). Cours de cuisine avec les femmes locales.",
+                "btn-culture2": "Participer à un cours",
+                "culture3-title": "Artisanat Marin",
+                "culture3-desc": "Fabrication de modèles réduits de boutres, vannerie en feuilles de raphia, bijoux en coquillages et corail. Ateliers démonstratifs dans les villages artisanaux.",
+                "btn-culture3": "Découvrir l'artisanat",
+                "seasonality-title": "Meilleure Période pour Visiter",
+                "season1-title": "Saison Sèche (Avril à Novembre)",
+                "season1-period": "IDÉAL",
+                "season1-desc": "Temps ensoleillé avec peu de pluie, températures agréables (24-28°C). Conditions optimales pour les activités nautiques, la navigation sur le canal et les visites des plantations.",
+                "season2-title": "Saison des Pluies (Décembre à Mars)",
+                "season2-period": "CYCLONES",
+                "season2-desc": "Fortes précipitations, humidité élevée, risque de cyclones (surtout janvier-février). Paysages très verts mais certaines activités limitées. Tarifs plus avantageux.",
+                "season3-title": "Ponte des Tortues (Octobre à Mars)",
+                "season3-period": "SPÉCIAL",
+                "season3-desc": "Observation nocturne des tortues marines venues pondre sur les plages de l'Île aux Prunes et Foulpointe. Expérience unique et émouvante, encadrée par des guides spécialisés.",
+                "cta-title": "Prêt à Découvrir la Côte Est ?",
+                "cta-text": "Nous organisons votre séjour à Toamasina : transferts depuis Antananarivo, hébergement en bord de mer, guides francophones spécialistes de la région, croisières sur le canal des Pangalanes et visites personnalisées.",
+                "cta-btn": "Planifier Mon Séjour à Toamasina",
+                "cta-antananarivo": "Découvrir Antananarivo",
+                "cta-morondava": "Découvrir Morondava",
+                "cta-nosybe": "Découvrir Nosy Be",
+                "footer-creator": "Créé par Habibe - Services Touristiques Professionnels",
+                "footer-phone": "Téléphone : +261 32 39 622 86",
+                "footer-email": "Email : hajahabibeabdou@gmail.com",
+                "footer-desc": "Transferts aéroport, services croisière et circuits internationaux disponibles",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Tous droits réservés.<br>Licence Touristique certifiée | Membre de l'Office National du Tourisme de Madagascar"
+            },
+            en: {
+                "header-tagline": "Your Guide to Toamasina",
+                "menu-home": "Home",
+                "menu-highlights": "Highlights",
+                "menu-sites": "Major Sites",
+                "menu-activities": "Activities",
+                "menu-culture": "Culture",
+                "menu-contact": "Contact",
+                
+                "page-title": "⚓ Toamasina (Tamatave) - Pearl of the Indian Ocean",
+                "page-subtitle": "Madagascar's main port, a cosmopolitan city with Creole, African and Asian influences. Discover white sand beaches, the Pangalanes Canal, ylang-ylang plantations and the relaxed lifestyle of the east coast.",
+                "highlight-title": "Indian Ocean Boulevard - Seaside Promenade",
+                "highlight-desc": "The famous Toamasina corniche, lined with century-old casuarina trees, offers spectacular ocean panoramas and unforgettable sunsets.",
+                "highlights-title": "Why Visit Toamasina?",
+                "highlight1-title": "Paradise Beaches",
+                "highlight1-desc": "White sand, turquoise water and coconut trees. The beaches of Foulpointe, Mahambo and Île aux Prunes offer postcard landscapes.",
+                "highlight2-title": "Pangalanes Canal",
+                "highlight2-desc": "Network of lagoons and natural canals stretching 600km, a true river highway through rainforest and fishing villages.",
+                "highlight3-title": "Aromatic Plants",
+                "highlight3-desc": "Region producing ylang-ylang, vanilla, cloves and pepper. Visit distilleries and discover the secrets of natural perfumes.",
+                "highlight4-title": "Tropical Climate",
+                "highlight4-desc": "Pleasant temperature year-round (25-30°C), lush vegetation and relaxed atmosphere typical of Malagasy coastal towns.",
+                "sites-title": "Major Sites of Toamasina",
+                "site1-type": "NATURAL WONDER",
+                "site1-title": "Pangalanes Canal",
+                "site1-subtitle": "East coast of Madagascar",
+                "site1-desc": "Set of lagoons and natural canals parallel to the coast, extending 600km. Historic transport route, now paradise for ecotourism. Pirogue navigation through mangrove landscapes, primary forests and traditional villages.",
+                "tag-canal": "Natural canal",
+                "tag-ecotourism": "Ecotourism",
+                "tag-canoe": "Pirogue",
+                "btn-site1": "Book a visit",
+                "site2-type": "PARADISE BEACH",
+                "site2-title": "Foulpointe (Mahavelona)",
+                "site2-subtitle": "60km north of Toamasina",
+                "site2-desc": "Seaside resort popular with Toamasina residents. White sand beach protected by coral reef, shallow water ideal for swimming. Historic fort built by slave traders in the 19th century, renowned seafood restaurants.",
+                "tag-beach": "Beach",
+                "tag-swimming": "Swimming",
+                "tag-seafood": "Seafood",
+                "btn-site2": "Book a visit",
+                "site3-type": "SANCTUARY ISLAND",
+                "site3-title": "Île aux Prunes (Nosy Alagnagna)",
+                "site3-subtitle": "In Toamasina Bay",
+                "site3-desc": "Coral islet classified as natural reserve, refuge for seabirds and turtle nesting site. Deserted white sand beach, crystal clear water with exceptional seabed for snorkeling. Historic lighthouse from colonial era.",
+                "tag-island": "Island",
+                "tag-reserve": "Natural reserve",
+                "tag-snorkeling": "Snorkeling",
+                "btn-site3": "Book a visit",
+                "site4-type": "HISTORIC PORT",
+                "site4-title": "Toamasina Port",
+                "site4-subtitle": "Toamasina city center",
+                "site4-desc": "Madagascar's main port, historic entry point for maritime trade. Permanent activity with merchant ships, traditional fishing boats and ferries. Morning fish market, preserved colonial architecture in port district.",
+                "tag-port": "Port",
+                "tag-history": "History",
+                "tag-fishing": "Fishing",
+                "btn-site4": "Book a visit",
+                "site5-type": "SURF SPOT",
+                "site5-title": "Mahambo",
+                "site5-subtitle": "80km north of Toamasina",
+                "site5-desc": "Fishing village turned renowned surf spot. Regular waves suitable for all levels, surf schools available. Relaxed atmosphere, eco-friendly accommodations, wild beach preserved from mass tourism.",
+                "tag-surf": "Surf",
+                "tag-village": "Village",
+                "tag-wild": "Wild",
+                "btn-site5": "Book a visit",
+                "site6-type": "AROMATHERAPY",
+                "site6-title": "Ylang-Ylang Plantations",
+                "site6-subtitle": "Toamasina region",
+                "site6-desc": "Madagascar produces 80% of world's ylang-ylang. Visit traditional plantations and distilleries, discover essential oil production process. Possibility to purchase pure oils and derived products.",
+                "tag-ylang": "Ylang-ylang",
+                "tag-perfume": "Perfume",
+                "tag-plantation": "Plantation",
+                "btn-site6": "Book a visit",
+                "site7-type": "TROPICAL FOREST",
+                "site7-title": "Analalava Forest",
+                "site7-subtitle": "40km from Toamasina",
+                "site7-desc": "Primary humid forest housing exceptional biodiversity: lemurs, chameleons, rare orchids. Well-maintained hiking trails, refreshing waterfalls. Naturalist guide essential to appreciate site's ecological richness.",
+                "tag-forest": "Forest",
+                "tag-biodiversity": "Biodiversity",
+                "tag-hiking": "Hiking",
+                "btn-site7": "Book a visit",
+                "site8-type": "SACRED LAKE",
+                "site8-title": "Rasoabe Lake",
+                "site8-subtitle": "Toamasina region",
+                "site8-desc": "Sacred lake according to local beliefs, surrounded by lush vegetation. Peaceful site for meditation and relaxation. Traditional pirogue cruises, aquatic bird watching. Equipped picnic areas with lake view.",
+                "tag-lake2": "Lake",
+                "tag-sacred": "Sacred",
+                "tag-relaxation": "Relaxation",
+                "btn-site8": "Book a visit",
+                "site9-type": "CULTURE & HISTORY",
+                "site9-title": "Port Museum",
+                "site9-subtitle": "Toamasina city center",
+                "site9-desc": "Museum tracing maritime history of Toamasina, from pirate era to present day. Collections of historical objects, ship models, archive documents. Understand Toamasina's strategic role in Madagascar's economic history.",
+                "tag-museum": "Museum",
+                "tag-history2": "Maritime history",
+                "tag-culture": "Culture",
+                "btn-site9": "Book a visit",
+                "site10-type": "COLORFUL MARKET",
+                "site10-title": "Bazar Be Spice Market",
+                "site10-subtitle": "Toamasina center",
+                "site10-desc": "Huge covered market with intoxicating scents of vanilla, cloves, pepper, cinnamon and other spices. Nerve center for trade of regional products. Local crafts, traditional fabrics, typical east coast souvenirs.",
+                "tag-market": "Market",
+                "tag-spices": "Spices",
+                "tag-shopping": "Shopping",
+                "btn-site10": "Book a visit",
+                "activities-title": "Activities in Toamasina",
+                "activity1-title": "Canal Cruise",
+                "activity1-desc": "Full day in traditional pirogue on Pangalanes Canal, with stops in fishing villages and fresh fish lunch.",
+                "btn-activity1": "Book",
+                "activity2-title": "Seafood Tasting",
+                "activity2-desc": "Typical beach meal with grilled lobsters, crabs, fresh fish caught that day, accompanied by coconut rice and brèdes.",
+                "btn-activity2": "Book",
+                "activity3-title": "Distillery Visit",
+                "activity3-desc": "Discovery of ylang-ylang plantations and distillation process, with personalized perfume creation workshop.",
+                "btn-activity3": "Book",
+                "activity4-title": "Traditional Fishing",
+                "activity4-desc": "Sea trip with local fishermen, learning traditional techniques and returning with your day's catch.",
+                "btn-activity4": "Book",
+                "culture-title": "Coastal Culture and Traditions",
+                "culture1-title": "Betsimisaraka People",
+                "culture1-desc": "'The Inseparables', coastal people known for their hospitality and knowledge of the sea. Discover their traditional dances, music and ancestral rites linked to the ocean.",
+                "btn-culture1": "Meet the community",
+                "culture2-title": "East Coast Creole Cuisine",
+                "culture2-desc": "African, Indian and Chinese influences. Specialties: fish rougail, crab curry, fish soup, mofo menakely (fritters). Cooking classes with local women.",
+                "btn-culture2": "Join a class",
+                "culture3-title": "Marine Crafts",
+                "culture3-desc": "Making scale models of boutres, raffia leaf basketry, shell and coral jewelry. Demonstration workshops in artisan villages.",
+                "btn-culture3": "Discover crafts",
+                "seasonality-title": "Best Time to Visit",
+                "season1-title": "Dry Season (April to November)",
+                "season1-period": "IDEAL",
+                "season1-desc": "Sunny weather with little rain, pleasant temperatures (24-28°C). Optimal conditions for water activities, canal navigation and plantation visits.",
+                "season2-title": "Rainy Season (December to March)",
+                "season2-period": "CYCLONES",
+                "season2-desc": "Heavy rainfall, high humidity, cyclone risk (especially January-February). Very green landscapes but some activities limited. More advantageous rates.",
+                "season3-title": "Turtle Nesting (October to March)",
+                "season3-period": "SPECIAL",
+                "season3-desc": "Nocturnal observation of sea turtles coming to lay eggs on Île aux Prunes and Foulpointe beaches. Unique and moving experience, supervised by specialized guides.",
+                "cta-title": "Ready to Discover the East Coast?",
+                "cta-text": "We organize your stay in Toamasina: transfers from Antananarivo, seaside accommodation, French-speaking regional specialists, Pangalanes Canal cruises and personalized visits.",
+                "cta-btn": "Plan My Toamasina Stay",
+                "cta-antananarivo": "Discover Antananarivo",
+                "cta-morondava": "Discover Morondava",
+                "cta-nosybe": "Discover Nosy Be",
+                "footer-creator": "Created by Habibe - Professional Tourism Services",
+                "footer-phone": "Phone: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Airport transfers, cruise services, and international tours available",
+                "footer-copyright": "© 2024 Mada Vibe Discover - All rights reserved.<br>Tourism License certified | Member of Madagascar National Tourism Board"
+            },
+            de: {
+                "header-tagline": "Ihr Reiseführer für Toamasina",
+                "menu-home": "Startseite",
+                "menu-highlights": "Highlights",
+                "menu-sites": "Hauptsehenswürdigkeiten",
+                "menu-activities": "Aktivitäten",
+                "menu-culture": "Kultur",
+                "menu-contact": "Kontakt",
+                
+                "page-title": "⚓ Toamasina (Tamatave) - Perle des Indischen Ozeans",
+                "page-subtitle": "Hauptseehafen Madagaskars, kosmopolitische Stadt mit kreolischen, afrikanischen und asiatischen Einflüssen. Entdecken Sie weiße Sandstrände, den Pangalanes-Kanal, Ylang-Ylang-Plantagen und die entspannte Lebensart der Ostküste.",
+                "highlight-title": "Boulevard des Indischen Ozeans - Promenade am Meer",
+                "highlight-desc": "Die berühmte Uferpromenade von Toamasina, gesäumt von hundertjährigen Kasuarinen, bietet spektakuläre Ozeanpanoramen und unvergessliche Sonnenuntergänge.",
+                "highlights-title": "Warum Toamasina besuchen?",
+                "highlight1-title": "Paradiesstrände",
+                "highlight1-desc": "Weißer Sand, türkisfarbenes Wasser und Kokospalmen. Die Strände von Foulpointe, Mahambo und Île aux Prunes bieten Postkartenlandschaften.",
+                "highlight2-title": "Pangalanes-Kanal",
+                "highlight2-desc": "Netzwerk aus Lagunen und natürlichen Kanälen über 600km, echte Wasserstraße durch Regenwald und Fischerdörfer.",
+                "highlight3-title": "Aromapflanzen",
+                "highlight3-desc": "Region produziert Ylang-Ylang, Vanille, Nelken und Pfeffer. Besuchen Sie Destillerien und entdecken Sie Geheimnisse natürlicher Parfüms.",
+                "highlight4-title": "Tropisches Klima",
+                "highlight4-desc": "Angenehme Temperaturen ganzjährig (25-30°C), üppige Vegetation und entspannte Atmosphäre typisch für madagassische Küstenstädte.",
+                "sites-title": "Hauptsehenswürdigkeiten von Toamasina",
+                "site1-type": "NATURWUNDER",
+                "site1-title": "Pangalanes-Kanal",
+                "site1-subtitle": "Ostküste Madagaskars",
+                "site1-desc": "Ansammlung von Lagunen und natürlichen Kanälen parallel zur Küste, erstreckt sich über 600km. Historische Transportroute, heute Paradies für Ökotourismus. Pirogenfahrt durch Mangrovenlandschaften, Primärwälder und traditionelle Dörfer.",
+                "tag-canal": "Natürlicher Kanal",
+                "tag-ecotourism": "Ökotourismus",
+                "tag-canoe": "Piroge",
+                "btn-site1": "Besuch buchen",
+                "site2-type": "PARADIESSTRAND",
+                "site2-title": "Foulpointe (Mahavelona)",
+                "site2-subtitle": "60km nördlich von Toamasina",
+                "site2-desc": "Badeort beliebt bei Toamasina-Bewohnern. Weißer Sandstrand geschützt durch Korallenriff, flaches Wasser ideal zum Schwimmen. Historisches Fort von Sklavenhändlern im 19. Jahrhundert erbaut, renommierte Meeresfrüchterestaurants.",
+                "tag-beach": "Strand",
+                "tag-swimming": "Schwimmen",
+                "tag-seafood": "Meeresfrüchte",
+                "btn-site2": "Besuch buchen",
+                "site3-type": "SCHUTZINSEL",
+                "site3-title": "Île aux Prunes (Nosy Alagnagna)",
+                "site3-subtitle": "In der Bucht von Toamasina",
+                "site3-desc": "Koralleninsel als Naturschutzgebiet eingestuft, Zuflucht für Seevögel und Schildkröten-Nistplatz. Verlassener weißer Sandstrand, kristallklares Wasser mit außergewöhnlichem Meeresgrund zum Schnorcheln. Historischer Leuchtturm aus Kolonialzeit.",
+                "tag-island": "Insel",
+                "tag-reserve": "Naturschutzgebiet",
+                "tag-snorkeling": "Schnorcheln",
+                "btn-site3": "Besuch buchen",
+                "site4-type": "HISTORISCHER HAFEN",
+                "site4-title": "Hafen von Toamasina",
+                "site4-subtitle": "Toamasina Stadtzentrum",
+                "site4-desc": "Hauptseehafen Madagaskars, historischer Eingangspunkt für Seehandel. Dauerhafte Aktivität mit Handelsschiffen, traditionellen Fischerbooten und Fähren. Morgendlicher Fischmarkt, erhaltene Kolonialarchitektur im Hafenviertel.",
+                "tag-port": "Hafen",
+                "tag-history": "Geschichte",
+                "tag-fishing": "Fischerei",
+                "btn-site4": "Besuch buchen",
+                "site5-type": "SURFSPOT",
+                "site5-title": "Mahambo",
+                "site5-subtitle": "80km nördlich von Toamasina",
+                "site5-desc": "Fischerdorf wurde bekannter Surfspot. Regelmäßige Wellen für alle Levels, Surfschulen verfügbar. Entspannte Atmosphäre, umweltfreundliche Unterkünfte, wilder Strand vor Massentourismus bewahrt.",
+                "tag-surf": "Surfen",
+                "tag-village": "Dorf",
+                "tag-wild": "Wild",
+                "btn-site5": "Besuch buchen",
+                "site6-type": "AROMATHERAPIE",
+                "site6-title": "Ylang-Ylang-Plantagen",
+                "site6-subtitle": "Toamasina Region",
+                "site6-desc": "Madagaskar produziert 80% des weltweiten Ylang-Ylangs. Besuchen Sie traditionelle Plantagen und Destillerien, entdecken Sie ätherische Ölherstellung. Möglichkeit reine Öle und abgeleitete Produkte zu kaufen.",
+                "tag-ylang": "Ylang-Ylang",
+                "tag-perfume": "Parfüm",
+                "tag-plantation": "Plantage",
+                "btn-site6": "Besuch buchen",
+                "site7-type": "TROPISCHER WALD",
+                "site7-title": "Analalava-Wald",
+                "site7-subtitle": "40km von Toamasina",
+                "site7-desc": "Primärer Feuchtwald beherbergt außergewöhnliche Biodiversität: Lemuren, Chamäleons, seltene Orchideen. Gut angelegte Wanderwege, erfrischende Wasserfälle. Naturführer unerlässlich um ökologische Reichtümer zu schätzen.",
+                "tag-forest": "Wald",
+                "tag-biodiversity": "Biodiversität",
+                "tag-hiking": "Wandern",
+                "btn-site7": "Besuch buchen",
+                "site8-type": "HEILIGER SEE",
+                "site8-title": "Rasoabe-See",
+                "site8-subtitle": "Toamasina Region",
+                "site8-desc": "Heiliger See laut lokalen Glauben, umgeben von üppiger Vegetation. Friedlicher Ort für Meditation und Entspannung. Traditionelle Pirogenfahrten, Beobachtung von Wasservögeln. Eingerichtete Picknickplätze mit Seeblick.",
+                "tag-lake2": "See",
+                "tag-sacred": "Heilig",
+                "tag-relaxation": "Entspannung",
+                "btn-site8": "Besuch buchen",
+                "site9-type": "KULTUR & GESCHICHTE",
+                "site9-title": "Hafenmuseum",
+                "site9-subtitle": "Toamasina Stadtzentrum",
+                "site9-desc": "Museum zeichnet Seehandelsgeschichte Toamasinas von Piratenzeit bis heute nach. Sammlungen historischer Objekte, Schiffsmodelle, Archivdokumente. Verstehen Sie Toamasinas strategische Rolle in Madagaskars Wirtschaftsgeschichte.",
+                "tag-museum": "Museum",
+                "tag-history2": "Seehandelsgeschichte",
+                "tag-culture": "Kultur",
+                "btn-site9": "Besuch buchen",
+                "site10-type": "FARBENFROHER MARKT",
+                "site10-title": "Gewürzmarkt Bazar Be",
+                "site10-subtitle": "Toamasina Zentrum",
+                "site10-desc": "Riesiger überdachter Markt mit betörenden Düften von Vanille, Nelken, Pfeffer, Zimt und anderen Gewürzen. Nervenzentrum für Handel regionaler Produkte. Lokales Handwerk, traditionelle Stoffe, typische Ostküsten-Souvenirs.",
+                "tag-market": "Markt",
+                "tag-spices": "Gewürze",
+                "tag-shopping": "Einkaufen",
+                "btn-site10": "Besuch buchen",
+                "activities-title": "Aktivitäten in Toamasina",
+                "activity1-title": "Kanal-Kreuzfahrt",
+                "activity1-desc": "Ganztägig in traditioneller Piroge auf Pangalanes-Kanal, mit Stopps in Fischerdörfern und frischem Fischmittagessen.",
+                "btn-activity1": "Buchen",
+                "activity2-title": "Meeresfrüchte-Verkostung",
+                "activity2-desc": "Typisches Strandmahl mit gegrillten Langusten, Krabben, frischem Fisch vom selben Tag, begleitet von Kokosnussreis und Brèdes.",
+                "btn-activity2": "Buchen",
+                "activity3-title": "Destilleriebesuch",
+                "activity3-desc": "Entdeckung von Ylang-Ylang-Plantagen und Destillationsprozess, mit personalisiertem Parfümerstellungsworkshop.",
+                "btn-activity3": "Buchen",
+                "activity4-title": "Traditionelles Fischen",
+                "activity4-desc": "Ausfahrt mit lokalen Fischern, Erlernen traditioneller Techniken und Rückkehr mit Tagesfang.",
+                "btn-activity4": "Buchen",
+                "culture-title": "Küstenkultur und Traditionen",
+                "culture1-title": "Betsimisaraka-Volk",
+                "culture1-desc": "'Die Unzertrennlichen', Küstenvolk bekannt für Gastfreundschaft und Meereskenntnis. Entdecken Sie ihre traditionellen Tänze, Musik und Ahnenriten verbunden mit dem Ozean.",
+                "btn-culture1": "Gemeinschaft treffen",
+                "culture2-title": "Ostküsten-Kreolenküche",
+                "culture2-desc": "Afrikanische, indische und chinesische Einflüsse. Spezialitäten: Fisch-Rougail, Krabben-Curry, Fischsuppe, Mofo Menakely (Krapfen). Kochkurse mit lokalen Frauen.",
+                "btn-culture2": "Am Kurs teilnehmen",
+                "culture3-title": "Maritimes Handwerk",
+                "culture3-desc": "Herstellung von Boutre-Modellen, Raffia-Blatt-Korbwaren, Muschel- und Korallenschmuck. Demonstrationswerkstätten in Handwerkerdörfern.",
+                "btn-culture3": "Handwerk entdecken",
+                "seasonality-title": "Beste Reisezeit",
+                "season1-title": "Trockenzeit (April bis November)",
+                "season1-period": "IDEAL",
+                "season1-desc": "Sonniges Wetter mit wenig Regen, angenehme Temperaturen (24-28°C). Optimale Bedingungen für Wasseraktivitäten, Kanalnavigation und Plantagenbesuche.",
+                "season2-title": "Regenzeit (Dezember bis März)",
+                "season2-period": "ZYKLONE",
+                "season2-desc": "Starker Regenfall, hohe Luftfeuchtigkeit, Zyklonrisiko (besonders Januar-Februar). Sehr grüne Landschaften aber manche Aktivitäten begrenzt. Vorteilhaftere Preise.",
+                "season3-title": "Schildkrötenablage (Oktober bis März)",
+                "season3-period": "SPEZIELL",
+                "season3-desc": "Nächtliche Beobachtung von Meeresschildkröten zur Eiablage an Île aux Prunes und Foulpointe Stränden. Einzigartiges und bewegendes Erlebnis, beaufsichtigt von spezialisierten Führern.",
+                "cta-title": "Bereit die Ostküste zu entdecken?",
+                "cta-text": "Wir organisieren Ihren Aufenthalt in Toamasina: Transfers von Antananarivo, Unterkunft am Meer, französischsprachige Regionsspezialisten, Pangalanes-Kanal-Kreuzfahrten und personalisierte Besuche.",
+                "cta-btn": "Meinen Toamasina-Aufenthalt planen",
+                "cta-antananarivo": "Antananarivo entdecken",
+                "cta-morondava": "Morondava entdecken",
+                "cta-nosybe": "Nosy Be entdecken",
+                "footer-creator": "Erstellt von Habibe - Professionelle Tourismusdienstleistungen",
+                "footer-phone": "Telefon: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Flughafentransfers, Kreuzfahrtdienste und internationale Touren verfügbar",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Alle Rechte vorbehalten.<br>Zertifizierte Tourismuskarte | Mitglied des madagassischen Nationalen Tourismusbüros"
+            },
+            it: {
+                "header-tagline": "La Tua Guida a Toamasina",
+                "menu-home": "Home",
+                "menu-highlights": "Punti Salienti",
+                "menu-sites": "Siti Principali",
+                "menu-activities": "Attività",
+                "menu-culture": "Cultura",
+                "menu-contact": "Contatto",
+                
+                "page-title": "⚓ Toamasina (Tamatave) - Perla dell'Oceano Indiano",
+                "page-subtitle": "Principale porto del Madagascar, città cosmopolita con influenze creole, africane e asiatiche. Scopri spiagge di sabbia bianca, il canale dei Pangalane, piantagioni di ylang-ylang e il dolce vivere della costa est.",
+                "highlight-title": "Boulevard dell'Oceano Indiano - Passeggiata Marittima",
+                "highlight-desc": "La famosa passeggiata a mare di Toamasina, fiancheggiata da casuarine centenarie, offre panorami spettacolari sull'oceano e tramonti indimenticabili.",
+                "highlights-title": "Perché Visitare Toamasina?",
+                "highlight1-title": "Spiagge Paradisiache",
+                "highlight1-desc": "Sabbia bianca, acqua turchese e palme da cocco. Le spiagge di Foulpointe, Mahambo e dell'Île aux Prunes offrono paesaggi da cartolina.",
+                "highlight2-title": "Canale dei Pangalane",
+                "highlight2-desc": "Rete di lagune e canali naturali di 600km, vera autostrada fluviale attraverso la foresta pluviale e villaggi di pescatori.",
+                "highlight3-title": "Piante Aromatiche",
+                "highlight3-desc": "Regione produttrice di ylang-ylang, vaniglia, chiodi di garofano e pepe. Visita le distillerie e scopri i segreti dei profumi naturali.",
+                "highlight4-title": "Clima Tropicale",
+                "highlight4-desc": "Temperatura piacevole tutto l'anno (25-30°C), vegetazione lussureggiante e atmosfera rilassata tipica delle città costiere malgasce.",
+                "sites-title": "Siti Principali di Toamasina",
+                "site1-type": "MERAVIGLIA NATURALE",
+                "site1-title": "Canale dei Pangalane",
+                "site1-subtitle": "Costa est del Madagascar",
+                "site1-desc": "Insieme di lagune e canali naturali paralleli alla costa, si estende per 600km. Via di trasporto storica, oggi paradiso per l'ecoturismo. Navigazione in piroga attraverso paesaggi di mangrovie, foreste primarie e villaggi tradizionali.",
+                "tag-canal": "Canale naturale",
+                "tag-ecotourism": "Ecoturismo",
+                "tag-canoe": "Piroga",
+                "btn-site1": "Prenota una visita",
+                "site2-type": "SPIAGGIA PARADISIACA",
+                "site2-title": "Foulpointe (Mahavelona)",
+                "site2-subtitle": "60km a nord di Toamasina",
+                "site2-desc": "Stazione balneare apprezzata dagli abitanti di Toamasina. Spiaggia di sabbia bianca protetta da barriera corallina, acqua poco profonda ideale per il nuoto. Fortino storico costruito da mercanti di schiavi nel XIX secolo, ristoranti di frutti di mare rinomati.",
+                "tag-beach": "Spiaggia",
+                "tag-swimming": "Nuoto",
+                "tag-seafood": "Frutti di mare",
+                "btn-site2": "Prenota una visita",
+                "site3-type": "ISOLA SANTUARIO",
+                "site3-title": "Île aux Prunes (Nosy Alagnagna)",
+                "site3-subtitle": "Nella baia di Toamasina",
+                "site3-desc": "Isolotto corallino classificato riserva naturale, rifugio di uccelli marini e sito di nidificazione per tartarughe. Spiaggia deserta di sabbia bianca, acqua cristallina con fondali eccezionali per lo snorkeling. Faro storico risalente all'epoca coloniale.",
+                "tag-island": "Isola",
+                "tag-reserve": "Riserva naturale",
+                "tag-snorkeling": "Snorkeling",
+                "btn-site3": "Prenota una visita",
+                "site4-type": "PORTO STORICO",
+                "site4-title": "Porto di Toamasina",
+                "site4-subtitle": "Centro città di Toamasina",
+                "site4-desc": "Principale porto del Madagascar, punto di ingresso storico del commercio marittimo. Animazione permanente con navi mercantili, barche da pesca tradizionali e traghetti. Mercato del pesce mattutino, architettura coloniale preservata nel quartiere del porto.",
+                "tag-port": "Porto",
+                "tag-history": "Storia",
+                "tag-fishing": "Pesca",
+                "btn-site4": "Prenota una visita",
+                "site5-type": "SPOT DI SURF",
+                "site5-title": "Mahambo",
+                "site5-subtitle": "80km a nord di Toamasina",
+                "site5-desc": "Villaggio di pescatori diventato spot di surf rinomato. Onde regolari adatte a tutti i livelli, scuole di surf disponibili. Atmosfera rilassata, alloggi eco-friendly, spiaggia selvaggia preservata dal turismo di massa.",
+                "tag-surf": "Surf",
+                "tag-village": "Villaggio",
+                "tag-wild": "Selvaggio",
+                "btn-site5": "Prenota una visita",
+                "site6-type": "AROMATERAPIA",
+                "site6-title": "Piantagioni di Ylang-Ylang",
+                "site6-subtitle": "Regione di Toamasina",
+                "site6-desc": "Il Madagascar produce l'80% dello ylang-ylang mondiale. Visita piantagioni e distillerie tradizionali, scopri il processo di produzione degli oli essenziali. Possibilità di acquistare oli puri e prodotti derivati.",
+                "tag-ylang": "Ylang-ylang",
+                "tag-perfume": "Profumo",
+                "tag-plantation": "Piantagione",
+                "btn-site6": "Prenota una visita",
+                "site7-type": "FORESTA TROPICALE",
+                "site7-title": "Foresta di Analalava",
+                "site7-subtitle": "40km da Toamasina",
+                "site7-desc": "Foresta primaria umida che ospita una biodiversità eccezionale: lemuri, camaleonti, orchidee rare. Sentieri escursionistici ben attrezzati, cascate rinfrescanti. Guida naturalistica indispensabile per apprezzare la ricchezza ecologica del sito.",
+                "tag-forest": "Foresta",
+                "tag-biodiversity": "Biodiversità",
+                "tag-hiking": "Escursione",
+                "btn-site7": "Prenota una visita",
+                "site8-type": "LAGO SACRO",
+                "site8-title": "Lago Rasoabe",
+                "site8-subtitle": "Regione di Toamasina",
+                "site8-desc": "Lago sacro secondo le credenze locali, circondato da vegetazione lussureggiante. Sito pacifico per meditazione e relax. Crociere in piroga tradizionale, osservazione di uccelli acquatici. Aree pic-nic attrezzate con vista lago.",
+                "tag-lake2": "Lago",
+                "tag-sacred": "Sacro",
+                "tag-relaxation": "Relax",
+                "btn-site8": "Prenota una visita",
+                "site9-type": "CULTURA E STORIA",
+                "site9-title": "Museo Portuale",
+                "site9-subtitle": "Centro città di Toamasina",
+                "site9-desc": "Museo che ripercorre la storia marittima di Toamasina, dall'epoca dei pirati ai giorni nostri. Collezioni di oggetti storici, modelli di navi, documenti d'archivio. Comprendere il ruolo strategico di Toamasina nella storia economica del Madagascar.",
+                "tag-museum": "Museo",
+                "tag-history2": "Storia marittima",
+                "tag-culture": "Cultura",
+                "btn-site9": "Prenota una visita",
+                "site10-type": "MERCATO COLORATO",
+                "site10-title": "Mercato delle Spezie Bazar Be",
+                "site10-subtitle": "Centro di Toamasina",
+                "site10-desc": "Enorme mercato coperto dai profumi inebrianti di vaniglia, chiodi di garofano, pepe, cannella e altre spezie. Centro nevralgico del commercio dei prodotti regionali. Artigianato locale, tessuti tradizionali, souvenir tipici della costa est.",
+                "tag-market": "Mercato",
+                "tag-spices": "Spezie",
+                "tag-shopping": "Shopping",
+                "btn-site10": "Prenota una visita",
+                "activities-title": "Attività a Toamasina",
+                "activity1-title": "Crociera sul Canale",
+                "activity1-desc": "Giornata intera in piroga tradizionale sul canale dei Pangalane, con soste nei villaggi di pescatori e pranzo di pesce fresco.",
+                "btn-activity1": "Prenota",
+                "activity2-title": "Degustazione di Frutti di Mare",
+                "activity2-desc": "Pasto tipico sulla spiaggia con aragoste alla griglia, granchi, pesce fresco pescato del giorno, accompagnati da riso al cocco e brèdes.",
+                "btn-activity2": "Prenota",
+                "activity3-title": "Visita a Distilleria",
+                "activity3-desc": "Scoperta delle piantagioni di ylang-ylang e processo di distillazione, con laboratorio di creazione profumo personalizzato.",
+                "btn-activity3": "Prenota",
+                "activity4-title": "Pesca Tradizionale",
+                "activity4-desc": "Uscita in mare con pescatori locali, apprendimento tecniche tradizionali e ritorno con la tua pesca del giorno.",
+                "btn-activity4": "Prenota",
+                "culture-title": "Cultura e Tradizioni Costiere",
+                "culture1-title": "Popolo Betsimisaraka",
+                "culture1-desc": "'Gli Inseparabili', popolo costiero noto per ospitalità e conoscenza del mare. Scopri le loro danze tradizionali, musica e riti ancestrali legati all'oceano.",
+                "btn-culture1": "Incontrare la comunità",
+                "culture2-title": "Cucina Creola della Costa Est",
+                "culture2-desc": "Influenze africane, indiane e cinesi. Specialità: rougail di pesce, carry di granchio, zuppa di pesce, mofo menakely (frittelle). Corsi di cucina con donne locali.",
+                "btn-culture2": "Partecipare a un corso",
+                "culture3-title": "Artigianato Marino",
+                "culture3-desc": "Costruzione modelli in scala di boutre, cesteria in foglie di rafia, gioielli in conchiglie e corallo. Laboratori dimostrativi nei villaggi artigianali.",
+                "btn-culture3": "Scoprire l'artigianato",
+                "seasonality-title": "Miglior Periodo per Visitare",
+                "season1-title": "Stagione Secca (Aprile a Novembre)",
+                "season1-period": "IDEALE",
+                "season1-desc": "Tempo soleggiato con poca pioggia, temperature piacevoli (24-28°C). Condizioni ottimali per attività nautiche, navigazione sul canale e visite alle piantagioni.",
+                "season2-title": "Stagione delle Piogge (Dicembre a Marzo)",
+                "season2-period": "CICLONI",
+                "season2-desc": "Forti precipitazioni, alta umidità, rischio cicloni (specialmente gennaio-febbraio). Paesaggi molto verdi ma alcune attività limitate. Tariffe più vantaggiose.",
+                "season3-title": "Deposizione Tartarughe (Ottobre a Marzo)",
+                "season3-period": "SPECIALE",
+                "season3-desc": "Osservazione notturna di tartarughe marine che depongono uova sulle spiagge dell'Île aux Prunes e Foulpointe. Esperienza unica ed emozionante, supervisionata da guide specializzate.",
+                "cta-title": "Pronto a Scoprire la Costa Est?",
+                "cta-text": "Organizziamo il tuo soggiorno a Toamasina: trasferimenti da Antananarivo, alloggio in riva al mare, guide francofone specialisti della regione, crociere sul canale dei Pangalane e visite personalizzate.",
+                "cta-btn": "Pianifica il Mio Soggiorno a Toamasina",
+                "cta-antananarivo": "Scoprire Antananarivo",
+                "cta-morondava": "Scoprire Morondava",
+                "cta-nosybe": "Scoprire Nosy Be",
+                "footer-creator": "Creato da Habibe - Servizi Turistici Professionali",
+                "footer-phone": "Telefono: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Trasferimenti aeroporto, servizi crociera e circuiti internazionali disponibili",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Tutti i diritti riservati.<br>Licenza Turistica certificata | Membro dell'Ufficio Nazionale del Turismo del Madagascar"
+            },
+            es: {
+                "header-tagline": "Tu Guía en Toamasina",
+                "menu-home": "Inicio",
+                "menu-highlights": "Puntos Destacados",
+                "menu-sites": "Sitios Principales",
+                "menu-activities": "Actividades",
+                "menu-culture": "Cultura",
+                "menu-contact": "Contacto",
+                
+                "page-title": "⚓ Toamasina (Tamatave) - Perla del Océano Índico",
+                "page-subtitle": "Principal puerto de Madagascar, ciudad cosmopolita con influencias criollas, africanas y asiáticas. Descubre playas de arena blanca, el canal de los Pangalanes, plantaciones de ylang-ylang y la dulzura de vivir de la costa este.",
+                "highlight-title": "Bulevar del Océano Índico - Paseo Marítimo",
+                "highlight-desc": "La famosa corniche de Toamasina, bordeada de casuarinas centenarias, ofrece panoramas espectaculares del océano y puestas de sol inolvidables.",
+                "highlights-title": "¿Por Qué Visitar Toamasina?",
+                "highlight1-title": "Playas Paradisíacas",
+                "highlight1-desc": "Arena blanca, agua turquesa y cocoteros. Las playas de Foulpointe, Mahambo e Île aux Prunes ofrecen paisajes de postal.",
+                "highlight2-title": "Canal de los Pangalanes",
+                "highlight2-desc": "Red de lagunas y canales naturales de 600km, verdadera autopista fluvial a través de la selva tropical y pueblos de pescadores.",
+                "highlight3-title": "Plantas Aromáticas",
+                "highlight3-desc": "Región productora de ylang-ylang, vainilla, clavo y pimienta. Visita destilerías y descubre secretos de perfumes naturales.",
+                "highlight4-title": "Clima Tropical",
+                "highlight4-desc": "Temperatura agradable todo el año (25-30°C), vegetación exuberante y ambiente relajado típico de ciudades costeras malgaches.",
+                "sites-title": "Sitios Principales de Toamasina",
+                "site1-type": "MARAVILLA NATURAL",
+                "site1-title": "Canal de los Pangalanes",
+                "site1-subtitle": "Costa este de Madagascar",
+                "site1-desc": "Conjunto de lagunas y canales naturales paralelos a la costa, se extiende 600km. Vía de transporte histórica, hoy paraíso para ecoturismo. Navegación en piragua a través de paisajes de manglares, bosques primarios y pueblos tradicionales.",
+                "tag-canal": "Canal natural",
+                "tag-ecotourism": "Ecoturismo",
+                "tag-canoe": "Piragua",
+                "btn-site1": "Reservar una visita",
+                "site2-type": "PLAYA PARAÍSO",
+                "site2-title": "Foulpointe (Mahavelona)",
+                "site2-subtitle": "60km al norte de Toamasina",
+                "site2-desc": "Estación balnearia apreciada por habitantes de Toamasina. Playa de arena blanca protegida por arrecife de coral, agua poco profunda ideal para nadar. Fuerte histórico construido por comerciantes de esclavos en siglo XIX, restaurantes de mariscos renombrados.",
+                "tag-beach": "Playa",
+                "tag-swimming": "Natación",
+                "tag-seafood": "Mariscos",
+                "btn-site2": "Reservar una visita",
+                "site3-type": "ISLA SANTUARIO",
+                "site3-title": "Île aux Prunes (Nosy Alagnagna)",
+                "site3-subtitle": "En la bahía de Toamasina",
+                "site3-desc": "Islote coralino clasificado reserva natural, refugio de aves marinas y sitio de anidación de tortugas. Playa desierta de arena blanca, agua cristalina con fondos marinos excepcionales para snorkel. Faro histórico de época colonial.",
+                "tag-island": "Isla",
+                "tag-reserve": "Reserva natural",
+                "tag-snorkeling": "Snorkel",
+                "btn-site3": "Reservar una visita",
+                "site4-type": "PUERTO HISTÓRICO",
+                "site4-title": "Puerto de Toamasina",
+                "site4-subtitle": "Centro ciudad de Toamasina",
+                "site4-desc": "Principal puerto de Madagascar, punto de entrada histórico del comercio marítimo. Animación permanente con barcos mercantes, barcas de pesca tradicionales y ferris. Mercado de pescado matutino, arquitectura colonial preservada en barrio del puerto.",
+                "tag-port": "Puerto",
+                "tag-history": "Historia",
+                "tag-fishing": "Pesca",
+                "btn-site4": "Reservar una visita",
+                "site5-type": "SPOT DE SURF",
+                "site5-title": "Mahambo",
+                "site5-subtitle": "80km al norte de Toamasina",
+                "site5-desc": "Pueblo de pescadores convertido en spot de surf renombrado. Olas regulares adaptadas a todos niveles, escuelas de surf disponibles. Ambiente relajado, alojamientos eco-friendly, playa salvaje preservada del turismo masivo.",
+                "tag-surf": "Surf",
+                "tag-village": "Pueblo",
+                "tag-wild": "Salvaje",
+                "btn-site5": "Reservar una visita",
+                "site6-type": "AROMATERAPIA",
+                "site6-title": "Plantaciones de Ylang-Ylang",
+                "site6-subtitle": "Región de Toamasina",
+                "site6-desc": "Madagascar produce 80% del ylang-ylang mundial. Visita plantaciones y destilerías tradicionales, descubre proceso de producción de aceites esenciales. Posibilidad comprar aceites puros y productos derivados.",
+                "tag-ylang": "Ylang-ylang",
+                "tag-perfume": "Perfume",
+                "tag-plantation": "Plantación",
+                "btn-site6": "Reservar una visita",
+                "site7-type": "BOSQUE TROPICAL",
+                "site7-title": "Bosque de Analalava",
+                "site7-subtitle": "40km de Toamasina",
+                "site7-desc": "Bosque primario húmedo que alberga biodiversidad excepcional: lémures, camaleones, orquídeas raras. Senderos de senderismo bien acondicionados, cascadas refrescantes. Guía naturalista indispensable para apreciar riqueza ecológica del sitio.",
+                "tag-forest": "Bosque",
+                "tag-biodiversity": "Biodiversidad",
+                "tag-hiking": "Senderismo",
+                "btn-site7": "Reservar una visita",
+                "site8-type": "LAGO SAGRADO",
+                "site8-title": "Lago Rasoabe",
+                "site8-subtitle": "Región de Toamasina",
+                "site8-desc": "Lago sagrado según creencias locales, rodeado de vegetación exuberante. Sitio tranquilo para meditación y relajación. Cruceros en piragua tradicional, observación de aves acuáticas. Zonas de picnic acondicionadas con vista al lago.",
+                "tag-lake2": "Lago",
+                "tag-sacred": "Sagrado",
+                "tag-relaxation": "Relajación",
+                "btn-site8": "Reservar una visita",
+                "site9-type": "CULTURA E HISTORIA",
+                "site9-title": "Museo Portuario",
+                "site9-subtitle": "Centro ciudad de Toamasina",
+                "site9-desc": "Museo que traza historia marítima de Toamasina, desde época pirata hasta actualidad. Colecciones de objetos históricos, maquetas de barcos, documentos de archivo. Entender papel estratégico de Toamasina en historia económica de Madagascar.",
+                "tag-museum": "Museo",
+                "tag-history2": "Historia marítima",
+                "tag-culture": "Cultura",
+                "btn-site9": "Reservar una visita",
+                "site10-type": "MERCADO COLORIDO",
+                "site10-title": "Mercado de Especias Bazar Be",
+                "site10-subtitle": "Centro de Toamasina",
+                "site10-desc": "Enorme mercado cubierto con aromas embriagadores de vainilla, clavo, pimienta, canela y otras especias. Centro neurálgico del comercio de productos regionales. Artesanía local, telas tradicionales, souvenirs típicos de costa este.",
+                "tag-market": "Mercado",
+                "tag-spices": "Especias",
+                "tag-shopping": "Compras",
+                "btn-site10": "Reservar una visita",
+                "activities-title": "Actividades en Toamasina",
+                "activity1-title": "Crucero por el Canal",
+                "activity1-desc": "Día completo en piragua tradicional por canal de los Pangalanes, con paradas en pueblos de pescadores y almuerzo de pescado fresco.",
+                "btn-activity1": "Reservar",
+                "activity2-title": "Degustación de Mariscos",
+                "activity2-desc": "Comida típica en playa con langostas a la parrilla, cangrejos, pescado fresco pescado del día, acompañados de arroz con coco y brèdes.",
+                "btn-activity2": "Reservar",
+                "activity3-title": "Visita a Destilería",
+                "activity3-desc": "Descubrimiento de plantaciones de ylang-ylang y proceso de destilación, con taller de creación de perfume personalizado.",
+                "btn-activity3": "Reservar",
+                "activity4-title": "Pesca Tradicional",
+                "activity4-desc": "Salida al mar con pescadores locales, aprendizaje de técnicas tradicionales y retorno con tu pesca del día.",
+                "btn-activity4": "Reservar",
+                "culture-title": "Cultura y Tradiciones Costeras",
+                "culture1-title": "Pueblo Betsimisaraka",
+                "culture1-desc": "'Los Inseparables', pueblo costero conocido por hospitalidad y conocimiento del mar. Descubre sus danzas tradicionales, música y ritos ancestrales ligados al océano.",
+                "btn-culture1": "Conocer la comunidad",
+                "culture2-title": "Cocina Criolla de la Costa Este",
+                "culture2-desc": "Influencias africanas, indias y chinas. Especialidades: rougail de pescado, carry de cangrejo, sopa de pescado, mofo menakely (buñuelos). Clases de cocina con mujeres locales.",
+                "btn-culture2": "Participar en un curso",
+                "culture3-title": "Artesanía Marina",
+                "culture3-desc": "Fabricación de modelos a escala de boutres, cestería en hojas de rafia, joyería en conchas y coral. Talleres demostrativos en pueblos artesanales.",
+                "btn-culture3": "Descubrir artesanía",
+                "seasonality-title": "Mejor Época para Visitar",
+                "season1-title": "Temporada Seca (Abril a Noviembre)",
+                "season1-period": "IDEAL",
+                "season1-desc": "Tiempo soleado con poca lluvia, temperaturas agradables (24-28°C). Condiciones óptimas para actividades acuáticas, navegación por canal y visitas a plantaciones.",
+                "season2-title": "Temporada de Lluvias (Diciembre a Marzo)",
+                "season2-period": "CICLONES",
+                "season2-desc": "Fuertes precipitaciones, alta humedad, riesgo de ciclones (especialmente enero-febrero). Paisajes muy verdes pero algunas actividades limitadas. Tarifas más ventajosas.",
+                "season3-title": "Puesta de Tortugas (Octubre a Marzo)",
+                "season3-period": "ESPECIAL",
+                "season3-desc": "Observación nocturna de tortugas marinas que vienen a poner huevos en playas de Île aux Prunes y Foulpointe. Experiencia única y conmovedora, supervisada por guías especializados.",
+                "cta-title": "¿Listo para Descubrir la Costa Este?",
+                "cta-text": "Organizamos tu estancia en Toamasina: traslados desde Antananarivo, alojamiento frente al mar, guías francófonos especialistas de la región, cruceros por canal de los Pangalanes y visitas personalizadas.",
+                "cta-btn": "Planificar Mi Estancia en Toamasina",
+                "cta-antananarivo": "Descubrir Antananarivo",
+                "cta-morondava": "Descubrir Morondava",
+                "cta-nosybe": "Descubrir Nosy Be",
+                "footer-creator": "Creado por Habibe - Servicios Turísticos Profesionales",
+                "footer-phone": "Teléfono: +261 32 39 622 86",
+                "footer-email": "Email: hajahabibeabdou@gmail.com",
+                "footer-desc": "Traslados aeropuerto, servicios de crucero y circuitos internacionales disponibles",
+                "footer-copyright": "© 2024 Mada Vibe Discover - Todos los derechos reservados.<br>Licencia Turística certificada | Miembro de la Oficina Nacional de Turismo de Madagascar"
+            },
+            ar: {
+                "header-tagline": "دليلك في تواماسينا",
+                "menu-home": "الرئيسية",
+                "menu-highlights": "أبرز المعالم",
+                "menu-sites": "المواقع الرئيسية",
+                "menu-activities": "الأنشطة",
+                "menu-culture": "الثقافة",
+                "menu-contact": "اتصل بنا",
+                
+                "page-title": "⚓ تواماسينا (تاماتاف) - لؤلؤة المحيط الهندي",
+                "page-subtitle": "الميناء الرئيسي لمدغشقر، مدينة عالمية بتأثيرات كريولية وأفريقية وآسيوية. اكتشف شواطئ الرمال البيضاء، قناة بانغالان، مزارع الإيلانغ إيلانغ وعذوبة العيش في الساحل الشرقي.",
+                "highlight-title": "شارع المحيط الهندي - ممشى بحري",
+                "highlight-desc": "الكورنيش الشهير في تواماسينا، المحاط بأشجار كازوارينا عمرها مئات السنين، يقدم مشاهد بانورامية مذهلة للمحيط وغروب شمس لا ينسى.",
+                "highlights-title": "لماذا تزور تواماسينا؟",
+                "highlight1-title": "شواطئ الجنة",
+                "highlight1-desc": "رمال بيضاء، ماء فيروزي وأشجار جوز الهند. شواطئ فولبوينت، ماهامبو وجزيرة البرقوق تقدم مناظر طبيعية كبطاقة بريدية.",
+                "highlight2-title": "قناة بانغالان",
+                "highlight2-desc": "شبكة من البحيرات والقنوات الطبيعية بطول 600 كم، طريق نهري حقيقي عبر الغابة المطيرة وقرى الصيادين.",
+                "highlight3-title": "نباتات عطرية",
+                "highlight3-desc": "منطقة منتجة للإيلانغ إيلانغ، الفانيليا، القرنفل والفلفل. قم بزيارة مصانع التقطير واكتشف أسرار العطور الطبيعية.",
+                "highlight4-title": "مناخ استوائي",
+                "highlight4-desc": "درجة حرارة لطيفة طوال العام (25-30°م)، نباتات خضراء كثيفة واجواء مريحة نموذجية للمدن الساحلية الملغاشية.",
+                "sites-title": "المواقع الرئيسية في تواماسينا",
+                "site1-type": "معجزة طبيعية",
+                "site1-title": "قناة بانغالان",
+                "site1-subtitle": "الساحل الشرقي لمدغشقر",
+                "site1-desc": "مجموعة من البحيرات والقنوات الطبيعية الموازية للساحل، تمتد على 600 كم. طريق نقل تاريخي، اليوم جنة للسياحة البيئية. التنقل بالزورق عبر مناظر المنغروف، الغابات الأولية والقرى التقليدية.",
+                "tag-canal": "قناة طبيعية",
+                "tag-ecotourism": "السياحة البيئية",
+                "tag-canoe": "زورق",
+                "btn-site1": "احجز زيارة",
+                "site2-type": "شاطئ الجنة",
+                "site2-title": "فولبوينت (ماهافيلونا)",
+                "site2-subtitle": "60 كم شمال تواماسينا",
+                "site2-desc": "منتجع بحري محبوب لدى سكان تواماسينا. شاطئ رمال بيضاء محمي بحاجز مرجاني، مياه ضحلة مثالية للسباحة. حصن تاريخي بناه تجار العبيد في القرن التاسع عشر، مطاعم مأكولات بحرية مشهورة.",
+                "tag-beach": "شاطئ",
+                "tag-swimming": "سباحة",
+                "tag-seafood": "مأكولات بحرية",
+                "btn-site2": "احجز زيارة",
+                "site3-type": "جزيرة ملاذ",
+                "site3-title": "جزيرة البرقوق (نوسي ألاغنانيا)",
+                "site3-subtitle": "في خليج تواماسينا",
+                "site3-desc": "جزيرة مرجانية مصنفة كمحمية طبيعية، ملاذ للطيور البحرية وموقع تعشيش للسلاحف. شاطئ مهجور من الرمال البيضاء، مياه صافية مع قيعان بحرية استثنائية للغطس السطحي. منارة تاريخية من العصر الاستعماري.",
+                "tag-island": "جزيرة",
+                "tag-reserve": "محمية طبيعية",
+                "tag-snorkeling": "غطس سطحي",
+                "btn-site3": "احجز زيارة",
+                "site4-type": "ميناء تاريخي",
+                "site4-title": "ميناء تواماسينا",
+                "site4-subtitle": "وسط مدينة تواماسينا",
+                "site4-desc": "الميناء الرئيسي لمدغشقر، نقطة دخول تاريخية للتجارة البحرية. نشاط دائم مع سفن تجارية، قوارب صيد تقليدية وعبارات. سوق السمك الصباحي، هندسة معمارية استعمارية محفوظة في حي الميناء.",
+                "tag-port": "ميناء",
+                "tag-history": "تاريخ",
+                "tag-fishing": "صيد",
+                "btn-site4": "احجز زيارة",
+                "site5-type": "موقع تزلج",
+                "site5-title": "ماهامبو",
+                "site5-subtitle": "80 كم شمال تواماسينا",
+                "site5-desc": "قرية صيادين أصبحت موقع تزلج مشهور. أمواج منتظمة مناسبة لجميع المستويات، مدارس تزلج متاحة. أجواء مريحة، إقامات صديقة للبيئة، شاطئ بري محفوظ من السياحة الجماعية.",
+                "tag-surf": "تزلج",
+                "tag-village": "قرية",
+                "tag-wild": "بري",
+                "btn-site5": "احجز زيارة",
+                "site6-type": "علاج بالروائح",
+                "site6-title": "مزارع الإيلانغ إيلانغ",
+                "site6-subtitle": "منطقة تواماسينا",
+                "site6-desc": "مدغشقر تنتج 80% من الإيلانغ إيلانغ العالمي. قم بزيارة المزارع ومصانع التقطير التقليدية، اكتشف عملية إنتاج الزيوت الأساسية. إمكانية شراء زيوت نقية ومنتجات مشتقة.",
+                "tag-ylang": "إيلانغ إيلانغ",
+                "tag-perfume": "عطر",
+                "tag-plantation": "مزرعة",
+                "btn-site6": "احجز زيارة",
+                "site7-type": "غابة استوائية",
+                "site7-title": "غابة أنالالافا",
+                "site7-subtitle": "40 كم من تواماسينا",
+                "site7-desc": "غابة أولية رطبة تؤوي تنوعاً حيوياً استثنائياً: ليمورات، حرباء، أوركيد نادر. مسارات مشي مجهزة جيداً، شلالات منعشة. مرشد طبيعي ضروري لتقدير الثراء البيئي للموقع.",
+                "tag-forest": "غابة",
+                "tag-biodiversity": "تنوع حيوي",
+                "tag-hiking": "مشي",
+                "btn-site7": "احجز زيارة",
+                "site8-type": "بحيرة مقدسة",
+                "site8-title": "بحيرة راسوابي",
+                "site8-subtitle": "منطقة تواماسينا",
+                "site8-desc": "بحيرة مقدسة حسب المعتقدات المحلية، محاطة بنباتات خضراء كثيفة. موقع هادئ للتأمل والاسترخاء. رحلات بالقوارب التقليدية، مراقبة الطيور المائية. أماكن نزهة مجهزة بإطلالة على البحيرة.",
+                "tag-lake2": "بحيرة",
+                "tag-sacred": "مقدس",
+                "tag-relaxation": "استرخاء",
+                "btn-site8": "احجز زيارة",
+                "site9-type": "ثقافة وتاريخ",
+                "site9-title": "متحف الميناء",
+                "site9-subtitle": "وسط مدينة تواماسينا",
+                "site9-desc": "متحف يتبع التاريخ البحري لتواماسينا، من عصر القراصنة إلى اليوم. مجموعات من القطع التاريخية، نماذج سفن، وثائق أرشيف. فهم الدور الاستراتيجي لتواماسينا في التاريخ الاقتصادي لمدغشقر.",
+                "tag-museum": "متحف",
+                "tag-history2": "تاريخ بحري",
+                "tag-culture": "ثقافة",
+                "btn-site9": "احجز زيارة",
+                "site10-type": "سوق ملون",
+                "site10-title": "سوق التوابل بازار بي",
+                "site10-subtitle": "وسط تواماسينا",
+                "site10-desc": "سوق كبير مغطى بروائح الفانيليا، القرنفل، الفلفل، القرفة والتوابل الأخرى المخدرة. مركز عصبي لتجارة منتجات المنطقة. حرف يدوية محلية، أقمشة تقليدية، تذكارات نموذجية للساحل الشرقي.",
+                "tag-market": "سوق",
+                "tag-spices": "توابل",
+                "tag-shopping": "تسوق",
+                "btn-site10": "احجز زيارة",
+                "activities-title": "الأنشطة في تواماسينا",
+                "activity1-title": "رحلة بحرية في القناة",
+                "activity1-desc": "يوم كامل في زورق تقليدي على قناة بانغالان، مع توقف في قرى الصيادين وغداء سمك طازج.",
+                "btn-activity1": "احجز",
+                "activity2-title": "تذوق المأكولات البحرية",
+                "activity2-desc": "وجبة نموذجية على الشاطئ مع كركند مشوي، سلطعون، سمك طازج تم صيده في اليوم، مع أرز جوز الهند وبراد.",
+                "btn-activity2": "احجز",
+                "activity3-title": "زيارة مصنع تقطير",
+                "activity3-desc": "اكتشاف مزارع الإيلانغ إيلانغ وعملية التقطير، مع ورشة عمل لصنع عطر مخصص.",
+                "btn-activity3": "احجز",
+                "activity4-title": "صيد تقليدي",
+                "activity4-desc": "خروج إلى البحر مع صيادين محليين، تعلم التقنيات التقليدية والعودة مع صيدك في اليوم.",
+                "btn-activity4": "احجز",
+                "culture-title": "ثقافة وتقاليد الساحل",
+                "culture1-title": "شعب بيتسي ميساراكا",
+                "culture1-desc": "'الغير قابلين للانفصال'، شعب ساحلي معروف بكرم ضيافته ومعرفته بالبحر. اكتشف رقصاتهم التقليدية، موسيقاهم وطقوسهم المرتبطة بالمحيط.",
+                "btn-culture1": "لقاء المجتمع",
+                "culture2-title": "مطبخ كريول الساحل الشرقي",
+                "culture2-desc": "تأثيرات أفريقية، هندية وصينية. أطباق خاصة: روجاي السمك، كاري السلطعون، شوربة السمك، موفو ميناكيلي (فطائر). دروس طبخ مع نساء محليات.",
+                "btn-culture2": "المشاركة في درس",
+                "culture3-title": "حرف يدوية بحرية",
+                "culture3-desc": "صناعة نماذج مصغرة للبوتر، سلال من أوراق الرفيا، مجوهرات من الأصداف والمرجان. ورش عمل توضيحية في القرى الحرفية.",
+                "btn-culture3": "اكتشاف الحرف اليدوية",
+                "seasonality-title": "أفضل وقت للزيارة",
+                "season1-title": "الموسم الجاف (أبريل إلى نوفمبر)",
+                "season1-period": "مثالي",
+                "season1-desc": "طقس مشمس مع قليل من المطر، درجات حرارة لطيفة (24-28°م). ظروف مثالية للأنشطة المائية، الملاحة في القناة وزيارات المزارع.",
+                "season2-title": "موسم الأمطار (ديسمبر إلى مارس)",
+                "season2-period": "أعاصير",
+                "season2-desc": "هطول أمطار غزيرة، رطوبة عالية، خطر الأعاصير (خاصة يناير-فبراير). مناظر طبيعية خضراء جداً لكن بعض الأنشطة محدودة. أسعار أكثر فائدة.",
+                "season3-title": "وضع البيض للسلاحف (أكتوبر إلى مارس)",
+                "season3-period": "خاص",
+                "season3-desc": "مراقبة ليلية لسلاحف البحر التي تأتي لوضع البيض على شواطئ جزيرة البرقوق وفولبوينت. تجربة فريدة ومؤثرة، تحت إشراف مرشدين متخصصين.",
+                "cta-title": "مستعد لاكتشاف الساحل الشرقي؟",
+                "cta-text": "ننظم إقامتك في تواماسينا: نقل من أنتاناناريفو، إقامة على شاطئ البحر، مرشدين ناطقين بالفرنسية متخصصين في المنطقة، رحلات بحرية في قناة بانغالان وزيارات مخصصة.",
+                "cta-btn": "خطط لإقامتي في تواماسينا",
+                "cta-antananarivo": "اكتشف أنتاناناريفو",
+                "cta-morondava": "اكتشف موروندافا",
+                "cta-nosybe": "اكتشف نوسي بي",
+                "footer-creator": "من إنشاء حبيب - خدمات سياحية احترافية",
+                "footer-phone": "الهاتف: +261 32 39 622 86",
+                "footer-email": "البريد الإلكتروني: hajahabibeabdou@gmail.com",
+                "footer-desc": "نقل من المطار، خدمات الرحلات البحرية والجولات الدولية متاحة",
+                "footer-copyright": "© 2024 مادا فايب ديسكفر - جميع الحقوق محفوظة.<br>رخصة سياحية معتمدة | عضو في المكتب الوطني للسياحة في مدغشقر"
+            },
+            zh: {
+                "header-tagline": "您在图阿马西纳的指南",
+                "menu-home": "首页",
+                "menu-highlights": "亮点",
+                "menu-sites": "主要景点",
+                "menu-activities": "活动",
+                "menu-culture": "文化",
+                "menu-contact": "联系",
+                
+                "page-title": "⚓ 图阿马西纳（塔马塔夫）- 印度洋明珠",
+                "page-subtitle": "马达加斯加主要港口，具有克里奥尔、非洲和亚洲影响的国际化城市。发现白色沙滩、潘加兰运河、依兰依兰种植园和东海岸的悠闲生活。",
+                "highlight-title": "印度洋大道 - 海滨步道",
+                "highlight-desc": "著名的图阿马西纳海滨大道，两旁是百年木麻黄树，提供壮观的海洋全景和难忘的日落。",
+                "highlights-title": "为什么访问图阿马西纳？",
+                "highlight1-title": "天堂海滩",
+                "highlight1-desc": "白色沙滩，绿松石色海水和椰子树。富尔波安特、马汉布和普吕姆岛的海滩提供明信片般的风景。",
+                "highlight2-title": "潘加兰运河",
+                "highlight2-desc": "600公里的泻湖和天然运河网络，穿越雨林和渔村的真正水路高速公路。",
+                "highlight3-title": "芳香植物",
+                "highlight3-desc": "生产依兰依兰、香草、丁香和胡椒的地区。参观蒸馏厂并发现天然香水的秘密。",
+                "highlight4-title": "热带气候",
+                "highlight4-desc": "全年宜人温度（25-30°C），茂密植被和典型马达加斯加沿海城镇的轻松氛围。",
+                "sites-title": "图阿马西纳主要景点",
+                "site1-type": "自然奇观",
+                "site1-title": "潘加兰运河",
+                "site1-subtitle": "马达加斯加东海岸",
+                "site1-desc": "平行于海岸的泻湖和天然运河集合，延伸600公里。历史运输路线，今天成为生态旅游天堂。独木舟航行穿过红树林景观、原始森林和传统村庄。",
+                "tag-canal": "天然运河",
+                "tag-ecotourism": "生态旅游",
+                "tag-canoe": "独木舟",
+                "btn-site1": "预订参观",
+                "site2-type": "天堂海滩",
+                "site2-title": "富尔波安特（马哈韦洛纳）",
+                "site2-subtitle": "图阿马西纳以北60公里",
+                "site2-desc": "图阿马西纳居民喜爱的海滨度假胜地。白色沙滩受珊瑚礁保护，浅水适合游泳。19世纪奴隶商人建造的历史堡垒，著名海鲜餐厅。",
+                "tag-beach": "海滩",
+                "tag-swimming": "游泳",
+                "tag-seafood": "海鲜",
+                "btn-site2": "预订参观",
+                "site3-type": "圣所岛屿",
+                "site3-title": "普吕姆岛（诺西阿拉纳尼亚）",
+                "site3-subtitle": "在图阿马西纳湾",
+                "site3-desc": "列为自然保护区的珊瑚岛，海鸟避难所和海龟筑巢地。荒凉的白色沙滩，清澈海水，适合浮潜的卓越海底。殖民时代历史灯塔。",
+                "tag-island": "岛屿",
+                "tag-reserve": "自然保护区",
+                "tag-snorkeling": "浮潜",
+                "btn-site3": "预订参观",
+                "site4-type": "历史港口",
+                "site4-title": "图阿马西纳港",
+                "site4-subtitle": "图阿马西纳市中心",
+                "site4-desc": "马达加斯加主要港口，海上贸易的历史入口点。商船、传统渔船和渡轮持续活动。早间鱼市，港口区保存的殖民建筑。",
+                "tag-port": "港口",
+                "tag-history": "历史",
+                "tag-fishing": "渔业",
+                "btn-site4": "预订参观",
+                "site5-type": "冲浪点",
+                "site5-title": "马汉布",
+                "site5-subtitle": "图阿马西纳以北80公里",
+                "site5-desc": "渔村成为知名冲浪点。适合所有水平的规则波浪，提供冲浪学校。轻松氛围，环保住宿，避开大众旅游的野生海滩。",
+                "tag-surf": "冲浪",
+                "tag-village": "村庄",
+                "tag-wild": "野生",
+                "btn-site5": "预订参观",
+                "site6-type": "芳香疗法",
+                "site6-title": "依兰依兰种植园",
+                "site6-subtitle": "图阿马西纳地区",
+                "site6-desc": "马达加斯加生产全球80%的依兰依兰。参观传统种植园和蒸馏厂，发现精油生产过程。可购买纯油和衍生产品。",
+                "tag-ylang": "依兰依兰",
+                "tag-perfume": "香水",
+                "tag-plantation": "种植园",
+                "btn-site6": "预订参观",
+                "site7-type": "热带森林",
+                "site7-title": "阿纳拉拉瓦森林",
+                "site7-subtitle": "距图阿马西纳40公里",
+                "site7-desc": "原始潮湿森林容纳非凡生物多样性：狐猴、变色龙、稀有兰花。维护良好的徒步小径，清爽瀑布。自然学家向导对欣赏地点生态丰富性至关重要。",
+                "tag-forest": "森林",
+                "tag-biodiversity": "生物多样性",
+                "tag-hiking": "徒步",
+                "btn-site7": "预订参观",
+                "site8-type": "圣湖",
+                "site8-title": "拉索阿贝湖",
+                "site8-subtitle": "图阿马西纳地区",
+                "site8-desc": "根据当地信仰的圣湖，被茂密植被环绕。冥想和放松的宁静地点。传统独木舟巡游，水鸟观察。带湖景的配备野餐区。",
+                "tag-lake2": "湖",
+                "tag-sacred": "神圣",
+                "tag-relaxation": "放松",
+                "btn-site8": "预订参观",
+                "site9-type": "文化与历史",
+                "site9-title": "港口博物馆",
+                "site9-subtitle": "图阿马西纳市中心",
+                "site9-desc": "博物馆追溯图阿马西纳从海盗时代到今天的海上历史。历史物品收藏、船舶模型、档案文件。理解图阿马西纳在马达加斯加经济历史中的战略作用。",
+                "tag-museum": "博物馆",
+                "tag-history2": "海上历史",
+                "tag-culture": "文化",
+                "btn-site9": "预订参观",
+                "site10-type": "多彩市场",
+                "site10-title": "巴扎贝香料市场",
+                "site10-subtitle": "图阿马西纳中心",
+                "site10-desc": "巨大室内市场，充满香草、丁香、胡椒、肉桂和其他香料的醉人香气。地区产品贸易神经中枢。当地手工艺品、传统布料、典型东海岸纪念品。",
+                "tag-market": "市场",
+                "tag-spices": "香料",
+                "tag-shopping": "购物",
+                "btn-site10": "预订参观",
+                "activities-title": "图阿马西纳活动",
+                "activity1-title": "运河巡游",
+                "activity1-desc": "全天传统独木舟在潘加兰运河上，在渔村停留并享用新鲜鱼午餐。",
+                "btn-activity1": "预订",
+                "activity2-title": "海鲜品尝",
+                "activity2-desc": "典型海滩餐，烤龙虾、螃蟹、当天捕获的新鲜鱼，配椰子米饭和绿菜。",
+                "btn-activity2": "预订",
+                "activity3-title": "蒸馏厂参观",
+                "activity3-desc": "发现依兰依兰种植园和蒸馏过程，带个性化香水创作工作坊。",
+                "btn-activity3": "预订",
+                "activity4-title": "传统捕鱼",
+                "activity4-desc": "与当地渔民出海，学习传统技术并带回你的当日渔获。",
+                "btn-activity4": "预订",
+                "culture-title": "海岸文化与传统",
+                "culture1-title": "贝齐米萨拉卡人民",
+                "culture1-desc": "'不可分离者'，以好客和海洋知识闻名的沿海人民。发现他们的传统舞蹈、音乐和与海洋相关的祖先仪式。",
+                "btn-culture1": "会见社区",
+                "culture2-title": "东海岸克里奥尔美食",
+                "culture2-desc": "非洲、印度和中国影响。特色菜：鱼鲁盖、螃蟹咖喱、鱼汤、莫福梅纳克利（油条）。与当地妇女的烹饪课程。",
+                "btn-culture2": "参加课程",
+                "culture3-title": "海洋手工艺",
+                "culture3-desc": "制作布特雷船模型、拉菲草叶篮筐、贝壳和珊瑚珠宝。在手工艺村的示范工作坊。",
+                "btn-culture3": "发现手工艺",
+                "seasonality-title": "最佳访问时间",
+                "season1-title": "旱季（四月至十一月）",
+                "season1-period": "理想",
+                "season1-desc": "阳光充足降雨少，宜人温度（24-28°C）。水上活动、运河航行和种植园参观的最佳条件。",
+                "season2-title": "雨季（十二月至三月）",
+                "season2-period": "气旋",
+                "season2-desc": "强降雨，高湿度，气旋风险（尤其一月至二月）。非常绿色的景观但某些活动受限。更优惠的价格。",
+                "season3-title": "海龟产卵（十月至三月）",
+                "season3-period": "特殊",
+                "season3-desc": "夜间观察海龟到普吕姆岛和富尔波安特海滩产卵。独特而感人的体验，由专业向导监督。",
+                "cta-title": "准备好发现东海岸了吗？",
+                "cta-text": "我们为您组织在图阿马西纳的住宿：从塔那那利佛接送、海滨住宿、法语地区专家、潘加兰运河巡游和个性化参观。",
+                "cta-btn": "计划我的图阿马西纳之旅",
+                "cta-antananarivo": "发现塔那那利佛",
+                "cta-morondava": "发现穆龙达瓦",
+                "cta-nosybe": "发现诺西贝",
+                "footer-creator": "由哈比比创建 - 专业旅游服务",
+                "footer-phone": "电话：+261 32 39 622 86",
+                "footer-email": "电子邮件：hajahabibeabdou@gmail.com",
+                "footer-desc": "提供机场接送、邮轮服务和国际旅游线路",
+                "footer-copyright": "© 2024 马达氛围发现 - 保留所有权利。<br>认证旅游许可证 | 马达加斯加国家旅游局成员"
+            }
+        };
+
+        // ===== FONCTIONS DE TRADUCTION =====
+        function setLanguage(lang) {
+            const langData = translations[lang];
+            if (!langData) return;
+            
+            // Mettre à jour tous les éléments avec des IDs
+            Object.keys(langData).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = langData[key];
+                }
+            });
+            
+            // Mettre à jour le bouton de langue
+            const langBtn = document.querySelector('.current-lang');
+            if (langBtn) {
+                langBtn.textContent = lang.toUpperCase();
+            }
+            
+            // Mettre à jour les options de langue actives
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.lang === lang) {
+                    option.classList.add('active');
+                }
+            });
+            
+            // Sauvegarder la préférence
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // ===== GESTION DES ÉVÉNEMENTS DE LANGUE =====
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = option.dataset.lang;
+                setLanguage(lang);
+            });
+        });
+
+        // ===== MENU MOBILE =====
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Fermer le menu en cliquant sur un lien
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
+            // Fermer le menu en cliquant en dehors
+            document.addEventListener('click', (e) => {
+                if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // ===== OBSERVATEUR D'INTERSECTION POUR ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments avec animations
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== INITIALISATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Charger la langue préférée
+            const savedLang = localStorage.getItem('preferredLanguage') || 'fr';
+            setLanguage(savedLang);
+            
+            // Animation d'entrée pour le header
+            setTimeout(() => {
+                document.getElementById('header').style.opacity = '1';
+                document.getElementById('header').style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Smooth scroll pour les ancres
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // ===== GESTION DU SCROLL =====
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.getElementById('header');
+            
+            if (currentScroll <= 0) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scroll vers le bas
+                header.style.transform = 'translateY(-100%)';
+                header.style.boxShadow = 'none';
+            } else {
+                // Scroll vers le haut
+                header.style.transform = 'translateY(0)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // ===== ANIMATION DU HEADER AU CHARGEMENT =====
+        window.onload = () => {
+            const header = document.getElementById('header');
+            header.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Animation progressive des cartes
+            const cards = document.querySelectorAll('.fade-in');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        };
+
+        // ===== GESTION DU REDIMENSIONNEMENT =====
+        window.addEventListener('resize', () => {
+            // Fermer le menu mobile si on passe en desktop
+            if (window.innerWidth > 768 && mobileMenu) {
+                mobileMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+</html>
