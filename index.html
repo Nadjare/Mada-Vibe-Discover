@@ -1087,25 +1087,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   .carte-destination .panneau ul li{font-size:11px;margin-bottom:4px;}
   .btn-destination{font-size:11px;padding:8px 16px;}
 
-  /* Excursions : carrousel horizontal */
-  .grille-excursions{
-    display:flex !important;
-    overflow-x:auto;
-    gap:10px;
-    padding-bottom:10px;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-  }
-  .grille-excursions::-webkit-scrollbar{height:5px;}
-  .grille-excursions::-webkit-scrollbar-thumb{background:var(--vert-profond);border-radius:5px;}
-  .carte-excursion{
-    flex:0 0 75% !important;
-    scroll-snap-align:start;
-  }
-  .carte-excursion .img{height:120px;}
-  .carte-excursion .contenu{padding:10px 12px;}
-  .carte-excursion .contenu h4{font-size:14px;}
-  .carte-excursion .contenu p{font-size:12px;min-height:auto;margin-bottom:6px;}
+
 
   /* Agence : 1 colonne */
   .agence .container{
@@ -1420,7 +1402,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
               <li><i class="fas fa-check"></i> <span data-i18n="nosybe_l5">Autres excursions disponibles</span></li>
             </ul>
           </div>
-          <a href="Nosy be.html" class="btn-destination"><span data-i18n="btn_nosybe">Découvrir Nosy Be</span> <i class="fas fa-arrow-right"></i></a>
+         <span class="btn-destination"><span data-i18n="btn_nosybe">Découvrir Nosy Be</span> <i class="fas fa-arrow-right"></i></span>
         </div>
       </a>
 
@@ -1467,7 +1449,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <h4>Nosy Iranja</h4>
           <p data-i18n="exc_iranja">Journée sur une île paradisiaque</p>
           <span class="fleche"><i class="fas fa-arrow-right"></i></span>
-          <a href="#" class="btn-excursion" data-i18n="btn_consulter">Consulter</a>
+          <span class="btn-excursion" data-i18n="btn_consulter">Consulter</span>
         </div>
         <button class="btn-fermer-carte" aria-label="Fermer"><i class="fas fa-times"></i></button>
       </article>
@@ -1478,7 +1460,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <h4>Mer d'Émeraude</h4>
           <p data-i18n="exc_emeraude">La beauté d'un lagon unique</p>
           <span class="fleche"><i class="fas fa-arrow-right"></i></span>
-          <a href="#" class="btn-excursion" data-i18n="btn_consulter">Consulter</a>
+          <span class="btn-excursion" data-i18n="btn_consulter">Consulter</span>
         </div>
         <button class="btn-fermer-carte" aria-label="Fermer"><i class="fas fa-times"></i></button>
       </article>
@@ -1489,7 +1471,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <h4>Montagne d'Ambre</h4>
           <p data-i18n="exc_ambre">Randonnée et biodiversité</p>
           <span class="fleche"><i class="fas fa-arrow-right"></i></span>
-          <a href="#" class="btn-excursion" data-i18n="btn_consulter">Consulter</a>
+          <span class="btn-excursion" data-i18n="btn_consulter">Consulter</span>
         </div>
         <button class="btn-fermer-carte" aria-label="Fermer"><i class="fas fa-times"></i></button>
       </article>
@@ -1500,7 +1482,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <h4>Nosy Komba</h4>
           <p data-i18n="exc_komba">Lémuriens et vie sous-marine</p>
           <span class="fleche"><i class="fas fa-arrow-right"></i></span>
-          <a href="#" class="btn-excursion" data-i18n="btn_consulter">Consulter</a>
+          <span class="btn-excursion" data-i18n="btn_consulter">Consulter</span>
         </div>
         <button class="btn-fermer-carte" aria-label="Fermer"><i class="fas fa-times"></i></button>
       </article>
@@ -1511,7 +1493,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
           <h4>Tsingy Rouges</h4>
           <p data-i18n="exc_tsingy">Paysages surprenants</p>
           <span class="fleche"><i class="fas fa-arrow-right"></i></span>
-          <a href="#" class="btn-excursion" data-i18n="btn_consulter">Consulter</a>
+          <span class="btn-excursion" data-i18n="btn_consulter">Consulter</span>
         </div>
         <button class="btn-fermer-carte" aria-label="Fermer"><i class="fas fa-times"></i></button>
       </article>
