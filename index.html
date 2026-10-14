@@ -351,6 +351,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   background:var(--blanc);
   height:218px;
   min-width:0;
+  cursor:pointer;
+  transition:transform .25s, box-shadow .25s;
+  text-decoration:none;
+  color:inherit;
+}
+.carte-destination:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(0,0,0,.15);
+}
+.carte-destination:active{
+  transform:translateY(-2px);
 }
 .carte-destination .photo{
   flex:0 0 60%;
