@@ -1048,6 +1048,128 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   .bloc-identite .nom-agence{font-size:8px;}
   .bloc-identite .slogan{font-size:5px;}
 }
+
+   /* ============================================================
+   AMÉLIORATIONS MOBILES — Vue téléphone optimale
+   ============================================================ */
+@media(max-width:768px){
+
+  /* Bannière plus aérée */
+  .banniere{
+    height:auto !important;
+    min-height:320px;
+    padding:40px 0;
+    background-position:65% center;
+  }
+  .banniere-contenu h1{font-size:34px !important;line-height:1.1;}
+  .banniere-contenu p{font-size:13px !important;line-height:1.5;}
+
+  /* Destinations : 1 colonne */
+  .grille-destinations{
+    grid-template-columns:1fr !important;
+    gap:14px;
+  }
+  .carte-destination{
+    height:auto;
+    flex-direction:column;
+  }
+  .carte-destination .photo{
+    flex:0 0 auto;
+    height:150px;
+    width:100%;
+  }
+  .carte-destination .panneau{
+    flex:1;
+    width:100%;
+    padding:12px 14px;
+  }
+  .carte-destination .panneau .desc{font-size:12px;line-height:1.5;margin-bottom:8px;}
+  .carte-destination .panneau ul li{font-size:11px;margin-bottom:4px;}
+  .btn-destination{font-size:11px;padding:8px 16px;}
+
+  /* Excursions : carrousel horizontal */
+  .grille-excursions{
+    display:flex !important;
+    overflow-x:auto;
+    gap:10px;
+    padding-bottom:10px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .grille-excursions::-webkit-scrollbar{height:5px;}
+  .grille-excursions::-webkit-scrollbar-thumb{background:var(--vert-profond);border-radius:5px;}
+  .carte-excursion{
+    flex:0 0 75% !important;
+    scroll-snap-align:start;
+  }
+  .carte-excursion .img{height:120px;}
+  .carte-excursion .contenu{padding:10px 12px;}
+  .carte-excursion .contenu h4{font-size:14px;}
+  .carte-excursion .contenu p{font-size:12px;min-height:auto;margin-bottom:6px;}
+
+  /* Agence : 1 colonne */
+  .agence .container{
+    grid-template-columns:1fr !important;
+    gap:16px;
+  }
+  .agence-photo img{min-height:200px;}
+  .agence-texte h3{font-size:20px;}
+  .agence-texte .accroche{font-size:14px;}
+  .agence-texte p{font-size:13px;line-height:1.6;}
+  .btn-en-savoir{font-size:13px;padding:10px 20px;}
+  .agence-panneau{padding:16px 14px;gap:14px;}
+  .engagement i{font-size:22px;width:30px;}
+  .engagement h5{font-size:14px;}
+  .engagement p{font-size:12px;}
+
+  /* Bandeau contact centré */
+  .bande-contact .container{
+    grid-template-columns:1fr !important;
+    gap:14px;
+    text-align:center;
+  }
+  .contact-avion{font-size:32px;justify-self:center;}
+  .contact-texte h3{font-size:16px;}
+  .contact-texte p{font-size:12px;}
+  .contact-droite{
+    justify-content:center;
+    gap:10px;
+    flex-direction:column;
+  }
+  .btn-whatsapp-contact{font-size:13px;padding:10px 18px;justify-content:center;}
+  .contact-coord{align-items:center;font-size:12px;padding:8px 16px;}
+
+  /* Pied de page centré */
+  .pied-ligne1{
+    grid-template-columns:1fr !important;
+    gap:14px;
+    text-align:center;
+    justify-items:center;
+  }
+  .logo-pied-bloc{justify-content:center;}
+  .nav-pied{gap:10px;justify-content:center;flex-wrap:wrap;}
+  .nav-pied a{font-size:11px;padding:4px 6px;}
+  .nav-pied a:not(:last-child)::after{display:none;}
+  .sociaux{justify-content:center;gap:18px;}
+  .sociaux a{font-size:18px;}
+  .pied-ligne2{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    font-size:10px;
+    gap:6px;
+  }
+
+  /* Avantages : texte lisible */
+  .avantages .container{grid-template-columns:repeat(2,1fr) !important;}
+  .avantage{height:auto;padding:16px 10px;border-right:none;border-bottom:1px solid #d8e8e1;}
+  .avantage:nth-child(2n){border-right:none;}
+  .avantage:nth-child(odd){border-right:1px solid #d8e8e1;}
+  .avantage:nth-child(3),.avantage:nth-child(4){border-bottom:none;}
+  .avantage i{font-size:26px;}
+  .avantage h4{font-size:11px;line-height:1.2;}
+  .avantage p{font-size:9px;line-height:1.3;max-width:none;}
+}
 </style>
 </head>
 <body>
