@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mada Vibe Discover — Nosy Be, Madagascar | Excursions & Séjours</title>
+<title>Nosy Be, Madagascar | Mada Vibe Discover — Excursions & Séjours</title>
 <meta name="description" content="Découvrez les incontournables de Nosy Be avec Mada Vibe Discover : Nosy Iranja, Nosy Tanikely, Lokobe, Mont Passot et bien plus. Excursions et séjours sur mesure à Madagascar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,7 +200,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   padding:4px 6px;
 }
 
-/* Menu mobile */
 .menu-mobile{
   display:none;
   position:absolute;
@@ -347,7 +346,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 
 /* ============================================================
-   SITES INCONTOURNABLES — 4 COLONNES SUR TOUS LES ÉCRANS
+   SITES INCONTOURNABLES — 4 COLONNES SUR ORDINATEUR
    ============================================================ */
 .sites{
   padding:36px 0 44px;
@@ -379,7 +378,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .grille-sites{
   display:grid;
-  grid-template-columns:repeat(4,1fr); /* TOUJOURS 4 COLONNES */
+  grid-template-columns:repeat(4,1fr);
   gap:22px;
 }
 .carte-site{
@@ -435,7 +434,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 
 /* ============================================================
-   EXCURSIONS — 5 cartes sur une ligne
+   EXCURSIONS — 5 COLONNES SUR ORDINATEUR
    ============================================================ */
 .excursions{
   padding:10px 0 44px;
@@ -489,7 +488,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 
 /* ============================================================
-   AGENCE — 3 colonnes
+   AGENCE — 3 COLONNES SUR ORDINATEUR
    ============================================================ */
 .agence{
   padding:10px 0 44px;
@@ -538,6 +537,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   line-height:1.6;
   margin-bottom:16px;
 }
+/* Bouton "Lire la suite" — caché sur ordinateur */
+.agence-toggle{display:none;}
+
 .btn-en-savoir{
   display:inline-flex;
   align-items:center;
@@ -669,7 +671,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .contact-coord i{font-size:12px;}
 
 /* ============================================================
-   PIED DE PAGE — conforme à la photo
+   PIED DE PAGE
    ============================================================ */
 .pied{
   background:var(--vert-profond);
@@ -874,7 +876,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .btn-fermer-modale:hover{background:var(--blanc);}
 
 /* ============================================================
-   BOUTON FLOTTANT LANGUES (bas droite)
+   BOUTON FLOTTANT LANGUES
    ============================================================ */
 .langue-flottant{
   position:fixed;
@@ -932,7 +934,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 
 /* ============================================================
-   RESPONSIVE — TABLETTE
+   RESPONSIVE — TABLETTE (≤1024px)
    ============================================================ */
 @media(max-width:1024px){
   .container{
@@ -960,7 +962,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   .titre-section h2{font-size:22px;}
   .titre-section p{font-size:11px;}
 
-  /* 4 colonnes conservées */
   .grille-sites{grid-template-columns:repeat(4,1fr);gap:12px;}
   .carte-site .img-site{height:110px;}
   .carte-site .contenu-site{padding:9px 10px 11px;}
@@ -994,63 +995,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   .pied-ligne2{font-size:9.5px;}
 }
 
-/* Tablette */
-@media(max-width:1024px){
-  .pied-ligne1{gap:16px;padding-bottom:12px;}
-  .logo-rond-pied{width:38px;height:38px;}
-  .texte-pied-identite .nom-pied{font-size:10.5px;}
-  .texte-pied-identite .slogan-pied{font-size:6.5px;}
-  .nav-pied a{font-size:9.5px;padding:0 10px;}
-  .sociaux a{font-size:16px;}
-  .pied-ligne2{font-size:9.5px;}
-}
-
-/* Téléphone */
-@media(max-width:768px){
-  .pied{padding:16px 0 12px;}
-  .pied-ligne1{
-    grid-template-columns:1fr;
-    gap:14px;
-    text-align:center;
-    justify-items:center;
-    padding-bottom:14px;
-  }
-  .logo-pied-bloc{justify-content:center;}
-  .logo-rond-pied{width:36px;height:36px;}
-  .texte-pied-identite .nom-pied{font-size:10px;}
-  .texte-pied-identite .slogan-pied{font-size:6px;}
-  .nav-pied{justify-content:center;gap:0;}
-  .nav-pied a{font-size:8.5px;padding:0 8px;}
-  .nav-pied a:not(:last-child)::after{right:-1px;}
-  .sociaux{justify-content:center;gap:18px;}
-  .sociaux a{font-size:16px;width:26px;height:26px;}
-  .pied-ligne2{
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    font-size:8px;
-    gap:4px;
-    padding-top:12px;
-  }
-}
-
-/* Très petits écrans */
-@media(max-width:400px){
-  .nav-pied a{font-size:7.5px;padding:0 5px;}
-  .nav-pied a:not(:last-child)::after{display:none;}
-  .nav-pied{gap:6px;flex-wrap:wrap;}
-  .sociaux a{font-size:14px;width:24px;height:24px;}
-  .pied-ligne2{font-size:7.5px;}
-}
-
 /* ============================================================
-   RESPONSIVE — TÉLÉPHONE
+   RESPONSIVE — TÉLÉPHONE (≤768px) — VERSION OPTIMISÉE
    ============================================================ */
 @media(max-width:768px){
+
+  /* Container */
   .container{
     padding-left:var(--marge-tel);
     padding-right:var(--marge-tel);
   }
+
+  /* ---------- EN-TÊTE ---------- */
   .entete .container{height:60px;gap:6px;}
   .logo-rond{width:34px;height:34px;}
   .bloc-identite{gap:6px;}
@@ -1060,103 +1016,288 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   .btn-whatsapp.desktop{display:none;}
   .burger{display:block;font-size:20px;}
 
-  .banniere{height:300px;background-position:70% center;}
+  /* ---------- BANNIÈRE ---------- */
+  .banniere{
+    height:auto;
+    min-height:320px;
+    padding:36px 0;
+    background-position:65% center;
+  }
   .banniere-contenu{max-width:100%;padding-right:16px;}
-  .banniere-contenu h1{font-size:30px;margin-bottom:10px;}
-  .banniere-contenu p{font-size:11px;margin-bottom:16px;max-width:100%;}
-  .banniere-boutons{gap:8px;}
-  .btn-jaune,.btn-transparent{font-size:10px;padding:8px 16px;}
-  .btn-transparent{padding:6px 14px;}
+  .banniere-contenu h1{font-size:32px;margin-bottom:10px;line-height:1.1;}
+  .banniere-contenu p{font-size:12.5px;margin-bottom:16px;max-width:100%;line-height:1.5;}
+  .banniere-boutons{gap:10px;}
+  .btn-jaune,.btn-transparent{font-size:11px;padding:9px 16px;}
+  .btn-transparent{padding:7px 14px;}
 
-  .avantages .container{grid-template-columns:repeat(4,1fr);}
-  .avantage{height:80px;padding:4px 3px;border-right:1px solid #d8e8e1;}
-  .avantage i{font-size:18px;margin-bottom:3px;}
-  .avantage h4{font-size:7.5px;letter-spacing:0;line-height:1.1;}
-  .avantage p{font-size:6.5px;line-height:1.2;max-width:95px;}
+  /* ---------- AVANTAGES : 2×2 ---------- */
+  .avantages .container{grid-template-columns:repeat(2,1fr);}
+  .avantage{
+    height:auto;
+    padding:18px 12px;
+    border-right:none;
+    border-bottom:1px solid #d8e8e1;
+  }
+  .avantage:nth-child(odd){border-right:1px solid #d8e8e1;}
+  .avantage:nth-child(3),.avantage:nth-child(4){border-bottom:none;}
+  .avantage i{font-size:26px;margin-bottom:6px;}
+  .avantage h4{font-size:11px;line-height:1.2;letter-spacing:0;}
+  .avantage p{font-size:9.5px;line-height:1.3;max-width:none;}
 
-  .sites{padding:24px 0 28px;}
-  .titre-section h2{font-size:18px;}
-  .titre-section p{font-size:10px;}
-  /* 4 COLONNES SUR TÉLÉPHONE AUSSI */
-  .grille-sites{grid-template-columns:repeat(4,1fr);gap:5px;}
-  .carte-site{border-radius:6px;}
-  .carte-site .img-site{height:60px;}
-  .carte-site .contenu-site{padding:5px 5px 6px;}
-  .carte-site .contenu-site h4{font-size:7.5px;margin-bottom:2px;line-height:1.15;}
-  .carte-site .contenu-site p{font-size:6px;line-height:1.2;}
-  .carte-site .contenu-site .fleche{font-size:8px;}
+  /* ---------- SITES : CARROUSEL HORIZONTAL ---------- */
+  .sites{padding:26px 0 30px;}
+  .titre-section h2{font-size:20px;}
+  .titre-section p{font-size:11px;margin-bottom:16px;}
 
-  .excursions{padding:6px 0 28px;}
-  .grille-excursions{gap:5px;}
-  .carte-excursion .img{height:56px;}
-  .carte-excursion .contenu{padding:6px 5px 8px;}
-  .carte-excursion .contenu h4{font-size:7.5px;margin-bottom:2px;}
-  .carte-excursion .contenu p{font-size:6.5px;line-height:1.2;margin-bottom:4px;min-height:18px;}
-  .carte-excursion .contenu .fleche{font-size:8px;}
+  .grille-sites{
+    display:flex;
+    overflow-x:auto;
+    gap:12px;
+    padding:6px 0 16px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    /* Décalage pour que la 1ère carte soit alignée avec le container */
+    margin:0 calc(var(--marge-tel) * -1);
+    padding-left:var(--marge-tel);
+    padding-right:var(--marge-tel);
+  }
+  .grille-sites::-webkit-scrollbar{display:none;}
+  .grille-sites::after{
+    content:'';
+    flex:0 0 var(--marge-tel);
+  }
 
-  .agence{padding:6px 0 28px;}
-  .agence .container{grid-template-columns:28% 40% 32%;gap:6px;}
-  .agence-photo img{min-height:120px;}
-  .agence-texte h3{font-size:11px;margin-bottom:2px;}
-  .agence-texte .accroche{font-size:8px;margin-bottom:6px;}
-  .agence-texte p{font-size:7.5px;line-height:1.4;margin-bottom:8px;}
-  .btn-en-savoir{font-size:7.5px;padding:5px 12px;gap:3px;}
-  .agence-panneau{padding:8px 7px;gap:8px;border-radius:8px;}
-  .engagement{gap:5px;}
-  .engagement i{font-size:12px;width:16px;}
-  .engagement h5{font-size:7.5px;}
-  .engagement p{font-size:6.5px;line-height:1.2;}
+  .carte-site{
+    flex:0 0 78%;
+    max-width:290px;
+    scroll-snap-align:center;
+    border-radius:10px;
+  }
+  .carte-site .img-site{height:170px;}
+  .carte-site .contenu-site{padding:12px 14px 14px;}
+  .carte-site .contenu-site h4{font-size:14px;margin-bottom:4px;}
+  .carte-site .contenu-site p{font-size:11.5px;line-height:1.4;}
+  .carte-site .contenu-site .fleche{font-size:13px;}
 
-  .bande-contact{padding:16px 0;}
-  .bande-contact .container{grid-template-columns:auto 1fr;gap:10px;}
-  .contact-avion{font-size:22px;grid-row:span 2;}
-  .contact-texte h3{font-size:12px;margin-bottom:2px;}
-  .contact-texte p{font-size:9px;}
-  .contact-droite{grid-column:1 / -1;justify-content:flex-start;gap:10px;margin-top:4px;}
-  .btn-whatsapp-contact{font-size:9px;padding:7px 14px;gap:5px;}
-  .contact-coord{font-size:8px;padding:5px 12px;gap:2px;}
-  .contact-coord i{font-size:8px;}
+  /* Indicateur de swipe sous le carrousel */
+  .sites .grille-sites::before{
+    content:'';
+  }
 
-  .pied{padding:16px 0 12px;}
-  .pied-ligne1{grid-template-columns:1fr;gap:10px;text-align:center;justify-items:center;}
-  .logo-pied-bloc{justify-content:center;}
-  .nav-pied{gap:8px;}
-  .nav-pied a{font-size:8px;}
-  .nav-pied a:not(:last-child)::after{margin-left:8px;}
-  .sociaux{gap:14px;}
-  .sociaux a{font-size:14px;}
-  .pied-ligne2{flex-direction:column;align-items:center;text-align:center;font-size:8px;gap:4px;}
+  /* ---------- EXCURSIONS : CARROUSEL HORIZONTAL ---------- */
+  .excursions{padding:6px 0 30px;}
+  .excursions .titre-section{margin-bottom:16px;}
 
-  .modale-contenu .img-modale{height:180px;}
-  .modale-contenu .corps-modale{padding:16px 16px 18px;}
-  .modale-contenu .corps-modale h3{font-size:16px;}
-  .modale-contenu .corps-modale p{font-size:11.5px;}
-  .modale-contenu .corps-modale .btn-modale-wa{font-size:11px;padding:9px 16px;}
+  .grille-excursions{
+    display:flex;
+    overflow-x:auto;
+    gap:12px;
+    padding:6px 0 16px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    margin:0 calc(var(--marge-tel) * -1);
+    padding-left:var(--marge-tel);
+    padding-right:var(--marge-tel);
+  }
+  .grille-excursions::-webkit-scrollbar{display:none;}
+  .grille-excursions::after{
+    content:'';
+    flex:0 0 var(--marge-tel);
+  }
 
-  /* Bouton langue flottant sur téléphone */
+  .carte-excursion{
+    flex:0 0 78%;
+    max-width:290px;
+    scroll-snap-align:center;
+    border-radius:10px;
+  }
+  .carte-excursion .img{height:160px;}
+  .carte-excursion .contenu{padding:12px 14px 14px;}
+  .carte-excursion .contenu h4{font-size:14px;margin-bottom:4px;}
+  .carte-excursion .contenu p{font-size:11.5px;line-height:1.4;margin-bottom:6px;min-height:auto;}
+  .carte-excursion .contenu .fleche{font-size:13px;}
+
+  /* ---------- AGENCE : 1 COLONNE + ACCORDÉON ---------- */
+  .agence{padding:20px 0 30px;}
+  .agence .container{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+  .agence-photo img{min-height:220px;border-radius:10px;}
+  .agence-texte{padding-top:0;}
+  .agence-texte h3{font-size:22px;margin-bottom:6px;}
+  .agence-texte .accroche{font-size:14px;margin-bottom:10px;}
+
+  /* Le texte complet est replié par défaut */
+  .agence-texte p{
+    font-size:13px;
+    line-height:1.6;
+    margin-bottom:0;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s ease, margin-bottom .4s ease, opacity .3s ease;
+    opacity:0;
+  }
+  .agence-texte p.ouvert{
+    max-height:400px;
+    margin-bottom:14px;
+    opacity:1;
+  }
+
+  /* Bouton "Lire la suite" — visible sur mobile */
+  .agence-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--vert-tres-pale);
+    color:var(--vert-profond);
+    font-size:12px;
+    font-weight:600;
+    padding:8px 16px;
+    border-radius:30px;
+    margin-bottom:10px;
+    align-self:flex-start;
+    transition:background .2s;
+  }
+  .agence-toggle:hover{background:#d9e9e2;}
+  .agence-toggle i{transition:transform .3s;font-size:11px;}
+  .agence-toggle.ouvert i{transform:rotate(180deg);}
+
+  .btn-en-savoir{font-size:13px;padding:10px 20px;}
+
+  /* Le panneau engagements est replié par défaut */
+  .agence-panneau{
+    padding:20px 16px;
+    gap:16px;
+    max-height:0;
+    overflow:hidden;
+    padding-top:0;
+    padding-bottom:0;
+    opacity:0;
+    transition:max-height .5s ease, padding .3s ease, opacity .3s ease;
+  }
+  .agence-panneau.ouvert{
+    max-height:600px;
+    padding:20px 16px;
+    opacity:1;
+  }
+  .engagement{gap:12px;}
+  .engagement i{font-size:22px;width:28px;}
+  .engagement h5{font-size:13px;margin-bottom:3px;}
+  .engagement p{font-size:11.5px;line-height:1.4;}
+
+  /* ---------- BANDE DE CONTACT : COMPACTE ---------- */
+  .bande-contact{padding:20px 0;}
+  .bande-contact .container{
+    grid-template-columns:1fr;
+    gap:12px;
+    text-align:center;
+  }
+  .contact-avion{font-size:32px;justify-self:center;grid-row:auto;}
+  .contact-texte h3{font-size:16px;margin-bottom:6px;}
+  .contact-texte p{font-size:12px;line-height:1.4;}
+  .contact-droite{
+    grid-column:auto;
+    justify-content:center;
+    flex-direction:column;
+    gap:10px;
+    margin-top:4px;
+  }
+  .btn-whatsapp-contact{font-size:13px;padding:11px 20px;gap:7px;justify-content:center;}
+  /* Coordonnées cachées sur mobile (accessibles en cliquant WhatsApp) */
+  .contact-coord{display:none;}
+
+  /* ---------- MODALE ---------- */
+  .modale-contenu .img-modale{height:200px;}
+  .modale-contenu .corps-modale{padding:18px 20px 20px;}
+  .modale-contenu .corps-modale h3{font-size:18px;}
+  .modale-contenu .corps-modale p{font-size:12.5px;line-height:1.6;}
+  .modale-contenu .corps-modale .btn-modale-wa{font-size:12px;padding:10px 18px;}
+
+  /* ---------- BOUTON LANGUE FLOTTANT ---------- */
   .langue-flottant{bottom:14px;right:14px;}
-  .btn-langue-flottant{padding:10px 16px;font-size:11px;gap:6px;}
+  .btn-langue-flottant{padding:10px 16px;font-size:12px;gap:6px;}
   .btn-langue-flottant i{font-size:13px;}
   .menu-langue-flottant{min-width:150px;}
   .menu-langue-flottant li{padding:10px 14px;font-size:12px;}
+
+  /* ---------- PIED DE PAGE ---------- */
+  .pied{padding:20px 0 14px;}
+  .pied-ligne1{
+    grid-template-columns:1fr;
+    gap:16px;
+    text-align:center;
+    justify-items:center;
+    padding-bottom:16px;
+  }
+  .logo-pied-bloc{justify-content:center;}
+  .logo-rond-pied{width:40px;height:40px;}
+  .texte-pied-identite .nom-pied{font-size:11px;}
+  .texte-pied-identite .slogan-pied{font-size:7px;}
+  .nav-pied{
+    justify-content:center;
+    gap:6px 12px;
+    flex-wrap:wrap;
+    padding:0 10px;
+  }
+  .nav-pied a{font-size:11px;padding:4px 0;}
+  .nav-pied a:not(:last-child)::after{display:none;}
+  .sociaux{justify-content:center;gap:20px;}
+  .sociaux a{font-size:18px;width:30px;height:30px;}
+  .pied-ligne2{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    font-size:10px;
+    gap:6px;
+    padding-top:14px;
+  }
+}
+/* Indicateur visuel de swipe sur mobile */
+.grille-sites::after,
+.grille-excursions::after{
+  content:'';
+  flex:0 0 var(--marge-tel);
 }
 
-/* Ajustement très petits écrans */
+/* Fondu à droite pour suggérer plus de contenu */
+.grille-sites,
+.grille-excursions{
+  background-image:linear-gradient(to right, transparent calc(100% - 30px), rgba(255,255,255,.9));
+  background-repeat:no-repeat;
+  background-position:right center;
+  background-size:30px 100%;
+}
+/* ============================================================
+   TRÈS PETITS ÉCRANS (≤400px)
+   ============================================================ */
 @media(max-width:400px){
-  .avantage h4{font-size:6.5px;}
-  .avantage p{font-size:5.8px;}
-  .carte-site .img-site{height:52px;}
-  .carte-site .contenu-site h4{font-size:6.8px;}
-  .carte-site .contenu-site p{font-size:5.5px;}
-  .carte-excursion .img{height:48px;}
-  .carte-excursion .contenu h4{font-size:7px;}
-  .carte-excursion .contenu p{font-size:6px;min-height:16px;}
-  .agence-texte h3{font-size:10px;}
-  .agence-texte p{font-size:7px;}
-  .engagement h5{font-size:7px;}
-  .engagement p{font-size:6px;}
-  .bloc-identite .nom-agence{font-size:8px;}
-  .bloc-identite .slogan{font-size:5px;}
+  .banniere-contenu h1{font-size:28px;}
+  .banniere-contenu p{font-size:12px;}
+
+  .avantage h4{font-size:10px;}
+  .avantage p{font-size:8.5px;}
+
+  .carte-site{flex:0 0 85%;}
+  .carte-site .img-site{height:150px;}
+  .carte-site .contenu-site h4{font-size:13px;}
+  .carte-site .contenu-site p{font-size:11px;}
+
+  .carte-excursion{flex:0 0 85%;}
+  .carte-excursion .img{height:140px;}
+  .carte-excursion .contenu h4{font-size:13px;}
+  .carte-excursion .contenu p{font-size:11px;}
+
+  .agence-texte h3{font-size:20px;}
+  .agence-texte p{font-size:12.5px;}
+
+  .nav-pied a{font-size:10px;}
+  .pied-ligne2{font-size:9px;}
+
+  .langue-flottant{bottom:10px;right:10px;}
+  .btn-langue-flottant{padding:8px 14px;font-size:11px;}
 }
 </style>
 </head>
@@ -1276,14 +1417,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 </section>
 
 <!-- ============================================================
-     SITES INCONTOURNABLES — 4 colonnes TOUS ÉCRANS
+     SITES INCONTOURNABLES
      ============================================================ -->
 <section class="sites" id="sites">
   <div class="container">
     <div class="titre-section">
       <div class="trait-dore"></div>
       <h2 data-i18n="sites_titre">Les incontournables de Nosy Be</h2>
-      <p data-i18n="sites_sous_titre">Des lieux d'exception pour une expérience inoubliable.</p>
+      <p data-i18n="sites_sous_titre">Glissez pour découvrir tous les sites.</p>
     </div>
 
     <div class="grille-sites" id="grilleSites">
@@ -1435,14 +1576,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 </section>
 
 <!-- ============================================================
-     EXCURSIONS — 5 cartes
+     EXCURSIONS
      ============================================================ -->
 <section class="excursions" id="excursions">
   <div class="container">
     <div class="titre-section">
       <div class="trait-dore"></div>
       <h2 data-i18n="exc_titre">Excursions à découvrir</h2>
-      <p data-i18n="exc_sous_titre">Des expériences incontournables pour explorer Nosy Be.</p>
+      <p data-i18n="exc_sous_titre">Glissez pour découvrir toutes les excursions.</p>
     </div>
 
     <div class="grille-excursions">
@@ -1495,21 +1636,27 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 </section>
 
 <!-- ============================================================
-     AGENCE — 3 colonnes
+     AGENCE — avec accordéon mobile
      ============================================================ -->
 <section class="agence" id="agence">
   <div class="container">
     <div class="agence-photo">
-      <img src="2.jpg"
-           alt="Guide local de Mada Vibe Discover à Nosy Be">
+      <img src="2.jpg" alt="Guide local de Mada Vibe Discover à Nosy Be">
     </div>
     <div class="agence-texte">
       <h3 data-i18n="agence_titre">Mada Vibe Discover</h3>
       <p class="accroche" data-i18n="agence_accroche">Plus qu'un voyage, une rencontre.</p>
-      <p data-i18n="agence_texte">Mada Vibe Discover est une agence locale basée à Nosy Be, à Madagascar. Nous organisons des excursions et des séjours sur mesure pour vous faire découvrir la beauté de l'île, ses paysages, sa culture et la gentillesse de ses habitants, tout en vous offrant un service fiable et personnalisé.</p>
+
+      <button type="button" class="agence-toggle" id="agenceToggle">
+        <span data-i18n="btn_lire_plus">Lire la suite</span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+
+      <p class="agence-texte-complet" data-i18n="agence_texte">Mada Vibe Discover est une agence locale basée à Nosy Be, à Madagascar. Nous organisons des excursions et des séjours sur mesure pour vous faire découvrir la beauté de l'île, ses paysages, sa culture et la gentillesse de ses habitants, tout en vous offrant un service fiable et personnalisé.</p>
+
       <a href="#" class="btn-en-savoir"><span data-i18n="btn_en_savoir">En savoir plus</span> <i class="fas fa-arrow-right"></i></a>
     </div>
-    <div class="agence-panneau">
+    <div class="agence-panneau" id="agencePanneau">
       <div class="engagement">
         <i class="fas fa-map-marked-alt"></i>
         <div>
@@ -1536,7 +1683,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 </section>
 
 <!-- ============================================================
-     BANDE DE CONTACT
+     BANDE DE CONTACT — compacte sur mobile
      ============================================================ -->
 <section class="bande-contact" id="contact">
   <div class="container">
@@ -1614,7 +1761,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 </div>
 
 <!-- ============================================================
-     BOUTON FLOTTANT LANGUES (bas droite)
+     BOUTON FLOTTANT LANGUES
      ============================================================ -->
 <div class="langue-flottant">
   <ul class="menu-langue-flottant" id="menuLangueFlottant">
@@ -1645,7 +1792,7 @@ menuMobile.querySelectorAll('a').forEach(a => {
 });
 
 /* ============================================================
-   TRADUCTIONS — 4 langues (français par défaut)
+   TRADUCTIONS — 4 langues
    ============================================================ */
 const traductions = {
   fr: {
@@ -1671,7 +1818,7 @@ const traductions = {
     av_experiences: "Expériences authentiques",
     av_experiences_desc: "Découverte, partage et respect.",
     sites_titre: "Les incontournables de Nosy Be",
-    sites_sous_titre: "Des lieux d'exception pour une expérience inoubliable.",
+    sites_sous_titre: "Glissez pour découvrir tous les sites.",
     site_iranja: "Nosy Iranja",
     site_iranja_desc: "Île paradisiaque et banc de sable blanc.",
     site_tanikely: "Nosy Tanikely",
@@ -1697,7 +1844,7 @@ const traductions = {
     site_arbre: "Arbre sacré de Mahatsinjo",
     site_arbre_desc: "Nature et spiritualité.",
     exc_titre: "Excursions à découvrir",
-    exc_sous_titre: "Des expériences incontournables pour explorer Nosy Be.",
+    exc_sous_titre: "Glissez pour découvrir toutes les excursions.",
     exc_iranja_titre: "Nosy Iranja",
     exc_iranja_desc: "Journée sur une île paradisiaque.",
     exc_komba_titre: "Nosy Komba et Tanikely",
@@ -1712,6 +1859,7 @@ const traductions = {
     agence_accroche: "Plus qu'un voyage, une rencontre.",
     agence_texte: "Mada Vibe Discover est une agence locale basée à Nosy Be, à Madagascar. Nous organisons des excursions et des séjours sur mesure pour vous faire découvrir la beauté de l'île, ses paysages, sa culture et la gentillesse de ses habitants, tout en vous offrant un service fiable et personnalisé.",
     btn_en_savoir: "En savoir plus",
+    btn_lire_plus: "Lire la suite",
     eng1: "Connaissance du terrain",
     eng1_desc: "Des itinéraires adaptés et sécurisés.",
     eng2: "Écoute et personnalisation",
@@ -1751,7 +1899,7 @@ const traductions = {
     av_experiences: "Authentic experiences",
     av_experiences_desc: "Discovery, sharing and respect.",
     sites_titre: "Nosy Be must-sees",
-    sites_sous_titre: "Exceptional places for an unforgettable experience.",
+    sites_sous_titre: "Swipe to discover all the places.",
     site_iranja: "Nosy Iranja",
     site_iranja_desc: "Paradise island and white sandbank.",
     site_tanikely: "Nosy Tanikely",
@@ -1777,7 +1925,7 @@ const traductions = {
     site_arbre: "Sacred tree of Mahatsinjo",
     site_arbre_desc: "Nature and spirituality.",
     exc_titre: "Tours to discover",
-    exc_sous_titre: "Must-do experiences to explore Nosy Be.",
+    exc_sous_titre: "Swipe to discover all the tours.",
     exc_iranja_titre: "Nosy Iranja",
     exc_iranja_desc: "Day on a paradise island.",
     exc_komba_titre: "Nosy Komba and Tanikely",
@@ -1792,6 +1940,7 @@ const traductions = {
     agence_accroche: "More than a trip, an encounter.",
     agence_texte: "Mada Vibe Discover is a local agency based in Nosy Be, Madagascar. We organize tailor-made excursions and stays to help you discover the beauty of the island, its landscapes, its culture and the kindness of its inhabitants, while offering you a reliable and personalized service.",
     btn_en_savoir: "Learn more",
+    btn_lire_plus: "Read more",
     eng1: "Knowledge of the terrain",
     eng1_desc: "Adapted and secure itineraries.",
     eng2: "Listening and personalization",
@@ -1831,7 +1980,7 @@ const traductions = {
     av_experiences: "Authentische Erlebnisse",
     av_experiences_desc: "Entdeckung, Austausch und Respekt.",
     sites_titre: "Die Highlights von Nosy Be",
-    sites_sous_titre: "Außergewöhnliche Orte für ein unvergessliches Erlebnis.",
+    sites_sous_titre: "Wischen Sie, um alle Orte zu entdecken.",
     site_iranja: "Nosy Iranja",
     site_iranja_desc: "Paradiesinsel und weiße Sandbank.",
     site_tanikely: "Nosy Tanikely",
@@ -1857,7 +2006,7 @@ const traductions = {
     site_arbre: "Heiliger Baum von Mahatsinjo",
     site_arbre_desc: "Natur und Spiritualität.",
     exc_titre: "Ausflüge zu entdecken",
-    exc_sous_titre: "Unverzichtbare Erlebnisse, um Nosy Be zu erkunden.",
+    exc_sous_titre: "Wischen Sie, um alle Ausflüge zu entdecken.",
     exc_iranja_titre: "Nosy Iranja",
     exc_iranja_desc: "Tag auf einer Paradiesinsel.",
     exc_komba_titre: "Nosy Komba und Tanikely",
@@ -1872,6 +2021,7 @@ const traductions = {
     agence_accroche: "Mehr als eine Reise, eine Begegnung.",
     agence_texte: "Mada Vibe Discover ist eine lokale Agentur mit Sitz in Nosy Be, Madagaskar. Wir organisieren maßgeschneiderte Ausflüge und Aufenthalte, damit Sie die Schönheit der Insel, ihre Landschaften, ihre Kultur und die Freundlichkeit ihrer Bewohner entdecken können, und bieten Ihnen gleichzeitig einen zuverlässigen und persönlichen Service.",
     btn_en_savoir: "Mehr erfahren",
+    btn_lire_plus: "Mehr lesen",
     eng1: "Kenntnis des Geländes",
     eng1_desc: "Angepasste und sichere Routen.",
     eng2: "Zuhören und Personalisierung",
@@ -1911,7 +2061,7 @@ const traductions = {
     av_experiences: "Esperienze autentiche",
     av_experiences_desc: "Scoperta, condivisione e rispetto.",
     sites_titre: "Gli imperdibili di Nosy Be",
-    sites_sous_titre: "Luoghi d'eccezione per un'esperienza indimenticabile.",
+    sites_sous_titre: "Scorri per scoprire tutti i luoghi.",
     site_iranja: "Nosy Iranja",
     site_iranja_desc: "Isola paradisiaca e banco di sabbia bianca.",
     site_tanikely: "Nosy Tanikely",
@@ -1937,7 +2087,7 @@ const traductions = {
     site_arbre: "Albero sacro di Mahatsinjo",
     site_arbre_desc: "Natura e spiritualità.",
     exc_titre: "Escursioni da scoprire",
-    exc_sous_titre: "Esperienze imperdibili per esplorare Nosy Be.",
+    exc_sous_titre: "Scorri per scoprire tutte le escursioni.",
     exc_iranja_titre: "Nosy Iranja",
     exc_iranja_desc: "Giornata su un'isola paradisiaca.",
     exc_komba_titre: "Nosy Komba e Tanikely",
@@ -1952,6 +2102,7 @@ const traductions = {
     agence_accroche: "Più di un viaggio, un incontro.",
     agence_texte: "Mada Vibe Discover è un'agenzia locale con sede a Nosy Be, in Madagascar. Organizziamo escursioni e soggiorni su misura per farti scoprire la bellezza dell'isola, i suoi paesaggi, la sua cultura e la gentilezza dei suoi abitanti, offrendoti un servizio affidabile e personalizzato.",
     btn_en_savoir: "Scopri di più",
+    btn_lire_plus: "Leggi di più",
     eng1: "Conoscenza del territorio",
     eng1_desc: "Itinerari adattati e sicuri.",
     eng2: "Ascolto e personalizzazione",
@@ -1987,7 +2138,6 @@ function appliquerLangue(code){
     }
   });
 
-  // Mettre à jour les textes des modales (data-site et data-desc en français restent pour les clés)
   document.querySelectorAll('#menuLangueFlottant li').forEach(li => {
     li.classList.toggle('actif', li.getAttribute('data-lang') === code);
   });
@@ -2080,6 +2230,32 @@ document.addEventListener('keydown', e => {
 });
 
 /* ============================================================
+   ACCORDÉON AGENCE (mobile uniquement)
+   ============================================================ */
+const agenceToggle = document.getElementById('agenceToggle');
+const agencePanneau = document.getElementById('agencePanneau');
+const agenceTexteComplet = document.querySelector('.agence-texte-complet');
+
+if (agenceToggle) {
+  agenceToggle.addEventListener('click', () => {
+    agenceToggle.classList.toggle('ouvert');
+    if (agenceTexteComplet) agenceTexteComplet.classList.toggle('ouvert');
+    if (agencePanneau) agencePanneau.classList.toggle('ouvert');
+
+    const ouvert = agenceToggle.classList.contains('ouvert');
+    const span = agenceToggle.querySelector('span');
+    if (span) {
+      const cle = ouvert ? 'btn_lire_moins' : 'btn_lire_plus';
+      if (traductions[langueActive] && traductions[langueActive][cle]) {
+        span.textContent = traductions[langueActive][cle];
+      } else {
+        span.textContent = ouvert ? 'Réduire' : 'Lire la suite';
+      }
+    }
+  });
+}
+
+/* ============================================================
    SOUS-MENUS AU CLAVIER
    ============================================================ */
 document.querySelectorAll('.sous-menu > a').forEach(lien => {
@@ -2092,7 +2268,7 @@ document.querySelectorAll('.sous-menu > a').forEach(lien => {
   });
 });
 
-/* Initialisation : français par défaut */
+/* Initialisation */
 document.addEventListener('DOMContentLoaded', () => {
   appliquerLangue('fr');
 });
