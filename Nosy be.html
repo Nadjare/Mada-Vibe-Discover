@@ -1369,7 +1369,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <li><a href="#agence" data-i18n="nav_apropos">À propos</a></li>
       <li><a href="#" data-i18n="nav_guide">Guide de voyage</a></li>
       <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
-      <li><a href="https://wa.me/261323962286" target="_blank" rel="noopener">WhatsApp</a></li>
+      <li><a href="https://wa.me/261323962286" data-wa-key="message_whatsapp_entete" target="_blank" rel="noopener">WhatsApp</a></li>
     </ul>
   </nav>
 </header>
@@ -1696,7 +1696,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <a href="https://wa.me/261323962286" data-wa-key="message_whatsapp_entete" target="_blank" rel="noopener" class="btn-whatsapp-contact">
   <i class="fab fa-whatsapp"></i> <span data-i18n="btn_wa_contact">Nous écrire sur WhatsApp</span>
 </a>
-      </a>
       <div class="contact-coord">
         <a href="tel:+261323962286"><i class="fas fa-phone-alt"></i> +261 32 39 622 86</a>
         <a href="mailto:hajahabibeabdou@gmail.com"><i class="fas fa-envelope"></i> hajahabibeabdou@gmail.com</a>
@@ -1875,8 +1874,9 @@ const traductions = {
     pied_slogan: "Madagascar, une île, mille émotions.",
     guide_preparer: "Préparer son voyage",
     guide_quand: "Quand partir ?",
-    guide_formalites: "Formalités"
-    message_whatsapp_entete: "Bonjour Mada Vibe Discover, je souhaite obtenir un devis et des informations sur Nosy Be.", 
+       guide_formalites: "Formalités",
+    message_whatsapp_entete: "Bonjour Mada Vibe Discover, je souhaite obtenir un devis et des informations sur Nosy Be.",
+    message_whatsapp_site: "Bonjour Mada Vibe Discover, je souhaite obtenir des informations et un devis pour", 
   },
   en: {
     nom_agence: "Mada Vibe Discover",
@@ -1957,8 +1957,9 @@ const traductions = {
     pied_slogan: "Madagascar, one island, a thousand emotions.",
     guide_preparer: "Prepare your trip",
     guide_quand: "When to go?",
-    guide_formalites: "Formalities"
-   message_whatsapp_entete: "Hello Mada Vibe Discover, I would like to get a quote and information about Nosy Be.",
+    guide_formalites: "Formalities",
+    message_whatsapp_entete: "Hello Mada Vibe Discover, I would like to get a quote and information about Nosy Be.",
+    message_whatsapp_site: "Hello Mada Vibe Discover, I would like to get information and a quote for",
   },
   de: {
     nom_agence: "Mada Vibe Discover",
@@ -2039,8 +2040,9 @@ const traductions = {
     pied_slogan: "Madagaskar, eine Insel, tausend Emotionen.",
     guide_preparer: "Reise vorbereiten",
     guide_quand: "Wann reisen?",
-    guide_formalites: "Formalitäten"
-   message_whatsapp_entete: "Hallo Mada Vibe Discover, ich möchte ein Angebot und Informationen über Nosy Be erhalten.",
+        guide_formalites: "Formalitäten",
+    message_whatsapp_entete: "Hallo Mada Vibe Discover, ich möchte ein Angebot und Informationen über Nosy Be erhalten.",
+    message_whatsapp_site: "Hallo Mada Vibe Discover, ich möchte Informationen und ein Angebot erhalten für",
   },
   it: {
     nom_agence: "Mada Vibe Discover",
@@ -2121,8 +2123,9 @@ const traductions = {
     pied_slogan: "Madagascar, un'isola, mille emozioni.",
     guide_preparer: "Preparare il viaggio",
     guide_quand: "Quando partire?",
-    guide_formalites: "Formalità"
-   message_whatsapp_entete: "Ciao Mada Vibe Discover, vorrei ricevere un preventivo e informazioni su Nosy Be.", 
+        guide_formalites: "Formalità",
+    message_whatsapp_entete: "Ciao Mada Vibe Discover, vorrei ricevere un preventivo e informazioni su Nosy Be.",
+    message_whatsapp_site: "Ciao Mada Vibe Discover, vorrei ricevere informazioni e un preventivo per", 
   }
 };
 
@@ -2149,6 +2152,7 @@ function appliquerLangue(code){
 
   document.getElementById('menuLangueFlottant').classList.remove('ouvert');
   document.documentElement.lang = code;
+   mettreAJourWhatsApp();
 }
 
 /* Bouton flottant langues */
@@ -2184,8 +2188,13 @@ function ouvrirModale(nom, description, image){
   modaleTitre.textContent = nom;
   modaleDesc.textContent = description;
   modaleImg.style.backgroundImage = `url('${image}')`;
-  const message = encodeURIComponent(`Bonjour Mada Vibe Discover, je souhaite obtenir des informations et un devis pour ${nom}.`);
+
+  const prefixe = (traductions[langueActive] && traductions[langueActive].message_whatsapp_site)
+                    ? traductions[langueActive].message_whatsapp_site
+                    : 'Bonjour Mada Vibe Discover, je souhaite obtenir des informations et un devis pour';
+  const message = encodeURIComponent(`${prefixe} ${nom}.`);
   modaleWA.href = `https://wa.me/261323962286?text=${message}`;
+
   modaleSite.classList.add('ouvert');
   document.body.style.overflow = 'hidden';
 }
@@ -2293,9 +2302,10 @@ function mettreAJourWhatsApp(){
 /* Initialisation */
 document.addEventListener('DOMContentLoaded', () => {
   let langue = 'fr';
+   mettreAJourWhatsApp();
   try { langue = localStorage.getItem('langue') || 'fr'; } catch(e) {}
   appliquerLangue(langue);
-  mettreAJourWhatsApp();
+
 });
 </script>
 </body>
