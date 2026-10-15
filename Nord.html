@@ -1707,6 +1707,7 @@ const traductions = {
     guide_quand: "Quand partir ?",
     guide_formalites: "Formalités",
    message_whatsapp_entete: "Bonjour Mada Vibe Discover, je souhaite obtenir un devis et des informations sur Nosy Be.",
+   message_whatsapp_site: "Bonjour Mada Vibe Discover, je souhaite obtenir des informations et un devis pour",
   },
   en: {
     nom_agence: "Mada Vibe Discover",
@@ -1786,6 +1787,7 @@ const traductions = {
     guide_quand: "When to go?",
     guide_formalites: "Formalities",
    message_whatsapp_entete: "Hello Mada Vibe Discover, I would like to get a quote and information about Nosy Be.",
+   message_whatsapp_site: "Hello Mada Vibe Discover, I would like to get information and a quote for",
   },
   de: {
     nom_agence: "Mada Vibe Discover",
@@ -1865,6 +1867,7 @@ const traductions = {
     guide_quand: "Wann reisen?",
     guide_formalites: "Formalitäten",
     message_whatsapp_entete: "Hallo Mada Vibe Discover, ich möchte ein Angebot und Informationen über Nosy Be erhalten.",
+    message_whatsapp_site: "Hallo Mada Vibe Discover, ich möchte Informationen und ein Angebot erhalten für",
   },
   it: {
     nom_agence: "Mada Vibe Discover",
@@ -1944,6 +1947,7 @@ const traductions = {
     guide_quand: "Quando partire?",
     guide_formalites: "Formalità",
    message_whatsapp_entete: "Ciao Mada Vibe Discover, vorrei ricevere un preventivo e informazioni su Nosy Be.",
+   message_whatsapp_site: "Ciao Mada Vibe Discover, vorrei ricevere informazioni e un preventivo per", 
   }
 };
 
@@ -2032,8 +2036,13 @@ function ouvrirModale(nom, description, image){
   modaleTitre.textContent = nom;
   modaleDesc.textContent = description;
   modaleImg.style.backgroundImage = `url('${image}')`;
-  const message = encodeURIComponent(`Bonjour Mada Vibe Discover, je souhaite obtenir des informations et un devis pour ${nom}.`);
+
+  const prefixe = (traductions[langueActive] && traductions[langueActive].message_whatsapp_site)
+                    ? traductions[langueActive].message_whatsapp_site
+                    : 'Bonjour Mada Vibe Discover, je souhaite obtenir des informations et un devis pour';
+  const message = encodeURIComponent(`${prefixe} ${nom}.`);
   modaleWA.href = `https://wa.me/261323962286?text=${message}`;
+
   modaleSite.classList.add('ouvert');
   document.body.style.overflow = 'hidden';
 }
