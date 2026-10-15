@@ -1266,7 +1266,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
 
-    <a href="https://wa.me/261323962286?text=Bonjour%20Mada%20Vibe%20Discover%2C%20je%20souhaite%20obtenir%20des%20informations%20et%20un%20devis%20pour%20d%C3%A9couvrir%20le%20Nord%20de%20Madagascar." target="_blank" rel="noopener" class="btn-whatsapp desktop">
+    <a href="https://wa.me/261323962286" data-wa-key="message_whatsapp_entete" target="_blank" rel="noopener" class="btn-whatsapp desktop">
       <i class="fab fa-whatsapp"></i> WhatsApp
     </a>
 
@@ -1283,7 +1283,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <li><a href="#agence" data-i18n="nav_apropos">À propos</a></li>
       <li><a href="#" data-i18n="nav_guide">Guide de voyage</a></li>
       <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
-      <li><a href="https://wa.me/261323962286" target="_blank" rel="noopener">WhatsApp</a></li>
+      <li><a href="https://wa.me/261323962286" data-wa-key="message_whatsapp_entete" target="_blank" rel="noopener">WhatsApp</a></li>
     </ul>
   </nav>
 </header>
@@ -1297,7 +1297,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     <p data-i18n="banniere_texte">Des paysages grandioses, des plages sauvages, des baies turquoise et une nature encore préservée vous attendent au nord de l'île.</p>
     <div class="banniere-boutons">
       <a href="#sites" class="btn-jaune"><i class="fas fa-compass"></i> <span data-i18n="btn_explorer">Explorer les sites</span></a>
-      <a href="https://wa.me/261323962286?text=Bonjour%20Mada%20Vibe%20Discover%2C%20je%20souhaite%20obtenir%20des%20informations%20et%20un%20devis%20pour%20d%C3%A9couvrir%20le%20Nord%20de%20Madagascar." target="_blank" rel="noopener" class="btn-transparent"><i class="fas fa-envelope"></i> <span data-i18n="btn_devis">Demander un devis</span></a>
+      <a href="https://wa.me/261323962286" data-wa-key="message_whatsapp_entete" target="_blank" rel="noopener" class="btn-transparent"><i class="fas fa-envelope"></i> <span data-i18n="btn_devis">Demander un devis</span></a>
     </div>
   </div>
 </section>
@@ -1527,7 +1527,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
       <p data-i18n="contact_texte">Contactez-nous dès maintenant pour organiser votre excursion ou demander un devis personnalisé.</p>
     </div>
     <div class="contact-droite">
-      <a href="https://wa.me/261323962286?text=Bonjour%20Mada%20Vibe%20Discover%2C%20je%20souhaite%20obtenir%20des%20informations%20et%20un%20devis%20pour%20d%C3%A9couvrir%20le%20Nord%20de%20Madagascar." target="_blank" rel="noopener" class="btn-whatsapp-contact">
+      <a href="https://wa.me/261323962286" data-wa-key="message_whatsapp_entete" target="_blank" rel="noopener" class="btn-whatsapp-contact">
         <i class="fab fa-whatsapp"></i> <span data-i18n="btn_wa_contact">Nous écrire sur WhatsApp</span>
       </a>
       <div class="contact-coord">
@@ -1705,7 +1705,8 @@ const traductions = {
     pied_slogan: "Madagascar, une île, mille émotions.",
     guide_preparer: "Préparer son voyage",
     guide_quand: "Quand partir ?",
-    guide_formalites: "Formalités"
+    guide_formalites: "Formalités",
+   message_whatsapp_entete: "Bonjour Mada Vibe Discover, je souhaite obtenir un devis et des informations sur Nosy Be.",
   },
   en: {
     nom_agence: "Mada Vibe Discover",
@@ -1783,7 +1784,8 @@ const traductions = {
     pied_slogan: "Madagascar, one island, a thousand emotions.",
     guide_preparer: "Prepare your trip",
     guide_quand: "When to go?",
-    guide_formalites: "Formalities"
+    guide_formalites: "Formalities",
+   message_whatsapp_entete: "Hello Mada Vibe Discover, I would like to get a quote and information about Nosy Be.",
   },
   de: {
     nom_agence: "Mada Vibe Discover",
@@ -1861,7 +1863,8 @@ const traductions = {
     pied_slogan: "Madagaskar, eine Insel, tausend Emotionen.",
     guide_preparer: "Reise vorbereiten",
     guide_quand: "Wann reisen?",
-    guide_formalites: "Formalitäten"
+    guide_formalites: "Formalitäten",
+    message_whatsapp_entete: "Hallo Mada Vibe Discover, ich möchte ein Angebot und Informationen über Nosy Be erhalten.",
   },
   it: {
     nom_agence: "Mada Vibe Discover",
@@ -1939,7 +1942,8 @@ const traductions = {
     pied_slogan: "Madagascar, un'isola, mille emozioni.",
     guide_preparer: "Preparare il viaggio",
     guide_quand: "Quando partire?",
-    guide_formalites: "Formalità"
+    guide_formalites: "Formalità",
+   message_whatsapp_entete: "Ciao Mada Vibe Discover, vorrei ricevere un preventivo e informazioni su Nosy Be.",
   }
 };
 
@@ -1991,7 +1995,7 @@ function appliquerLangue(code){
 
   document.getElementById('menuLangueFlottant').classList.remove('ouvert');
   document.documentElement.lang = code;
-
+  mettreAJourWhatsApp();
   try { localStorage.setItem('langue', code); } catch(e) {}
 }
 
@@ -2154,11 +2158,29 @@ document.addEventListener('keydown', e => {
   window.addEventListener('resize', positionnerCartes);
   positionnerCartes();
 })();
+/* ============================================================
+   METTRE À JOUR LES LIENS WHATSAPP SELON LA LANGUE
+   ============================================================ */
+function mettreAJourWhatsApp(){
+  document.querySelectorAll('a[data-wa-key]').forEach(lien => {
+    const cle = lien.getAttribute('data-wa-key');
+    const message = (traductions[langueActive] && traductions[langueActive][cle])
+                      ? traductions[langueActive][cle]
+                      : '';
+    if (message) {
+      lien.href = `https://wa.me/261323962286?text=${encodeURIComponent(message)}`;
+    } else {
+      lien.href = `https://wa.me/261323962286`;
+    }
+  });
+}
+
 /* Initialisation avec la langue sauvegardée */
 document.addEventListener('DOMContentLoaded', () => {
   let langue = 'fr';
   try { langue = localStorage.getItem('langue') || 'fr'; } catch(e) {}
   appliquerLangue(langue);
+  mettreAJourWhatsApp();
 });
 </script>
 </body>
